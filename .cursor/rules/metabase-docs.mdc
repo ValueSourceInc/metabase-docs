@@ -1,0 +1,44 @@
+---
+description: Metabase docs project guidance
+alwaysApply: true
+---
+
+# Metabase Docs Project
+
+This project is a generated documentation library for the Metabase instance.
+The generated docs contain metadata only: card names, fields, dependencies,
+descriptions, dashboards, and collections. They do not contain raw data or SQL
+query text.
+
+## Reading Strategy
+
+- Start with `docs/metabase/_index.json` for discovery.
+- Do not read `docs/metabase/cards.md` to find a card; it is for human browsing.
+- Use `docs/metabase/cards/{id}.md` when full card details or fields are needed.
+- Use `docs/metabase/_deps.json` for dependency lookups.
+- Use `docs/metabase/domains/{domain}.md`, `docs/metabase/collections.md`, and
+  `docs/metabase/glossary.md` only after discovery points to them.
+
+## Common Lookups
+
+- Find a card by name: search `_index.json` for the card name.
+- Find a card by ID: search `_index.json` for the quoted ID.
+- Check what a card depends on: search `_deps.json` for the card ID.
+- Check what depends on a card: search `_deps.json` for entries containing the
+  card ID in downstream dependencies.
+- Find source models: inspect `_index.json` for cards with `type: "source model"`
+  and large downstream usage.
+- Find incomplete or risky cards: inspect `_index.json` for non-empty `risks`.
+
+## Commands
+
+- Use `pnpm gen` to regenerate docs from the Metabase API.
+- Use `pnpm check` to type-check the generator.
+
+## Important
+
+- Do not memorize card counts, collection names, dashboard names, or specific
+  generated metadata; re-read the relevant generated files because Metabase
+  changes over time.
+- Regeneration requires `.env` with `METABASE_API_BASE_URL`,
+  `METABASE_API_KEY`, and `METABASE_DB_ID`. Never print secrets from `.env`.
