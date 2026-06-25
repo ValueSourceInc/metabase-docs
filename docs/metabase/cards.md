@@ -1,6 +1,6 @@
 # Metabase Cards and Models
 
-Total: 219 cards (219 active, 0 archived).
+Total: 226 cards (226 active, 0 archived).
 
 For field-level detail, see individual card files in [cards/](cards/_README.md).
 For programmatic access, use [_index.json](_index.json).
@@ -9,19 +9,20 @@ For programmatic access, use [_index.json](_index.json).
 
 | Type | Count |
 | --- | --- |
-| dashboard component | 90 |
-| question | 71 |
-| source model | 34 |
-| table model | 14 |
-| native question | 10 |
+| dashboard component | 91 |
+| question | 73 |
+| model | 23 |
+| source model | 15 |
+| table model | 13 |
+| native question | 11 |
 
 ## All Cards
 
 | ID | Name | DB | Collection | Type | Domains | Display | Upstream | Downstream | Dashboards | Risks |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| #302 | Pillow Search Volume Xiyou | 4 | 前期用户画像市场分析 | question | advertising | table |  |  |  | missing description; not referenced by dashboards or downstream cards |
-| #303 | Pillow User Search Keywords | 4 | 前期用户画像市场分析 | question | uncategorized | table |  |  |  | missing description; not referenced by dashboards or downstream cards |
-| #304 | Pillow Word Segmentation | 4 | 前期用户画像市场分析 | question | uncategorized | table |  |  |  | missing description; not referenced by dashboards or downstream cards |
+| #302 | Pillow Search Volume Xiyou | 4 | 前期用户画像市场分析 | model | advertising | table |  |  |  | missing description; not referenced by dashboards or downstream cards |
+| #303 | Pillow User Search Keywords | 4 | 前期用户画像市场分析 | model | uncategorized | table |  |  |  | missing description; not referenced by dashboards or downstream cards |
+| #304 | Pillow Word Segmentation | 4 | 前期用户画像市场分析 | model | uncategorized | table |  |  |  | missing description; not referenced by dashboards or downstream cards |
 | #306 | Purchase Amount Distribution by State | 4 | user_profile_demo | dashboard component | finance, logistics | map |  |  | 亚马逊用户肖像分布 | generic aggregation field names; missing description |
 | #307 | Purchase Amount Distribution by Category | 4 | user_profile_demo | dashboard component | finance, sales | row |  |  | 亚马逊用户肖像分布 | missing description; native SQL without business description |
 | #309 | Purchase Amount and Quantity Distribution by Gender | 4 | user_profile_demo | dashboard component | finance | bar |  |  | 亚马逊用户肖像分布 | generic aggregation field names; missing description |
@@ -40,18 +41,18 @@ For programmatic access, use [_index.json](_index.json).
 | #330 | averange_frequency&competiton summary_1 | 4 | Cui Liu's Personal Collection | native question | sales | area |  |  |  | missing description; native SQL without business description; not referenced by dashboards or downstream cards |
 | #331 | Amazon Search Rank & Competition &Trend _1 | 4 | Cui Liu's Personal Collection | dashboard component | uncategorized | line |  |  | filter | missing description |
 | #332 | latest_amaozn_keywords_rank | 4 | Cui Liu's Personal Collection | native question | uncategorized | table |  |  |  | missing description; native SQL without business description; not referenced by dashboards or downstream cards |
-| #333 | Dcms Raw Data Pool 202503 | 4 | Leo Tang's Personal Collection | question | uncategorized | table |  |  |  | missing description; not referenced by dashboards or downstream cards |
+| #333 | Dcms Raw Data Pool 202503 | 4 | Leo Tang's Personal Collection | model | uncategorized | table |  |  |  | missing description; not referenced by dashboards or downstream cards |
 | #382 | Keyword Performance Table active | 4 | Hanson Li's Personal Collection | question | advertising, sales | table | #370 |  |  | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
 | #388 | Campaign CTR | 4 | SP Ads | dashboard component | advertising | line | #403 |  | SP Ads Monitoring | generic aggregation field names; missing description |
-| #398 | Ads SP Gross And Invalids | 4 | Ads SP Models | question | advertising | table | #402 |  |  | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
+| #398 | Ads SP Gross And Invalids | 4 | Ads SP Models | model | advertising | table | #402 |  |  | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
 | #402 | List SP Campaign Model | 4 | Ads SP Models | source model | advertising | table |  | #398, #403, #703, #704 |  | generic aggregation field names; missing description |
 | #403 | Ads SP Campaign Model | 4 | Ads SP Models | source model | advertising, finance, sales | table | #402, #853 | #388, #705, #708, #709, #710, #711, #712, #713, #714 |  | generic aggregation field names; high reuse / change carefully; missing description |
 | #409 | Dify 测试空数据 | 4 | DCMS 开发测试 | question | advertising, finance, sales | table | #404 |  |  | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
 | #411 | SB Campaign Model | 4 | Ads SB Models | source model | advertising, finance, sales | table | #413, #853 | #458, #720, #721, #722, #723, #724, #725, #726, #727, #728 |  | generic aggregation field names; high reuse / change carefully; missing description |
 | #413 | List SB Campaign Model | 4 | Ads SB Models | source model | advertising, finance | table |  | #411, #424, #425 |  | generic aggregation field names; missing description |
-| #424 | SB SearchTerm Model | 4 | Ads SB Models | source model | advertising, finance, sales | table | #413, #719, #853 | #729 |  | generic aggregation field names; missing description |
-| #425 | SB Targeting Model | 4 | Ads SB Models | source model | advertising, finance, sales | table | #413, #853 | #730, #732 |  | generic aggregation field names; missing description |
-| #441 | Us Demographics Simple Quarter 2025 06 30 | 4 | Admin VS's Personal Collection | table model | sales | table |  | #442, #443 |  | missing description |
+| #424 | SB SearchTerm Model | 4 | Ads SB Models | model | advertising, finance, sales | table | #413, #719, #853 | #729 |  | generic aggregation field names; missing description |
+| #425 | SB Targeting Model | 4 | Ads SB Models | model | advertising, finance, sales | table | #413, #853 | #730, #732 |  | generic aggregation field names; missing description |
+| #441 | Us Demographics Simple Quarter 2025 06 30 | 4 | Admin VS's Personal Collection | model | sales | table |  | #442, #443 |  | missing description |
 | #442 | Downhome 客户群体年龄 第二季度 | 4 | Admin VS's Personal Collection | dashboard component | uncategorized | bar | #441 |  | Downhome 客户群体 | generic aggregation field names; missing description |
 | #443 | Downhome 客户群体教育背景 第二季度 | 4 | Admin VS's Personal Collection | dashboard component | uncategorized | bar | #441 |  | Downhome 客户群体 | generic aggregation field names; missing description |
 | #444 | Us Demographics Simple Quarter 2025 06 30 | 4 | Serene Xuan's Personal Collection | source model | sales | table |  | #445, #446, #447, #448 |  | missing description |
@@ -76,8 +77,8 @@ For programmatic access, use [_index.json](_index.json).
 | #575 | Production Unit Cost Per SKU Over Time | 4 | Production Costs | question | finance, production, sales | line |  |  |  | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
 | #577 | Production Cost Sum Over Time | 4 | Production Costs | question | finance, production, sales | line |  |  |  | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
 | #578 | Shipping Cost Sum Over Time | 4 | Shipment Costs | question | finance, logistics, replenishment, sales | line |  |  |  | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
-| #584 | Production Cost Over Time | 4 | Production Costs | question | finance, production, sales | table |  |  |  | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
-| #585 | Shipping Cost Over Time | 4 | Shipment Costs | table model | finance, logistics, replenishment, sales | table |  | #757 |  | generic aggregation field names; missing description |
+| #584 | Production Cost Over Time | 4 | Production Costs | model | finance, production, sales | table |  |  |  | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
+| #585 | Shipping Cost Over Time | 4 | Shipment Costs | model | finance, logistics, replenishment, sales | table |  | #757 |  | generic aggregation field names; missing description |
 | #594 | Shipment Finder | 4 | 运营数据 | question | finance, logistics, production, replenishment, sales | table |  |  |  | missing description; not referenced by dashboards or downstream cards |
 | #595 | Production Cost Over Time Per Parent ASIN | 4 | Production Costs | question | finance, logistics, production, replenishment, sales | line |  |  |  | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
 | #603 | Top Weight Score By Genre | 4 | Eric Zeng's Personal Collection | dashboard component | uncategorized | pie |  |  | eric_movie_list (XXX By ___ X ____ X _____  (Over Time) | missing description |
@@ -100,19 +101,19 @@ For programmatic access, use [_index.json](_index.json).
 | #631 | Counts of Movie Genre Overtime | 4 | Eric Zeng's Personal Collection | question | uncategorized | bar |  |  |  | missing description; not referenced by dashboards or downstream cards |
 | #639 | Genre Performance by average box office, average ratings, amount | 4 | Eric Zeng's Personal Collection | dashboard component | finance | bar |  |  | eric_movie_recommendations_for_users_and_investors | generic aggregation field names; missing description |
 | #641 | Funny movies based on reviews - Modified | 4 | Eric Zeng's Personal Collection | question | sales | table |  |  |  | missing description; not referenced by dashboards or downstream cards |
-| #644 | Store Profit By SKU X Order Model, Cumulative sum of Sum of profit, Grouped by order_date: Day, Filtered by Marketplace Name is Amazon.ca and sku is not 3 selections | 4 | Admin VS's Personal Collection | source model | finance, sales | line | #640 |  |  | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
-| #645 | Store Profit By SKU X Order Model, Cumulative sum of Sum of profit, Grouped by order_date: Day, Filtered by Marketplace Name is Amazon.ca and sku is not 3 selections - Modified | 4 | Admin VS's Personal Collection | source model | finance, sales | line | #640 |  |  | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
+| #644 | Store Profit By SKU X Order Model, Cumulative sum of Sum of profit, Grouped by order_date: Day, Filtered by Marketplace Name is Amazon.ca and sku is not 3 selections | 4 | Admin VS's Personal Collection | question | finance, sales | line | #640 |  |  | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
+| #645 | Store Profit By SKU X Order Model, Cumulative sum of Sum of profit, Grouped by order_date: Day, Filtered by Marketplace Name is Amazon.ca and sku is not 3 selections - Modified | 4 | Admin VS's Personal Collection | question | finance, sales | line | #640 |  |  | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
 | #649 | DH Amazon Parent SKU 销售比例 - 复制测试 | 4 | DCMS 开发测试 | question | sales | pie |  |  |  | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
 | #676 | 工厂大合同 | 4 | 订单/船务数据 (Cynthia) | dashboard component | production, replenishment, sales | table |  |  | VS工厂合同 | generic aggregation field names; missing description |
-| #683 | Shipment Pricing Model (Old) | 4 | 订单/船务数据 (Cynthia) | source model | production, replenishment, sales | table |  |  |  | missing description; native SQL without business description; not referenced by dashboards or downstream cards |
+| #683 | Shipment Pricing Model (Old) | 4 | 订单/船务数据 (Cynthia) | native question | production, replenishment, sales | table |  |  |  | missing description; native SQL without business description; not referenced by dashboards or downstream cards |
 | #685 | 工厂小合同 | 4 | 订单/船务数据 (Cynthia) | dashboard component | production, replenishment, sales | table | #836 |  | VS工厂合同 | generic aggregation field names; missing description |
 | #686 | FBA Shipment 表 Imperial Unit (US) | 4 | 订单/船务数据 (Cynthia) | dashboard component | inventory, replenishment, sales | table |  |  | FBA 模板 | generic aggregation field names; missing description |
 | #700 | DHM 箱单 By SKU | 4 | 订单/船务数据 (Cynthia) | table model | replenishment, sales | table | #836 | #701 | DHM 箱单 | missing description |
 | #701 | DHM 箱单 By Product Group | 4 | 订单/船务数据 (Cynthia) | dashboard component | replenishment, sales | table | #700 |  | DHM 箱单 | generic aggregation field names; missing description |
-| #703 | Ads Sp Searchterm Model | 4 | Ads SP Models | source model | advertising, finance, sales | table | #402, #761, #853 | #715 |  | generic aggregation field names; missing description |
+| #703 | Ads Sp Searchterm Model | 4 | Ads SP Models | model | advertising, finance, sales | table | #402, #761, #853 | #715 |  | generic aggregation field names; missing description |
 | #704 | Ads Sp Targeting Model | 4 | Ads SP Models | source model | advertising, finance, sales | table | #402, #761, #853 | #718, #731, #763 |  | generic aggregation field names; missing description |
 | #705 | Campaign CTR Summarized Trend Line | 4 | SP Ads | dashboard component | advertising | line | #403 |  | SP Ads Monitoring | generic aggregation field names; missing description |
-| #707 | List SP Keywords Model | 4 | Ads SP Models | source model | advertising | table |  |  |  | missing description; not referenced by dashboards or downstream cards |
+| #707 | List SP Keywords Model | 4 | Ads SP Models | model | advertising | table |  |  |  | missing description; not referenced by dashboards or downstream cards |
 | #708 | Campaign CTR Pie | 4 | SP Ads | dashboard component | advertising | pie | #403 |  | SP Ads Monitoring | generic aggregation field names; missing description |
 | #709 | Campaign CVR | 4 | SP Ads | dashboard component | advertising | line | #403 |  | SP Ads Monitoring | generic aggregation field names; missing description |
 | #710 | Campaign CVR Summarized Trend Line | 4 | SP Ads | dashboard component | advertising | line | #403 |  | SP Ads Monitoring | generic aggregation field names; missing description |
@@ -122,7 +123,7 @@ For programmatic access, use [_index.json](_index.json).
 | #714 | Campaign ACOS Summarized Trend Line | 4 | SP Ads | dashboard component | advertising, finance, sales | line | #403 |  | SP Ads Monitoring | generic aggregation field names; missing description |
 | #715 | SearchTerm Performance Table | 4 | SP Ads | dashboard component | advertising, finance, sales | table | #703 |  | SP Ads Monitoring | generic aggregation field names; missing description |
 | #718 | Targeting Performance Table | 4 | SP Ads | dashboard component | advertising, finance, sales | table | #704 |  | SP Ads Monitoring | generic aggregation field names; missing description |
-| #719 | List SB Keywords Model | 4 | Ads SB Models | source model | advertising | table |  | #424 |  | missing description |
+| #719 | List SB Keywords Model | 4 | Ads SB Models | model | advertising | table |  | #424 |  | missing description |
 | #720 | SB Campaign CTR | 4 | SB Ads | dashboard component | advertising | line | #411 |  | SB Ads Monitoring | generic aggregation field names; missing description |
 | #721 | SB Campaign CTR Summarized Trend Line | 4 | SB Ads | dashboard component | advertising | line | #411 |  | SB Ads Monitoring | generic aggregation field names; missing description |
 | #722 | SB Campaign CTR Pie | 4 | SB Ads | dashboard component | advertising | pie | #411 |  | SB Ads Monitoring | generic aggregation field names; missing description |
@@ -137,7 +138,7 @@ For programmatic access, use [_index.json](_index.json).
 | #731 | Targeting Negative Performance Table | 4 | SP Ads | dashboard component | advertising, finance, sales | table | #704 |  | SP Ads Monitoring | generic aggregation field names; missing description |
 | #732 | SB Targeting Negative Performance Table | 4 | SB Ads | dashboard component | advertising, finance, sales | table | #425 |  | SB Ads Monitoring | generic aggregation field names; missing description |
 | #733 | Reports Customer Returns Data Model | 4 | Returns | source model | returns, sales | table |  | #744, #781, #782, #783, #784, #785, #786, #787, #788, #789 |  | high reuse / change carefully; missing description |
-| #742 | V Settlement Model | 4 | Base | source model | advertising, finance, replenishment, sales | table | #853 | #743, #745, #746, #751, #801, #896, #897, #902, #904 |  | high reuse / change carefully; missing description |
+| #742 | V Settlement Model | 4 | Base | source model | advertising, finance, replenishment, sales | table | #853 | #743, #745, #746, #751, #801, #896, #897, #902, #904, #914 |  | high reuse / change carefully; missing description |
 | #743 | Quantity Purchased By Order ID X SKU | 4 | Base | table model | sales | table | #742 | #745, #904 |  | generic aggregation field names; missing description |
 | #744 | Sellable Quantity from Returns By SKU X Order | 4 | Base | question | returns, sales | line | #733 | #745, #904 |  | generic aggregation field names; missing description |
 | #745 | Store Profit By SKU X Order Model | 4 | Base | source model | advertising, finance, logistics, production, replenishment, returns, sales | table | #621, #742, #743, #744 | #749, #750, #752, #888, #893, #902 |  | generic aggregation field names; high reuse / change carefully; many upstream dependencies; missing description |
@@ -152,7 +153,7 @@ For programmatic access, use [_index.json](_index.json).
 | #756 | Shipping Cost Over Time New | 4 | Shipment Costs | question | finance, logistics, replenishment, sales | line |  | #888 |  | generic aggregation field names; missing description |
 | #757 | Shipping Cost Sum Over Time New | 4 | Shipment Costs | question | finance, logistics, replenishment, sales | table | #585 |  |  | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
 | #758 | Production Cost Over Sum Time New | 4 | Production Costs | native question | finance, production, sales | line |  |  |  | generic aggregation field names; missing description; native SQL without business description; not referenced by dashboards or downstream cards |
-| #761 | List SP Keywords Model DISTINCT | 4 | Ads SP Models | source model | advertising, sales | table |  | #703, #704 |  | missing description; native SQL without business description |
+| #761 | List SP Keywords Model DISTINCT | 4 | Ads SP Models | model | advertising, sales | table |  | #703, #704 |  | missing description; native SQL without business description |
 | #763 | Targeting Performance Table Test Check | 4 | DCMS 开发测试 | question | advertising, finance, sales | table | #704 |  |  | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
 | #776 | Reports Flat File All Orders Data By Order Date General Hourly Model | 4 | Sales | source model | logistics, sales | table | #853 | #476, #781, #784, #791, #793, #795, #796, #797, #798, #799, #800, #802, #807, #811, #841, #842, #843, #844, #851, #852, #870, #874, #877 |  | high reuse / change carefully; missing description |
 | #777 | Parent SKU Natural Sales Daily Model | 4 | Natural Sales | source model | advertising, finance, sales | table |  | #778, #779, #780 |  | missing description; native SQL without business description |
@@ -180,16 +181,16 @@ For programmatic access, use [_index.json](_index.json).
 | #801 | 店铺 实际销售总金额 | 4 | Sales | dashboard component | finance, sales | scalar | #742 |  | Store Monitor Dashboard | generic aggregation field names; missing description |
 | #802 | 店铺 实际销量 | 4 | Sales | dashboard component | logistics, sales | scalar | #776 |  | Store Monitor Dashboard | generic aggregation field names; missing description |
 | #803 | SalesAndTrafficByDate Model | 4 | Sales | source model | finance, returns, sales | table | #853 | #840, #845, #846, #847, #848, #849 |  | high reuse / change carefully; missing description |
-| #805 | Reports Get Fba Myi All Inventory Model | 4 | Inventory | source model | inventory, returns, sales | table | #853 | #806 |  | missing description |
+| #805 | Reports Get Fba Myi All Inventory Model | 4 | Inventory | model | inventory, returns, sales | table | #853 | #806 |  | missing description |
 | #806 | 库存表 | 4 | Inventory | table model | inventory, returns, sales | table | #805 | #811, #877 | 补货面板 | missing description |
 | #807 | 30 Days Sales | 4 | Inventory | table model | inventory, sales | table | #776 | #811, #877 |  | generic aggregation field names; missing description |
-| #809 | Reports Merchant Listings All Data Model | 4 | Inventory | source model | finance, inventory, logistics, sales | table |  |  |  | missing description; not referenced by dashboards or downstream cards |
+| #809 | Reports Merchant Listings All Data Model | 4 | Inventory | model | finance, inventory, logistics, sales | table |  |  |  | missing description; not referenced by dashboards or downstream cards |
 | #811 | 补货 Fulfillable Inventory Chart | 4 | Inventory | question | finance, inventory, production, replenishment, sales | table | #776, #806, #807 |  |  | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
 | #814 | Todd_Test_DH 合同 | 4 | todd li's Personal Collection | question | production, sales | table |  |  |  | missing description; not referenced by dashboards or downstream cards |
 | #831 | FBA Shipment 表 Imperial Unit (US) - Duplicate | 4 | todd li's Personal Collection | native question | finance, inventory, logistics, production, replenishment, sales | table |  |  |  | missing description; native SQL without business description; not referenced by dashboards or downstream cards |
 | #832 | Todd_Test_箱单/出货 | 4 | todd li's Personal Collection | question | production, sales | table |  |  |  | missing description; not referenced by dashboards or downstream cards |
 | #835 | VS 箱单 By SKU | 4 | 订单/船务数据 (Cynthia) | table model | replenishment, sales | table | #836 | #837 | VS 箱单 | missing description |
-| #836 | Shipment Pricing Model (UI) | 4 | 订单/船务数据 (Cynthia) | source model | production, replenishment, sales | table |  | #685, #700, #755, #835 |  | missing description |
+| #836 | Shipment Pricing Model (UI) | 4 | 订单/船务数据 (Cynthia) | table model | production, replenishment, sales | table |  | #685, #700, #755, #835 |  | missing description |
 | #837 | VS 箱单 By Product Group | 4 | 订单/船务数据 (Cynthia) | dashboard component | replenishment, sales | table | #835 |  | VS 箱单 | generic aggregation field names; missing description |
 | #838 | 缺Pricing 的 SKU | 4 | 订单/船务数据 (Cynthia) | native question | production, sales | table |  |  |  | missing description; native SQL without business description; not referenced by dashboards or downstream cards |
 | #840 | 产品页流量+销售转化率 Over Time | 4 | Sales | dashboard component | returns, sales | line | #803 |  | Store Monitor Dashboard | generic aggregation field names; missing description |
@@ -197,7 +198,7 @@ For programmatic access, use [_index.json](_index.json).
 | #842 | Amazon 产品销售比例 | 4 | Sales | question | sales | pie | #776 |  |  | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
 | #843 | Amazon 产品销售比例 Pie By Parent Asin X Color X Size | 4 | Sales | question | sales | pie | #776 |  |  | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
 | #844 | Amazon 产品销售比例 Pie By Parent Asin X Size X Color | 4 | Sales | question | sales | pie | #776 |  |  | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
-| #845 | SalesAndTrafficByDate Model, Sum of TrafficByDate.sessions | 4 | Sales | source model | sales | scalar | #803 |  |  | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
+| #845 | SalesAndTrafficByDate Model, Sum of TrafficByDate.sessions | 4 | Sales | question | sales | scalar | #803 |  |  | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
 | #846 | 店铺 总用户访问次数 | 4 | Sales | dashboard component | sales | scalar | #803 |  | Store Monitor Dashboard | generic aggregation field names |
 | #847 | 店铺 用户量 | 4 | Sales | dashboard component | sales | area | #803 |  | Store Monitor Dashboard | generic aggregation field names; missing description |
 | #848 | 店铺 访问次数 | 4 | Sales | dashboard component | sales | area | #803 |  | Store Monitor Dashboard | generic aggregation field names; missing description |
@@ -210,25 +211,25 @@ For programmatic access, use [_index.json](_index.json).
 | #871 | Cumulative Settlement & Inventory Investment Trend (累计结算与库存投入趋势) | 4 | Finance | dashboard component | advertising, finance, inventory, logistics, production, replenishment, returns, sales | line | #888 |  | Operating Performance and ROI Dashboard (经营表现与ROI看板) | generic aggregation field names; mixed finance and inventory timing |
 | #873 | 发货 FBA Total Inventory Chart 2.0 | 4 | Inventory | table model | inventory, logistics, production, replenishment, sales | table | #878 | #901 | 补货面板 |  |
 | #874 | 产品订单曲线 Per SKU (NO VINE) | 4 | Sales | dashboard component | sales | line | #776 |  | 补货面板 | generic aggregation field names; missing description |
-| #875 | Wps Sales Forecast | 4 | Sales Forecast | question | sales | table |  |  |  | missing description; not referenced by dashboards or downstream cards |
-| #876 | Wps Sales Forecast By Day | 4 | Sales Forecast | table model | inventory, sales | table |  | #878, #879 |  |  |
+| #875 | Wps Sales Forecast | 4 | Sales Forecast | model | sales | table |  |  |  | missing description; not referenced by dashboards or downstream cards |
+| #876 | Wps Sales Forecast By Day | 4 | Sales Forecast | model | inventory, sales | table |  | #878, #879 |  |  |
 | #877 | 发货基础表 | 4 | Sales Forecast | table model | inventory, logistics, production, replenishment, sales | table | #776, #806, #807, #870 | #878, #879 |  | generic aggregation field names; many upstream dependencies; missing description |
-| #878 | 发货 Forecast WOS Summary | 4 | Sales Forecast | table model | inventory, logistics, production, replenishment, sales | table | #876, #877, #899, #900 | #873 |  | many upstream dependencies; missing description; native SQL without business description |
-| #879 | 未来有效日销model | 4 | Sales Forecast | source model | replenishment, sales | table | #876, #877 | #880 |  | missing description; native SQL without business description |
+| #878 | 发货 Forecast WOS Summary | 4 | Sales Forecast | model | inventory, logistics, production, replenishment, sales | table | #876, #877, #899, #900 | #873 |  | many upstream dependencies; missing description; native SQL without business description |
+| #879 | 未来有效日销model | 4 | Sales Forecast | model | replenishment, sales | table | #876, #877 | #880 |  | missing description; native SQL without business description |
 | #880 | 未来日销趋势 | 4 | Sales Forecast | question | sales | line | #879 |  |  | missing description; not referenced by dashboards or downstream cards |
 | #885 | Shipping Cost Over Time By Sku | 4 | Shipment Costs | question | finance, logistics, replenishment, sales | line |  | #893, #902 |  | generic aggregation field names; missing description |
 | #886 | Production Cost Over Time By Sku | 4 | Production Costs | question | finance, production, sales | line |  | #893, #902 |  | generic aggregation field names; missing description |
 | #887 | SKU-Level Monthly ROI and Expense Structure (SKU月度ROI与成本结构) | 4 | Finance | question | advertising, finance, logistics, production, sales | line | #893 |  |  | missing description; not referenced by dashboards or downstream cards |
-| #888 | Actual Store Revenue X Production & Shipment Costs Over Time Model | 4 | Base | source model | advertising, finance, logistics, production, replenishment, sales | table | #745, #754, #756 | #871 |  | missing description; native SQL without business description |
-| #893 | ROI Per Sku Base Model | 4 | Base | source model | advertising, finance, logistics, production, sales | table | #745, #885, #886 | #887, #895 |  | missing description; native SQL without business description |
+| #888 | Actual Store Revenue X Production & Shipment Costs Over Time Model | 4 | Base | model | advertising, finance, logistics, production, replenishment, sales | table | #745, #754, #756 | #871 |  | missing description; native SQL without business description |
+| #893 | ROI Per Sku Base Model | 4 | Base | table model | advertising, finance, logistics, production, sales | table | #745, #885, #886 | #887, #895 |  | missing description; native SQL without business description |
 | #895 | SKU-Level Cumulative ROI and Expense Structure (SKU累计ROI与成本结构趋势) | 4 | Finance | question | advertising, finance, logistics, production, sales | line | #893 |  |  | missing description; not referenced by dashboards or downstream cards |
 | #896 | Amazon Settlement Cost Breakdown (亚马逊结算成本分析表) | 4 | Finance | question | advertising, finance, inventory, logistics, returns, sales | pivot | #742 |  |  | generic aggregation field names; not referenced by dashboards or downstream cards |
 | #897 | SKU Expense Mix Trend (SKU费用结构趋势) | 4 | Lim Wang's Personal Collection | question | finance, inventory, sales | line | #742 |  |  | missing description; not referenced by dashboards or downstream cards |
 | #898 | SKU Controllable Expense-to-Sales Ratio Trend (SKU可控费用销售占比趋势) | 4 | Lim Wang's Personal Collection | question | advertising, finance, inventory, logistics, production, returns, sales | line | #902 |  |  | missing description; not referenced by dashboards or downstream cards |
-| #899 | Wps Shipment Model | 4 | Sales Forecast | source model | finance, logistics, production, replenishment, sales | table |  | #878 |  | missing description |
-| #900 | Wps Shipment Items Model | 4 | Sales Forecast | source model | finance, logistics, production, replenishment, sales | table |  | #878 |  | missing description |
+| #899 | Wps Shipment Model | 4 | Sales Forecast | model | finance, logistics, production, replenishment, sales | table |  | #878 |  | missing description |
+| #900 | Wps Shipment Items Model | 4 | Sales Forecast | model | finance, logistics, production, replenishment, sales | table |  | #878 |  | missing description |
 | #901 | 工厂补货表2.0 | 4 | Inventory | dashboard component | inventory, production, replenishment, sales | table | #873 |  | 补货面板 | generic aggregation field names; missing description |
-| #902 | SKU Controllable Cost Source (SKU可控成本分析底表) | 4 | Lim Wang's Personal Collection | source model | advertising, finance, inventory, logistics, production, returns, sales | table | #742, #745, #885, #886 | #898 |  | many upstream dependencies; missing description; native SQL without business description |
+| #902 | SKU Controllable Cost Source (SKU可控成本分析底表) | 4 | Lim Wang's Personal Collection | table model | advertising, finance, inventory, logistics, production, returns, sales | table | #742, #745, #885, #886 | #898 |  | many upstream dependencies; missing description; native SQL without business description |
 | #904 | Sold Operating Performance Source (已售经营表现底表) | 4 | Base | source model | advertising, finance, inventory, logistics, production, replenishment, returns, sales | table | #621, #742, #743, #744 | #747, #905, #906, #910, #911, #912 |  | high reuse / change carefully; many upstream dependencies |
 | #905 | Cumulative Cost Structure (累计成本结构) | 4 | Finance | question | advertising, finance, inventory, logistics, replenishment, returns, sales | line | #904 |  |  | missing description; not referenced by dashboards or downstream cards |
 | #906 | Cost Structure Source (成本结构底表) | 4 | Base | source model | advertising, finance, inventory, logistics, replenishment, returns, sales | table | #904 | #907, #908, #909 |  | missing description; native SQL without business description |
@@ -238,3 +239,10 @@ For programmatic access, use [_index.json](_index.json).
 | #910 | Cumulative Sold Operating ROI Trend (累计已售经营ROI趋势) | 4 | Finance | question | finance, sales | line | #904 |  |  | missing description; not referenced by dashboards or downstream cards |
 | #911 | Monthly Sold Operating ROI Trend (月度已售经营ROI趋势) | 4 | Finance | question | finance, sales | line | #904 |  |  | missing description; not referenced by dashboards or downstream cards |
 | #912 | Monthly Sold Operating ROI MoM Change (月度已售经营ROI环比变化) | 4 | Finance | question | finance, sales | line | #904 |  |  | missing description; not referenced by dashboards or downstream cards |
+| #913 | 订单 Sales 原始表 | 4 | VIP | question | logistics, sales | table |  |  |  | missing description; not referenced by dashboards or downstream cards |
+| #914 | Amazon Settlement Cost Breakdown (亚马逊结算成本分析表) | 4 | VIP | question | advertising, finance, inventory, logistics, returns, sales | pivot | #742 |  |  | not referenced by dashboards or downstream cards |
+| #915 | 箱单 Items | 4 | VIP | question | finance, logistics, production, replenishment, sales | table |  |  |  | missing description; not referenced by dashboards or downstream cards |
+| #916 | PO Items | 4 | VIP | question | production, replenishment, sales | table |  |  |  | missing description; not referenced by dashboards or downstream cards |
+| #917 | Reports Customer Returns Data | 4 | VIP | question | returns, sales | table |  |  |  | missing description; not referenced by dashboards or downstream cards |
+| #918 | Amazon Settlement | 4 | VIP | question | advertising, finance, replenishment, sales | table |  |  |  | missing description; not referenced by dashboards or downstream cards |
+| #919 | Sales QTY & Dollar | 4 | VIP | dashboard component | sales | line |  |  | VIP专属数据面板 | generic aggregation field names; missing description |

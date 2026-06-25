@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-06-24T10:26:56.784Z",
+  "generatedAt": "2026-06-25T03:02:29.267Z",
   "databaseIds": [
     4
   ],
   "summary": {
     "collections": 84,
-    "cards": 219,
-    "activeCards": 219,
-    "dashboards": 20
+    "cards": 226,
+    "activeCards": 226,
+    "dashboards": 21
   },
   "cards": {
     "302": {
       "name": "Pillow Search Volume Xiyou",
       "collectionId": 76,
       "collectionName": "前期用户画像市场分析",
-      "type": "question",
+      "type": "model",
       "domains": [
         "advertising"
       ],
@@ -40,7 +40,7 @@
       "name": "Pillow User Search Keywords",
       "collectionId": 76,
       "collectionName": "前期用户画像市场分析",
-      "type": "question",
+      "type": "model",
       "domains": [
         "uncategorized"
       ],
@@ -66,7 +66,7 @@
       "name": "Pillow Word Segmentation",
       "collectionId": 76,
       "collectionName": "前期用户画像市场分析",
-      "type": "question",
+      "type": "model",
       "domains": [
         "uncategorized"
       ],
@@ -590,7 +590,7 @@
       "name": "Dcms Raw Data Pool 202503",
       "collectionId": 81,
       "collectionName": "Leo Tang's Personal Collection",
-      "type": "question",
+      "type": "model",
       "domains": [
         "uncategorized"
       ],
@@ -676,7 +676,7 @@
       "name": "Ads SP Gross And Invalids",
       "collectionId": 122,
       "collectionName": "Ads SP Models",
-      "type": "question",
+      "type": "model",
       "domains": [
         "advertising"
       ],
@@ -883,7 +883,7 @@
       "name": "SB SearchTerm Model",
       "collectionId": 123,
       "collectionName": "Ads SB Models",
-      "type": "source model",
+      "type": "model",
       "domains": [
         "advertising",
         "finance",
@@ -917,7 +917,7 @@
       "name": "SB Targeting Model",
       "collectionId": 123,
       "collectionName": "Ads SB Models",
-      "type": "source model",
+      "type": "model",
       "domains": [
         "advertising",
         "finance",
@@ -951,7 +951,7 @@
       "name": "Us Demographics Simple Quarter 2025 06 30",
       "collectionId": 1,
       "collectionName": "Admin VS's Personal Collection",
-      "type": "table model",
+      "type": "model",
       "domains": [
         "sales"
       ],
@@ -1689,7 +1689,7 @@
       "name": "Production Cost Over Time",
       "collectionId": 105,
       "collectionName": "Production Costs",
-      "type": "question",
+      "type": "model",
       "domains": [
         "finance",
         "production",
@@ -1718,7 +1718,7 @@
       "name": "Shipping Cost Over Time",
       "collectionId": 104,
       "collectionName": "Shipment Costs",
-      "type": "table model",
+      "type": "model",
       "domains": [
         "finance",
         "logistics",
@@ -2367,7 +2367,7 @@
       "name": "Store Profit By SKU X Order Model, Cumulative sum of Sum of profit, Grouped by order_date: Day, Filtered by Marketplace Name is Amazon.ca and sku is not 3 selections",
       "collectionId": 1,
       "collectionName": "Admin VS's Personal Collection",
-      "type": "source model",
+      "type": "question",
       "domains": [
         "finance",
         "sales"
@@ -2397,7 +2397,7 @@
       "name": "Store Profit By SKU X Order Model, Cumulative sum of Sum of profit, Grouped by order_date: Day, Filtered by Marketplace Name is Amazon.ca and sku is not 3 selections - Modified",
       "collectionId": 1,
       "collectionName": "Admin VS's Personal Collection",
-      "type": "source model",
+      "type": "question",
       "domains": [
         "finance",
         "sales"
@@ -2484,7 +2484,7 @@
       "name": "Shipment Pricing Model (Old)",
       "collectionId": 119,
       "collectionName": "订单/船务数据 (Cynthia)",
-      "type": "source model",
+      "type": "native question",
       "domains": [
         "production",
         "replenishment",
@@ -2638,7 +2638,7 @@
       "name": "Ads Sp Searchterm Model",
       "collectionId": 122,
       "collectionName": "Ads SP Models",
-      "type": "source model",
+      "type": "model",
       "domains": [
         "advertising",
         "finance",
@@ -2738,7 +2738,7 @@
       "name": "List SP Keywords Model",
       "collectionId": 122,
       "collectionName": "Ads SP Models",
-      "type": "source model",
+      "type": "model",
       "domains": [
         "advertising"
       ],
@@ -3044,7 +3044,7 @@
       "name": "List SB Keywords Model",
       "collectionId": 123,
       "collectionName": "Ads SB Models",
-      "type": "source model",
+      "type": "model",
       "domains": [
         "advertising"
       ],
@@ -3533,7 +3533,8 @@
         896,
         897,
         902,
-        904
+        904,
+        914
       ],
       "dashboards": [],
       "risks": [
@@ -3654,7 +3655,7 @@
       "isNative": false,
       "isArchived": false,
       "fieldCount": 11,
-      "dependencyDepth": 2,
+      "dependencyDepth": 3,
       "updatedAt": "2026-06-23T08:40:03.636035Z",
       "description": "",
       "hasFullDescription": false
@@ -3715,7 +3716,7 @@
       "isNative": false,
       "isArchived": false,
       "fieldCount": 4,
-      "dependencyDepth": 3,
+      "dependencyDepth": 4,
       "updatedAt": "2026-06-24T08:20:44.471441Z",
       "description": "",
       "hasFullDescription": false
@@ -3746,7 +3747,7 @@
       "isNative": false,
       "isArchived": false,
       "fieldCount": 3,
-      "dependencyDepth": 3,
+      "dependencyDepth": 4,
       "updatedAt": "2026-06-18T05:35:19.94504Z",
       "description": "",
       "hasFullDescription": false
@@ -3777,7 +3778,7 @@
       "isNative": false,
       "isArchived": false,
       "fieldCount": 3,
-      "dependencyDepth": 3,
+      "dependencyDepth": 4,
       "updatedAt": "2026-06-18T05:35:46.329562Z",
       "description": "",
       "hasFullDescription": false
@@ -3837,7 +3838,7 @@
       "isNative": false,
       "isArchived": false,
       "fieldCount": 4,
-      "dependencyDepth": 3,
+      "dependencyDepth": 4,
       "updatedAt": "2026-05-19T02:23:55.268213Z",
       "description": "",
       "hasFullDescription": false
@@ -3999,7 +4000,7 @@
       "name": "List SP Keywords Model DISTINCT",
       "collectionId": 122,
       "collectionName": "Ads SP Models",
-      "type": "source model",
+      "type": "model",
       "domains": [
         "advertising",
         "sales"
@@ -4891,7 +4892,7 @@
       "name": "Reports Get Fba Myi All Inventory Model",
       "collectionId": 138,
       "collectionName": "Inventory",
-      "type": "source model",
+      "type": "model",
       "domains": [
         "inventory",
         "returns",
@@ -4988,7 +4989,7 @@
       "name": "Reports Merchant Listings All Data Model",
       "collectionId": 138,
       "collectionName": "Inventory",
-      "type": "source model",
+      "type": "model",
       "domains": [
         "finance",
         "inventory",
@@ -5170,7 +5171,7 @@
       "name": "Shipment Pricing Model (UI)",
       "collectionId": 119,
       "collectionName": "订单/船务数据 (Cynthia)",
-      "type": "source model",
+      "type": "table model",
       "domains": [
         "production",
         "replenishment",
@@ -5408,7 +5409,7 @@
       "name": "SalesAndTrafficByDate Model, Sum of TrafficByDate.sessions",
       "collectionId": 134,
       "collectionName": "Sales",
-      "type": "source model",
+      "type": "question",
       "domains": [
         "sales"
       ],
@@ -5739,8 +5740,8 @@
       "isNative": false,
       "isArchived": false,
       "fieldCount": 6,
-      "dependencyDepth": 4,
-      "updatedAt": "2026-06-24T09:10:48.790673Z",
+      "dependencyDepth": 5,
+      "updatedAt": "2026-06-25T02:53:40.496203Z",
       "description": "业务口径： 这张图用于观察“销售结算净额”和“库存相关投入”的累计关系，偏资金占用和库存投入视角。它不是已售经营利润表，不要和已售经营表现类图表里的 Product Sales、Total Cost、Net Profit、ROI 直接混用。 每条线的含义： 1. Settlement Net Amount 表示累计销售结算净额。它不是纯商品销售额，也不是订单销售本金。它是销售相关结算项目的净结果，可能已经包含商品销售、退款、促销折扣、平台销售佣金、FBA 履约费、补偿款等正负影响。 不要把它理解成 Product Sales。Product Sales 是商品销售本金；Settlement N…",
       "hasFullDescription": true
     },
@@ -5811,7 +5812,7 @@
       "name": "Wps Sales Forecast",
       "collectionId": 143,
       "collectionName": "Sales Forecast",
-      "type": "question",
+      "type": "model",
       "domains": [
         "sales"
       ],
@@ -5837,7 +5838,7 @@
       "name": "Wps Sales Forecast By Day",
       "collectionId": 143,
       "collectionName": "Sales Forecast",
-      "type": "table model",
+      "type": "model",
       "domains": [
         "inventory",
         "sales"
@@ -5903,7 +5904,7 @@
       "name": "发货 Forecast WOS Summary",
       "collectionId": 143,
       "collectionName": "Sales Forecast",
-      "type": "table model",
+      "type": "model",
       "domains": [
         "inventory",
         "logistics",
@@ -5941,7 +5942,7 @@
       "name": "未来有效日销model",
       "collectionId": 143,
       "collectionName": "Sales Forecast",
-      "type": "source model",
+      "type": "model",
       "domains": [
         "replenishment",
         "sales"
@@ -6087,7 +6088,7 @@
       "isNative": false,
       "isArchived": false,
       "fieldCount": 11,
-      "dependencyDepth": 4,
+      "dependencyDepth": 5,
       "updatedAt": "2026-06-18T03:22:46.31828Z",
       "description": "",
       "hasFullDescription": false
@@ -6096,7 +6097,7 @@
       "name": "Actual Store Revenue X Production & Shipment Costs Over Time Model",
       "collectionId": 144,
       "collectionName": "Base",
-      "type": "source model",
+      "type": "model",
       "domains": [
         "advertising",
         "finance",
@@ -6124,7 +6125,7 @@
       "isNative": true,
       "isArchived": false,
       "fieldCount": 6,
-      "dependencyDepth": 3,
+      "dependencyDepth": 4,
       "updatedAt": "2026-06-18T03:40:27.863976Z",
       "description": "",
       "hasFullDescription": false
@@ -6133,7 +6134,7 @@
       "name": "ROI Per Sku Base Model",
       "collectionId": 144,
       "collectionName": "Base",
-      "type": "source model",
+      "type": "table model",
       "domains": [
         "advertising",
         "finance",
@@ -6161,7 +6162,7 @@
       "isNative": true,
       "isArchived": false,
       "fieldCount": 7,
-      "dependencyDepth": 3,
+      "dependencyDepth": 4,
       "updatedAt": "2026-06-18T03:40:27.890659Z",
       "description": "",
       "hasFullDescription": false
@@ -6193,7 +6194,7 @@
       "isNative": false,
       "isArchived": false,
       "fieldCount": 10,
-      "dependencyDepth": 4,
+      "dependencyDepth": 5,
       "updatedAt": "2026-06-18T05:36:52.403448Z",
       "description": "",
       "hasFullDescription": false
@@ -6290,7 +6291,7 @@
       "isNative": false,
       "isArchived": false,
       "fieldCount": 26,
-      "dependencyDepth": 4,
+      "dependencyDepth": 5,
       "updatedAt": "2026-06-23T05:01:56.687604Z",
       "description": "",
       "hasFullDescription": false
@@ -6299,7 +6300,7 @@
       "name": "Wps Shipment Model",
       "collectionId": 143,
       "collectionName": "Sales Forecast",
-      "type": "source model",
+      "type": "model",
       "domains": [
         "finance",
         "logistics",
@@ -6330,7 +6331,7 @@
       "name": "Wps Shipment Items Model",
       "collectionId": 143,
       "collectionName": "Sales Forecast",
-      "type": "source model",
+      "type": "model",
       "domains": [
         "finance",
         "logistics",
@@ -6394,7 +6395,7 @@
       "name": "SKU Controllable Cost Source (SKU可控成本分析底表)",
       "collectionId": 113,
       "collectionName": "Lim Wang's Personal Collection",
-      "type": "source model",
+      "type": "table model",
       "domains": [
         "advertising",
         "finance",
@@ -6425,7 +6426,7 @@
       "isNative": true,
       "isArchived": false,
       "fieldCount": 15,
-      "dependencyDepth": 3,
+      "dependencyDepth": 4,
       "updatedAt": "2026-06-23T04:32:05.998849Z",
       "description": "",
       "hasFullDescription": false
@@ -6470,7 +6471,7 @@
       "isNative": true,
       "isArchived": false,
       "fieldCount": 29,
-      "dependencyDepth": 2,
+      "dependencyDepth": 3,
       "updatedAt": "2026-06-24T07:50:46.698489Z",
       "description": "业务口径（已修正 2026-06-24）： 1. row_type = order_level 表示可以明确归属到订单和 SKU 的已售经营行。它来自 Amazon settlement 的订单级 revenue/cost 数据，并补充 SKU 单件生产成本、单件物流成本和广告分摊成本。 2. row_type = uncovered_platform_cost 表示无法明确归属到订单/SKU 的平台级费用。这些费用不强行分摊到 SKU，而是单独保留。 3. product_sales_usd 是商品销售本金汇总，只表示商品销售额，不扣 Amazon 费用、广告或产品成本。 4. amount…",
       "hasFullDescription": true
@@ -6504,7 +6505,7 @@
       "isNative": false,
       "isArchived": false,
       "fieldCount": 14,
-      "dependencyDepth": 3,
+      "dependencyDepth": 4,
       "updatedAt": "2026-06-24T08:43:58.806559Z",
       "description": "",
       "hasFullDescription": false
@@ -6542,7 +6543,7 @@
       "isNative": true,
       "isArchived": false,
       "fieldCount": 7,
-      "dependencyDepth": 3,
+      "dependencyDepth": 4,
       "updatedAt": "2026-06-24T05:41:18.244779Z",
       "description": "",
       "hasFullDescription": false
@@ -6571,7 +6572,7 @@
       "isNative": false,
       "isArchived": false,
       "fieldCount": 3,
-      "dependencyDepth": 4,
+      "dependencyDepth": 5,
       "updatedAt": "2026-06-24T08:43:58.787986Z",
       "description": "",
       "hasFullDescription": false
@@ -6600,7 +6601,7 @@
       "isNative": false,
       "isArchived": false,
       "fieldCount": 2,
-      "dependencyDepth": 4,
+      "dependencyDepth": 5,
       "updatedAt": "2026-06-24T08:43:58.793699Z",
       "description": "",
       "hasFullDescription": false
@@ -6634,7 +6635,7 @@
       "isNative": false,
       "isArchived": false,
       "fieldCount": 25,
-      "dependencyDepth": 4,
+      "dependencyDepth": 5,
       "updatedAt": "2026-06-24T08:43:58.921574Z",
       "description": "",
       "hasFullDescription": false
@@ -6663,7 +6664,7 @@
       "isNative": false,
       "isArchived": false,
       "fieldCount": 4,
-      "dependencyDepth": 3,
+      "dependencyDepth": 4,
       "updatedAt": "2026-06-24T07:02:48.63647Z",
       "description": "",
       "hasFullDescription": false
@@ -6692,7 +6693,7 @@
       "isNative": false,
       "isArchived": false,
       "fieldCount": 4,
-      "dependencyDepth": 3,
+      "dependencyDepth": 4,
       "updatedAt": "2026-06-24T08:01:27.181256Z",
       "description": "",
       "hasFullDescription": false
@@ -6721,8 +6722,209 @@
       "isNative": false,
       "isArchived": false,
       "fieldCount": 5,
-      "dependencyDepth": 3,
+      "dependencyDepth": 4,
       "updatedAt": "2026-06-24T08:15:11.37713Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "913": {
+      "name": "订单 Sales 原始表",
+      "collectionId": 142,
+      "collectionName": "VIP",
+      "type": "question",
+      "domains": [
+        "logistics",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 38,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-06-25T02:30:11.450937Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "914": {
+      "name": "Amazon Settlement Cost Breakdown (亚马逊结算成本分析表)",
+      "collectionId": 142,
+      "collectionName": "VIP",
+      "type": "question",
+      "domains": [
+        "advertising",
+        "finance",
+        "inventory",
+        "logistics",
+        "returns",
+        "sales"
+      ],
+      "display": "pivot",
+      "upstream": [
+        742
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 1,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-06-25T02:32:32.42583Z",
+      "description": "本表用于查看 Amazon Settlement 按 category / sub_category 汇总后的收入、费用和其他结算项。金额字段使用 USD 口径；正数通常表示收入、补偿或贷项，负数通常表示费用、退款、扣款或税金代扣。category 为空的行是按 sub_category 汇总的小计。 Subcategory 中文对照： | sub_category | 中文含义 | 说明 | |---|---|---| | product_sales | 商品销售额 | 买家支付的商品销售收入，不含后续费用扣减。 | | product_sales_tax | 商品销售税 | 商品销售相关税…",
+      "hasFullDescription": true
+    },
+    "915": {
+      "name": "箱单 Items",
+      "collectionId": 142,
+      "collectionName": "VIP",
+      "type": "question",
+      "domains": [
+        "finance",
+        "logistics",
+        "production",
+        "replenishment",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 40,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-06-25T02:35:49.386215Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "916": {
+      "name": "PO Items",
+      "collectionId": 142,
+      "collectionName": "VIP",
+      "type": "question",
+      "domains": [
+        "production",
+        "replenishment",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 22,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-06-25T02:36:55.834464Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "917": {
+      "name": "Reports Customer Returns Data",
+      "collectionId": 142,
+      "collectionName": "VIP",
+      "type": "question",
+      "domains": [
+        "returns",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 17,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-06-25T02:38:06.842221Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "918": {
+      "name": "Amazon Settlement",
+      "collectionId": 142,
+      "collectionName": "VIP",
+      "type": "question",
+      "domains": [
+        "advertising",
+        "finance",
+        "replenishment",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 34,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-06-25T02:39:00.873437Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "919": {
+      "name": "Sales QTY & Dollar",
+      "collectionId": 142,
+      "collectionName": "VIP",
+      "type": "dashboard component",
+      "domains": [
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [
+        "VIP专属数据面板"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-06-25T02:42:21.998754Z",
       "description": "",
       "hasFullDescription": false
     }

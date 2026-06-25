@@ -1,25 +1,31 @@
 {
-  "generatedAt": "2026-06-24T10:26:56.784Z",
+  "generatedAt": "2026-06-25T03:02:29.267Z",
   "deps": {
     "302": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "303": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "304": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "306": {
       "up": [],
       "down": [],
       "dash": [
+        30
+      ],
+      "dashNames": [
         "亚马逊用户肖像分布"
       ]
     },
@@ -27,6 +33,9 @@
       "up": [],
       "down": [],
       "dash": [
+        30
+      ],
+      "dashNames": [
         "亚马逊用户肖像分布"
       ]
     },
@@ -34,6 +43,9 @@
       "up": [],
       "down": [],
       "dash": [
+        30
+      ],
+      "dashNames": [
         "亚马逊用户肖像分布"
       ]
     },
@@ -41,6 +53,9 @@
       "up": [],
       "down": [],
       "dash": [
+        30
+      ],
+      "dashNames": [
         "亚马逊用户肖像分布"
       ]
     },
@@ -48,6 +63,9 @@
       "up": [],
       "down": [],
       "dash": [
+        30
+      ],
+      "dashNames": [
         "亚马逊用户肖像分布"
       ]
     },
@@ -55,6 +73,9 @@
       "up": [],
       "down": [],
       "dash": [
+        30
+      ],
+      "dashNames": [
         "亚马逊用户肖像分布"
       ]
     },
@@ -62,47 +83,59 @@
       "up": [],
       "down": [],
       "dash": [
+        30
+      ],
+      "dashNames": [
         "亚马逊用户肖像分布"
       ]
     },
     "318": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "319": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "324": {
       "up": [],
       "down": [
         329
       ],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "325": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "326": {
       "up": [],
       "down": [],
       "dash": [
+        31
+      ],
+      "dashNames": [
         "Amazon Keywords Search Ranking"
       ]
     },
     "327": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "328": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "329": {
       "up": [
@@ -110,37 +143,47 @@
       ],
       "down": [],
       "dash": [
+        31
+      ],
+      "dashNames": [
         "Amazon Keywords Search Ranking"
       ]
     },
     "330": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "331": {
       "up": [],
       "down": [],
       "dash": [
+        34
+      ],
+      "dashNames": [
         "filter"
       ]
     },
     "332": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "333": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "382": {
       "up": [
         370
       ],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "388": {
       "up": [
@@ -148,6 +191,9 @@
       ],
       "down": [],
       "dash": [
+        66
+      ],
+      "dashNames": [
         "SP Ads Monitoring"
       ]
     },
@@ -156,7 +202,8 @@
         402
       ],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "402": {
       "up": [],
@@ -166,7 +213,8 @@
         703,
         704
       ],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "403": {
       "up": [
@@ -184,14 +232,16 @@
         713,
         714
       ],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "409": {
       "up": [
         404
       ],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "411": {
       "up": [
@@ -210,7 +260,8 @@
         727,
         728
       ],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "413": {
       "up": [],
@@ -219,7 +270,8 @@
         424,
         425
       ],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "424": {
       "up": [
@@ -230,7 +282,8 @@
       "down": [
         729
       ],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "425": {
       "up": [
@@ -241,7 +294,8 @@
         730,
         732
       ],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "441": {
       "up": [],
@@ -249,7 +303,8 @@
         442,
         443
       ],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "442": {
       "up": [
@@ -257,6 +312,9 @@
       ],
       "down": [],
       "dash": [
+        46
+      ],
+      "dashNames": [
         "Downhome 客户群体"
       ]
     },
@@ -266,6 +324,9 @@
       ],
       "down": [],
       "dash": [
+        46
+      ],
+      "dashNames": [
         "Downhome 客户群体"
       ]
     },
@@ -277,7 +338,8 @@
         447,
         448
       ],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "445": {
       "up": [
@@ -285,6 +347,9 @@
       ],
       "down": [],
       "dash": [
+        47
+      ],
+      "dashNames": [
         "1"
       ]
     },
@@ -294,6 +359,9 @@
       ],
       "down": [],
       "dash": [
+        47
+      ],
+      "dashNames": [
         "1"
       ]
     },
@@ -303,6 +371,9 @@
       ],
       "down": [],
       "dash": [
+        47
+      ],
+      "dashNames": [
         "1"
       ]
     },
@@ -312,6 +383,9 @@
       ],
       "down": [],
       "dash": [
+        47
+      ],
+      "dashNames": [
         "1"
       ]
     },
@@ -321,129 +395,159 @@
       ],
       "down": [],
       "dash": [
+        68
+      ],
+      "dashNames": [
         "SB Ads Monitoring"
       ]
     },
     "465": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "476": {
       "up": [
         776
       ],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "488": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "489": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "504": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "505": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "560": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "566": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "568": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "571": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "572": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "573": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "574": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "575": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "577": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "578": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "584": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "585": {
       "up": [],
       "down": [
         757
       ],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "594": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "595": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "603": {
       "up": [],
       "down": [],
       "dash": [
+        56
+      ],
+      "dashNames": [
         "eric_movie_list (XXX By ___ X ____ X _____  (Over Time)"
       ]
     },
     "604": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "608": {
       "up": [],
       "down": [],
       "dash": [
+        56
+      ],
+      "dashNames": [
         "eric_movie_list (XXX By ___ X ____ X _____  (Over Time)"
       ]
     },
@@ -451,6 +555,9 @@
       "up": [],
       "down": [],
       "dash": [
+        56
+      ],
+      "dashNames": [
         "eric_movie_list (XXX By ___ X ____ X _____  (Over Time)"
       ]
     },
@@ -458,6 +565,10 @@
       "up": [],
       "down": [],
       "dash": [
+        56,
+        58
+      ],
+      "dashNames": [
         "eric_movie_list (XXX By ___ X ____ X _____  (Over Time)",
         "eric_movie_recommendations_for_users_and_investors"
       ]
@@ -466,6 +577,9 @@
       "up": [],
       "down": [],
       "dash": [
+        56
+      ],
+      "dashNames": [
         "eric_movie_list (XXX By ___ X ____ X _____  (Over Time)"
       ]
     },
@@ -473,6 +587,9 @@
       "up": [],
       "down": [],
       "dash": [
+        56
+      ],
+      "dashNames": [
         "eric_movie_list (XXX By ___ X ____ X _____  (Over Time)"
       ]
     },
@@ -480,6 +597,9 @@
       "up": [],
       "down": [],
       "dash": [
+        56
+      ],
+      "dashNames": [
         "eric_movie_list (XXX By ___ X ____ X _____  (Over Time)"
       ]
     },
@@ -487,6 +607,10 @@
       "up": [],
       "down": [],
       "dash": [
+        56,
+        58
+      ],
+      "dashNames": [
         "eric_movie_list (XXX By ___ X ____ X _____  (Over Time)",
         "eric_movie_recommendations_for_users_and_investors"
       ]
@@ -495,6 +619,9 @@
       "up": [],
       "down": [],
       "dash": [
+        56
+      ],
+      "dashNames": [
         "eric_movie_list (XXX By ___ X ____ X _____  (Over Time)"
       ]
     },
@@ -504,17 +631,22 @@
         745,
         904
       ],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "624": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "625": {
       "up": [],
       "down": [],
       "dash": [
+        64
+      ],
+      "dashNames": [
         "FBA 模板"
       ]
     },
@@ -522,6 +654,9 @@
       "up": [],
       "down": [],
       "dash": [
+        58
+      ],
+      "dashNames": [
         "eric_movie_recommendations_for_users_and_investors"
       ]
     },
@@ -529,6 +664,9 @@
       "up": [],
       "down": [],
       "dash": [
+        58
+      ],
+      "dashNames": [
         "eric_movie_recommendations_for_users_and_investors"
       ]
     },
@@ -536,6 +674,9 @@
       "up": [],
       "down": [],
       "dash": [
+        58
+      ],
+      "dashNames": [
         "eric_movie_recommendations_for_users_and_investors"
       ]
     },
@@ -543,56 +684,71 @@
       "up": [],
       "down": [],
       "dash": [
+        58
+      ],
+      "dashNames": [
         "eric_movie_recommendations_for_users_and_investors"
       ]
     },
     "631": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "639": {
       "up": [],
       "down": [],
       "dash": [
+        58
+      ],
+      "dashNames": [
         "eric_movie_recommendations_for_users_and_investors"
       ]
     },
     "641": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "644": {
       "up": [
         640
       ],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "645": {
       "up": [
         640
       ],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "649": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "676": {
       "up": [],
       "down": [],
       "dash": [
+        77
+      ],
+      "dashNames": [
         "VS工厂合同"
       ]
     },
     "683": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "685": {
       "up": [
@@ -600,6 +756,9 @@
       ],
       "down": [],
       "dash": [
+        77
+      ],
+      "dashNames": [
         "VS工厂合同"
       ]
     },
@@ -607,6 +766,9 @@
       "up": [],
       "down": [],
       "dash": [
+        64
+      ],
+      "dashNames": [
         "FBA 模板"
       ]
     },
@@ -618,6 +780,9 @@
         701
       ],
       "dash": [
+        78
+      ],
+      "dashNames": [
         "DHM 箱单"
       ]
     },
@@ -627,6 +792,9 @@
       ],
       "down": [],
       "dash": [
+        78
+      ],
+      "dashNames": [
         "DHM 箱单"
       ]
     },
@@ -639,7 +807,8 @@
       "down": [
         715
       ],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "704": {
       "up": [
@@ -652,7 +821,8 @@
         731,
         763
       ],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "705": {
       "up": [
@@ -660,13 +830,17 @@
       ],
       "down": [],
       "dash": [
+        66
+      ],
+      "dashNames": [
         "SP Ads Monitoring"
       ]
     },
     "707": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "708": {
       "up": [
@@ -674,6 +848,9 @@
       ],
       "down": [],
       "dash": [
+        66
+      ],
+      "dashNames": [
         "SP Ads Monitoring"
       ]
     },
@@ -683,6 +860,9 @@
       ],
       "down": [],
       "dash": [
+        66
+      ],
+      "dashNames": [
         "SP Ads Monitoring"
       ]
     },
@@ -692,6 +872,9 @@
       ],
       "down": [],
       "dash": [
+        66
+      ],
+      "dashNames": [
         "SP Ads Monitoring"
       ]
     },
@@ -701,6 +884,9 @@
       ],
       "down": [],
       "dash": [
+        66
+      ],
+      "dashNames": [
         "SP Ads Monitoring"
       ]
     },
@@ -710,6 +896,9 @@
       ],
       "down": [],
       "dash": [
+        66
+      ],
+      "dashNames": [
         "SP Ads Monitoring"
       ]
     },
@@ -719,6 +908,9 @@
       ],
       "down": [],
       "dash": [
+        66
+      ],
+      "dashNames": [
         "SP Ads Monitoring"
       ]
     },
@@ -728,6 +920,9 @@
       ],
       "down": [],
       "dash": [
+        66
+      ],
+      "dashNames": [
         "SP Ads Monitoring"
       ]
     },
@@ -737,6 +932,9 @@
       ],
       "down": [],
       "dash": [
+        66
+      ],
+      "dashNames": [
         "SP Ads Monitoring"
       ]
     },
@@ -746,6 +944,9 @@
       ],
       "down": [],
       "dash": [
+        66
+      ],
+      "dashNames": [
         "SP Ads Monitoring"
       ]
     },
@@ -754,7 +955,8 @@
       "down": [
         424
       ],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "720": {
       "up": [
@@ -762,6 +964,9 @@
       ],
       "down": [],
       "dash": [
+        68
+      ],
+      "dashNames": [
         "SB Ads Monitoring"
       ]
     },
@@ -771,6 +976,9 @@
       ],
       "down": [],
       "dash": [
+        68
+      ],
+      "dashNames": [
         "SB Ads Monitoring"
       ]
     },
@@ -780,6 +988,9 @@
       ],
       "down": [],
       "dash": [
+        68
+      ],
+      "dashNames": [
         "SB Ads Monitoring"
       ]
     },
@@ -789,6 +1000,9 @@
       ],
       "down": [],
       "dash": [
+        68
+      ],
+      "dashNames": [
         "SB Ads Monitoring"
       ]
     },
@@ -798,6 +1012,9 @@
       ],
       "down": [],
       "dash": [
+        68
+      ],
+      "dashNames": [
         "SB Ads Monitoring"
       ]
     },
@@ -807,6 +1024,9 @@
       ],
       "down": [],
       "dash": [
+        68
+      ],
+      "dashNames": [
         "SB Ads Monitoring"
       ]
     },
@@ -816,6 +1036,9 @@
       ],
       "down": [],
       "dash": [
+        68
+      ],
+      "dashNames": [
         "SB Ads Monitoring"
       ]
     },
@@ -825,6 +1048,9 @@
       ],
       "down": [],
       "dash": [
+        68
+      ],
+      "dashNames": [
         "SB Ads Monitoring"
       ]
     },
@@ -834,6 +1060,9 @@
       ],
       "down": [],
       "dash": [
+        68
+      ],
+      "dashNames": [
         "SB Ads Monitoring"
       ]
     },
@@ -843,6 +1072,9 @@
       ],
       "down": [],
       "dash": [
+        68
+      ],
+      "dashNames": [
         "SB Ads Monitoring"
       ]
     },
@@ -852,6 +1084,9 @@
       ],
       "down": [],
       "dash": [
+        68
+      ],
+      "dashNames": [
         "SB Ads Monitoring"
       ]
     },
@@ -861,6 +1096,9 @@
       ],
       "down": [],
       "dash": [
+        66
+      ],
+      "dashNames": [
         "SP Ads Monitoring"
       ]
     },
@@ -870,6 +1108,9 @@
       ],
       "down": [],
       "dash": [
+        68
+      ],
+      "dashNames": [
         "SB Ads Monitoring"
       ]
     },
@@ -887,7 +1128,8 @@
         788,
         789
       ],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "742": {
       "up": [
@@ -902,9 +1144,11 @@
         896,
         897,
         902,
-        904
+        904,
+        914
       ],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "743": {
       "up": [
@@ -914,7 +1158,8 @@
         745,
         904
       ],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "744": {
       "up": [
@@ -924,7 +1169,8 @@
         745,
         904
       ],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "745": {
       "up": [
@@ -941,14 +1187,16 @@
         893,
         902
       ],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "746": {
       "up": [
         742
       ],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "747": {
       "up": [
@@ -956,6 +1204,9 @@
       ],
       "down": [],
       "dash": [
+        70
+      ],
+      "dashNames": [
         "Sold Contribution Profit Dashboard (已售贡献利润看板)"
       ]
     },
@@ -965,6 +1216,9 @@
       ],
       "down": [],
       "dash": [
+        70
+      ],
+      "dashNames": [
         "Sold Contribution Profit Dashboard (已售贡献利润看板)"
       ]
     },
@@ -974,6 +1228,9 @@
       ],
       "down": [],
       "dash": [
+        70
+      ],
+      "dashNames": [
         "Sold Contribution Profit Dashboard (已售贡献利润看板)"
       ]
     },
@@ -982,21 +1239,24 @@
         742
       ],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "752": {
       "up": [
         745
       ],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "754": {
       "up": [],
       "down": [
         888
       ],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "755": {
       "up": [
@@ -1004,6 +1264,9 @@
       ],
       "down": [],
       "dash": [
+        76
+      ],
+      "dashNames": [
         "DHM 合同"
       ]
     },
@@ -1012,19 +1275,22 @@
       "down": [
         888
       ],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "757": {
       "up": [
         585
       ],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "758": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "761": {
       "up": [],
@@ -1032,14 +1298,16 @@
         703,
         704
       ],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "763": {
       "up": [
         704
       ],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "776": {
       "up": [
@@ -1070,7 +1338,8 @@
         874,
         877
       ],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "777": {
       "up": [],
@@ -1079,7 +1348,8 @@
         779,
         780
       ],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "778": {
       "up": [
@@ -1087,6 +1357,9 @@
       ],
       "down": [],
       "dash": [
+        73
+      ],
+      "dashNames": [
         "Natural Sales"
       ]
     },
@@ -1096,6 +1369,9 @@
       ],
       "down": [],
       "dash": [
+        73
+      ],
+      "dashNames": [
         "Natural Sales"
       ]
     },
@@ -1105,6 +1381,9 @@
       ],
       "down": [],
       "dash": [
+        73
+      ],
+      "dashNames": [
         "Natural Sales"
       ]
     },
@@ -1115,6 +1394,9 @@
       ],
       "down": [],
       "dash": [
+        74
+      ],
+      "dashNames": [
         "Returns"
       ]
     },
@@ -1124,6 +1406,9 @@
       ],
       "down": [],
       "dash": [
+        74
+      ],
+      "dashNames": [
         "Returns"
       ]
     },
@@ -1132,7 +1417,8 @@
         733
       ],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "784": {
       "up": [
@@ -1141,6 +1427,9 @@
       ],
       "down": [],
       "dash": [
+        74
+      ],
+      "dashNames": [
         "Returns"
       ]
     },
@@ -1150,6 +1439,9 @@
       ],
       "down": [],
       "dash": [
+        74
+      ],
+      "dashNames": [
         "Returns"
       ]
     },
@@ -1159,6 +1451,9 @@
       ],
       "down": [],
       "dash": [
+        74
+      ],
+      "dashNames": [
         "Returns"
       ]
     },
@@ -1167,7 +1462,8 @@
         733
       ],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "788": {
       "up": [
@@ -1175,6 +1471,9 @@
       ],
       "down": [],
       "dash": [
+        74
+      ],
+      "dashNames": [
         "Returns"
       ]
     },
@@ -1183,14 +1482,16 @@
         733
       ],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "791": {
       "up": [
         776
       ],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "792": {
       "up": [
@@ -1198,7 +1499,8 @@
         554
       ],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "793": {
       "up": [
@@ -1206,6 +1508,9 @@
       ],
       "down": [],
       "dash": [
+        81
+      ],
+      "dashNames": [
         "Store Monitor Dashboard"
       ]
     },
@@ -1215,6 +1520,9 @@
       ],
       "down": [],
       "dash": [
+        81
+      ],
+      "dashNames": [
         "Store Monitor Dashboard"
       ]
     },
@@ -1224,6 +1532,9 @@
       ],
       "down": [],
       "dash": [
+        81
+      ],
+      "dashNames": [
         "Store Monitor Dashboard"
       ]
     },
@@ -1233,6 +1544,9 @@
       ],
       "down": [],
       "dash": [
+        81
+      ],
+      "dashNames": [
         "Store Monitor Dashboard"
       ]
     },
@@ -1241,14 +1555,16 @@
         776
       ],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "799": {
       "up": [
         776
       ],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "800": {
       "up": [
@@ -1256,6 +1572,9 @@
       ],
       "down": [],
       "dash": [
+        81
+      ],
+      "dashNames": [
         "Store Monitor Dashboard"
       ]
     },
@@ -1265,6 +1584,9 @@
       ],
       "down": [],
       "dash": [
+        81
+      ],
+      "dashNames": [
         "Store Monitor Dashboard"
       ]
     },
@@ -1274,6 +1596,9 @@
       ],
       "down": [],
       "dash": [
+        81
+      ],
+      "dashNames": [
         "Store Monitor Dashboard"
       ]
     },
@@ -1289,7 +1614,8 @@
         848,
         849
       ],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "805": {
       "up": [
@@ -1298,7 +1624,8 @@
       "down": [
         806
       ],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "806": {
       "up": [
@@ -1309,6 +1636,9 @@
         877
       ],
       "dash": [
+        82
+      ],
+      "dashNames": [
         "补货面板"
       ]
     },
@@ -1320,12 +1650,14 @@
         811,
         877
       ],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "809": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "811": {
       "up": [
@@ -1334,22 +1666,26 @@
         807
       ],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "814": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "831": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "832": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "835": {
       "up": [
@@ -1359,6 +1695,9 @@
         837
       ],
       "dash": [
+        79
+      ],
+      "dashNames": [
         "VS 箱单"
       ]
     },
@@ -1370,7 +1709,8 @@
         755,
         835
       ],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "837": {
       "up": [
@@ -1378,13 +1718,17 @@
       ],
       "down": [],
       "dash": [
+        79
+      ],
+      "dashNames": [
         "VS 箱单"
       ]
     },
     "838": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "840": {
       "up": [
@@ -1392,6 +1736,9 @@
       ],
       "down": [],
       "dash": [
+        81
+      ],
+      "dashNames": [
         "Store Monitor Dashboard"
       ]
     },
@@ -1400,35 +1747,40 @@
         776
       ],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "842": {
       "up": [
         776
       ],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "843": {
       "up": [
         776
       ],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "844": {
       "up": [
         776
       ],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "845": {
       "up": [
         803
       ],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "846": {
       "up": [
@@ -1436,6 +1788,9 @@
       ],
       "down": [],
       "dash": [
+        81
+      ],
+      "dashNames": [
         "Store Monitor Dashboard"
       ]
     },
@@ -1445,6 +1800,9 @@
       ],
       "down": [],
       "dash": [
+        81
+      ],
+      "dashNames": [
         "Store Monitor Dashboard"
       ]
     },
@@ -1454,6 +1812,9 @@
       ],
       "down": [],
       "dash": [
+        81
+      ],
+      "dashNames": [
         "Store Monitor Dashboard"
       ]
     },
@@ -1463,6 +1824,9 @@
       ],
       "down": [],
       "dash": [
+        81
+      ],
+      "dashNames": [
         "Store Monitor Dashboard"
       ]
     },
@@ -1471,7 +1835,8 @@
         776
       ],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "852": {
       "up": [
@@ -1479,6 +1844,9 @@
       ],
       "down": [],
       "dash": [
+        81
+      ],
+      "dashNames": [
         "Store Monitor Dashboard"
       ]
     },
@@ -1496,12 +1864,14 @@
         803,
         805
       ],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "866": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "870": {
       "up": [
@@ -1510,7 +1880,8 @@
       "down": [
         877
       ],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "871": {
       "up": [
@@ -1518,6 +1889,9 @@
       ],
       "down": [],
       "dash": [
+        71
+      ],
+      "dashNames": [
         "Operating Performance and ROI Dashboard (经营表现与ROI看板)"
       ]
     },
@@ -1529,6 +1903,9 @@
         901
       ],
       "dash": [
+        82
+      ],
+      "dashNames": [
         "补货面板"
       ]
     },
@@ -1538,13 +1915,17 @@
       ],
       "down": [],
       "dash": [
+        82
+      ],
+      "dashNames": [
         "补货面板"
       ]
     },
     "875": {
       "up": [],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "876": {
       "up": [],
@@ -1552,7 +1933,8 @@
         878,
         879
       ],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "877": {
       "up": [
@@ -1565,7 +1947,8 @@
         878,
         879
       ],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "878": {
       "up": [
@@ -1577,7 +1960,8 @@
       "down": [
         873
       ],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "879": {
       "up": [
@@ -1587,14 +1971,16 @@
       "down": [
         880
       ],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "880": {
       "up": [
         879
       ],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "885": {
       "up": [],
@@ -1602,7 +1988,8 @@
         893,
         902
       ],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "886": {
       "up": [],
@@ -1610,14 +1997,16 @@
         893,
         902
       ],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "887": {
       "up": [
         893
       ],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "888": {
       "up": [
@@ -1628,7 +2017,8 @@
       "down": [
         871
       ],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "893": {
       "up": [
@@ -1640,49 +2030,56 @@
         887,
         895
       ],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "895": {
       "up": [
         893
       ],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "896": {
       "up": [
         742
       ],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "897": {
       "up": [
         742
       ],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "898": {
       "up": [
         902
       ],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "899": {
       "up": [],
       "down": [
         878
       ],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "900": {
       "up": [],
       "down": [
         878
       ],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "901": {
       "up": [
@@ -1690,6 +2087,9 @@
       ],
       "down": [],
       "dash": [
+        82
+      ],
+      "dashNames": [
         "补货面板"
       ]
     },
@@ -1703,7 +2103,8 @@
       "down": [
         898
       ],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "904": {
       "up": [
@@ -1720,14 +2121,16 @@
         911,
         912
       ],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "905": {
       "up": [
         904
       ],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "906": {
       "up": [
@@ -1738,49 +2141,104 @@
         908,
         909
       ],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "907": {
       "up": [
         906
       ],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "908": {
       "up": [
         906
       ],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "909": {
       "up": [
         906
       ],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "910": {
       "up": [
         904
       ],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "911": {
       "up": [
         904
       ],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
     },
     "912": {
       "up": [
         904
       ],
       "down": [],
-      "dash": []
+      "dash": [],
+      "dashNames": []
+    },
+    "913": {
+      "up": [],
+      "down": [],
+      "dash": [],
+      "dashNames": []
+    },
+    "914": {
+      "up": [
+        742
+      ],
+      "down": [],
+      "dash": [],
+      "dashNames": []
+    },
+    "915": {
+      "up": [],
+      "down": [],
+      "dash": [],
+      "dashNames": []
+    },
+    "916": {
+      "up": [],
+      "down": [],
+      "dash": [],
+      "dashNames": []
+    },
+    "917": {
+      "up": [],
+      "down": [],
+      "dash": [],
+      "dashNames": []
+    },
+    "918": {
+      "up": [],
+      "down": [],
+      "dash": [],
+      "dashNames": []
+    },
+    "919": {
+      "up": [],
+      "down": [],
+      "dash": [
+        51
+      ],
+      "dashNames": [
+        "VIP专属数据面板"
+      ]
     }
   }
 }

@@ -1,6 +1,6 @@
 # Individual Card Details
 
-219 cards documented. Each file contains full field metadata, description, upstream/downstream dependencies, and risk flags.
+226 cards documented. Each file contains full field metadata, description, upstream/downstream dependencies, and risk flags.
 
 Use `_index.json` for discovery; read individual files when you need field-level detail.
 
@@ -22,8 +22,8 @@ grep -l '#904' cards/*.md
 - [#442 Downhome 客户群体年龄 第二季度](442.md)
 - [#443 Downhome 客户群体教育背景 第二季度](443.md)
 - [#566 Graph 1](566.md)
-- [#644 Store Profit By SKU X Order Model, Cumulative sum of Sum of profit, Grouped by order_date: Day, Filtered by Marketplace Name is Amazon.ca and sku is not 3 selections](644.md)
-- [#645 Store Profit By SKU X Order Model, Cumulative sum of Sum of profit, Grouped by order_date: Day, Filtered by Marketplace Name is Amazon.ca and sku is not 3 selections - Modified](645.md)
+- [#644 Store Profit By SKU X Order Model, Cumulative sum of Sum of profit, Grouped by order\_date: Day, Filtered by Marketplace Name is Amazon.ca and sku is not 3 selections](644.md)
+- [#645 Store Profit By SKU X Order Model, Cumulative sum of Sum of profit, Grouped by order\_date: Day, Filtered by Marketplace Name is Amazon.ca and sku is not 3 selections - Modified](645.md)
 
 ### Ads SB Models (5 cards)
 
@@ -67,15 +67,15 @@ grep -l '#904' cards/*.md
 
 ### Cui Liu's Personal Collection (9 cards)
 
-- [#324 average_competition](324.md)
-- [#325 averange_frequency&competiton](325.md)
+- [#324 average\_competition](324.md)
+- [#325 averange\_frequency&competiton](325.md)
 - [#326 Amazon Search Rank & Competition &Trend](326.md)
 - [#327 search frequency&competion by week](327.md)
-- [#328 averange_frequency&competiton summary](328.md)
+- [#328 averange\_frequency&competiton summary](328.md)
 - [#329 Amazon Keywords Ranking and Related Statistical Indicators](329.md)
-- [#330 averange_frequency&competiton summary_1](330.md)
-- [#331 Amazon Search Rank & Competition &Trend _1](331.md)
-- [#332 latest_amaozn_keywords_rank](332.md)
+- [#330 averange\_frequency&competiton summary\_1](330.md)
+- [#331 Amazon Search Rank & Competition &Trend \_1](331.md)
+- [#332 latest\_amaozn\_keywords\_rank](332.md)
 
 ### DCMS 开发测试 (7 cards)
 
@@ -242,7 +242,7 @@ grep -l '#904' cards/*.md
 - [#444 Us Demographics Simple Quarter 2025 06 30](444.md)
 - [#445 Us Demographics Q2-AGE GROUP](445.md)
 - [#446 Us Demographics Simple Q2 -Marital Status](446.md)
-- [#447 Us Demographics Simple Quarter 2 - household_income](447.md)
+- [#447 Us Demographics Simple Quarter 2 - household\_income](447.md)
 - [#448 Us Demographics Simple Quarter 2 - education](448.md)
 - [#489 Payment report - Duplicate](489.md)
 - [#560 DH Canada 库存表 DH-BT-BRAID-BG-TH](560.md)
@@ -280,21 +280,31 @@ grep -l '#904' cards/*.md
 
 ### todd li's Personal Collection (3 cards)
 
-- [#814 Todd_Test_DH 合同](814.md)
+- [#814 Todd\_Test\_DH 合同](814.md)
 - [#831 FBA Shipment 表 Imperial Unit (US) - Duplicate](831.md)
-- [#832 Todd_Test_箱单/出货](832.md)
+- [#832 Todd\_Test\_箱单/出货](832.md)
 
 ### Unfiled / Unknown (1 cards)
 
 - [#866 test](866.md)
 
-### user_profile_demo (5 cards)
+### user\_profile\_demo (5 cards)
 
 - [#306 Purchase Amount Distribution by State](306.md)
 - [#307 Purchase Amount Distribution by Category](307.md)
 - [#309 Purchase Amount and Quantity Distribution by Gender](309.md)
 - [#310 Order Distribution by Gender&Age](310.md)
 - [#311 User Average Purchase Amount by Month](311.md)
+
+### VIP (7 cards)
+
+- [#913 订单 Sales 原始表](913.md)
+- [#914 Amazon Settlement Cost Breakdown (亚马逊结算成本分析表)](914.md)
+- [#915 箱单 Items](915.md)
+- [#916 PO Items](916.md)
+- [#917 Reports Customer Returns Data](917.md)
+- [#918 Amazon Settlement](918.md)
+- [#919 Sales QTY & Dollar](919.md)
 
 ### 关键词分析 (2 cards)
 

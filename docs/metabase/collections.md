@@ -1,6 +1,6 @@
 # Metabase Collections
 
-Generated at: 2026-06-24T10:26:56.784Z
+Generated at: 2026-06-25T03:02:29.267Z
 
 ## Tree View
 
@@ -28,7 +28,7 @@ Generated at: 2026-06-24T10:26:56.784Z
 │   │   └── #123 Ads SB Models (5 cards)
 │   ├── #127 SP Ads (12 cards, 1 dashboards)
 │   │   └── #122 Ads SP Models (7 cards)
-│   ├── #142 VIP
+│   ├── #142 VIP (7 cards, 1 dashboards)
 │   ├── #76 前期用户画像市场分析 (5 cards, 2 dashboards)
 │   │   └── #78 关键词分析 (2 cards)
 │   ├── #119 订单/船务数据 (Cynthia) (12 cards, 5 dashboards)
@@ -164,7 +164,7 @@ Generated at: 2026-06-24T10:26:56.784Z
 | 134 | Sales | 75 | /75/ | 24 | 0 |  |
 | 129 | SB Ads | 75 | /75/ | 13 | 1 |  |
 | 127 | SP Ads | 75 | /75/ | 12 | 1 |  |
-| 142 | VIP | 75 | /75/ | 0 | 0 |  |
+| 142 | VIP | 75 | /75/ | 7 | 1 |  |
 | 76 | 前期用户画像市场分析 | 75 | /75/ | 5 | 2 |  |
 | 119 | 订单/船务数据 (Cynthia) | 75 | /75/ | 12 | 5 |  |
 | 103 | 运营数据 | 75 | /75/ | 1 | 0 |  |

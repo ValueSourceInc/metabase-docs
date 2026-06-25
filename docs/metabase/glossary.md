@@ -28,14 +28,14 @@ These cards contain fields like `sum`, `sum_2`, `avg`, or `max`. They need chart
 | #329 | Amazon Keywords Ranking and Related Statistical Indicators | 4 | Cui Liu's Personal Collection | dashboard component | sales | table | generic aggregation field names; missing description |
 | #382 | Keyword Performance Table active | 4 | Hanson Li's Personal Collection | question | advertising, sales | table | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
 | #388 | Campaign CTR | 4 | SP Ads | dashboard component | advertising | line | generic aggregation field names; missing description |
-| #398 | Ads SP Gross And Invalids | 4 | Ads SP Models | question | advertising | table | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
+| #398 | Ads SP Gross And Invalids | 4 | Ads SP Models | model | advertising | table | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
 | #402 | List SP Campaign Model | 4 | Ads SP Models | source model | advertising | table | generic aggregation field names; missing description |
 | #403 | Ads SP Campaign Model | 4 | Ads SP Models | source model | advertising, finance, sales | table | generic aggregation field names; high reuse / change carefully; missing description |
 | #409 | Dify 测试空数据 | 4 | DCMS 开发测试 | question | advertising, finance, sales | table | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
 | #411 | SB Campaign Model | 4 | Ads SB Models | source model | advertising, finance, sales | table | generic aggregation field names; high reuse / change carefully; missing description |
 | #413 | List SB Campaign Model | 4 | Ads SB Models | source model | advertising, finance | table | generic aggregation field names; missing description |
-| #424 | SB SearchTerm Model | 4 | Ads SB Models | source model | advertising, finance, sales | table | generic aggregation field names; missing description |
-| #425 | SB Targeting Model | 4 | Ads SB Models | source model | advertising, finance, sales | table | generic aggregation field names; missing description |
+| #424 | SB SearchTerm Model | 4 | Ads SB Models | model | advertising, finance, sales | table | generic aggregation field names; missing description |
+| #425 | SB Targeting Model | 4 | Ads SB Models | model | advertising, finance, sales | table | generic aggregation field names; missing description |
 | #442 | Downhome 客户群体年龄 第二季度 | 4 | Admin VS's Personal Collection | dashboard component | uncategorized | bar | generic aggregation field names; missing description |
 | #443 | Downhome 客户群体教育背景 第二季度 | 4 | Admin VS's Personal Collection | dashboard component | uncategorized | bar | generic aggregation field names; missing description |
 | #445 | Us Demographics Q2-AGE GROUP | 4 | Serene Xuan's Personal Collection | dashboard component | uncategorized | bar | generic aggregation field names; missing description |
@@ -56,8 +56,8 @@ These cards contain fields like `sum`, `sum_2`, `avg`, or `max`. They need chart
 | #575 | Production Unit Cost Per SKU Over Time | 4 | Production Costs | question | finance, production, sales | line | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
 | #577 | Production Cost Sum Over Time | 4 | Production Costs | question | finance, production, sales | line | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
 | #578 | Shipping Cost Sum Over Time | 4 | Shipment Costs | question | finance, logistics, replenishment, sales | line | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
-| #584 | Production Cost Over Time | 4 | Production Costs | question | finance, production, sales | table | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
-| #585 | Shipping Cost Over Time | 4 | Shipment Costs | table model | finance, logistics, replenishment, sales | table | generic aggregation field names; missing description |
+| #584 | Production Cost Over Time | 4 | Production Costs | model | finance, production, sales | table | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
+| #585 | Shipping Cost Over Time | 4 | Shipment Costs | model | finance, logistics, replenishment, sales | table | generic aggregation field names; missing description |
 | #595 | Production Cost Over Time Per Parent ASIN | 4 | Production Costs | question | finance, logistics, production, replenishment, sales | line | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
 | #604 | Wps Eric Movie List, Max of Year, Grouped by Genre, Sorted by Max of Year descending - Modified | 4 | Eric Zeng's Personal Collection | question | sales | row | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
 | #609 | Top Weighted Score By Movie | 4 | Eric Zeng's Personal Collection | dashboard component | sales | row | generic aggregation field names; missing description |
@@ -71,14 +71,14 @@ These cards contain fields like `sum`, `sum_2`, `avg`, or `max`. They need chart
 | #627 | Weighted Score By Movie - Score 8 Or Above | 4 | Eric Zeng's Personal Collection | dashboard component | sales | row | generic aggregation field names; missing description |
 | #630 | Sum of Box Office Group By Weighted Score | 4 | Eric Zeng's Personal Collection | dashboard component | uncategorized | bar | generic aggregation field names; missing description |
 | #639 | Genre Performance by average box office, average ratings, amount | 4 | Eric Zeng's Personal Collection | dashboard component | finance | bar | generic aggregation field names; missing description |
-| #644 | Store Profit By SKU X Order Model, Cumulative sum of Sum of profit, Grouped by order_date: Day, Filtered by Marketplace Name is Amazon.ca and sku is not 3 selections | 4 | Admin VS's Personal Collection | source model | finance, sales | line | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
-| #645 | Store Profit By SKU X Order Model, Cumulative sum of Sum of profit, Grouped by order_date: Day, Filtered by Marketplace Name is Amazon.ca and sku is not 3 selections - Modified | 4 | Admin VS's Personal Collection | source model | finance, sales | line | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
+| #644 | Store Profit By SKU X Order Model, Cumulative sum of Sum of profit, Grouped by order_date: Day, Filtered by Marketplace Name is Amazon.ca and sku is not 3 selections | 4 | Admin VS's Personal Collection | question | finance, sales | line | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
+| #645 | Store Profit By SKU X Order Model, Cumulative sum of Sum of profit, Grouped by order_date: Day, Filtered by Marketplace Name is Amazon.ca and sku is not 3 selections - Modified | 4 | Admin VS's Personal Collection | question | finance, sales | line | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
 | #649 | DH Amazon Parent SKU 销售比例 - 复制测试 | 4 | DCMS 开发测试 | question | sales | pie | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
 | #676 | 工厂大合同 | 4 | 订单/船务数据 (Cynthia) | dashboard component | production, replenishment, sales | table | generic aggregation field names; missing description |
 | #685 | 工厂小合同 | 4 | 订单/船务数据 (Cynthia) | dashboard component | production, replenishment, sales | table | generic aggregation field names; missing description |
 | #686 | FBA Shipment 表 Imperial Unit (US) | 4 | 订单/船务数据 (Cynthia) | dashboard component | inventory, replenishment, sales | table | generic aggregation field names; missing description |
 | #701 | DHM 箱单 By Product Group | 4 | 订单/船务数据 (Cynthia) | dashboard component | replenishment, sales | table | generic aggregation field names; missing description |
-| #703 | Ads Sp Searchterm Model | 4 | Ads SP Models | source model | advertising, finance, sales | table | generic aggregation field names; missing description |
+| #703 | Ads Sp Searchterm Model | 4 | Ads SP Models | model | advertising, finance, sales | table | generic aggregation field names; missing description |
 | #704 | Ads Sp Targeting Model | 4 | Ads SP Models | source model | advertising, finance, sales | table | generic aggregation field names; missing description |
 | #705 | Campaign CTR Summarized Trend Line | 4 | SP Ads | dashboard component | advertising | line | generic aggregation field names; missing description |
 | #708 | Campaign CTR Pie | 4 | SP Ads | dashboard component | advertising | pie | generic aggregation field names; missing description |
@@ -101,4 +101,4 @@ These cards contain fields like `sum`, `sum_2`, `avg`, or `max`. They need chart
 | #728 | SB Campaign ACOS Pie | 4 | SB Ads | dashboard component | advertising, finance, sales | pie | generic aggregation field names; missing description |
 | #729 | SB SearchTerm Performance Table | 4 | SB Ads | dashboard component | advertising, finance, sales | table | generic aggregation field names; missing description |
 
-_Only first 80 of 142 cards shown._
+_Only first 80 of 143 cards shown._

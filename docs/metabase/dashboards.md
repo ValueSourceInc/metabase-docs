@@ -7,6 +7,7 @@
 | 34 | filter | 子查询 | 1 | #331 |  |
 | 46 | Downhome 客户群体 | Admin VS's Personal Collection | 2 | #442, #443 |  |
 | 47 | 1 | Serene Xuan's Personal Collection | 4 | #445, #446, #447, #448 |  |
+| 51 | VIP专属数据面板 | VIP | 1 | #919 |  |
 | 56 | eric_movie_list (XXX By ___ X ____ X _____  (Over Time) | Eric Zeng's Personal Collection | 9 | #603, #608, #609, #610, #611, #614, #616, #617, #618 |  |
 | 58 | eric_movie_recommendations_for_users_and_investors | Eric Zeng's Personal Collection | 7 | #610, #617, #627, #628, #629, #630, #639 |  |
 | 64 | FBA 模板 | 订单/船务数据 (Cynthia) | 2 | #625, #686 |  |
