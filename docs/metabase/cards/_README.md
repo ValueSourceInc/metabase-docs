@@ -6,13 +6,10 @@ Use `_catalog.md` for discovery (one line per card); read individual files when 
 
 ## Quick Start
 
-```bash
-# Find a card by ID
-cat cards/747.md
-
-# Find cards referencing card 904
-grep -l '#904' cards/*.md
-```
+- Known card ID: Read `cards/{id}.md` directly. Example: `cards/747.md`.
+- Need full upstream/downstream/dashboard references: `grep '"<id>"' _deps.json`.
+- Need to find a card by name, domain, or collection first: use `_catalog.md`.
+- Do **not** scan the full card-detail directory for dependencies; that repeats data already in `_deps.json`.
 
 ## Cards by Collection
 

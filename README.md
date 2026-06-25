@@ -32,15 +32,16 @@ METABASE_DB_ID=<数据库 ID>
 ├── docs/metabase/                   # 生成的文档（git 提交以保留版本历史）
 │   ├── _catalog.md                  # 卡片目录（一行一张，AI 首要发现文件）
 │   ├── _index.json                  # 卡片索引（grep 目标，不要全文读取）
-│   ├── _deps.json                   # 依赖关系图
+│   ├── _deps.json                   # 压缩依赖关系图（按 card ID grep）
 │   ├── README.md                    # 文档导航概览
-│   ├── cards.md                     # 卡片总表（人工浏览）
-│   ├── cards/{id}.md                # 单卡片详情
+│   ├── cards.md                     # 卡片总表（仅供人工浏览，AI 不要全文读取）
+│   ├── cards/{id}.md                # 单卡片详情（长依赖列表已截断）
 │   ├── collections.md               # 集合层级树
 │   ├── dashboards.md                # 仪表板列表
-│   ├── dependencies.md              # 依赖关系表（人工浏览）
+│   ├── dependencies.md              # 依赖关系表（仅供人工浏览，AI 用 _deps.json）
 │   ├── glossary.md                  # 业务术语定义
-│   └── domains/{domain}.md          # 按业务领域分组的卡片
+│   ├── field-risks.md               # 聚合字段命名风险
+│   └── domains/{domain}.md          # 领域 source models + dashboard components
 ├── CLAUDE.md                        # AI 阅读策略指引
 └── package.json
 ```
@@ -49,12 +50,13 @@ METABASE_DB_ID=<数据库 ID>
 
 | 文件 | 用途 | 大小 |
 | --- | --- | --- |
-| `docs/metabase/_catalog.md` | **首要发现文件** — 一行一张卡片，阅读全文获取卡片全貌 | ~23KB |
-| `docs/metabase/_index.json` | grep 目标 — 查上下游依赖 / 风险信息（不要全文读取） | ~170KB |
-| `docs/metabase/_deps.json` | 追踪上下游依赖 | ~32KB |
-| `docs/metabase/cards/{id}.md` | 查看单张卡片完整字段元数据 | ~1KB each |
-| `docs/metabase/collections.md` | 了解集合层级结构 | ~9KB |
-| `docs/metabase/domains/{domain}.md` | 浏览某领域所有卡片 | 不定 |
-| `docs/metabase/glossary.md` | 查找业务术语 | ~16KB |
+| `docs/metabase/_catalog.md` | **首要发现文件** — 一行一张卡片，按名称/ID/domain/collection 找 card | ~17KB |
+| `docs/metabase/_index.json` | grep 目标 — 查特定 card 的风险 / 摘要信息（不要全文读取） | ~136KB |
+| `docs/metabase/_deps.json` | 追踪上下游依赖和 dashboard 引用，按 card ID grep | ~19KB |
+| `docs/metabase/cards/{id}.md` | 查看单张卡片字段、描述、少量依赖摘要 | ~1KB each |
+| `docs/metabase/collections.md` | 了解集合层级结构 | ~8KB |
+| `docs/metabase/domains/{domain}.md` | 只看领域 source models / dashboard components；不要用来浏览全领域卡片 | 不定 |
+| `docs/metabase/glossary.md` | 查找业务术语 | ~1KB |
+| `docs/metabase/field-risks.md` | 查找泛聚合字段名风险 | ~16KB |
 
-**核心原则：先读 `_catalog.md` 发现卡片，再按需 grep `_index.json` 或读取具体卡片文件。**
+**核心原则：先用 `_catalog.md` 发现 card，再按需读取 `cards/{id}.md`。查完整上下游依赖用 `_deps.json`，不要扫整个 card 详情目录，也不要全文读取 `cards.md` / `dependencies.md` / `_index.json`。**
