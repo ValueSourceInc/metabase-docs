@@ -4,8 +4,8 @@
   ],
   "summary": {
     "collections": 84,
-    "cards": 226,
-    "activeCards": 226,
+    "cards": 228,
+    "activeCards": 228,
     "dashboards": 21
   },
   "cards": {
@@ -4092,7 +4092,8 @@
         852,
         870,
         874,
-        877
+        877,
+        920
       ],
       "dashboards": [],
       "risks": [
@@ -5771,9 +5772,9 @@
       "queryType": "query",
       "isNative": false,
       "isArchived": false,
-      "fieldCount": 37,
+      "fieldCount": 38,
       "dependencyDepth": 5,
-      "updatedAt": "2026-06-25T03:50:15.790458Z",
+      "updatedAt": "2026-06-25T05:26:46.102238Z",
       "description": "未来销量目前支持2年，即wos_now兜底为100",
       "hasFullDescription": false
     },
@@ -5919,7 +5920,8 @@
         900
       ],
       "downstream": [
-        873
+        873,
+        921
       ],
       "dashboards": [],
       "risks": [
@@ -5931,9 +5933,9 @@
       "queryType": "native",
       "isNative": true,
       "isArchived": false,
-      "fieldCount": 37,
+      "fieldCount": 38,
       "dependencyDepth": 4,
-      "updatedAt": "2026-06-24T06:26:25.487826Z",
+      "updatedAt": "2026-06-25T05:19:11.334212Z",
       "description": "",
       "hasFullDescription": false
     },
@@ -6924,6 +6926,68 @@
       "fieldCount": 3,
       "dependencyDepth": 0,
       "updatedAt": "2026-06-25T02:42:21.998754Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "920": {
+      "name": "产品订单曲线 Cum Sales QTY Per SKU (NO VINE)",
+      "collectionId": 134,
+      "collectionName": "Sales",
+      "type": "dashboard component",
+      "domains": [
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [
+        776
+      ],
+      "downstream": [],
+      "dashboards": [
+        "补货面板"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-06-25T03:53:20.420697Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "921": {
+      "name": "清仓表",
+      "collectionId": 138,
+      "collectionName": "Inventory",
+      "type": "question",
+      "domains": [
+        "inventory",
+        "logistics",
+        "production",
+        "replenishment",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        878
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 38,
+      "dependencyDepth": 5,
+      "updatedAt": "2026-06-25T05:24:03.016412Z",
       "description": "",
       "hasFullDescription": false
     }

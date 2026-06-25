@@ -5,7 +5,6 @@
   "description": "Metabase metadata knowledge documentation generator",
   "scripts": {
     "gen": "tsx src/generate-metabase-docs.ts",
-    "docs:metabase": "tsx src/generate-metabase-docs.ts",
     "check": "tsc --noEmit"
   },
   "dependencies": {

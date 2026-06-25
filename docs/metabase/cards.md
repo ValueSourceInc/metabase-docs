@@ -1,6 +1,6 @@
 # Metabase Cards and Models
 
-Total: 226 cards (226 active, 0 archived).
+Total: 228 cards (228 active, 0 archived).
 
 For field-level detail, see individual card files in [cards/](cards/_README.md).
 For programmatic access, use [_index.json](_index.json).
@@ -9,8 +9,8 @@ For programmatic access, use [_index.json](_index.json).
 
 | Type | Count |
 | --- | --- |
-| dashboard component | 91 |
-| question | 73 |
+| dashboard component | 92 |
+| question | 74 |
 | model | 23 |
 | source model | 15 |
 | table model | 13 |
@@ -155,7 +155,7 @@ For programmatic access, use [_index.json](_index.json).
 | #758 | Production Cost Over Sum Time New | 4 | Production Costs | native question | finance, production, sales | line |  |  |  | generic aggregation field names; missing description; native SQL without business description; not referenced by dashboards or downstream cards |
 | #761 | List SP Keywords Model DISTINCT | 4 | Ads SP Models | model | advertising, sales | table |  | #703, #704 |  | missing description; native SQL without business description |
 | #763 | Targeting Performance Table Test Check | 4 | DCMS 开发测试 | question | advertising, finance, sales | table | #704 |  |  | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
-| #776 | Reports Flat File All Orders Data By Order Date General Hourly Model | 4 | Sales | source model | logistics, sales | table | #853 | #476, #781, #784, #791, #793, #795, #796, #797, #798, #799, #800, #802, #807, #811, #841, #842, #843, #844, #851, #852, #870, #874, #877 |  | high reuse / change carefully; missing description |
+| #776 | Reports Flat File All Orders Data By Order Date General Hourly Model | 4 | Sales | source model | logistics, sales | table | #853 | #476, #781, #784, #791, #793, #795, #796, #797, #798, #799, #800, #802, #807, #811, #841, #842, #843, #844, #851, #852, #870, #874, #877, #920 |  | high reuse / change carefully; missing description |
 | #777 | Parent SKU Natural Sales Daily Model | 4 | Natural Sales | source model | advertising, finance, sales | table |  | #778, #779, #780 |  | missing description; native SQL without business description |
 | #778 | Bar - Natural sales | 4 | Natural Sales | dashboard component | advertising, sales | bar | #777 |  | Natural Sales | generic aggregation field names; missing description |
 | #779 | Combo - Natural Sales Daily Over Time | 4 | Natural Sales | dashboard component | sales | line | #777 |  | Natural Sales | generic aggregation field names; missing description |
@@ -214,7 +214,7 @@ For programmatic access, use [_index.json](_index.json).
 | #875 | Wps Sales Forecast | 4 | Sales Forecast | model | sales | table |  |  |  | missing description; not referenced by dashboards or downstream cards |
 | #876 | Wps Sales Forecast By Day | 4 | Sales Forecast | model | inventory, sales | table |  | #878, #879 |  |  |
 | #877 | 发货基础表 | 4 | Sales Forecast | table model | inventory, logistics, production, replenishment, sales | table | #776, #806, #807, #870 | #878, #879 |  | generic aggregation field names; many upstream dependencies; missing description |
-| #878 | 发货 Forecast WOS Summary | 4 | Sales Forecast | model | inventory, logistics, production, replenishment, sales | table | #876, #877, #899, #900 | #873 |  | many upstream dependencies; missing description; native SQL without business description |
+| #878 | 发货 Forecast WOS Summary | 4 | Sales Forecast | model | inventory, logistics, production, replenishment, sales | table | #876, #877, #899, #900 | #873, #921 |  | many upstream dependencies; missing description; native SQL without business description |
 | #879 | 未来有效日销model | 4 | Sales Forecast | model | replenishment, sales | table | #876, #877 | #880 |  | missing description; native SQL without business description |
 | #880 | 未来日销趋势 | 4 | Sales Forecast | question | sales | line | #879 |  |  | missing description; not referenced by dashboards or downstream cards |
 | #885 | Shipping Cost Over Time By Sku | 4 | Shipment Costs | question | finance, logistics, replenishment, sales | line |  | #893, #902 |  | generic aggregation field names; missing description |
@@ -246,3 +246,5 @@ For programmatic access, use [_index.json](_index.json).
 | #917 | Reports Customer Returns Data | 4 | VIP | question | returns, sales | table |  |  |  | missing description; not referenced by dashboards or downstream cards |
 | #918 | Amazon Settlement | 4 | VIP | question | advertising, finance, replenishment, sales | table |  |  |  | missing description; not referenced by dashboards or downstream cards |
 | #919 | Sales QTY & Dollar | 4 | VIP | dashboard component | sales | line |  |  | VIP专属数据面板 | generic aggregation field names; missing description |
+| #920 | 产品订单曲线 Cum Sales QTY Per SKU (NO VINE) | 4 | Sales | dashboard component | sales | line | #776 |  | 补货面板 | generic aggregation field names; missing description |
+| #921 | 清仓表 | 4 | Inventory | question | inventory, logistics, production, replenishment, sales | table | #878 |  |  | missing description; not referenced by dashboards or downstream cards |

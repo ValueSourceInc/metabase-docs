@@ -17,10 +17,10 @@
 │   │       ├── #132 Production Costs (3 cards)
 │   │       ├── #133 Shipment Costs (3 cards)
 │   │       └── #131 Store Revenue (1 cards)
-│   ├── #138 Inventory (8 cards, 1 dashboards)
+│   ├── #138 Inventory (9 cards, 1 dashboards)
 │   │   └── #143 Sales Forecast (9 cards)
 │   ├── #136 Returns (10 cards, 1 dashboards)
-│   ├── #134 Sales (24 cards)
+│   ├── #134 Sales (25 cards)
 │   │   └── #137 Natural Sales (4 cards, 1 dashboards)
 │   ├── #129 SB Ads (13 cards, 1 dashboards)
 │   │   └── #123 Ads SB Models (5 cards)
@@ -157,9 +157,9 @@
 | 97 | Cost | 75 | /75/ | 1 | 0 |  |
 | 84 | DCMS 开发测试 | 75 | /75/ | 7 | 0 |  |
 | 130 | Finance | 75 | /75/ | 14 | 2 |  |
-| 138 | Inventory | 75 | /75/ | 8 | 1 |  |
+| 138 | Inventory | 75 | /75/ | 9 | 1 |  |
 | 136 | Returns | 75 | /75/ | 10 | 1 |  |
-| 134 | Sales | 75 | /75/ | 24 | 0 |  |
+| 134 | Sales | 75 | /75/ | 25 | 0 |  |
 | 129 | SB Ads | 75 | /75/ | 13 | 1 |  |
 | 127 | SP Ads | 75 | /75/ | 12 | 1 |  |
 | 142 | VIP | 75 | /75/ | 7 | 1 |  |

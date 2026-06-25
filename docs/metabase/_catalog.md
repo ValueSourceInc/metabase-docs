@@ -1,4 +1,4 @@
-# Card Catalog — 226 cards
+# Card Catalog — 228 cards
 
 One line per card. Read IN FULL for discovery (find by name/domain/collection/id),
 then read `cards/{id}.md` for field-level detail. Columns, ` | `-separated:
@@ -193,12 +193,12 @@ id | name | domains | collection | type | fields
 866 | test | logistics,sales | Unfiled / Unknown | question | 38
 870 | SKU First Sale Date | sales | Sales Forecast | table model | 3
 871 | Cumulative Settlement & Inventory Investment Trend (累计结算与库存投入趋势) | advertising,finance,inventory,logistics,production,replenishment,returns,sales | Finance | dashboard component | 6
-873 | 发货 FBA Total Inventory Chart 2.0 | inventory,logistics,production,replenishment,sales | Inventory | table model | 37
+873 | 发货 FBA Total Inventory Chart 2.0 | inventory,logistics,production,replenishment,sales | Inventory | table model | 38
 874 | 产品订单曲线 Per SKU (NO VINE) | sales | Sales | dashboard component | 3
 875 | Wps Sales Forecast | sales | Sales Forecast | model | 11
 876 | Wps Sales Forecast By Day | inventory,sales | Sales Forecast | model | 11
 877 | 发货基础表 | inventory,logistics,production,replenishment,sales | Sales Forecast | table model | 30
-878 | 发货 Forecast WOS Summary | inventory,logistics,production,replenishment,sales | Sales Forecast | model | 37
+878 | 发货 Forecast WOS Summary | inventory,logistics,production,replenishment,sales | Sales Forecast | model | 38
 879 | 未来有效日销model | replenishment,sales | Sales Forecast | model | 11
 880 | 未来日销趋势 | sales | Sales Forecast | question | 11
 885 | Shipping Cost Over Time By Sku | finance,logistics,replenishment,sales | Shipment Costs | question | 4
@@ -230,3 +230,5 @@ id | name | domains | collection | type | fields
 917 | Reports Customer Returns Data | returns,sales | VIP | question | 17
 918 | Amazon Settlement | advertising,finance,replenishment,sales | VIP | question | 34
 919 | Sales QTY & Dollar | sales | VIP | dashboard component | 3
+920 | 产品订单曲线 Cum Sales QTY Per SKU (NO VINE) | sales | Sales | dashboard component | 3
+921 | 清仓表 | inventory,logistics,production,replenishment,sales | Inventory | question | 38

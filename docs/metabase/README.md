@@ -1,7 +1,5 @@
 # Metabase Knowledge Base
 
-Generated at: 2026-06-25T03:51:21.278Z
-
 This folder is generated from Metabase metadata. It provides navigation and business context for AI-assisted Metabase work.
 
 ## Reading Strategy (for AI)
@@ -21,8 +19,8 @@ This folder is generated from Metabase metadata. It provides navigation and busi
 
 - Database filter: 4
 - Collections: 84
-- Cards / questions / models: 226
-- Active cards: 226
+- Cards / questions / models: 228
+- Active cards: 228
 - Dashboards: 21
 
 ## Key Source Models
@@ -31,7 +29,7 @@ Most-reused source models and table models. Changing these affects the most down
 
 | ID | Name | DB | Collection | Type | Domains | Display | Upstream | Downstream | Dashboards | Risks |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| #776 | Reports Flat File All Orders Data By Order Date General Hourly Model | 4 | Sales | source model | logistics, sales | table | #853 | #476, #781, #784, #791, #793, #795, #796, #797, #798, #799, #800, #802, #807, #811, #841, #842, #843, #844, #851, #852, #870, #874, #877 |  | high reuse / change carefully; missing description |
+| #776 | Reports Flat File All Orders Data By Order Date General Hourly Model | 4 | Sales | source model | logistics, sales | table | #853 | #476, #781, #784, #791, #793, #795, #796, #797, #798, #799, #800, #802, #807, #811, #841, #842, #843, #844, #851, #852, #870, #874, #877, #920 |  | high reuse / change carefully; missing description |
 | #411 | SB Campaign Model | 4 | Ads SB Models | source model | advertising, finance, sales | table | #413, #853 | #458, #720, #721, #722, #723, #724, #725, #726, #727, #728 |  | generic aggregation field names; high reuse / change carefully; missing description |
 | #733 | Reports Customer Returns Data Model | 4 | Returns | source model | returns, sales | table |  | #744, #781, #782, #783, #784, #785, #786, #787, #788, #789 |  | high reuse / change carefully; missing description |
 | #742 | V Settlement Model | 4 | Base | source model | advertising, finance, replenishment, sales | table | #853 | #743, #745, #746, #751, #801, #896, #897, #902, #904, #914 |  | high reuse / change carefully; missing description |
@@ -66,14 +64,14 @@ Most-reused source models and table models. Changing these affects the most down
 
 | Domain | Cards |
 | --- | --- |
-| sales | 179 |
+| sales | 181 |
 | finance | 89 |
 | advertising | 62 |
-| replenishment | 49 |
-| logistics | 43 |
-| production | 41 |
+| replenishment | 50 |
+| logistics | 44 |
+| production | 42 |
 | returns | 31 |
-| inventory | 28 |
+| inventory | 29 |
 | uncategorized | 25 |
 
 ## Highest Priority Cleanup Candidates

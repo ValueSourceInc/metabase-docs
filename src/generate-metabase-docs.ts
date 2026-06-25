@@ -83,7 +83,6 @@ interface FieldDoc {
 }
 
 interface MetabaseSnapshot {
-  generatedAt: string;
   databaseIds: number[];
   collections: CollectionSummary[];
   cards: CardSummary[];
@@ -244,7 +243,6 @@ function getDomainNames(): string[] {
 }
 
 async function loadMetabaseSnapshot(): Promise<MetabaseSnapshot> {
-  const generatedAt = new Date().toISOString();
   const databaseIds = getAllowedDatabaseIds();
   const [collections, cardList, dashboardList] = await Promise.all([
     apiGet<CollectionSummary[]>("/collection"),
@@ -277,7 +275,6 @@ async function loadMetabaseSnapshot(): Promise<MetabaseSnapshot> {
   const filteredDashboards = filterDashboardsByCards(dashboards, filteredCards);
 
   return {
-    generatedAt,
     databaseIds,
     collections,
     cards: filteredCards,
@@ -622,8 +619,6 @@ function renderReadme(snapshot: MetabaseSnapshot): string {
 
   return [
     "# Metabase Knowledge Base",
-    "",
-    `Generated at: ${snapshot.generatedAt}`,
     "",
     "This folder is generated from Metabase metadata. It provides navigation and business context for AI-assisted Metabase work.",
     "",

@@ -1,6 +1,6 @@
 # Individual Card Details
 
-226 cards documented. Each file contains full field metadata, description, upstream/downstream dependencies, and risk flags.
+228 cards documented. Each file contains full field metadata, description, upstream/downstream dependencies, and risk flags.
 
 Use `_catalog.md` for discovery (one line per card); read individual files when you need field-level detail.
 
@@ -129,7 +129,7 @@ grep -l '#904' cards/*.md
 
 - [#382 Keyword Performance Table active](382.md)
 
-### Inventory (8 cards)
+### Inventory (9 cards)
 
 - [#805 Reports Get Fba Myi All Inventory Model](805.md)
 - [#806 库存表](806.md)
@@ -139,6 +139,7 @@ grep -l '#904' cards/*.md
 - [#851 7 Days Sales](851.md)
 - [#873 发货 FBA Total Inventory Chart 2.0](873.md)
 - [#901 工厂补货表2.0](901.md)
+- [#921 清仓表](921.md)
 
 ### Leo Tang's Personal Collection (1 cards)
 
@@ -182,7 +183,7 @@ grep -l '#904' cards/*.md
 - [#788 Returns Reason Pivot](788.md)
 - [#789 Sellable Quantity from Returns By SKU X Order](789.md)
 
-### Sales (24 cards)
+### Sales (25 cards)
 
 - [#776 Reports Flat File All Orders Data By Order Date General Hourly Model](776.md)
 - [#791 Sales $ By Product Over Time](791.md)
@@ -208,6 +209,7 @@ grep -l '#904' cards/*.md
 - [#849 店铺 访问/购买 率](849.md)
 - [#852 出售地区 CA](852.md)
 - [#874 产品订单曲线 Per SKU (NO VINE)](874.md)
+- [#920 产品订单曲线 Cum Sales QTY Per SKU (NO VINE)](920.md)
 
 ### Sales Forecast (9 cards)
 

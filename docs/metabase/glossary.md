@@ -101,4 +101,4 @@ These cards contain fields like `sum`, `sum_2`, `avg`, or `max`. They need chart
 | #728 | SB Campaign ACOS Pie | 4 | SB Ads | dashboard component | advertising, finance, sales | pie | generic aggregation field names; missing description |
 | #729 | SB SearchTerm Performance Table | 4 | SB Ads | dashboard component | advertising, finance, sales | table | generic aggregation field names; missing description |
 
-_Only first 80 of 143 cards shown._
+_Only first 80 of 144 cards shown._

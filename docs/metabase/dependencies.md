@@ -42,6 +42,7 @@ flowchart TD
 | #873 | 发货 FBA Total Inventory Chart 2.0 | #878 发货 Forecast WOS Summary | #901 工厂补货表2.0 | 补货面板 |
 | #876 | Wps Sales Forecast By Day |  | #878 发货 Forecast WOS Summary, #879 未来有效日销model |  |
 | #877 | 发货基础表 | #776 Reports Flat File All Orders Data By Order Date General Hourly Model, #806 库存表, #807 30 Days Sales, #870 SKU First Sale Date | #878 发货 Forecast WOS Summary, #879 未来有效日销model |  |
+| #878 | 发货 Forecast WOS Summary | #876 Wps Sales Forecast By Day, #877 发货基础表, #899 Wps Shipment Model, #900 Wps Shipment Items Model | #873 发货 FBA Total Inventory Chart 2.0, #921 清仓表 |  |
 | #885 | Shipping Cost Over Time By Sku |  | #893 ROI Per Sku Base Model, #902 SKU Controllable Cost Source (SKU可控成本分析底表) |  |
 | #886 | Production Cost Over Time By Sku |  | #893 ROI Per Sku Base Model, #902 SKU Controllable Cost Source (SKU可控成本分析底表) |  |
 | #893 | ROI Per Sku Base Model | #745 Store Profit By SKU X Order Model, #885 Shipping Cost Over Time By Sku, #886 Production Cost Over Time By Sku | #887 SKU-Level Monthly ROI and Expense Structure (SKU月度ROI与成本结构), #895 SKU-Level Cumulative ROI and Expense Structure (SKU累计ROI与成本结构趋势) |  |
@@ -141,7 +142,6 @@ flowchart TD
 | #870 | SKU First Sale Date | #776 Reports Flat File All Orders Data By Order Date General Hourly Model | #877 发货基础表 |  |
 | #871 | Cumulative Settlement & Inventory Investment Trend (累计结算与库存投入趋势) | #888 Actual Store Revenue X Production & Shipment Costs Over Time Model |  | Operating Performance and ROI Dashboard (经营表现与ROI看板) |
 | #874 | 产品订单曲线 Per SKU (NO VINE) | #776 Reports Flat File All Orders Data By Order Date General Hourly Model |  | 补货面板 |
-| #878 | 发货 Forecast WOS Summary | #876 Wps Sales Forecast By Day, #877 发货基础表, #899 Wps Shipment Model, #900 Wps Shipment Items Model | #873 发货 FBA Total Inventory Chart 2.0 |  |
 | #879 | 未来有效日销model | #876 Wps Sales Forecast By Day, #877 发货基础表 | #880 未来日销趋势 |  |
 | #888 | Actual Store Revenue X Production & Shipment Costs Over Time Model | #745 Store Profit By SKU X Order Model, #754 Production Cost Over Time New, #756 Shipping Cost Over Time New | #871 Cumulative Settlement & Inventory Investment Trend (累计结算与库存投入趋势) |  |
 | #899 | Wps Shipment Model |  | #878 发货 Forecast WOS Summary |  |
@@ -149,3 +149,4 @@ flowchart TD
 | #901 | 工厂补货表2.0 | #873 发货 FBA Total Inventory Chart 2.0 |  | 补货面板 |
 | #902 | SKU Controllable Cost Source (SKU可控成本分析底表) | #742 V Settlement Model, #745 Store Profit By SKU X Order Model, #885 Shipping Cost Over Time By Sku, #886 Production Cost Over Time By Sku | #898 SKU Controllable Expense-to-Sales Ratio Trend (SKU可控费用销售占比趋势) |  |
 | #919 | Sales QTY & Dollar |  |  | VIP专属数据面板 |
+| #920 | 产品订单曲线 Cum Sales QTY Per SKU (NO VINE) | #776 Reports Flat File All Orders Data By Order Date General Hourly Model |  | 补货面板 |
