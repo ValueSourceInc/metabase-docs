@@ -206,6 +206,9 @@ async function main() {
   }
 
   // Machine-readable indexes (compact, for AI consumption)
+  // _catalog.md: PRIMARY discovery file — one line per card (~15KB). Read in full.
+  await writeReportFile(`${outputDir}/_catalog.md`, renderCatalog(snapshot));
+  // _index.json: full-text search across ALL cards (grep only, don't read in full)
   await writeJsonFile(`${outputDir}/_index.json`, renderIndexJson(snapshot));
   await writeJsonFile(`${outputDir}/_deps.json`, renderDepsJson(snapshot));
 
@@ -628,8 +631,9 @@ function renderReadme(snapshot: MetabaseSnapshot): string {
     "",
     "| File | When to Read | Approx Size |",
     "| --- | --- | --- |",
-    "| `_index.json` | **Always first** — discover cards by name, domain, type | ~50KB |",
-    "| `_deps.json` | Follow upstream/downstream dependencies | ~15KB |",
+    "| `_catalog.md` | **Always first** — one line per card; read IN FULL to discover by name/domain/collection/id | ~15KB |",
+    "| `_index.json` | Grep ONLY (don't read in full) — when you need upstream/downstream/risks for specific cards | ~170KB |",
+    "| `_deps.json` | Follow upstream/downstream dependencies | ~30KB |",
     "| `cards/{id}.md` | Read a specific card's full field metadata | ~1KB each |",
     "| `collections.md` | Understand collection hierarchy | ~5KB |",
     "| `domains/{domain}.md` | Browse all cards in a domain | varies |",
@@ -652,7 +656,8 @@ function renderReadme(snapshot: MetabaseSnapshot): string {
     "",
     "## Documents",
     "",
-    "- [_index.json](_index.json) — Compact machine-readable index",
+    "- [_catalog.md](_catalog.md) — Compact one-line-per-card catalog (primary discovery file)",
+    "- [_index.json](_index.json) — Full machine-readable index (grep only)",
     "- [_deps.json](_deps.json) — Dependency graph",
     "- [Collections](collections.md)",
     "- [Cards and models](cards.md)",
@@ -955,6 +960,39 @@ function renderIndexJson(snapshot: MetabaseSnapshot): Record<string, unknown> {
   };
 }
 
+function renderCatalog(snapshot: MetabaseSnapshot): string {
+  // Compact one-line-per-card catalog (~15KB / ~4K tokens) — the PRIMARY discovery file.
+  // Read it IN FULL once per session to know the whole card universe (id, name, domain,
+  // collection, type), then drill into cards/{id}.md only for the card you need.
+  // Replaces grepping the verbose _index.json (172KB) for browsing/find-by-name.
+  const SEP = " | ";
+  const lines: string[] = [
+    `# Card Catalog — ${snapshot.cardDocs.length} cards`,
+    "",
+    "One line per card. Read IN FULL for discovery (find by name/domain/collection/id),",
+    "then read `cards/{id}.md` for field-level detail. Columns, ` | `-separated:",
+    "id | name | domains | collection | type | fields",
+    "",
+  ];
+
+  const sorted = [...snapshot.cardDocs].sort((a, b) => a.id - b.id);
+  for (const card of sorted) {
+    const domains = card.domains.join(",") || "-";
+    const collection = card.collectionName || "(none)";
+    const cols = [
+      String(card.id),
+      card.name,
+      domains,
+      collection,
+      card.type,
+      String(card.fields.length),
+    ];
+    lines.push(cols.join(SEP));
+  }
+
+  return lines.join("\n");
+}
+
 function renderDepsJson(snapshot: MetabaseSnapshot): Record<string, unknown> {
   const deps: Record<string, Record<string, unknown>> = {};
   for (const card of snapshot.cardDocs) {
@@ -978,7 +1016,7 @@ function renderCardsReadme(snapshot: MetabaseSnapshot): string {
     "",
     `${snapshot.cardDocs.length} cards documented. Each file contains full field metadata, description, upstream/downstream dependencies, and risk flags.`,
     "",
-    "Use `_index.json` for discovery; read individual files when you need field-level detail.",
+    "Use `_catalog.md` for discovery (one line per card); read individual files when you need field-level detail.",
     "",
     "## Quick Start",
     "",

@@ -2,7 +2,7 @@
 
 226 cards documented. Each file contains full field metadata, description, upstream/downstream dependencies, and risk flags.
 
-Use `_index.json` for discovery; read individual files when you need field-level detail.
+Use `_catalog.md` for discovery (one line per card); read individual files when you need field-level detail.
 
 ## Quick Start
 

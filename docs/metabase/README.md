@@ -1,6 +1,6 @@
 # Metabase Knowledge Base
 
-Generated at: 2026-06-25T03:08:22.853Z
+Generated at: 2026-06-25T03:51:21.278Z
 
 This folder is generated from Metabase metadata. It provides navigation and business context for AI-assisted Metabase work.
 
@@ -8,8 +8,9 @@ This folder is generated from Metabase metadata. It provides navigation and busi
 
 | File | When to Read | Approx Size |
 | --- | --- | --- |
-| `_index.json` | **Always first** — discover cards by name, domain, type | ~50KB |
-| `_deps.json` | Follow upstream/downstream dependencies | ~15KB |
+| `_catalog.md` | **Always first** — one line per card; read IN FULL to discover by name/domain/collection/id | ~15KB |
+| `_index.json` | Grep ONLY (don't read in full) — when you need upstream/downstream/risks for specific cards | ~170KB |
+| `_deps.json` | Follow upstream/downstream dependencies | ~30KB |
 | `cards/{id}.md` | Read a specific card's full field metadata | ~1KB each |
 | `collections.md` | Understand collection hierarchy | ~5KB |
 | `domains/{domain}.md` | Browse all cards in a domain | varies |
@@ -43,7 +44,8 @@ Most-reused source models and table models. Changing these affects the most down
 
 ## Documents
 
-- [_index.json](_index.json) — Compact machine-readable index
+- [_catalog.md](_catalog.md) — Compact one-line-per-card catalog (primary discovery file)
+- [_index.json](_index.json) — Full machine-readable index (grep only)
 - [_deps.json](_deps.json) — Dependency graph
 - [Collections](collections.md)
 - [Cards and models](cards.md)
