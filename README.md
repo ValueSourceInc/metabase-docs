@@ -30,7 +30,8 @@ METABASE_DB_ID=<数据库 ID>
 ├── src/
 │   └── generate-metabase-docs.ts   # 文档生成脚本（领域规则、术语表、风险检测）
 ├── docs/metabase/                   # 生成的文档（git 提交以保留版本历史）
-│   ├── _index.json                  # 卡片索引（AI 首要检索目标）
+│   ├── _catalog.md                  # 卡片目录（一行一张，AI 首要发现文件）
+│   ├── _index.json                  # 卡片索引（grep 目标，不要全文读取）
 │   ├── _deps.json                   # 依赖关系图
 │   ├── README.md                    # 文档导航概览
 │   ├── cards.md                     # 卡片总表（人工浏览）
@@ -48,11 +49,12 @@ METABASE_DB_ID=<数据库 ID>
 
 | 文件 | 用途 | 大小 |
 | --- | --- | --- |
-| `docs/metabase/_index.json` | **优先检索** — 按名称/领域/类型查找卡片 | ~50KB |
-| `docs/metabase/_deps.json` | 追踪上下游依赖 | ~15KB |
+| `docs/metabase/_catalog.md` | **首要发现文件** — 一行一张卡片，阅读全文获取卡片全貌 | ~23KB |
+| `docs/metabase/_index.json` | grep 目标 — 查上下游依赖 / 风险信息（不要全文读取） | ~170KB |
+| `docs/metabase/_deps.json` | 追踪上下游依赖 | ~32KB |
 | `docs/metabase/cards/{id}.md` | 查看单张卡片完整字段元数据 | ~1KB each |
-| `docs/metabase/collections.md` | 了解集合层级结构 | ~5KB |
+| `docs/metabase/collections.md` | 了解集合层级结构 | ~9KB |
 | `docs/metabase/domains/{domain}.md` | 浏览某领域所有卡片 | 不定 |
-| `docs/metabase/glossary.md` | 查找业务术语 | ~17KB |
+| `docs/metabase/glossary.md` | 查找业务术语 | ~16KB |
 
-**核心原则：先 grep `_index.json`，再按需读取具体卡片文件。**
+**核心原则：先读 `_catalog.md` 发现卡片，再按需 grep `_index.json` 或读取具体卡片文件。**
