@@ -3,8 +3,6 @@
 ## Tree View
 
 ```
-├── #1 Admin VS's Personal Collection (6 cards, 1 dashboards) [personal]
-├── #24 Alice Zhao's Personal Collection [personal]
 ├── #75 Amazon
 │   ├── #141 [0] Store Monitor (1 dashboards)
 │   ├── #94 Alerts (1 cards)
@@ -27,66 +25,33 @@
 │   ├── #127 SP Ads (12 cards, 1 dashboards)
 │   │   └── #122 Ads SP Models (7 cards)
 │   ├── #142 VIP (7 cards, 1 dashboards)
-│   ├── #76 前期用户画像市场分析 (5 cards, 2 dashboards)
+│   ├── #76 前期用户画像市场分析 (5 cards, 1 dashboards)
 │   │   └── #78 关键词分析 (2 cards)
 │   ├── #119 订单/船务数据 (Cynthia) (12 cards, 5 dashboards)
 │   └── #103 运营数据 (1 cards)
-├── #28 Anita Yan's Personal Collection [personal]
-├── #68 Annie Zhu's Personal Collection [personal]
-├── #4 Catherine Xu's Personal Collection [personal]
-├── #73 Cui Liu's Personal Collection (9 cards) [personal]
-│   ├── #79 user_profile_demo (5 cards) [personal]
-│   └── #80 子查询 (1 dashboards) [personal]
-├── #41 Cynthia Zhao's Personal Collection [personal]
-├── #6 Del Chen's Personal Collection [personal]
-├── #27 Doris Shao's Personal Collection [personal]
 ├── #128 Down Home
-├── #110 Eric Zeng's Personal Collection (18 cards, 2 dashboards) [personal]
 ├── #38 ERP
-├── #7 Hanson Li's Personal Collection (1 cards) [personal]
-├── #66 hyring huang's Personal Collection [personal]
-├── #89 Iris Yang's Personal Collection [personal]
-├── #29 Ivy Deng's Personal Collection [personal]
-├── #23 Jessica Hu's Personal Collection [personal]
-├── #34 Judy Zhu's Personal Collection [personal]
-├── #25 Julia Liu's Personal Collection [personal]
-├── #32 Kate Wu's Personal Collection [personal]
-├── #81 Leo Tang's Personal Collection (1 cards) [personal]
-├── #113 Lim Wang's Personal Collection (3 cards) [personal]
-├── #20 Miles Liu's Personal Collection [personal]
-├── #35 Nick Zhou's Personal Collection [personal]
 ├── #root Our analytics
-├── #5 Peacer Zheng's Personal Collection [personal]
-├── #30 Rachel Tong's Personal Collection [personal]
-├── #91 Serene Xuan's Personal Collection (7 cards, 1 dashboards) [personal]
-├── #40 Shawn Chen's Personal Collection [personal]
-├── #2 Skip Stoelzing's Personal Collection [personal]
-├── #36 Target
-│   ├── #60 Order Fulfillment
-│   │   ├── #61 下单
-│   │   ├── #62 出货
-│   │   └── #63 需出货
-│   ├── #8 Sales
-│   │   ├── #39 Products
-│   │   │   └── #69 Product Material
-│   │   ├── #58 Sales $
-│   │   ├── #55 Sales IFG - HH&PF
-│   │   │   ├── #42 In Store Sales + IFG forecast
-│   │   │   ├── #43 In Store Sales past 10 month data
-│   │   │   └── #45 Online Sales past 10 month data
-│   │   ├── #53 Sales Models
-│   │   └── #59 Sales U
-│   ├── #21 Store Inventory （IFG)
-│   └── #57 高管数据看板
-│       ├── #64 % Change
-│       ├── #22 Profit
-│       └── #10 高管数据模型
-├── #26 Teresa Shen's Personal Collection [personal]
-├── #82 todd li's Personal Collection (3 cards) [personal]
-├── #33 Tom Chen's Personal Collection [personal]
-├── #31 Walker Wang's Personal Collection [personal]
-├── #3 Xier Li's Personal Collection [personal]
-└── #65 Young Xiao's Personal Collection [personal]
+└── #36 Target
+    ├── #60 Order Fulfillment
+    │   ├── #61 下单
+    │   ├── #62 出货
+    │   └── #63 需出货
+    ├── #8 Sales
+    │   ├── #39 Products
+    │   │   └── #69 Product Material
+    │   ├── #58 Sales $
+    │   ├── #55 Sales IFG - HH&PF
+    │   │   ├── #42 In Store Sales + IFG forecast
+    │   │   ├── #43 In Store Sales past 10 month data
+    │   │   └── #45 Online Sales past 10 month data
+    │   ├── #53 Sales Models
+    │   └── #59 Sales U
+    ├── #21 Store Inventory （IFG)
+    └── #57 高管数据看板
+        ├── #64 % Change
+        ├── #22 Profit
+        └── #10 高管数据模型
 ```
 
 ## Flat Table
@@ -94,43 +59,10 @@
 | ID | Name | Parent | Location | Cards | Dashboards | Personal |
 | --- | --- | --- | --- | --- | --- | --- |
 | root | Our analytics |  |  | 0 | 0 |  |
-| 1 | Admin VS's Personal Collection |  | / | 6 | 1 | yes |
-| 24 | Alice Zhao's Personal Collection |  | / | 0 | 0 | yes |
 | 75 | Amazon |  | / | 0 | 0 |  |
-| 28 | Anita Yan's Personal Collection |  | / | 0 | 0 | yes |
-| 68 | Annie Zhu's Personal Collection |  | / | 0 | 0 | yes |
-| 4 | Catherine Xu's Personal Collection |  | / | 0 | 0 | yes |
-| 73 | Cui Liu's Personal Collection |  | / | 9 | 0 | yes |
-| 41 | Cynthia Zhao's Personal Collection |  | / | 0 | 0 | yes |
-| 6 | Del Chen's Personal Collection |  | / | 0 | 0 | yes |
-| 27 | Doris Shao's Personal Collection |  | / | 0 | 0 | yes |
 | 128 | Down Home |  | / | 0 | 0 |  |
-| 110 | Eric Zeng's Personal Collection |  | / | 18 | 2 | yes |
 | 38 | ERP |  | / | 0 | 0 |  |
-| 7 | Hanson Li's Personal Collection |  | / | 1 | 0 | yes |
-| 66 | hyring huang's Personal Collection |  | / | 0 | 0 | yes |
-| 89 | Iris Yang's Personal Collection |  | / | 0 | 0 | yes |
-| 29 | Ivy Deng's Personal Collection |  | / | 0 | 0 | yes |
-| 23 | Jessica Hu's Personal Collection |  | / | 0 | 0 | yes |
-| 34 | Judy Zhu's Personal Collection |  | / | 0 | 0 | yes |
-| 25 | Julia Liu's Personal Collection |  | / | 0 | 0 | yes |
-| 32 | Kate Wu's Personal Collection |  | / | 0 | 0 | yes |
-| 81 | Leo Tang's Personal Collection |  | / | 1 | 0 | yes |
-| 113 | Lim Wang's Personal Collection |  | / | 3 | 0 | yes |
-| 20 | Miles Liu's Personal Collection |  | / | 0 | 0 | yes |
-| 35 | Nick Zhou's Personal Collection |  | / | 0 | 0 | yes |
-| 5 | Peacer Zheng's Personal Collection |  | / | 0 | 0 | yes |
-| 30 | Rachel Tong's Personal Collection |  | / | 0 | 0 | yes |
-| 91 | Serene Xuan's Personal Collection |  | / | 7 | 1 | yes |
-| 40 | Shawn Chen's Personal Collection |  | / | 0 | 0 | yes |
-| 2 | Skip Stoelzing's Personal Collection |  | / | 0 | 0 | yes |
 | 36 | Target |  | / | 0 | 0 |  |
-| 26 | Teresa Shen's Personal Collection |  | / | 0 | 0 | yes |
-| 82 | todd li's Personal Collection |  | / | 3 | 0 | yes |
-| 33 | Tom Chen's Personal Collection |  | / | 0 | 0 | yes |
-| 31 | Walker Wang's Personal Collection |  | / | 0 | 0 | yes |
-| 3 | Xier Li's Personal Collection |  | / | 0 | 0 | yes |
-| 65 | Young Xiao's Personal Collection |  | / | 0 | 0 | yes |
 | 60 | Order Fulfillment | 36 | /36/ | 0 | 0 |  |
 | 8 | Sales | 36 | /36/ | 0 | 0 |  |
 | 21 | Store Inventory （IFG) | 36 | /36/ | 0 | 0 |  |
@@ -150,8 +82,6 @@
 | 42 | In Store Sales + IFG forecast | 55 | /36/8/55/ | 0 | 0 |  |
 | 43 | In Store Sales past 10 month data | 55 | /36/8/55/ | 0 | 0 |  |
 | 45 | Online Sales past 10 month data | 55 | /36/8/55/ | 0 | 0 |  |
-| 79 | user_profile_demo | 73 | /73/ | 5 | 0 | yes |
-| 80 | 子查询 | 73 | /73/ | 0 | 1 | yes |
 | 141 | [0] Store Monitor | 75 | /75/ | 0 | 1 |  |
 | 94 | Alerts | 75 | /75/ | 1 | 0 |  |
 | 97 | Cost | 75 | /75/ | 1 | 0 |  |
@@ -163,7 +93,7 @@
 | 129 | SB Ads | 75 | /75/ | 13 | 1 |  |
 | 127 | SP Ads | 75 | /75/ | 12 | 1 |  |
 | 142 | VIP | 75 | /75/ | 7 | 1 |  |
-| 76 | 前期用户画像市场分析 | 75 | /75/ | 5 | 2 |  |
+| 76 | 前期用户画像市场分析 | 75 | /75/ | 5 | 1 |  |
 | 119 | 订单/船务数据 (Cynthia) | 75 | /75/ | 12 | 5 |  |
 | 103 | 运营数据 | 75 | /75/ | 1 | 0 |  |
 | 122 | Ads SP Models | 127 | /75/127/ | 7 | 0 |  |

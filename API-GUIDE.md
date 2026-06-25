@@ -248,6 +248,27 @@ multi-database setups, falling back to `METABASE_DB_ID` for single-database.
 **Rule of thumb:** Read generated docs for metadata lookups (fast, offline, token-aware).
 Call the API for real-time data, search, or when the docs might be stale.
 
+## Ad-hoc Queries (Dataset)
+
+```
+POST /api/dataset
+Content-Type: application/json
+
+{
+  "database": 4,
+  "type": "native",
+  "native": { "query": "SELECT ..." }
+}
+```
+
+Run arbitrary SQL against the database. Returns `{"data":{"rows":[...],"cols":[...]}}`.
+**Rate-limit note:** No documented limit, but complex queries can take 1-2s. Don't
+firehose it with concurrent requests.
+
+**PostgreSQL type strictness:** Columns imported from CSV/text sources may be `text`
+in the DB even when they contain numbers. Use `CAST(col AS INTEGER)` or `col::integer`
+before aggregating — `SUM(text_column)` will fail.
+
 ## Gotchas
 
 1. **List vs detail mismatch.** `/api/card` list doesn't include fields.
@@ -278,3 +299,18 @@ Call the API for real-time data, search, or when the docs might be stale.
 8. **API key permissions.** The API key inherits the creating user's permissions.
    If you can't see certain cards/collections, check the key's group membership
    in Admin → Permissions.
+
+9. **Base URL already includes `/api`.** The `.env` base URL is
+   `https://metabase.vsource.local/api`. Appending `/api/card/...` creates
+   `/api/api/...` which returns `"API endpoint does not exist."`. Endpoint
+   paths are relative: `{base}/card/{id}`, not `{base}/api/card/{id}`.
+
+10. **Card detail doesn't expose source table.** To find the underlying DB table
+    for a card: GET `/api/card/{id}` → extract `table_id` → GET `/api/table/{id}`
+    → extract `name`. Key tables in this project:
+
+    | Card | table_id | SQL Table |
+    |------|----------|-----------|
+    | #776 Orders | 930 | `reports__flat_file_all_orders_data_by_order_date_general_hourly_main` |
+    | #742 Settlement | 927 | `v_settlement_new` |
+    | #733 Returns | 748 | `reports__customer_returns_data_main` |

@@ -1,6 +1,6 @@
 # Individual Card Details
 
-228 cards documented. Each file contains full field metadata, description, upstream/downstream dependencies, and risk flags.
+175 cards documented. Each file contains full field metadata, description, upstream/downstream dependencies, and risk flags.
 
 Use `_catalog.md` for discovery (one line per card); read individual files when you need field-level detail.
 
@@ -15,15 +15,6 @@ grep -l '#904' cards/*.md
 ```
 
 ## Cards by Collection
-
-### Admin VS's Personal Collection (6 cards)
-
-- [#441 Us Demographics Simple Quarter 2025 06 30](441.md)
-- [#442 Downhome 客户群体年龄 第二季度](442.md)
-- [#443 Downhome 客户群体教育背景 第二季度](443.md)
-- [#566 Graph 1](566.md)
-- [#644 Store Profit By SKU X Order Model, Cumulative sum of Sum of profit, Grouped by order\_date: Day, Filtered by Marketplace Name is Amazon.ca and sku is not 3 selections](644.md)
-- [#645 Store Profit By SKU X Order Model, Cumulative sum of Sum of profit, Grouped by order\_date: Day, Filtered by Marketplace Name is Amazon.ca and sku is not 3 selections - Modified](645.md)
 
 ### Ads SB Models (5 cards)
 
@@ -65,18 +56,6 @@ grep -l '#904' cards/*.md
 
 - [#621 AVG Production & Shipment Cost By SKU](621.md)
 
-### Cui Liu's Personal Collection (9 cards)
-
-- [#324 average\_competition](324.md)
-- [#325 averange\_frequency&competiton](325.md)
-- [#326 Amazon Search Rank & Competition &Trend](326.md)
-- [#327 search frequency&competion by week](327.md)
-- [#328 averange\_frequency&competiton summary](328.md)
-- [#329 Amazon Keywords Ranking and Related Statistical Indicators](329.md)
-- [#330 averange\_frequency&competiton summary\_1](330.md)
-- [#331 Amazon Search Rank & Competition &Trend \_1](331.md)
-- [#332 latest\_amaozn\_keywords\_rank](332.md)
-
 ### DCMS 开发测试 (7 cards)
 
 - [#409 Dify 测试空数据](409.md)
@@ -86,27 +65,6 @@ grep -l '#904' cards/*.md
 - [#649 DH Amazon Parent SKU 销售比例 - 复制测试](649.md)
 - [#763 Targeting Performance Table Test Check](763.md)
 - [#792 DH 工厂补货表 - 16 sku](792.md)
-
-### Eric Zeng's Personal Collection (18 cards)
-
-- [#603 Top Weight Score By Genre](603.md)
-- [#604 Wps Eric Movie List, Max of Year, Grouped by Genre, Sorted by Max of Year descending - Modified](604.md)
-- [#608 Wps Eric Reviewer, group by state](608.md)
-- [#609 Top Weighted Score By Movie](609.md)
-- [#610 Weighted Score By Movie With Reviewer Type Comparison](610.md)
-- [#611 Average Rating By Reviewer Type](611.md)
-- [#614 Top Average Weighted Score By Genre](614.md)
-- [#616 Review Count By Movie, Genre, Year Pivot](616.md)
-- [#617 Top Average Box Office (USD) By Genre](617.md)
-- [#618 Total Box Office Over Time](618.md)
-- [#624 Reviewer Count By Gender](624.md)
-- [#627 Weighted Score By Movie - Score 8 Or Above](627.md)
-- [#628 Weighted Score By Movie With Distribution](628.md)
-- [#629 Funny movies based on reviews](629.md)
-- [#630 Sum of Box Office Group By Weighted Score](630.md)
-- [#631 Counts of Movie Genre Overtime](631.md)
-- [#639 Genre Performance by average box office, average ratings, amount](639.md)
-- [#641 Funny movies based on reviews - Modified](641.md)
 
 ### Finance (14 cards)
 
@@ -125,10 +83,6 @@ grep -l '#904' cards/*.md
 - [#911 Monthly Sold Operating ROI Trend (月度已售经营ROI趋势)](911.md)
 - [#912 Monthly Sold Operating ROI MoM Change (月度已售经营ROI环比变化)](912.md)
 
-### Hanson Li's Personal Collection (1 cards)
-
-- [#382 Keyword Performance Table active](382.md)
-
 ### Inventory (9 cards)
 
 - [#805 Reports Get Fba Myi All Inventory Model](805.md)
@@ -140,16 +94,6 @@ grep -l '#904' cards/*.md
 - [#873 发货 FBA Total Inventory Chart 2.0](873.md)
 - [#901 工厂补货表2.0](901.md)
 - [#921 清仓表](921.md)
-
-### Leo Tang's Personal Collection (1 cards)
-
-- [#333 Dcms Raw Data Pool 202503](333.md)
-
-### Lim Wang's Personal Collection (3 cards)
-
-- [#897 SKU Expense Mix Trend (SKU费用结构趋势)](897.md)
-- [#898 SKU Controllable Expense-to-Sales Ratio Trend (SKU可控费用销售占比趋势)](898.md)
-- [#902 SKU Controllable Cost Source (SKU可控成本分析底表)](902.md)
 
 ### Natural Sales (4 cards)
 
@@ -239,16 +183,6 @@ grep -l '#904' cards/*.md
 - [#730 SB Targeting Performance Table](730.md)
 - [#732 SB Targeting Negative Performance Table](732.md)
 
-### Serene Xuan's Personal Collection (7 cards)
-
-- [#444 Us Demographics Simple Quarter 2025 06 30](444.md)
-- [#445 Us Demographics Q2-AGE GROUP](445.md)
-- [#446 Us Demographics Simple Q2 -Marital Status](446.md)
-- [#447 Us Demographics Simple Quarter 2 - household\_income](447.md)
-- [#448 Us Demographics Simple Quarter 2 - education](448.md)
-- [#489 Payment report - Duplicate](489.md)
-- [#560 DH Canada 库存表 DH-BT-BRAID-BG-TH](560.md)
-
 ### Shipment Costs (9 cards)
 
 - [#504 Shipping Cost Actual Payment Per SKU Over Time](504.md)
@@ -280,23 +214,9 @@ grep -l '#904' cards/*.md
 
 - [#752 Store Profit Over Time New](752.md)
 
-### todd li's Personal Collection (3 cards)
-
-- [#814 Todd\_Test\_DH 合同](814.md)
-- [#831 FBA Shipment 表 Imperial Unit (US) - Duplicate](831.md)
-- [#832 Todd\_Test\_箱单/出货](832.md)
-
 ### Unfiled / Unknown (1 cards)
 
 - [#866 test](866.md)
-
-### user\_profile\_demo (5 cards)
-
-- [#306 Purchase Amount Distribution by State](306.md)
-- [#307 Purchase Amount Distribution by Category](307.md)
-- [#309 Purchase Amount and Quantity Distribution by Gender](309.md)
-- [#310 Order Distribution by Gender&Age](310.md)
-- [#311 User Average Purchase Amount by Month](311.md)
 
 ### VIP (7 cards)
 

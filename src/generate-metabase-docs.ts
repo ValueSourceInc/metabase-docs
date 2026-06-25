@@ -1,5 +1,5 @@
 import { config as loadDotenv } from "dotenv";
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, rm, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 
 type JsonRecord = Record<string, unknown>;
@@ -88,6 +88,10 @@ interface MetabaseSnapshot {
   cards: CardSummary[];
   dashboards: DashboardSummary[];
   cardDocs: CardDoc[];
+  /** Card IDs that failed to fetch detail (using list entry without field metadata). */
+  failedCardIds: number[];
+  /** Dashboard IDs that failed to fetch detail. */
+  failedDashboardIds: number[];
 }
 
 const DOMAIN_RULES: Array<{ domain: string; keywords: string[] }> = [
@@ -186,10 +190,15 @@ const BUSINESS_GLOSSARY: Array<{ term: string; meaning: string; warning?: string
   },
 ];
 
+// Catalog line separator — shared between renderCatalog (output) and renderDomain
+// (grep hint) so the grep pattern stays in sync if the format ever changes.
+const CATALOG_SEP = " | ";
+
 async function main() {
   loadEnv();
   const outputDir = resolve(process.cwd(), getArgValue("--output") ?? "docs/metabase");
   const snapshot = await loadMetabaseSnapshot();
+  await rm(outputDir, { recursive: true, force: true });
 
   // Core documents
   await writeReportFile(`${outputDir}/README.md`, renderReadme(snapshot));
@@ -198,6 +207,7 @@ async function main() {
   await writeReportFile(`${outputDir}/dashboards.md`, renderDashboards(snapshot));
   await writeReportFile(`${outputDir}/dependencies.md`, renderDependencies(snapshot));
   await writeReportFile(`${outputDir}/glossary.md`, renderGlossary(snapshot));
+  await writeReportFile(`${outputDir}/field-risks.md`, renderFieldRisks(snapshot));
 
   // Domain indexes
   for (const domain of getDomainNames()) {
@@ -205,7 +215,7 @@ async function main() {
   }
 
   // Machine-readable indexes (compact, for AI consumption)
-  // _catalog.md: PRIMARY discovery file — one line per card (~15KB). Read in full.
+  // _catalog.md: PRIMARY discovery file — one line per card. Read in full once per session.
   await writeReportFile(`${outputDir}/_catalog.md`, renderCatalog(snapshot));
   // _index.json: full-text search across ALL cards (grep only, don't read in full)
   await writeJsonFile(`${outputDir}/_index.json`, renderIndexJson(snapshot));
@@ -250,36 +260,46 @@ async function loadMetabaseSnapshot(): Promise<MetabaseSnapshot> {
     apiGet<DashboardSummary[]>("/dashboard"),
   ]);
 
-  const cards = await mapWithConcurrency(cardList, 8, async (card) => {
+  const cardConcurrency = Number(process.env.METABASE_CONCURRENCY) || 5;
+  const failedCardIds: number[] = [];
+  const cards = await mapWithConcurrency(cardList, cardConcurrency, async (card) => {
     try {
-      return await apiGet<CardSummary>(`/card/${card.id}`);
+      return await apiGetWithRetry<CardSummary>(`/card/${card.id}`);
     } catch (error) {
-      // Fall back to the list entry (may be missing result_metadata, hence
-      // empty fields in output). Log so empty fields aren't mistaken for
-      // genuinely field-less cards.
-      console.warn(`Warning: failed to load card #${card.id} detail, using list entry — ${(error as Error).message}`);
+      failedCardIds.push(card.id);
+      console.warn(
+        `Warning: failed to load card #${card.id} detail after retries, using list entry — ${(error as Error).message}`,
+      );
       return card;
     }
   });
 
-  const dashboards = await mapWithConcurrency(dashboardList, 5, async (dashboard) => {
+  const dashboardConcurrency = Number(process.env.METABASE_DASHBOARD_CONCURRENCY) || 3;
+  const failedDashboardIds: number[] = [];
+  const dashboards = await mapWithConcurrency(dashboardList, dashboardConcurrency, async (dashboard) => {
     try {
-      return await apiGet<DashboardSummary>(`/dashboard/${dashboard.id}`);
+      return await apiGetWithRetry<DashboardSummary>(`/dashboard/${dashboard.id}`);
     } catch (error) {
-      console.warn(`Warning: failed to load dashboard #${dashboard.id} detail, using list entry — ${(error as Error).message}`);
+      failedDashboardIds.push(dashboard.id);
+      console.warn(
+        `Warning: failed to load dashboard #${dashboard.id} detail after retries, using list entry — ${(error as Error).message}`,
+      );
       return dashboard;
     }
   });
 
-  const filteredCards = filterCardsByDatabase(cards, databaseIds);
-  const filteredDashboards = filterDashboardsByCards(dashboards, filteredCards);
+  const databaseCards = filterCardsByDatabase(cards, databaseIds);
+  const publicSnapshot = filterOutPersonalCollections(collections, databaseCards, dashboards);
+  const filteredDashboards = filterDashboardsByCards(publicSnapshot.dashboards, publicSnapshot.cards);
 
   return {
     databaseIds,
-    collections,
-    cards: filteredCards,
+    collections: publicSnapshot.collections,
+    cards: publicSnapshot.cards,
     dashboards: filteredDashboards,
-    cardDocs: buildCardDocs(collections, filteredCards, filteredDashboards),
+    cardDocs: buildCardDocs(publicSnapshot.collections, publicSnapshot.cards, filteredDashboards),
+    failedCardIds,
+    failedDashboardIds,
   };
 }
 
@@ -295,9 +315,7 @@ function filterCardsByDatabase(cards: CardSummary[], databaseIds: number[]): Car
   if (databaseIds.length === 0) {
     // No DB filter configured — emit a warning so generating docs for every
     // database isn't a silent foot-gun.
-    console.warn(
-      "Warning: METABASE_DB_ID / METABASE_DATABASE_IDS not set — generating docs for ALL databases.",
-    );
+    console.warn("Warning: METABASE_DB_ID / METABASE_DATABASE_IDS not set — generating docs for ALL databases.");
     return cards;
   }
   const allowedDatabaseIds = new Set(databaseIds);
@@ -306,6 +324,58 @@ function filterCardsByDatabase(cards: CardSummary[], databaseIds: number[]): Car
     if (!allowedDatabaseIds.has(card.database_id)) return false;
     return true;
   });
+}
+
+function filterOutPersonalCollections(
+  collections: CollectionSummary[],
+  cards: CardSummary[],
+  dashboards: DashboardSummary[],
+): Pick<MetabaseSnapshot, "collections" | "cards" | "dashboards"> {
+  const personalCollectionIds = getPersonalCollectionIds(collections);
+
+  return {
+    collections: collections.filter((collection) => !personalCollectionIds.has(String(collection.id))),
+    cards: cards.filter((card) => {
+      if (card.collection_id == null) return true;
+      return !personalCollectionIds.has(String(card.collection_id));
+    }),
+    dashboards: dashboards.filter((dashboard) => {
+      if (dashboard.collection_id == null) return true;
+      return !personalCollectionIds.has(String(dashboard.collection_id));
+    }),
+  };
+}
+
+function getPersonalCollectionIds(collections: CollectionSummary[]): Set<string> {
+  const personalCollectionIds = new Set(
+    collections.filter((collection) => collection.is_personal).map((collection) => String(collection.id)),
+  );
+
+  let changed = true;
+  while (changed) {
+    changed = false;
+    for (const collection of collections) {
+      const collectionId = String(collection.id);
+      if (personalCollectionIds.has(collectionId)) continue;
+
+      const parentId = collection.parent_id == null ? "" : String(collection.parent_id);
+      if (parentId && personalCollectionIds.has(parentId)) {
+        personalCollectionIds.add(collectionId);
+        changed = true;
+        continue;
+      }
+
+      const locationIds = String(collection.location ?? "")
+        .split("/")
+        .filter(Boolean);
+      if (locationIds.some((locationId) => personalCollectionIds.has(locationId))) {
+        personalCollectionIds.add(collectionId);
+        changed = true;
+      }
+    }
+  }
+
+  return personalCollectionIds;
 }
 
 function filterDashboardsByCards(dashboards: DashboardSummary[], cards: CardSummary[]): DashboardSummary[] {
@@ -343,6 +413,25 @@ async function apiGet<T>(path: string): Promise<T> {
   }
 
   return (await response.json()) as T;
+}
+
+async function apiGetWithRetry<T>(path: string, retries = 2): Promise<T> {
+  let lastError: Error | undefined;
+  for (let attempt = 0; attempt <= retries; attempt++) {
+    try {
+      return await apiGet<T>(path);
+    } catch (error) {
+      lastError = error as Error;
+      if (attempt < retries) {
+        // Exponential backoff: 1s → 2s before retrying.
+        // Transient network blips over VPN resolve quickly; 2 retries
+        // covers the common case without adding too much latency.
+        const delay = Math.pow(2, attempt) * 1000;
+        await new Promise((resolve) => setTimeout(resolve, delay));
+      }
+    }
+  }
+  throw lastError!;
 }
 
 async function mapWithConcurrency<T, R>(
@@ -443,11 +532,7 @@ function toFieldDocs(fields: FieldMetadata[]): FieldDoc[] {
     .filter((field) => field.name.length > 0);
 }
 
-function buildSearchableText(
-  card: CardSummary,
-  collection: CollectionSummary | undefined,
-  fields: FieldDoc[],
-): string {
+function buildSearchableText(card: CardSummary, collection: CollectionSummary | undefined, fields: FieldDoc[]): string {
   return [
     card.name,
     card.description ?? "",
@@ -529,11 +614,7 @@ function inferRisks(
   if (dashboardRefs.length === 0 && downstreamCardIds.length === 0) {
     risks.push("not referenced by dashboards or downstream cards");
   }
-  if (
-    searchableText.includes("revenue") &&
-    searchableText.includes("inventory") &&
-    searchableText.includes("cost")
-  ) {
+  if (searchableText.includes("revenue") && searchableText.includes("inventory") && searchableText.includes("cost")) {
     risks.push("mixed finance and inventory timing");
   }
   if (card.archived) risks.push("archived");
@@ -626,14 +707,15 @@ function renderReadme(snapshot: MetabaseSnapshot): string {
     "",
     "| File | When to Read | Approx Size |",
     "| --- | --- | --- |",
-    "| `_catalog.md` | **Always first** — one line per card; read IN FULL to discover by name/domain/collection/id | ~15KB |",
-    "| `_index.json` | Grep ONLY (don't read in full) — when you need upstream/downstream/risks for specific cards | ~170KB |",
-    "| `_deps.json` | Follow upstream/downstream dependencies | ~30KB |",
+    `| \`_catalog.md\` | **Always first** — one line per card; read IN FULL to discover by name/domain/collection/id | ~${Math.round((snapshot.cardDocs.length * 100) / 1024)}KB |`,
+    `| \`_index.json\` | Grep ONLY (don't read in full) — when you need upstream/downstream/risks for specific cards | ~${Math.round((snapshot.cardDocs.length * 700) / 1024)}KB |`,
+    `| \`_deps.json\` | Follow upstream/downstream dependencies — grep for card IDs | ~${Math.round((snapshot.cardDocs.length * 130) / 1024)}KB |`,
     "| `cards/{id}.md` | Read a specific card's full field metadata | ~1KB each |",
     "| `collections.md` | Understand collection hierarchy | ~5KB |",
-    "| `domains/{domain}.md` | Browse all cards in a domain | varies |",
-    "| `glossary.md` | Look up business terms | ~17KB |",
-    "| `cards.md` | Master table of all cards (human browsing) | ~30KB |",
+    "| `domains/{domain}.md` | ⚠️ Source models + dashboard components only. For full domain browse, grep `_catalog.md` instead (100× cheaper) | varies |",
+    "| `glossary.md` | Look up business terminology | ~1KB |",
+    "| `field-risks.md` | Cards with ambiguous aggregation field names | ~10KB |",
+    "| `cards.md` | ❌ Master table of all cards — human browsing ONLY, never read in full | ~30KB |",
     "",
     "## Summary",
     "",
@@ -653,13 +735,14 @@ function renderReadme(snapshot: MetabaseSnapshot): string {
     "",
     "- [_catalog.md](_catalog.md) — Compact one-line-per-card catalog (primary discovery file)",
     "- [_index.json](_index.json) — Full machine-readable index (grep only)",
-    "- [_deps.json](_deps.json) — Dependency graph",
+    "- [_deps.json](_deps.json) — Dependency graph (grep for card IDs)",
     "- [Collections](collections.md)",
-    "- [Cards and models](cards.md)",
+    "- [Cards and models](cards.md) — ⚠️ Human browsing only, do not read in full",
     "- [Individual card details](cards/_README.md)",
     "- [Dashboards](dashboards.md)",
-    "- [Dependencies](dependencies.md)",
+    "- [Dependencies](dependencies.md) — ⚠️ Human browsing only, prefer _deps.json",
     "- [Glossary](glossary.md)",
+    "- [Field risks](field-risks.md) — Cards with ambiguous aggregation field names",
     ...getDomainNames().map((domain) => `- [${capitalize(domain)} domain](domains/${domain}.md)`),
     "",
     "## Domain Counts",
@@ -738,13 +821,7 @@ function renderCollections(snapshot: MetabaseSnapshot): string {
   }
   sortTree(roots);
 
-  const lines: string[] = [
-    "# Metabase Collections",
-    "",
-    "## Tree View",
-    "",
-    "```",
-  ];
+  const lines: string[] = ["# Metabase Collections", "", "## Tree View", "", "```"];
 
   function renderTree(nodes: TreeNode[], indent: string) {
     for (let i = 0; i < nodes.length; i++) {
@@ -775,8 +852,7 @@ function renderCollections(snapshot: MetabaseSnapshot): string {
     .slice()
     .sort(
       (a, b) =>
-        String(a.location ?? "").localeCompare(String(b.location ?? "")) ||
-        String(a.name).localeCompare(b.name),
+        String(a.location ?? "").localeCompare(String(b.location ?? "")) || String(a.name).localeCompare(b.name),
     )
     .map((collection) => [
       String(collection.id),
@@ -861,9 +937,7 @@ function renderDependencies(snapshot: MetabaseSnapshot): string {
     .filter((card) => card.downstreamCardIds.length > 0 || card.dashboardIds.length > 0)
     .sort(
       (a, b) =>
-        b.downstreamCardIds.length +
-        b.dashboardIds.length -
-        (a.downstreamCardIds.length + a.dashboardIds.length),
+        b.downstreamCardIds.length + b.dashboardIds.length - (a.downstreamCardIds.length + a.dashboardIds.length),
     );
 
   const rows = reused.map((card) => [
@@ -891,11 +965,9 @@ function renderDependencies(snapshot: MetabaseSnapshot): string {
   ].join("\n");
 }
 
-function renderGlossary(snapshot: MetabaseSnapshot): string {
-  const ambiguousCards = snapshot.cardDocs.filter((card) =>
-    card.risks.some((risk) => risk.includes("generic aggregation")),
-  );
-
+function renderGlossary(_snapshot: MetabaseSnapshot): string {
+  // Business terms only (~400 tokens). The aggregation-field table was split
+  // into field-risks.md to keep glossary reads cheap.
   return [
     "# Metabase Business Glossary",
     "",
@@ -906,7 +978,16 @@ function renderGlossary(snapshot: MetabaseSnapshot): string {
       BUSINESS_GLOSSARY.map((entry) => [entry.term, entry.meaning, entry.warning ?? ""]),
     ),
     "",
-    "## Cards With Generic Aggregation Fields",
+  ].join("\n");
+}
+
+function renderFieldRisks(snapshot: MetabaseSnapshot): string {
+  const ambiguousCards = snapshot.cardDocs.filter((card) =>
+    card.risks.some((risk) => risk.includes("generic aggregation")),
+  );
+
+  return [
+    "# Cards With Generic Aggregation Fields",
     "",
     "These cards contain fields like `sum`, `sum_2`, `avg`, or `max`. They need chart descriptions or visualization titles to avoid ambiguity.",
     "",
@@ -956,16 +1037,15 @@ function renderIndexJson(snapshot: MetabaseSnapshot): Record<string, unknown> {
 }
 
 function renderCatalog(snapshot: MetabaseSnapshot): string {
-  // Compact one-line-per-card catalog (~15KB / ~4K tokens) — the PRIMARY discovery file.
+  // Compact one-line-per-card catalog — the PRIMARY discovery file.
   // Read it IN FULL once per session to know the whole card universe (id, name, domain,
   // collection, type), then drill into cards/{id}.md only for the card you need.
-  // Replaces grepping the verbose _index.json (172KB) for browsing/find-by-name.
-  const SEP = " | ";
+  // Replaces grepping the verbose _index.json for browsing/find-by-name.
   const lines: string[] = [
     `# Card Catalog — ${snapshot.cardDocs.length} cards`,
     "",
     "One line per card. Read IN FULL for discovery (find by name/domain/collection/id),",
-    "then read `cards/{id}.md` for field-level detail. Columns, ` | `-separated:",
+    `then read \`cards/{id}.md\` for field-level detail. Columns, \`${CATALOG_SEP}\`-separated:`,
     "id | name | domains | collection | type | fields",
     "",
   ];
@@ -974,35 +1054,22 @@ function renderCatalog(snapshot: MetabaseSnapshot): string {
   for (const card of sorted) {
     const domains = card.domains.join(",") || "-";
     const collection = card.collectionName || "(none)";
-    const cols = [
-      String(card.id),
-      card.name,
-      domains,
-      collection,
-      card.type,
-      String(card.fields.length),
-    ];
-    lines.push(cols.join(SEP));
+    const cols = [String(card.id), card.name, domains, collection, card.type, String(card.fields.length)];
+    lines.push(cols.join(CATALOG_SEP));
   }
 
   return lines.join("\n");
 }
 
 function renderDepsJson(snapshot: MetabaseSnapshot): Record<string, unknown> {
-  const deps: Record<string, Record<string, unknown>> = {};
+  // Compressed array format: [upIds[], downIds[], dashIds[], dashNames[]]
+  // Saves ~30% vs keyed objects. Each entry is identified by the string key
+  // matching the card ID.
+  const deps: Record<string, unknown[]> = {};
   for (const card of snapshot.cardDocs) {
-    deps[String(card.id)] = {
-      up: card.upstreamCardIds,
-      down: card.downstreamCardIds,
-      // IDs for grep-ability (matches up/down), names kept alongside for
-      // human-readable lookups.
-      dash: card.dashboardIds,
-      dashNames: card.dashboardNames,
-    };
+    deps[String(card.id)] = [card.upstreamCardIds, card.downstreamCardIds, card.dashboardIds, card.dashboardNames];
   }
-  return {
-    deps,
-  };
+  return { deps };
 }
 
 function renderCardsReadme(snapshot: MetabaseSnapshot): string {
@@ -1035,9 +1102,7 @@ function renderCardsReadme(snapshot: MetabaseSnapshot): string {
     byCollection.set(key, list);
   }
 
-  const sorted = Array.from(byCollection.entries()).sort((a, b) =>
-    a[0].localeCompare(b[0]),
-  );
+  const sorted = Array.from(byCollection.entries()).sort((a, b) => a[0].localeCompare(b[0]));
 
   for (const [collectionName, cards] of sorted) {
     lines.push(`### ${escapeMarkdown(collectionName)} (${cards.length} cards)`);
@@ -1054,8 +1119,7 @@ function renderCardsReadme(snapshot: MetabaseSnapshot): string {
 function renderCardDetail(card: CardDoc, snapshot: MetabaseSnapshot): string {
   const fields = card.fields;
   const cardById = buildCardByIdMap(snapshot.cardDocs);
-  const upstreamRefs = card.upstreamCardIds.map((id) => formatCardRef(id, cardById));
-  const downstreamRefs = card.downstreamCardIds.map((id) => formatCardRef(id, cardById));
+  const MAX_DEPS = 5;
 
   const lines: string[] = [
     `# #${card.id} ${escapeMarkdown(card.name)}`,
@@ -1095,22 +1159,44 @@ function renderCardDetail(card: CardDoc, snapshot: MetabaseSnapshot): string {
 
   lines.push("");
 
-  if (upstreamRefs.length > 0) {
-    lines.push("## Upstream Cards");
-    lines.push("");
-    for (const ref of upstreamRefs) {
-      lines.push(`- ${ref}`);
+  // Truncate long dependency lists to save tokens — full lists live in _deps.json.
+  // Top 5 by ID sort order, with a grep hint when truncated.
+  if (card.upstreamCardIds.length > 0) {
+    const refs = card.upstreamCardIds.map((id) => formatCardRef(id, cardById));
+    const count = refs.length;
+
+    if (count <= MAX_DEPS) {
+      lines.push("## Upstream Cards");
+      lines.push("");
+      for (const ref of refs) lines.push(`- ${ref}`);
+      lines.push("");
+    } else {
+      lines.push(`## Upstream Cards (${count} total, showing first ${MAX_DEPS})`);
+      lines.push("");
+      for (const ref of refs.slice(0, MAX_DEPS)) lines.push(`- ${ref}`);
+      lines.push(`- …and ${count - MAX_DEPS} more`);
+      lines.push(`> Full list: \`grep '"${card.id}"' _deps.json\``);
+      lines.push("");
     }
-    lines.push("");
   }
 
-  if (downstreamRefs.length > 0) {
-    lines.push("## Downstream Cards");
-    lines.push("");
-    for (const ref of downstreamRefs) {
-      lines.push(`- ${ref}`);
+  if (card.downstreamCardIds.length > 0) {
+    const refs = card.downstreamCardIds.map((id) => formatCardRef(id, cardById));
+    const count = refs.length;
+
+    if (count <= MAX_DEPS) {
+      lines.push("## Downstream Cards");
+      lines.push("");
+      for (const ref of refs) lines.push(`- ${ref}`);
+      lines.push("");
+    } else {
+      lines.push(`## Downstream Cards (${count} total, showing first ${MAX_DEPS})`);
+      lines.push("");
+      for (const ref of refs.slice(0, MAX_DEPS)) lines.push(`- ${ref}`);
+      lines.push(`- …and ${count - MAX_DEPS} more`);
+      lines.push(`> Full list: \`grep '"${card.id}"' _deps.json\``);
+      lines.push("");
     }
-    lines.push("");
   }
 
   if (card.dashboardNames.length > 0) {
@@ -1135,10 +1221,13 @@ function renderCardDetail(card: CardDoc, snapshot: MetabaseSnapshot): string {
 }
 
 function renderDomain(snapshot: MetabaseSnapshot, domain: string): string {
+  // Domain files are kept lean (2 sections only) to save tokens.
+  // For browsing all cards in a domain, grep `_catalog.md` instead (~150 tokens vs ~10K+).
+  // The "All Cards" and "Cleanup / Review" sections are intentionally omitted —
+  // they duplicate _catalog.md and README.md respectively.
   const cards = snapshot.cardDocs.filter((card) => card.domains.includes(domain));
   const sourceModels = cards.filter((card) => card.type.includes("model"));
   const dashboardComponents = cards.filter((card) => card.dashboardIds.length > 0);
-  const cleanup = cards.filter((card) => card.risks.length > 0).slice(0, 40);
 
   return [
     `# ${capitalize(domain)} Domain`,
@@ -1153,21 +1242,12 @@ function renderDomain(snapshot: MetabaseSnapshot, domain: string): string {
     "",
     renderCardTable(dashboardComponents, { includeRisks: false, includeDependencies: true }),
     "",
-    "## Cleanup / Review Candidates",
-    "",
-    renderCardTable(cleanup, { includeRisks: true, includeDependencies: true }),
-    "",
-    "## All Cards",
-    "",
-    renderCardTable(cards, { includeRisks: true, includeDependencies: true }),
+    `> For the full card list in this domain, grep \`_catalog.md\`: \`grep '${CATALOG_SEP}${domain}${CATALOG_SEP}' _catalog.md\``,
     "",
   ].join("\n");
 }
 
-function renderCardTable(
-  cards: CardDoc[],
-  options: { includeRisks: boolean; includeDependencies: boolean },
-): string {
+function renderCardTable(cards: CardDoc[], options: { includeRisks: boolean; includeDependencies: boolean }): string {
   if (cards.length === 0) return "_No cards found._";
   const headers = [
     "ID",
@@ -1235,11 +1315,7 @@ function normalizeText(value: string | null | undefined): string {
 }
 
 function escapeTableCell(value: string): string {
-  return (value ?? "")
-    .replace(/\|/g, "\\|")
-    .replace(/\n/g, "<br>")
-    .replace(/\r/g, "")
-    .slice(0, 500);
+  return (value ?? "").replace(/\|/g, "\\|").replace(/\n/g, "<br>").replace(/\r/g, "").slice(0, 500);
 }
 
 function escapeMarkdown(value: string): string {
@@ -1285,9 +1361,29 @@ function printSummary(snapshot: MetabaseSnapshot, outputDir: string) {
   console.log(`Collections: ${snapshot.collections.length}`);
   console.log(`Cards: ${snapshot.cardDocs.length}`);
   console.log(`Dashboards: ${snapshot.dashboards.length}`);
+  if (snapshot.failedCardIds.length > 0) {
+    console.warn(
+      `⚠️  ${snapshot.failedCardIds.length} card(s) failed to fetch detail (no field metadata): #${snapshot.failedCardIds.join(", #")}`,
+    );
+  }
+  if (snapshot.failedDashboardIds.length > 0) {
+    console.warn(
+      `⚠️  ${snapshot.failedDashboardIds.length} dashboard(s) failed to fetch detail: #${snapshot.failedDashboardIds.join(", #")}`,
+    );
+  }
 }
 
-main().catch((error: unknown) => {
-  console.error(error);
-  process.exitCode = 1;
-});
+if (isMainModule()) {
+  main().catch((error: unknown) => {
+    console.error(error);
+    process.exitCode = 1;
+  });
+}
+
+function isMainModule(): boolean {
+  // require.main is the standard CJS entry-point check. If this project ever
+  // migrates to ESM output (tsconfig "module": "nodenext" + package.json
+  // "type": "module"), replace this with:
+  //   return process.argv[1] != null && import.meta.url.endsWith(process.argv[1]);
+  return require.main === module;
+}
