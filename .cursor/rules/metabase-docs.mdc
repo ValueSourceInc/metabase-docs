@@ -10,12 +10,18 @@ The generated docs contain metadata only: card names, fields, dependencies,
 descriptions, dashboards, and collections. They do not contain raw data or SQL
 query text.
 
+## API Interaction
+
+When you need to call the Metabase API directly (search, real-time data, schema
+exploration), read `API-GUIDE.md` first. It covers auth, endpoints, rate limits,
+concurrency patterns, and common gotchas.
+
 ## Reading Strategy
 
-- Start with `docs/metabase/_index.json` for discovery.
-- Do not read `docs/metabase/cards.md` to find a card; it is for human browsing.
+- Start with `docs/metabase/_catalog.md` for discovery (one line per card).
 - Use `docs/metabase/cards/{id}.md` when full card details or fields are needed.
 - Use `docs/metabase/_deps.json` for dependency lookups.
+- Grep `docs/metabase/_index.json` for upstream/downstream/risks of specific cards (never read in full).
 - Use `docs/metabase/domains/{domain}.md`, `docs/metabase/collections.md`, and
   `docs/metabase/glossary.md` only after discovery points to them.
 
@@ -40,5 +46,7 @@ query text.
 - Do not memorize card counts, collection names, dashboard names, or specific
   generated metadata; re-read the relevant generated files because Metabase
   changes over time.
+- When calling the Metabase API, consult `API-GUIDE.md` for endpoint details,
+  concurrency limits, and common pitfalls.
 - Regeneration requires `.env` with `METABASE_API_BASE_URL`,
   `METABASE_API_KEY`, and `METABASE_DB_ID`. Never print secrets from `.env`.

@@ -9,7 +9,18 @@ A generated documentation library of our Metabase instance. Run `pnpm gen` to re
 
 These docs are **metadata only** (card names, fields, dependencies, descriptions). They do NOT contain raw data or SQL query text.
 
-## Reading Strategy
+## API Interaction
+
+When you need to call the Metabase API directly (search, real-time data, schema exploration),
+**read `API-GUIDE.md` first.** It covers auth, endpoints, rate limits, concurrency
+patterns, and common gotchas — everything learned from building and maintaining
+the doc generator.
+
+**Prefer `API-GUIDE.md` over guessing API behavior** — it encodes real-world
+trial-and-error (which endpoints are fast, which need concurrency limits, which
+fields are missing from list vs detail responses).
+
+## Reading Strategy (Generated Docs)
 
 The docs are designed for layered, token-efficient access:
 
