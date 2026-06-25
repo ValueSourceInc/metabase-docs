@@ -1,0 +1,6730 @@
+{
+  "generatedAt": "2026-06-24T10:26:56.784Z",
+  "databaseIds": [
+    4
+  ],
+  "summary": {
+    "collections": 84,
+    "cards": 219,
+    "activeCards": 219,
+    "dashboards": 20
+  },
+  "cards": {
+    "302": {
+      "name": "Pillow Search Volume Xiyou",
+      "collectionId": 76,
+      "collectionName": "前期用户画像市场分析",
+      "type": "question",
+      "domains": [
+        "advertising"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 21,
+      "dependencyDepth": 0,
+      "updatedAt": "2025-04-01T09:46:40.321182Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "303": {
+      "name": "Pillow User Search Keywords",
+      "collectionId": 76,
+      "collectionName": "前期用户画像市场分析",
+      "type": "question",
+      "domains": [
+        "uncategorized"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 22,
+      "dependencyDepth": 0,
+      "updatedAt": "2025-04-01T09:46:40.312303Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "304": {
+      "name": "Pillow Word Segmentation",
+      "collectionId": 76,
+      "collectionName": "前期用户画像市场分析",
+      "type": "question",
+      "domains": [
+        "uncategorized"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 4,
+      "dependencyDepth": 0,
+      "updatedAt": "2025-04-01T09:46:40.312055Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "306": {
+      "name": "Purchase Amount Distribution by State",
+      "collectionId": 79,
+      "collectionName": "user_profile_demo",
+      "type": "dashboard component",
+      "domains": [
+        "finance",
+        "logistics"
+      ],
+      "display": "map",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [
+        "亚马逊用户肖像分布"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 2,
+      "dependencyDepth": 0,
+      "updatedAt": "2025-02-13T06:00:30.206506Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "307": {
+      "name": "Purchase Amount Distribution by Category",
+      "collectionId": 79,
+      "collectionName": "user_profile_demo",
+      "type": "dashboard component",
+      "domains": [
+        "finance",
+        "sales"
+      ],
+      "display": "row",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [
+        "亚马逊用户肖像分布"
+      ],
+      "risks": [
+        "missing description",
+        "native SQL without business description"
+      ],
+      "databaseId": 4,
+      "queryType": "native",
+      "isNative": true,
+      "isArchived": false,
+      "fieldCount": 2,
+      "dependencyDepth": 0,
+      "updatedAt": "2025-02-13T06:00:30.207086Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "309": {
+      "name": "Purchase Amount and Quantity Distribution by Gender",
+      "collectionId": 79,
+      "collectionName": "user_profile_demo",
+      "type": "dashboard component",
+      "domains": [
+        "finance"
+      ],
+      "display": "bar",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [
+        "亚马逊用户肖像分布"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 0,
+      "updatedAt": "2025-02-13T06:00:30.204431Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "310": {
+      "name": "Order Distribution by Gender&Age",
+      "collectionId": 79,
+      "collectionName": "user_profile_demo",
+      "type": "dashboard component",
+      "domains": [
+        "sales"
+      ],
+      "display": "bar",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [
+        "亚马逊用户肖像分布"
+      ],
+      "risks": [
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 0,
+      "updatedAt": "2025-02-13T06:00:30.202495Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "311": {
+      "name": "User Average Purchase Amount by Month",
+      "collectionId": 79,
+      "collectionName": "user_profile_demo",
+      "type": "dashboard component",
+      "domains": [
+        "finance",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [
+        "亚马逊用户肖像分布"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 2,
+      "dependencyDepth": 0,
+      "updatedAt": "2025-02-13T06:00:30.219537Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "313": {
+      "name": "Purchase Quantity Distribution by State",
+      "collectionId": 76,
+      "collectionName": "前期用户画像市场分析",
+      "type": "dashboard component",
+      "domains": [
+        "logistics"
+      ],
+      "display": "map",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [
+        "亚马逊用户肖像分布"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 0,
+      "updatedAt": "2025-04-01T09:46:40.34503Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "314": {
+      "name": "Purchase Amount and Quantity Distribution by Race",
+      "collectionId": 76,
+      "collectionName": "前期用户画像市场分析",
+      "type": "dashboard component",
+      "domains": [
+        "finance",
+        "sales"
+      ],
+      "display": "row",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [
+        "亚马逊用户肖像分布"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 0,
+      "updatedAt": "2025-04-01T09:46:40.310884Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "318": {
+      "name": "关键词搜索趋势视图",
+      "collectionId": 78,
+      "collectionName": "关键词分析",
+      "type": "native question",
+      "domains": [
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "native SQL without business description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "native",
+      "isNative": true,
+      "isArchived": false,
+      "fieldCount": 5,
+      "dependencyDepth": 0,
+      "updatedAt": "2025-02-11T06:21:22.962036Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "319": {
+      "name": "关键词竞争情况视图",
+      "collectionId": 78,
+      "collectionName": "关键词分析",
+      "type": "native question",
+      "domains": [
+        "uncategorized"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "native",
+      "isNative": true,
+      "isArchived": false,
+      "fieldCount": 4,
+      "dependencyDepth": 0,
+      "updatedAt": "2025-02-11T06:56:55.462676Z",
+      "description": "点击分散度 前三个 ASIN 的点击份额总和。 如果总和较低，说明点击比较分散，竞争较弱； 如果总和高，说明竞争集中在几个产品，竞争激烈。 转化分散度 同点击分散度。",
+      "hasFullDescription": false
+    },
+    "324": {
+      "name": "average_competition",
+      "collectionId": 73,
+      "collectionName": "Cui Liu's Personal Collection",
+      "type": "table model",
+      "domains": [
+        "uncategorized"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [
+        329
+      ],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "native SQL without business description"
+      ],
+      "databaseId": 4,
+      "queryType": "native",
+      "isNative": true,
+      "isArchived": false,
+      "fieldCount": 5,
+      "dependencyDepth": 0,
+      "updatedAt": "2025-02-13T05:58:39.308281Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "325": {
+      "name": "averange_frequency&competiton",
+      "collectionId": 73,
+      "collectionName": "Cui Liu's Personal Collection",
+      "type": "native question",
+      "domains": [
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "native SQL without business description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "native",
+      "isNative": true,
+      "isArchived": false,
+      "fieldCount": 12,
+      "dependencyDepth": 0,
+      "updatedAt": "2025-02-13T05:58:39.307961Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "326": {
+      "name": "Amazon Search Rank & Competition &Trend",
+      "collectionId": 73,
+      "collectionName": "Cui Liu's Personal Collection",
+      "type": "dashboard component",
+      "domains": [
+        "uncategorized"
+      ],
+      "display": "line",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [
+        "Amazon Keywords Search Ranking"
+      ],
+      "risks": [
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 7,
+      "dependencyDepth": 0,
+      "updatedAt": "2025-02-14T06:15:27.92224Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "327": {
+      "name": "search frequency&competion by week",
+      "collectionId": 73,
+      "collectionName": "Cui Liu's Personal Collection",
+      "type": "native question",
+      "domains": [
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "native SQL without business description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "native",
+      "isNative": true,
+      "isArchived": false,
+      "fieldCount": 6,
+      "dependencyDepth": 0,
+      "updatedAt": "2025-02-13T09:55:18.397448Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "328": {
+      "name": "averange_frequency&competiton summary",
+      "collectionId": 73,
+      "collectionName": "Cui Liu's Personal Collection",
+      "type": "native question",
+      "domains": [
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "native SQL without business description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "native",
+      "isNative": true,
+      "isArchived": false,
+      "fieldCount": 12,
+      "dependencyDepth": 0,
+      "updatedAt": "2025-02-13T09:10:09.136199Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "329": {
+      "name": "Amazon Keywords Ranking and Related Statistical Indicators",
+      "collectionId": 73,
+      "collectionName": "Cui Liu's Personal Collection",
+      "type": "dashboard component",
+      "domains": [
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        324
+      ],
+      "downstream": [],
+      "dashboards": [
+        "Amazon Keywords Search Ranking"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 10,
+      "dependencyDepth": 1,
+      "updatedAt": "2025-02-13T10:49:14.431421Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "330": {
+      "name": "averange_frequency&competiton summary_1",
+      "collectionId": 73,
+      "collectionName": "Cui Liu's Personal Collection",
+      "type": "native question",
+      "domains": [
+        "sales"
+      ],
+      "display": "area",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "native SQL without business description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "native",
+      "isNative": true,
+      "isArchived": false,
+      "fieldCount": 12,
+      "dependencyDepth": 0,
+      "updatedAt": "2025-02-13T11:01:48.255117Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "331": {
+      "name": "Amazon Search Rank & Competition &Trend _1",
+      "collectionId": 73,
+      "collectionName": "Cui Liu's Personal Collection",
+      "type": "dashboard component",
+      "domains": [
+        "uncategorized"
+      ],
+      "display": "line",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [
+        "filter"
+      ],
+      "risks": [
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 7,
+      "dependencyDepth": 0,
+      "updatedAt": "2025-02-14T06:16:36.903821Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "332": {
+      "name": "latest_amaozn_keywords_rank",
+      "collectionId": 73,
+      "collectionName": "Cui Liu's Personal Collection",
+      "type": "native question",
+      "domains": [
+        "uncategorized"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "native SQL without business description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "native",
+      "isNative": true,
+      "isArchived": false,
+      "fieldCount": 25,
+      "dependencyDepth": 0,
+      "updatedAt": "2025-02-17T07:20:57.299533Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "333": {
+      "name": "Dcms Raw Data Pool 202503",
+      "collectionId": 81,
+      "collectionName": "Leo Tang's Personal Collection",
+      "type": "question",
+      "domains": [
+        "uncategorized"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 5,
+      "dependencyDepth": 0,
+      "updatedAt": "2025-03-20T05:59:04.96166Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "382": {
+      "name": "Keyword Performance Table active",
+      "collectionId": 7,
+      "collectionName": "Hanson Li's Personal Collection",
+      "type": "question",
+      "domains": [
+        "advertising",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        370
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 13,
+      "dependencyDepth": 1,
+      "updatedAt": "2025-07-03T08:42:48.351735Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "388": {
+      "name": "Campaign CTR",
+      "collectionId": 127,
+      "collectionName": "SP Ads",
+      "type": "dashboard component",
+      "domains": [
+        "advertising"
+      ],
+      "display": "line",
+      "upstream": [
+        403
+      ],
+      "downstream": [],
+      "dashboards": [
+        "SP Ads Monitoring"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 6,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-06-11T05:06:56.119522Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "398": {
+      "name": "Ads SP Gross And Invalids",
+      "collectionId": 122,
+      "collectionName": "Ads SP Models",
+      "type": "question",
+      "domains": [
+        "advertising"
+      ],
+      "display": "table",
+      "upstream": [
+        402
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 18,
+      "dependencyDepth": 1,
+      "updatedAt": "2026-05-08T03:50:03.226741Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "402": {
+      "name": "List SP Campaign Model",
+      "collectionId": 122,
+      "collectionName": "Ads SP Models",
+      "type": "source model",
+      "domains": [
+        "advertising"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [
+        398,
+        403,
+        703,
+        704
+      ],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 9,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-05-19T03:38:26.993546Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "403": {
+      "name": "Ads SP Campaign Model",
+      "collectionId": 122,
+      "collectionName": "Ads SP Models",
+      "type": "source model",
+      "domains": [
+        "advertising",
+        "finance",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        402,
+        853
+      ],
+      "downstream": [
+        388,
+        705,
+        708,
+        709,
+        710,
+        711,
+        712,
+        713,
+        714
+      ],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "high reuse / change carefully",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 48,
+      "dependencyDepth": 1,
+      "updatedAt": "2026-06-04T09:57:56.866855Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "409": {
+      "name": "Dify 测试空数据",
+      "collectionId": 84,
+      "collectionName": "DCMS 开发测试",
+      "type": "question",
+      "domains": [
+        "advertising",
+        "finance",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        404
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 28,
+      "dependencyDepth": 1,
+      "updatedAt": "2025-08-06T04:17:56.580342Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "411": {
+      "name": "SB Campaign Model",
+      "collectionId": 123,
+      "collectionName": "Ads SB Models",
+      "type": "source model",
+      "domains": [
+        "advertising",
+        "finance",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        413,
+        853
+      ],
+      "downstream": [
+        458,
+        720,
+        721,
+        722,
+        723,
+        724,
+        725,
+        726,
+        727,
+        728
+      ],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "high reuse / change carefully",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 72,
+      "dependencyDepth": 1,
+      "updatedAt": "2026-06-04T10:52:26.53298Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "413": {
+      "name": "List SB Campaign Model",
+      "collectionId": 123,
+      "collectionName": "Ads SB Models",
+      "type": "source model",
+      "domains": [
+        "advertising",
+        "finance"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [
+        411,
+        424,
+        425
+      ],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 13,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-05-08T06:12:17.401262Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "424": {
+      "name": "SB SearchTerm Model",
+      "collectionId": 123,
+      "collectionName": "Ads SB Models",
+      "type": "source model",
+      "domains": [
+        "advertising",
+        "finance",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        413,
+        719,
+        853
+      ],
+      "downstream": [
+        729
+      ],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 59,
+      "dependencyDepth": 1,
+      "updatedAt": "2026-06-04T10:57:59.467791Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "425": {
+      "name": "SB Targeting Model",
+      "collectionId": 123,
+      "collectionName": "Ads SB Models",
+      "type": "source model",
+      "domains": [
+        "advertising",
+        "finance",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        413,
+        853
+      ],
+      "downstream": [
+        730,
+        732
+      ],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 74,
+      "dependencyDepth": 1,
+      "updatedAt": "2026-06-04T10:56:21.6074Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "441": {
+      "name": "Us Demographics Simple Quarter 2025 06 30",
+      "collectionId": 1,
+      "collectionName": "Admin VS's Personal Collection",
+      "type": "table model",
+      "domains": [
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [
+        442,
+        443
+      ],
+      "dashboards": [],
+      "risks": [
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 13,
+      "dependencyDepth": 0,
+      "updatedAt": "2025-09-01T08:41:20.122614Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "442": {
+      "name": "Downhome 客户群体年龄 第二季度",
+      "collectionId": 1,
+      "collectionName": "Admin VS's Personal Collection",
+      "type": "dashboard component",
+      "domains": [
+        "uncategorized"
+      ],
+      "display": "bar",
+      "upstream": [
+        441
+      ],
+      "downstream": [],
+      "dashboards": [
+        "Downhome 客户群体"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 1,
+      "updatedAt": "2025-09-01T08:52:14.998418Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "443": {
+      "name": "Downhome 客户群体教育背景 第二季度",
+      "collectionId": 1,
+      "collectionName": "Admin VS's Personal Collection",
+      "type": "dashboard component",
+      "domains": [
+        "uncategorized"
+      ],
+      "display": "bar",
+      "upstream": [
+        441
+      ],
+      "downstream": [],
+      "dashboards": [
+        "Downhome 客户群体"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 1,
+      "updatedAt": "2025-09-01T08:53:18.859474Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "444": {
+      "name": "Us Demographics Simple Quarter 2025 06 30",
+      "collectionId": 91,
+      "collectionName": "Serene Xuan's Personal Collection",
+      "type": "source model",
+      "domains": [
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [
+        445,
+        446,
+        447,
+        448
+      ],
+      "dashboards": [],
+      "risks": [
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 13,
+      "dependencyDepth": 0,
+      "updatedAt": "2025-09-01T08:57:41.39646Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "445": {
+      "name": "Us Demographics Q2-AGE GROUP",
+      "collectionId": 91,
+      "collectionName": "Serene Xuan's Personal Collection",
+      "type": "dashboard component",
+      "domains": [
+        "uncategorized"
+      ],
+      "display": "bar",
+      "upstream": [
+        444
+      ],
+      "downstream": [],
+      "dashboards": [
+        "1"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 2,
+      "dependencyDepth": 1,
+      "updatedAt": "2025-09-01T09:51:22.552232Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "446": {
+      "name": "Us Demographics Simple Q2 -Marital Status",
+      "collectionId": 91,
+      "collectionName": "Serene Xuan's Personal Collection",
+      "type": "dashboard component",
+      "domains": [
+        "uncategorized"
+      ],
+      "display": "pie",
+      "upstream": [
+        444
+      ],
+      "downstream": [],
+      "dashboards": [
+        "1"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 2,
+      "dependencyDepth": 1,
+      "updatedAt": "2025-09-01T09:56:31.992882Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "447": {
+      "name": "Us Demographics Simple Quarter 2 - household_income",
+      "collectionId": 91,
+      "collectionName": "Serene Xuan's Personal Collection",
+      "type": "dashboard component",
+      "domains": [
+        "uncategorized"
+      ],
+      "display": "bar",
+      "upstream": [
+        444
+      ],
+      "downstream": [],
+      "dashboards": [
+        "1"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 2,
+      "dependencyDepth": 1,
+      "updatedAt": "2025-09-01T10:01:45.070635Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "448": {
+      "name": "Us Demographics Simple Quarter 2 - education",
+      "collectionId": 91,
+      "collectionName": "Serene Xuan's Personal Collection",
+      "type": "dashboard component",
+      "domains": [
+        "uncategorized"
+      ],
+      "display": "bar",
+      "upstream": [
+        444
+      ],
+      "downstream": [],
+      "dashboards": [
+        "1"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 2,
+      "dependencyDepth": 1,
+      "updatedAt": "2025-09-01T10:05:29.475279Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "458": {
+      "name": "SB Campaign Video Metrics",
+      "collectionId": 129,
+      "collectionName": "SB Ads",
+      "type": "dashboard component",
+      "domains": [
+        "advertising",
+        "sales"
+      ],
+      "display": "combo",
+      "upstream": [
+        411
+      ],
+      "downstream": [],
+      "dashboards": [
+        "SB Ads Monitoring"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 14,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-05-12T13:21:43.540553Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "465": {
+      "name": "VS 产品销售曲线Alert Test",
+      "collectionId": 84,
+      "collectionName": "DCMS 开发测试",
+      "type": "question",
+      "domains": [
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 2,
+      "dependencyDepth": 0,
+      "updatedAt": "2025-09-05T08:09:32.647011Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "476": {
+      "name": "SKU订单预警",
+      "collectionId": 94,
+      "collectionName": "Alerts",
+      "type": "question",
+      "domains": [
+        "sales"
+      ],
+      "display": "bar",
+      "upstream": [
+        776
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 6,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-06-12T08:24:19.151264Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "488": {
+      "name": "Payment report",
+      "collectionId": 84,
+      "collectionName": "DCMS 开发测试",
+      "type": "question",
+      "domains": [
+        "advertising",
+        "finance",
+        "inventory",
+        "logistics",
+        "replenishment",
+        "returns",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 27,
+      "dependencyDepth": 0,
+      "updatedAt": "2025-09-22T03:15:26.021164Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "489": {
+      "name": "Payment report - Duplicate",
+      "collectionId": 91,
+      "collectionName": "Serene Xuan's Personal Collection",
+      "type": "question",
+      "domains": [
+        "advertising",
+        "finance",
+        "inventory",
+        "logistics",
+        "replenishment",
+        "returns",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 27,
+      "dependencyDepth": 0,
+      "updatedAt": "2025-09-22T03:19:44.646734Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "504": {
+      "name": "Shipping Cost Actual Payment Per SKU Over Time",
+      "collectionId": 104,
+      "collectionName": "Shipment Costs",
+      "type": "question",
+      "domains": [
+        "finance",
+        "logistics",
+        "replenishment",
+        "sales"
+      ],
+      "display": "bar",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-03-12T05:26:43.923874Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "505": {
+      "name": "Shipping Cost Payment Per SKU  Pie",
+      "collectionId": 104,
+      "collectionName": "Shipment Costs",
+      "type": "question",
+      "domains": [
+        "finance",
+        "logistics",
+        "replenishment",
+        "sales"
+      ],
+      "display": "pie",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 2,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-03-12T05:24:09.863098Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "560": {
+      "name": "DH Canada 库存表 DH-BT-BRAID-BG-TH",
+      "collectionId": 91,
+      "collectionName": "Serene Xuan's Personal Collection",
+      "type": "question",
+      "domains": [
+        "inventory",
+        "returns",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 26,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-02-04T07:23:18.279722Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "566": {
+      "name": "Graph 1",
+      "collectionId": 1,
+      "collectionName": "Admin VS's Personal Collection",
+      "type": "question",
+      "domains": [
+        "returns",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 4,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-02-26T07:44:36.832172Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "568": {
+      "name": "DH Amazon Parent SKU 销售比例 - Modified",
+      "collectionId": 84,
+      "collectionName": "DCMS 开发测试",
+      "type": "question",
+      "domains": [
+        "sales"
+      ],
+      "display": "pie",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 2,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-03-09T02:46:22.50767Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "571": {
+      "name": "Shipping Cost Estimated Payment (By Pickup Date) Per SKU",
+      "collectionId": 104,
+      "collectionName": "Shipment Costs",
+      "type": "question",
+      "domains": [
+        "finance",
+        "logistics",
+        "replenishment",
+        "sales"
+      ],
+      "display": "bar",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-03-12T05:29:13.470869Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "572": {
+      "name": "Shipment Cost Per Item Per SKU Over Time",
+      "collectionId": 104,
+      "collectionName": "Shipment Costs",
+      "type": "question",
+      "domains": [
+        "finance",
+        "logistics",
+        "replenishment",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-03-12T05:30:01.727177Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "573": {
+      "name": "Production Cost Per SKU Pie",
+      "collectionId": 105,
+      "collectionName": "Production Costs",
+      "type": "question",
+      "domains": [
+        "finance",
+        "production",
+        "sales"
+      ],
+      "display": "pie",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 2,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-03-11T10:44:42.413531Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "574": {
+      "name": "Production Cost Per SKU Over Time",
+      "collectionId": 105,
+      "collectionName": "Production Costs",
+      "type": "question",
+      "domains": [
+        "finance",
+        "production",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-03-11T10:46:09.543053Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "575": {
+      "name": "Production Unit Cost Per SKU Over Time",
+      "collectionId": 105,
+      "collectionName": "Production Costs",
+      "type": "question",
+      "domains": [
+        "finance",
+        "production",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-03-11T10:54:22.680536Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "577": {
+      "name": "Production Cost Sum Over Time",
+      "collectionId": 105,
+      "collectionName": "Production Costs",
+      "type": "question",
+      "domains": [
+        "finance",
+        "production",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 2,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-03-11T15:58:35.380463Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "578": {
+      "name": "Shipping Cost Sum Over Time",
+      "collectionId": 104,
+      "collectionName": "Shipment Costs",
+      "type": "question",
+      "domains": [
+        "finance",
+        "logistics",
+        "replenishment",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 2,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-03-11T15:20:23.887551Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "584": {
+      "name": "Production Cost Over Time",
+      "collectionId": 105,
+      "collectionName": "Production Costs",
+      "type": "question",
+      "domains": [
+        "finance",
+        "production",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 6,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-05-19T04:44:39.383004Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "585": {
+      "name": "Shipping Cost Over Time",
+      "collectionId": 104,
+      "collectionName": "Shipment Costs",
+      "type": "table model",
+      "domains": [
+        "finance",
+        "logistics",
+        "replenishment",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [
+        757
+      ],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 7,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-03-12T05:42:30.517517Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "594": {
+      "name": "Shipment Finder",
+      "collectionId": 103,
+      "collectionName": "运营数据",
+      "type": "question",
+      "domains": [
+        "finance",
+        "logistics",
+        "production",
+        "replenishment",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 56,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-03-11T17:03:42.316881Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "595": {
+      "name": "Production Cost Over Time Per Parent ASIN",
+      "collectionId": 105,
+      "collectionName": "Production Costs",
+      "type": "question",
+      "domains": [
+        "finance",
+        "logistics",
+        "production",
+        "replenishment",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 4,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-03-12T16:16:49.289468Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "603": {
+      "name": "Top Weight Score By Genre",
+      "collectionId": 110,
+      "collectionName": "Eric Zeng's Personal Collection",
+      "type": "dashboard component",
+      "domains": [
+        "uncategorized"
+      ],
+      "display": "pie",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [
+        "eric_movie_list (XXX By ___ X ____ X _____  (Over Time)"
+      ],
+      "risks": [
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 2,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-03-25T06:23:06.973683Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "604": {
+      "name": "Wps Eric Movie List, Max of Year, Grouped by Genre, Sorted by Max of Year descending - Modified",
+      "collectionId": 110,
+      "collectionName": "Eric Zeng's Personal Collection",
+      "type": "question",
+      "domains": [
+        "sales"
+      ],
+      "display": "row",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 2,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-03-20T06:05:40.043366Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "608": {
+      "name": "Wps Eric Reviewer, group by state",
+      "collectionId": 110,
+      "collectionName": "Eric Zeng's Personal Collection",
+      "type": "dashboard component",
+      "domains": [
+        "uncategorized"
+      ],
+      "display": "map",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [
+        "eric_movie_list (XXX By ___ X ____ X _____  (Over Time)"
+      ],
+      "risks": [
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 2,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-03-23T07:37:04.566197Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "609": {
+      "name": "Top Weighted Score By Movie",
+      "collectionId": 110,
+      "collectionName": "Eric Zeng's Personal Collection",
+      "type": "dashboard component",
+      "domains": [
+        "sales"
+      ],
+      "display": "row",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [
+        "eric_movie_list (XXX By ___ X ____ X _____  (Over Time)"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-03-25T07:09:32.162301Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "610": {
+      "name": "Weighted Score By Movie With Reviewer Type Comparison",
+      "collectionId": 110,
+      "collectionName": "Eric Zeng's Personal Collection",
+      "type": "dashboard component",
+      "domains": [
+        "uncategorized"
+      ],
+      "display": "bar",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [
+        "eric_movie_list (XXX By ___ X ____ X _____  (Over Time)",
+        "eric_movie_recommendations_for_users_and_investors"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-03-25T06:31:24.131063Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "611": {
+      "name": "Average Rating By Reviewer Type",
+      "collectionId": 110,
+      "collectionName": "Eric Zeng's Personal Collection",
+      "type": "dashboard component",
+      "domains": [
+        "uncategorized"
+      ],
+      "display": "bar",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [
+        "eric_movie_list (XXX By ___ X ____ X _____  (Over Time)"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 2,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-03-25T07:00:00.917563Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "614": {
+      "name": "Top Average Weighted Score By Genre",
+      "collectionId": 110,
+      "collectionName": "Eric Zeng's Personal Collection",
+      "type": "dashboard component",
+      "domains": [
+        "sales"
+      ],
+      "display": "row",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [
+        "eric_movie_list (XXX By ___ X ____ X _____  (Over Time)"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 2,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-03-25T07:00:11.765685Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "616": {
+      "name": "Review Count By Movie, Genre, Year Pivot",
+      "collectionId": 110,
+      "collectionName": "Eric Zeng's Personal Collection",
+      "type": "dashboard component",
+      "domains": [
+        "uncategorized"
+      ],
+      "display": "pivot",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [
+        "eric_movie_list (XXX By ___ X ____ X _____  (Over Time)"
+      ],
+      "risks": [
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-03-25T07:22:26.9986Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "617": {
+      "name": "Top Average Box Office (USD) By Genre",
+      "collectionId": 110,
+      "collectionName": "Eric Zeng's Personal Collection",
+      "type": "dashboard component",
+      "domains": [
+        "sales"
+      ],
+      "display": "row",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [
+        "eric_movie_list (XXX By ___ X ____ X _____  (Over Time)",
+        "eric_movie_recommendations_for_users_and_investors"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 2,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-03-25T06:35:24.217205Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "618": {
+      "name": "Total Box Office Over Time",
+      "collectionId": 110,
+      "collectionName": "Eric Zeng's Personal Collection",
+      "type": "dashboard component",
+      "domains": [
+        "uncategorized"
+      ],
+      "display": "bar",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [
+        "eric_movie_list (XXX By ___ X ____ X _____  (Over Time)"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 2,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-03-25T06:51:09.838605Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "621": {
+      "name": "AVG Production & Shipment Cost By SKU",
+      "collectionId": 97,
+      "collectionName": "Cost",
+      "type": "table model",
+      "domains": [
+        "finance",
+        "logistics",
+        "production",
+        "replenishment",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [
+        745,
+        904
+      ],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-04-28T04:06:37.351095Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "624": {
+      "name": "Reviewer Count By Gender",
+      "collectionId": 110,
+      "collectionName": "Eric Zeng's Personal Collection",
+      "type": "question",
+      "domains": [
+        "uncategorized"
+      ],
+      "display": "bar",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-03-25T07:08:26.331145Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "625": {
+      "name": "FBA Shipment 表 Metric Unit (CA)",
+      "collectionId": 119,
+      "collectionName": "订单/船务数据 (Cynthia)",
+      "type": "dashboard component",
+      "domains": [
+        "inventory",
+        "replenishment",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [
+        "FBA 模板"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 9,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-05-22T06:06:32.549763Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "627": {
+      "name": "Weighted Score By Movie - Score 8 Or Above",
+      "collectionId": 110,
+      "collectionName": "Eric Zeng's Personal Collection",
+      "type": "dashboard component",
+      "domains": [
+        "sales"
+      ],
+      "display": "row",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [
+        "eric_movie_recommendations_for_users_and_investors"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-03-27T02:33:15.026829Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "628": {
+      "name": "Weighted Score By Movie With Distribution",
+      "collectionId": 110,
+      "collectionName": "Eric Zeng's Personal Collection",
+      "type": "dashboard component",
+      "domains": [
+        "uncategorized"
+      ],
+      "display": "row",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [
+        "eric_movie_recommendations_for_users_and_investors"
+      ],
+      "risks": [
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-03-27T02:42:31.508922Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "629": {
+      "name": "Funny movies based on reviews",
+      "collectionId": 110,
+      "collectionName": "Eric Zeng's Personal Collection",
+      "type": "dashboard component",
+      "domains": [
+        "uncategorized"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [
+        "eric_movie_recommendations_for_users_and_investors"
+      ],
+      "risks": [
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-04-01T08:41:12.072739Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "630": {
+      "name": "Sum of Box Office Group By Weighted Score",
+      "collectionId": 110,
+      "collectionName": "Eric Zeng's Personal Collection",
+      "type": "dashboard component",
+      "domains": [
+        "uncategorized"
+      ],
+      "display": "bar",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [
+        "eric_movie_recommendations_for_users_and_investors"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-03-27T08:24:46.793235Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "631": {
+      "name": "Counts of Movie Genre Overtime",
+      "collectionId": 110,
+      "collectionName": "Eric Zeng's Personal Collection",
+      "type": "question",
+      "domains": [
+        "uncategorized"
+      ],
+      "display": "bar",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-03-27T08:30:40.027188Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "639": {
+      "name": "Genre Performance by average box office, average ratings, amount",
+      "collectionId": 110,
+      "collectionName": "Eric Zeng's Personal Collection",
+      "type": "dashboard component",
+      "domains": [
+        "finance"
+      ],
+      "display": "bar",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [
+        "eric_movie_recommendations_for_users_and_investors"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 4,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-04-01T08:35:16.079881Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "641": {
+      "name": "Funny movies based on reviews - Modified",
+      "collectionId": 110,
+      "collectionName": "Eric Zeng's Personal Collection",
+      "type": "question",
+      "domains": [
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-04-01T08:42:34.115416Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "644": {
+      "name": "Store Profit By SKU X Order Model, Cumulative sum of Sum of profit, Grouped by order_date: Day, Filtered by Marketplace Name is Amazon.ca and sku is not 3 selections",
+      "collectionId": 1,
+      "collectionName": "Admin VS's Personal Collection",
+      "type": "source model",
+      "domains": [
+        "finance",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [
+        640
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 2,
+      "dependencyDepth": 1,
+      "updatedAt": "2026-04-06T09:59:19.709473Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "645": {
+      "name": "Store Profit By SKU X Order Model, Cumulative sum of Sum of profit, Grouped by order_date: Day, Filtered by Marketplace Name is Amazon.ca and sku is not 3 selections - Modified",
+      "collectionId": 1,
+      "collectionName": "Admin VS's Personal Collection",
+      "type": "source model",
+      "domains": [
+        "finance",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [
+        640
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 2,
+      "dependencyDepth": 1,
+      "updatedAt": "2026-04-06T09:59:40.301983Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "649": {
+      "name": "DH Amazon Parent SKU 销售比例 - 复制测试",
+      "collectionId": 84,
+      "collectionName": "DCMS 开发测试",
+      "type": "question",
+      "domains": [
+        "sales"
+      ],
+      "display": "pie",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 2,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-04-09T08:26:45.91172Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "676": {
+      "name": "工厂大合同",
+      "collectionId": 119,
+      "collectionName": "订单/船务数据 (Cynthia)",
+      "type": "dashboard component",
+      "domains": [
+        "production",
+        "replenishment",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [
+        "VS工厂合同"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 11,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-05-28T12:38:15.519553Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "683": {
+      "name": "Shipment Pricing Model (Old)",
+      "collectionId": 119,
+      "collectionName": "订单/船务数据 (Cynthia)",
+      "type": "source model",
+      "domains": [
+        "production",
+        "replenishment",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "native SQL without business description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "native",
+      "isNative": true,
+      "isArchived": false,
+      "fieldCount": 10,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-06-17T07:26:18.073259Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "685": {
+      "name": "工厂小合同",
+      "collectionId": 119,
+      "collectionName": "订单/船务数据 (Cynthia)",
+      "type": "dashboard component",
+      "domains": [
+        "production",
+        "replenishment",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        836
+      ],
+      "downstream": [],
+      "dashboards": [
+        "VS工厂合同"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 9,
+      "dependencyDepth": 1,
+      "updatedAt": "2026-05-29T06:25:43.257617Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "686": {
+      "name": "FBA Shipment 表 Imperial Unit (US)",
+      "collectionId": 119,
+      "collectionName": "订单/船务数据 (Cynthia)",
+      "type": "dashboard component",
+      "domains": [
+        "inventory",
+        "replenishment",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [
+        "FBA 模板"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 13,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-05-12T08:00:58.84188Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "700": {
+      "name": "DHM 箱单 By SKU",
+      "collectionId": 119,
+      "collectionName": "订单/船务数据 (Cynthia)",
+      "type": "table model",
+      "domains": [
+        "replenishment",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        836
+      ],
+      "downstream": [
+        701
+      ],
+      "dashboards": [
+        "DHM 箱单"
+      ],
+      "risks": [
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 17,
+      "dependencyDepth": 1,
+      "updatedAt": "2026-05-29T06:17:46.512965Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "701": {
+      "name": "DHM 箱单 By Product Group",
+      "collectionId": 119,
+      "collectionName": "订单/船务数据 (Cynthia)",
+      "type": "dashboard component",
+      "domains": [
+        "replenishment",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        700
+      ],
+      "downstream": [],
+      "dashboards": [
+        "DHM 箱单"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 18,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-06-04T10:28:56.080144Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "703": {
+      "name": "Ads Sp Searchterm Model",
+      "collectionId": 122,
+      "collectionName": "Ads SP Models",
+      "type": "source model",
+      "domains": [
+        "advertising",
+        "finance",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        402,
+        761,
+        853
+      ],
+      "downstream": [
+        715
+      ],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 76,
+      "dependencyDepth": 1,
+      "updatedAt": "2026-06-04T10:11:25.015809Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "704": {
+      "name": "Ads Sp Targeting Model",
+      "collectionId": 122,
+      "collectionName": "Ads SP Models",
+      "type": "source model",
+      "domains": [
+        "advertising",
+        "finance",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        402,
+        761,
+        853
+      ],
+      "downstream": [
+        718,
+        731,
+        763
+      ],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 73,
+      "dependencyDepth": 1,
+      "updatedAt": "2026-06-11T04:41:54.635404Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "705": {
+      "name": "Campaign CTR Summarized Trend Line",
+      "collectionId": 127,
+      "collectionName": "SP Ads",
+      "type": "dashboard component",
+      "domains": [
+        "advertising"
+      ],
+      "display": "line",
+      "upstream": [
+        403
+      ],
+      "downstream": [],
+      "dashboards": [
+        "SP Ads Monitoring"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 5,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-06-11T05:07:54.245118Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "707": {
+      "name": "List SP Keywords Model",
+      "collectionId": 122,
+      "collectionName": "Ads SP Models",
+      "type": "source model",
+      "domains": [
+        "advertising"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 15,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-05-19T03:56:46.863729Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "708": {
+      "name": "Campaign CTR Pie",
+      "collectionId": 127,
+      "collectionName": "SP Ads",
+      "type": "dashboard component",
+      "domains": [
+        "advertising"
+      ],
+      "display": "pie",
+      "upstream": [
+        403
+      ],
+      "downstream": [],
+      "dashboards": [
+        "SP Ads Monitoring"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 4,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-05-12T08:11:23.73713Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "709": {
+      "name": "Campaign CVR",
+      "collectionId": 127,
+      "collectionName": "SP Ads",
+      "type": "dashboard component",
+      "domains": [
+        "advertising"
+      ],
+      "display": "line",
+      "upstream": [
+        403
+      ],
+      "downstream": [],
+      "dashboards": [
+        "SP Ads Monitoring"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 6,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-06-11T05:06:45.281639Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "710": {
+      "name": "Campaign CVR Summarized Trend Line",
+      "collectionId": 127,
+      "collectionName": "SP Ads",
+      "type": "dashboard component",
+      "domains": [
+        "advertising"
+      ],
+      "display": "line",
+      "upstream": [
+        403
+      ],
+      "downstream": [],
+      "dashboards": [
+        "SP Ads Monitoring"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 5,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-06-11T05:07:40.48702Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "711": {
+      "name": "Campaign CVR Pie",
+      "collectionId": 127,
+      "collectionName": "SP Ads",
+      "type": "dashboard component",
+      "domains": [
+        "advertising"
+      ],
+      "display": "pie",
+      "upstream": [
+        403
+      ],
+      "downstream": [],
+      "dashboards": [
+        "SP Ads Monitoring"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 4,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-05-12T08:11:25.145395Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "712": {
+      "name": "Campaign ACOS",
+      "collectionId": 127,
+      "collectionName": "SP Ads",
+      "type": "dashboard component",
+      "domains": [
+        "advertising",
+        "finance",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [
+        403
+      ],
+      "downstream": [],
+      "dashboards": [
+        "SP Ads Monitoring"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 6,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-06-11T05:07:06.85329Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "713": {
+      "name": "Campaign ACOS Pie",
+      "collectionId": 127,
+      "collectionName": "SP Ads",
+      "type": "dashboard component",
+      "domains": [
+        "advertising",
+        "finance",
+        "sales"
+      ],
+      "display": "pie",
+      "upstream": [
+        403
+      ],
+      "downstream": [],
+      "dashboards": [
+        "SP Ads Monitoring"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 4,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-05-12T08:11:22.289387Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "714": {
+      "name": "Campaign ACOS Summarized Trend Line",
+      "collectionId": 127,
+      "collectionName": "SP Ads",
+      "type": "dashboard component",
+      "domains": [
+        "advertising",
+        "finance",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [
+        403
+      ],
+      "downstream": [],
+      "dashboards": [
+        "SP Ads Monitoring"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 5,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-06-11T05:07:20.722099Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "715": {
+      "name": "SearchTerm Performance Table",
+      "collectionId": 127,
+      "collectionName": "SP Ads",
+      "type": "dashboard component",
+      "domains": [
+        "advertising",
+        "finance",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        703
+      ],
+      "downstream": [],
+      "dashboards": [
+        "SP Ads Monitoring"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 15,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-06-11T04:45:45.740221Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "718": {
+      "name": "Targeting Performance Table",
+      "collectionId": 127,
+      "collectionName": "SP Ads",
+      "type": "dashboard component",
+      "domains": [
+        "advertising",
+        "finance",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        704
+      ],
+      "downstream": [],
+      "dashboards": [
+        "SP Ads Monitoring"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 15,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-06-11T04:44:22.774023Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "719": {
+      "name": "List SB Keywords Model",
+      "collectionId": 123,
+      "collectionName": "Ads SB Models",
+      "type": "source model",
+      "domains": [
+        "advertising"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [
+        424
+      ],
+      "dashboards": [],
+      "risks": [
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 11,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-05-12T09:14:07.12974Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "720": {
+      "name": "SB Campaign CTR",
+      "collectionId": 129,
+      "collectionName": "SB Ads",
+      "type": "dashboard component",
+      "domains": [
+        "advertising"
+      ],
+      "display": "line",
+      "upstream": [
+        411
+      ],
+      "downstream": [],
+      "dashboards": [
+        "SB Ads Monitoring"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 5,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-05-12T09:31:23.177559Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "721": {
+      "name": "SB Campaign CTR Summarized Trend Line",
+      "collectionId": 129,
+      "collectionName": "SB Ads",
+      "type": "dashboard component",
+      "domains": [
+        "advertising"
+      ],
+      "display": "line",
+      "upstream": [
+        411
+      ],
+      "downstream": [],
+      "dashboards": [
+        "SB Ads Monitoring"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 4,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-05-12T09:33:47.450116Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "722": {
+      "name": "SB Campaign CTR Pie",
+      "collectionId": 129,
+      "collectionName": "SB Ads",
+      "type": "dashboard component",
+      "domains": [
+        "advertising"
+      ],
+      "display": "pie",
+      "upstream": [
+        411
+      ],
+      "downstream": [],
+      "dashboards": [
+        "SB Ads Monitoring"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 4,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-05-12T09:35:24.714741Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "723": {
+      "name": "SB Campaign CVR",
+      "collectionId": 129,
+      "collectionName": "SB Ads",
+      "type": "dashboard component",
+      "domains": [
+        "advertising"
+      ],
+      "display": "line",
+      "upstream": [
+        411
+      ],
+      "downstream": [],
+      "dashboards": [
+        "SB Ads Monitoring"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 5,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-05-12T13:25:30.781762Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "724": {
+      "name": "SB Campaign CVR Summarized Trend Line",
+      "collectionId": 129,
+      "collectionName": "SB Ads",
+      "type": "dashboard component",
+      "domains": [
+        "advertising"
+      ],
+      "display": "line",
+      "upstream": [
+        411
+      ],
+      "downstream": [],
+      "dashboards": [
+        "SB Ads Monitoring"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 4,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-05-12T09:41:01.600909Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "725": {
+      "name": "SB Campaign CVR Pie",
+      "collectionId": 129,
+      "collectionName": "SB Ads",
+      "type": "dashboard component",
+      "domains": [
+        "advertising"
+      ],
+      "display": "pie",
+      "upstream": [
+        411
+      ],
+      "downstream": [],
+      "dashboards": [
+        "SB Ads Monitoring"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 4,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-05-12T09:41:58.510237Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "726": {
+      "name": "SB Campaign ACOS",
+      "collectionId": 129,
+      "collectionName": "SB Ads",
+      "type": "dashboard component",
+      "domains": [
+        "advertising",
+        "finance",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [
+        411
+      ],
+      "downstream": [],
+      "dashboards": [
+        "SB Ads Monitoring"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 5,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-05-12T09:44:36.267884Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "727": {
+      "name": "SB Campaign ACOS Summarized Trend Line",
+      "collectionId": 129,
+      "collectionName": "SB Ads",
+      "type": "dashboard component",
+      "domains": [
+        "advertising",
+        "finance",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [
+        411
+      ],
+      "downstream": [],
+      "dashboards": [
+        "SB Ads Monitoring"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 4,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-05-12T09:45:18.795775Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "728": {
+      "name": "SB Campaign ACOS Pie",
+      "collectionId": 129,
+      "collectionName": "SB Ads",
+      "type": "dashboard component",
+      "domains": [
+        "advertising",
+        "finance",
+        "sales"
+      ],
+      "display": "pie",
+      "upstream": [
+        411
+      ],
+      "downstream": [],
+      "dashboards": [
+        "SB Ads Monitoring"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 4,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-05-12T09:46:02.862136Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "729": {
+      "name": "SB SearchTerm Performance Table",
+      "collectionId": 129,
+      "collectionName": "SB Ads",
+      "type": "dashboard component",
+      "domains": [
+        "advertising",
+        "finance",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        424
+      ],
+      "downstream": [],
+      "dashboards": [
+        "SB Ads Monitoring"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 16,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-06-04T11:01:14.09721Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "730": {
+      "name": "SB Targeting Performance Table",
+      "collectionId": 129,
+      "collectionName": "SB Ads",
+      "type": "dashboard component",
+      "domains": [
+        "advertising",
+        "finance",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        425
+      ],
+      "downstream": [],
+      "dashboards": [
+        "SB Ads Monitoring"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 14,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-06-05T02:34:04.20883Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "731": {
+      "name": "Targeting Negative Performance Table",
+      "collectionId": 127,
+      "collectionName": "SP Ads",
+      "type": "dashboard component",
+      "domains": [
+        "advertising",
+        "finance",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        704
+      ],
+      "downstream": [],
+      "dashboards": [
+        "SP Ads Monitoring"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 15,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-06-11T04:44:06.670124Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "732": {
+      "name": "SB Targeting Negative Performance Table",
+      "collectionId": 129,
+      "collectionName": "SB Ads",
+      "type": "dashboard component",
+      "domains": [
+        "advertising",
+        "finance",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        425
+      ],
+      "downstream": [],
+      "dashboards": [
+        "SB Ads Monitoring"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 14,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-06-04T13:02:46.34064Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "733": {
+      "name": "Reports Customer Returns Data Model",
+      "collectionId": 136,
+      "collectionName": "Returns",
+      "type": "source model",
+      "domains": [
+        "returns",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [
+        744,
+        781,
+        782,
+        783,
+        784,
+        785,
+        786,
+        787,
+        788,
+        789
+      ],
+      "dashboards": [],
+      "risks": [
+        "high reuse / change carefully",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 18,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-06-23T08:40:45.13024Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "742": {
+      "name": "V Settlement Model",
+      "collectionId": 144,
+      "collectionName": "Base",
+      "type": "source model",
+      "domains": [
+        "advertising",
+        "finance",
+        "replenishment",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        853
+      ],
+      "downstream": [
+        743,
+        745,
+        746,
+        751,
+        801,
+        896,
+        897,
+        902,
+        904
+      ],
+      "dashboards": [],
+      "risks": [
+        "high reuse / change carefully",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 43,
+      "dependencyDepth": 1,
+      "updatedAt": "2026-06-23T14:51:19.115861Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "743": {
+      "name": "Quantity Purchased By Order ID X SKU",
+      "collectionId": 144,
+      "collectionName": "Base",
+      "type": "table model",
+      "domains": [
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        742
+      ],
+      "downstream": [
+        745,
+        904
+      ],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 5,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-06-18T03:40:27.435168Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "744": {
+      "name": "Sellable Quantity from Returns By SKU X Order",
+      "collectionId": 144,
+      "collectionName": "Base",
+      "type": "question",
+      "domains": [
+        "returns",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [
+        733
+      ],
+      "downstream": [
+        745,
+        904
+      ],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 5,
+      "dependencyDepth": 1,
+      "updatedAt": "2026-06-23T08:39:30.358965Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "745": {
+      "name": "Store Profit By SKU X Order Model",
+      "collectionId": 144,
+      "collectionName": "Base",
+      "type": "source model",
+      "domains": [
+        "advertising",
+        "finance",
+        "logistics",
+        "production",
+        "replenishment",
+        "returns",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        621,
+        742,
+        743,
+        744
+      ],
+      "downstream": [
+        749,
+        750,
+        752,
+        888,
+        893,
+        902
+      ],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "high reuse / change carefully",
+        "many upstream dependencies",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 11,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-06-23T08:40:03.636035Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "746": {
+      "name": "Platform Advertisement Cost Over Time",
+      "collectionId": 144,
+      "collectionName": "Base",
+      "type": "question",
+      "domains": [
+        "advertising",
+        "finance",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        742
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 4,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-06-18T03:40:27.621575Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "747": {
+      "name": "Cumulative Sold Operating Performance (累计已售经营表现)",
+      "collectionId": 130,
+      "collectionName": "Finance",
+      "type": "dashboard component",
+      "domains": [
+        "finance",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [
+        904
+      ],
+      "downstream": [],
+      "dashboards": [
+        "Sold Contribution Profit Dashboard (已售贡献利润看板)"
+      ],
+      "risks": [
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 4,
+      "dependencyDepth": 3,
+      "updatedAt": "2026-06-24T08:20:44.471441Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "749": {
+      "name": "SKU-Level Cumulative Contribution Profit by SKU (SKU累计贡献利润)",
+      "collectionId": 130,
+      "collectionName": "Finance",
+      "type": "dashboard component",
+      "domains": [
+        "finance",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [
+        745
+      ],
+      "downstream": [],
+      "dashboards": [
+        "Sold Contribution Profit Dashboard (已售贡献利润看板)"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 3,
+      "updatedAt": "2026-06-18T05:35:19.94504Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "750": {
+      "name": "Parent ASIN-Level Cumulative Contribution Profit (Parent ASIN累计贡献利润)",
+      "collectionId": 130,
+      "collectionName": "Finance",
+      "type": "dashboard component",
+      "domains": [
+        "finance",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [
+        745
+      ],
+      "downstream": [],
+      "dashboards": [
+        "Sold Contribution Profit Dashboard (已售贡献利润看板)"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 3,
+      "updatedAt": "2026-06-18T05:35:46.329562Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "751": {
+      "name": "Profit X Cost Analysis SKU Pivot",
+      "collectionId": 144,
+      "collectionName": "Base",
+      "type": "question",
+      "domains": [
+        "finance",
+        "sales"
+      ],
+      "display": "pivot",
+      "upstream": [
+        742
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 8,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-06-18T03:40:27.437525Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "752": {
+      "name": "Store Profit Over Time New",
+      "collectionId": 131,
+      "collectionName": "Store Revenue",
+      "type": "question",
+      "domains": [
+        "finance",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [
+        745
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 4,
+      "dependencyDepth": 3,
+      "updatedAt": "2026-05-19T02:23:55.268213Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "754": {
+      "name": "Production Cost Over Time New",
+      "collectionId": 132,
+      "collectionName": "Production Costs",
+      "type": "question",
+      "domains": [
+        "finance",
+        "production",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [],
+      "downstream": [
+        888
+      ],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-06-11T02:30:53.188023Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "755": {
+      "name": "DH 船务小合同",
+      "collectionId": 119,
+      "collectionName": "订单/船务数据 (Cynthia)",
+      "type": "dashboard component",
+      "domains": [
+        "replenishment",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        836
+      ],
+      "downstream": [],
+      "dashboards": [
+        "DHM 合同"
+      ],
+      "risks": [
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 5,
+      "dependencyDepth": 1,
+      "updatedAt": "2026-05-29T06:40:13.912264Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "756": {
+      "name": "Shipping Cost Over Time New",
+      "collectionId": 133,
+      "collectionName": "Shipment Costs",
+      "type": "question",
+      "domains": [
+        "finance",
+        "logistics",
+        "replenishment",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [],
+      "downstream": [
+        888
+      ],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-06-10T11:04:52.843397Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "757": {
+      "name": "Shipping Cost Sum Over Time New",
+      "collectionId": 133,
+      "collectionName": "Shipment Costs",
+      "type": "question",
+      "domains": [
+        "finance",
+        "logistics",
+        "replenishment",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        585
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 1,
+      "updatedAt": "2026-06-10T06:48:07.314623Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "758": {
+      "name": "Production Cost Over Sum Time New",
+      "collectionId": 132,
+      "collectionName": "Production Costs",
+      "type": "native question",
+      "domains": [
+        "finance",
+        "production",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "native SQL without business description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "native",
+      "isNative": true,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-06-08T06:24:47.24017Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "761": {
+      "name": "List SP Keywords Model DISTINCT",
+      "collectionId": 122,
+      "collectionName": "Ads SP Models",
+      "type": "source model",
+      "domains": [
+        "advertising",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [
+        703,
+        704
+      ],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "native SQL without business description"
+      ],
+      "databaseId": 4,
+      "queryType": "native",
+      "isNative": true,
+      "isArchived": false,
+      "fieldCount": 15,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-05-19T05:53:06.491081Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "763": {
+      "name": "Targeting Performance Table Test Check",
+      "collectionId": 84,
+      "collectionName": "DCMS 开发测试",
+      "type": "question",
+      "domains": [
+        "advertising",
+        "finance",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        704
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 17,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-05-19T07:43:45.472477Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "776": {
+      "name": "Reports Flat File All Orders Data By Order Date General Hourly Model",
+      "collectionId": 134,
+      "collectionName": "Sales",
+      "type": "source model",
+      "domains": [
+        "logistics",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        853
+      ],
+      "downstream": [
+        476,
+        781,
+        784,
+        791,
+        793,
+        795,
+        796,
+        797,
+        798,
+        799,
+        800,
+        802,
+        807,
+        811,
+        841,
+        842,
+        843,
+        844,
+        851,
+        852,
+        870,
+        874,
+        877
+      ],
+      "dashboards": [],
+      "risks": [
+        "high reuse / change carefully",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 48,
+      "dependencyDepth": 1,
+      "updatedAt": "2026-06-12T03:50:36.960402Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "777": {
+      "name": "Parent SKU Natural Sales Daily Model",
+      "collectionId": 137,
+      "collectionName": "Natural Sales",
+      "type": "source model",
+      "domains": [
+        "advertising",
+        "finance",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [
+        778,
+        779,
+        780
+      ],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "native SQL without business description"
+      ],
+      "databaseId": 4,
+      "queryType": "native",
+      "isNative": true,
+      "isArchived": false,
+      "fieldCount": 19,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-06-04T08:35:00.971709Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "778": {
+      "name": "Bar - Natural sales",
+      "collectionId": 137,
+      "collectionName": "Natural Sales",
+      "type": "dashboard component",
+      "domains": [
+        "advertising",
+        "sales"
+      ],
+      "display": "bar",
+      "upstream": [
+        777
+      ],
+      "downstream": [],
+      "dashboards": [
+        "Natural Sales"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 1,
+      "updatedAt": "2026-05-26T02:04:55.925979Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "779": {
+      "name": "Combo - Natural Sales Daily Over Time",
+      "collectionId": 137,
+      "collectionName": "Natural Sales",
+      "type": "dashboard component",
+      "domains": [
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [
+        777
+      ],
+      "downstream": [],
+      "dashboards": [
+        "Natural Sales"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 4,
+      "dependencyDepth": 1,
+      "updatedAt": "2026-05-26T02:04:55.925482Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "780": {
+      "name": "Line - Natural Sales Daily By Parent SKU",
+      "collectionId": 137,
+      "collectionName": "Natural Sales",
+      "type": "dashboard component",
+      "domains": [
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [
+        777
+      ],
+      "downstream": [],
+      "dashboards": [
+        "Natural Sales"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 1,
+      "updatedAt": "2026-05-26T02:04:55.928801Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "781": {
+      "name": "Overall Refund Rate Over Time",
+      "collectionId": 136,
+      "collectionName": "Returns",
+      "type": "dashboard component",
+      "domains": [
+        "returns",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [
+        733,
+        776
+      ],
+      "downstream": [],
+      "dashboards": [
+        "Returns"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-05-22T10:32:07.832071Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "782": {
+      "name": "Color Returns",
+      "collectionId": 136,
+      "collectionName": "Returns",
+      "type": "dashboard component",
+      "domains": [
+        "production",
+        "replenishment",
+        "returns",
+        "sales"
+      ],
+      "display": "pie",
+      "upstream": [
+        733
+      ],
+      "downstream": [],
+      "dashboards": [
+        "Returns"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 13,
+      "dependencyDepth": 1,
+      "updatedAt": "2026-05-22T10:02:02.792129Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "783": {
+      "name": "Return Parent ASIN Pie",
+      "collectionId": 136,
+      "collectionName": "Returns",
+      "type": "question",
+      "domains": [
+        "production",
+        "replenishment",
+        "returns",
+        "sales"
+      ],
+      "display": "pie",
+      "upstream": [
+        733
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 13,
+      "dependencyDepth": 1,
+      "updatedAt": "2026-05-22T10:03:02.951381Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "784": {
+      "name": "Return Rate By SKU",
+      "collectionId": 136,
+      "collectionName": "Returns",
+      "type": "dashboard component",
+      "domains": [
+        "returns",
+        "sales"
+      ],
+      "display": "pie",
+      "upstream": [
+        733,
+        776
+      ],
+      "downstream": [],
+      "dashboards": [
+        "Returns"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 6,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-06-12T08:28:35.830805Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "785": {
+      "name": "Return Reason Pie",
+      "collectionId": 136,
+      "collectionName": "Returns",
+      "type": "dashboard component",
+      "domains": [
+        "production",
+        "replenishment",
+        "returns",
+        "sales"
+      ],
+      "display": "pie",
+      "upstream": [
+        733
+      ],
+      "downstream": [],
+      "dashboards": [
+        "Returns"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 13,
+      "dependencyDepth": 1,
+      "updatedAt": "2026-05-22T10:09:48.149598Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "786": {
+      "name": "Returns By Disposition Type",
+      "collectionId": 136,
+      "collectionName": "Returns",
+      "type": "dashboard component",
+      "domains": [
+        "returns",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [
+        733
+      ],
+      "downstream": [],
+      "dashboards": [
+        "Returns"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 1,
+      "updatedAt": "2026-05-22T10:10:22.32276Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "787": {
+      "name": "Return SKU Pie",
+      "collectionId": 136,
+      "collectionName": "Returns",
+      "type": "question",
+      "domains": [
+        "returns",
+        "sales"
+      ],
+      "display": "pie",
+      "upstream": [
+        733
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 2,
+      "dependencyDepth": 1,
+      "updatedAt": "2026-05-22T10:11:18.186273Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "788": {
+      "name": "Returns Reason Pivot",
+      "collectionId": 136,
+      "collectionName": "Returns",
+      "type": "dashboard component",
+      "domains": [
+        "returns",
+        "sales"
+      ],
+      "display": "pivot",
+      "upstream": [
+        733
+      ],
+      "downstream": [],
+      "dashboards": [
+        "Returns"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 6,
+      "dependencyDepth": 1,
+      "updatedAt": "2026-05-22T10:12:06.617446Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "789": {
+      "name": "Sellable Quantity from Returns By SKU X Order",
+      "collectionId": 136,
+      "collectionName": "Returns",
+      "type": "question",
+      "domains": [
+        "returns",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [
+        733
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 1,
+      "updatedAt": "2026-05-22T10:12:56.02006Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "791": {
+      "name": "Sales $ By Product Over Time",
+      "collectionId": 134,
+      "collectionName": "Sales",
+      "type": "question",
+      "domains": [
+        "logistics",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [
+        776
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-05-26T02:26:40.856034Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "792": {
+      "name": "DH 工厂补货表 - 16 sku",
+      "collectionId": 84,
+      "collectionName": "DCMS 开发测试",
+      "type": "question",
+      "domains": [
+        "finance",
+        "inventory",
+        "production",
+        "replenishment",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        553,
+        554
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 7,
+      "dependencyDepth": 1,
+      "updatedAt": "2026-05-25T10:08:15.209644Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "793": {
+      "name": "Sales U By Product Over Time",
+      "collectionId": 134,
+      "collectionName": "Sales",
+      "type": "dashboard component",
+      "domains": [
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [
+        776
+      ],
+      "downstream": [],
+      "dashboards": [
+        "Store Monitor Dashboard"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-05-26T02:26:53.652859Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "795": {
+      "name": "出售地区 US",
+      "collectionId": 134,
+      "collectionName": "Sales",
+      "type": "dashboard component",
+      "domains": [
+        "sales"
+      ],
+      "display": "map",
+      "upstream": [
+        776
+      ],
+      "downstream": [],
+      "dashboards": [
+        "Store Monitor Dashboard"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 2,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-06-04T08:06:19.982282Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "796": {
+      "name": "产品订单SKU分布 Pie (NO VINE)",
+      "collectionId": 134,
+      "collectionName": "Sales",
+      "type": "dashboard component",
+      "domains": [
+        "sales"
+      ],
+      "display": "pie",
+      "upstream": [
+        776
+      ],
+      "downstream": [],
+      "dashboards": [
+        "Store Monitor Dashboard"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-05-26T02:27:21.143763Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "797": {
+      "name": "产品订单曲线 (NO VINE) Sales Line",
+      "collectionId": 134,
+      "collectionName": "Sales",
+      "type": "dashboard component",
+      "domains": [
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [
+        776
+      ],
+      "downstream": [],
+      "dashboards": [
+        "Store Monitor Dashboard"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-05-26T02:27:31.088494Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "798": {
+      "name": "产品订单曲线 Per SKU",
+      "collectionId": 134,
+      "collectionName": "Sales",
+      "type": "question",
+      "domains": [
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [
+        776
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-05-26T02:27:38.80809Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "799": {
+      "name": "产品销售曲线 By Day",
+      "collectionId": 134,
+      "collectionName": "Sales",
+      "type": "question",
+      "domains": [
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [
+        776
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 4,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-05-26T03:21:13.921267Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "800": {
+      "name": "实时产品销售曲线 (每小时更新)",
+      "collectionId": 134,
+      "collectionName": "Sales",
+      "type": "dashboard component",
+      "domains": [
+        "sales"
+      ],
+      "display": "bar",
+      "upstream": [
+        776
+      ],
+      "downstream": [],
+      "dashboards": [
+        "Store Monitor Dashboard"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-05-26T02:35:15.291294Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "801": {
+      "name": "店铺 实际销售总金额",
+      "collectionId": 134,
+      "collectionName": "Sales",
+      "type": "dashboard component",
+      "domains": [
+        "finance",
+        "sales"
+      ],
+      "display": "scalar",
+      "upstream": [
+        742
+      ],
+      "downstream": [],
+      "dashboards": [
+        "Store Monitor Dashboard"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 1,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-06-05T06:52:59.452311Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "802": {
+      "name": "店铺 实际销量",
+      "collectionId": 134,
+      "collectionName": "Sales",
+      "type": "dashboard component",
+      "domains": [
+        "logistics",
+        "sales"
+      ],
+      "display": "scalar",
+      "upstream": [
+        776
+      ],
+      "downstream": [],
+      "dashboards": [
+        "Store Monitor Dashboard"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 1,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-05-26T13:30:01.116946Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "803": {
+      "name": "SalesAndTrafficByDate Model",
+      "collectionId": 134,
+      "collectionName": "Sales",
+      "type": "source model",
+      "domains": [
+        "finance",
+        "returns",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        853
+      ],
+      "downstream": [
+        840,
+        845,
+        846,
+        847,
+        848,
+        849
+      ],
+      "dashboards": [],
+      "risks": [
+        "high reuse / change carefully",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 69,
+      "dependencyDepth": 1,
+      "updatedAt": "2026-06-05T02:43:46.008419Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "805": {
+      "name": "Reports Get Fba Myi All Inventory Model",
+      "collectionId": 138,
+      "collectionName": "Inventory",
+      "type": "source model",
+      "domains": [
+        "inventory",
+        "returns",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        853
+      ],
+      "downstream": [
+        806
+      ],
+      "dashboards": [],
+      "risks": [
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 36,
+      "dependencyDepth": 1,
+      "updatedAt": "2026-06-15T08:24:57.155517Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "806": {
+      "name": "库存表",
+      "collectionId": 138,
+      "collectionName": "Inventory",
+      "type": "table model",
+      "domains": [
+        "inventory",
+        "returns",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        805
+      ],
+      "downstream": [
+        811,
+        877
+      ],
+      "dashboards": [
+        "补货面板"
+      ],
+      "risks": [
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 30,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-05-26T09:24:29.647646Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "807": {
+      "name": "30 Days Sales",
+      "collectionId": 138,
+      "collectionName": "Inventory",
+      "type": "table model",
+      "domains": [
+        "inventory",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        776
+      ],
+      "downstream": [
+        811,
+        877
+      ],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 5,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-06-12T03:59:28.033274Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "809": {
+      "name": "Reports Merchant Listings All Data Model",
+      "collectionId": 138,
+      "collectionName": "Inventory",
+      "type": "source model",
+      "domains": [
+        "finance",
+        "inventory",
+        "logistics",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 37,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-06-05T07:20:42.617504Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "811": {
+      "name": "补货 Fulfillable Inventory Chart",
+      "collectionId": 138,
+      "collectionName": "Inventory",
+      "type": "question",
+      "domains": [
+        "finance",
+        "inventory",
+        "production",
+        "replenishment",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        776,
+        806,
+        807
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 27,
+      "dependencyDepth": 3,
+      "updatedAt": "2026-06-09T07:39:23.372632Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "814": {
+      "name": "Todd_Test_DH 合同",
+      "collectionId": 82,
+      "collectionName": "todd li's Personal Collection",
+      "type": "question",
+      "domains": [
+        "production",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 9,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-05-28T06:18:41.451783Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "831": {
+      "name": "FBA Shipment 表 Imperial Unit (US) - Duplicate",
+      "collectionId": 82,
+      "collectionName": "todd li's Personal Collection",
+      "type": "native question",
+      "domains": [
+        "finance",
+        "inventory",
+        "logistics",
+        "production",
+        "replenishment",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "native SQL without business description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "native",
+      "isNative": true,
+      "isArchived": false,
+      "fieldCount": 4,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-05-28T02:48:22.111951Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "832": {
+      "name": "Todd_Test_箱单/出货",
+      "collectionId": 82,
+      "collectionName": "todd li's Personal Collection",
+      "type": "question",
+      "domains": [
+        "production",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 14,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-05-28T06:19:02.570847Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "835": {
+      "name": "VS 箱单 By SKU",
+      "collectionId": 119,
+      "collectionName": "订单/船务数据 (Cynthia)",
+      "type": "table model",
+      "domains": [
+        "replenishment",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        836
+      ],
+      "downstream": [
+        837
+      ],
+      "dashboards": [
+        "VS 箱单"
+      ],
+      "risks": [
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 17,
+      "dependencyDepth": 1,
+      "updatedAt": "2026-05-29T07:02:31.027636Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "836": {
+      "name": "Shipment Pricing Model (UI)",
+      "collectionId": 119,
+      "collectionName": "订单/船务数据 (Cynthia)",
+      "type": "source model",
+      "domains": [
+        "production",
+        "replenishment",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [
+        685,
+        700,
+        755,
+        835
+      ],
+      "dashboards": [],
+      "risks": [
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 10,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-05-29T06:39:32.896219Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "837": {
+      "name": "VS 箱单 By Product Group",
+      "collectionId": 119,
+      "collectionName": "订单/船务数据 (Cynthia)",
+      "type": "dashboard component",
+      "domains": [
+        "replenishment",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        835
+      ],
+      "downstream": [],
+      "dashboards": [
+        "VS 箱单"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 17,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-05-29T06:16:26.443715Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "838": {
+      "name": "缺Pricing 的 SKU",
+      "collectionId": 119,
+      "collectionName": "订单/船务数据 (Cynthia)",
+      "type": "native question",
+      "domains": [
+        "production",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "native SQL without business description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "native",
+      "isNative": true,
+      "isArchived": false,
+      "fieldCount": 1,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-05-29T07:51:13.334098Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "840": {
+      "name": "产品页流量+销售转化率 Over Time",
+      "collectionId": 134,
+      "collectionName": "Sales",
+      "type": "dashboard component",
+      "domains": [
+        "returns",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [
+        803
+      ],
+      "downstream": [],
+      "dashboards": [
+        "Store Monitor Dashboard"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 6,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-05-29T11:11:05.885626Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "841": {
+      "name": "Amazon Parent SKU 销售比例",
+      "collectionId": 134,
+      "collectionName": "Sales",
+      "type": "question",
+      "domains": [
+        "sales"
+      ],
+      "display": "pie",
+      "upstream": [
+        776
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 2,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-05-29T15:25:57.69794Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "842": {
+      "name": "Amazon 产品销售比例",
+      "collectionId": 134,
+      "collectionName": "Sales",
+      "type": "question",
+      "domains": [
+        "sales"
+      ],
+      "display": "pie",
+      "upstream": [
+        776
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 2,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-05-29T15:29:48.420964Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "843": {
+      "name": "Amazon 产品销售比例 Pie By Parent Asin X Color X Size",
+      "collectionId": 134,
+      "collectionName": "Sales",
+      "type": "question",
+      "domains": [
+        "sales"
+      ],
+      "display": "pie",
+      "upstream": [
+        776
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 4,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-05-29T15:31:21.297779Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "844": {
+      "name": "Amazon 产品销售比例 Pie By Parent Asin X Size X Color",
+      "collectionId": 134,
+      "collectionName": "Sales",
+      "type": "question",
+      "domains": [
+        "sales"
+      ],
+      "display": "pie",
+      "upstream": [
+        776
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 4,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-05-29T15:33:12.860496Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "845": {
+      "name": "SalesAndTrafficByDate Model, Sum of TrafficByDate.sessions",
+      "collectionId": 134,
+      "collectionName": "Sales",
+      "type": "source model",
+      "domains": [
+        "sales"
+      ],
+      "display": "scalar",
+      "upstream": [
+        803
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 1,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-05-29T15:36:01.058137Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "846": {
+      "name": "店铺 总用户访问次数",
+      "collectionId": 134,
+      "collectionName": "Sales",
+      "type": "dashboard component",
+      "domains": [
+        "sales"
+      ],
+      "display": "scalar",
+      "upstream": [
+        803
+      ],
+      "downstream": [],
+      "dashboards": [
+        "Store Monitor Dashboard"
+      ],
+      "risks": [
+        "generic aggregation field names"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 1,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-05-29T15:39:01.710878Z",
+      "description": "From 2026.5.5",
+      "hasFullDescription": false
+    },
+    "847": {
+      "name": "店铺 用户量",
+      "collectionId": 134,
+      "collectionName": "Sales",
+      "type": "dashboard component",
+      "domains": [
+        "sales"
+      ],
+      "display": "area",
+      "upstream": [
+        803
+      ],
+      "downstream": [],
+      "dashboards": [
+        "Store Monitor Dashboard"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-05-29T15:40:48.415154Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "848": {
+      "name": "店铺 访问次数",
+      "collectionId": 134,
+      "collectionName": "Sales",
+      "type": "dashboard component",
+      "domains": [
+        "sales"
+      ],
+      "display": "area",
+      "upstream": [
+        803
+      ],
+      "downstream": [],
+      "dashboards": [
+        "Store Monitor Dashboard"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-05-29T15:42:06.201034Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "849": {
+      "name": "店铺 访问/购买 率",
+      "collectionId": 134,
+      "collectionName": "Sales",
+      "type": "dashboard component",
+      "domains": [
+        "returns",
+        "sales"
+      ],
+      "display": "scalar",
+      "upstream": [
+        803
+      ],
+      "downstream": [],
+      "dashboards": [
+        "Store Monitor Dashboard"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 1,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-05-29T15:44:35.620212Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "851": {
+      "name": "7 Days Sales",
+      "collectionId": 138,
+      "collectionName": "Inventory",
+      "type": "question",
+      "domains": [
+        "inventory",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        776
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 5,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-06-12T04:22:11.50279Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "852": {
+      "name": "出售地区 CA",
+      "collectionId": 134,
+      "collectionName": "Sales",
+      "type": "dashboard component",
+      "domains": [
+        "sales"
+      ],
+      "display": "map",
+      "upstream": [
+        776
+      ],
+      "downstream": [],
+      "dashboards": [
+        "Store Monitor Dashboard"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 2,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-06-16T05:32:48.527575Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "853": {
+      "name": "Exchange Rates",
+      "collectionId": 144,
+      "collectionName": "Base",
+      "type": "source model",
+      "domains": [
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [
+        403,
+        411,
+        424,
+        425,
+        703,
+        704,
+        742,
+        776,
+        803,
+        805
+      ],
+      "dashboards": [],
+      "risks": [
+        "high reuse / change carefully",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 5,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-06-18T03:40:27.434554Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "866": {
+      "name": "test",
+      "collectionId": null,
+      "collectionName": "Unfiled / Unknown",
+      "type": "question",
+      "domains": [
+        "logistics",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 38,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-06-08T10:12:20.232137Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "870": {
+      "name": "SKU First Sale Date",
+      "collectionId": 143,
+      "collectionName": "Sales Forecast",
+      "type": "table model",
+      "domains": [
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        776
+      ],
+      "downstream": [
+        877
+      ],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-06-15T07:53:22.506939Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "871": {
+      "name": "Cumulative Settlement & Inventory Investment Trend (累计结算与库存投入趋势)",
+      "collectionId": 130,
+      "collectionName": "Finance",
+      "type": "dashboard component",
+      "domains": [
+        "advertising",
+        "finance",
+        "inventory",
+        "logistics",
+        "production",
+        "replenishment",
+        "returns",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [
+        888
+      ],
+      "downstream": [],
+      "dashboards": [
+        "Operating Performance and ROI Dashboard (经营表现与ROI看板)"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "mixed finance and inventory timing"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 6,
+      "dependencyDepth": 4,
+      "updatedAt": "2026-06-24T09:10:48.790673Z",
+      "description": "业务口径： 这张图用于观察“销售结算净额”和“库存相关投入”的累计关系，偏资金占用和库存投入视角。它不是已售经营利润表，不要和已售经营表现类图表里的 Product Sales、Total Cost、Net Profit、ROI 直接混用。 每条线的含义： 1. Settlement Net Amount 表示累计销售结算净额。它不是纯商品销售额，也不是订单销售本金。它是销售相关结算项目的净结果，可能已经包含商品销售、退款、促销折扣、平台销售佣金、FBA 履约费、补偿款等正负影响。 不要把它理解成 Product Sales。Product Sales 是商品销售本金；Settlement N…",
+      "hasFullDescription": true
+    },
+    "873": {
+      "name": "发货 FBA Total Inventory Chart 2.0",
+      "collectionId": 138,
+      "collectionName": "Inventory",
+      "type": "table model",
+      "domains": [
+        "inventory",
+        "logistics",
+        "production",
+        "replenishment",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        878
+      ],
+      "downstream": [
+        901
+      ],
+      "dashboards": [
+        "补货面板"
+      ],
+      "risks": [],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 37,
+      "dependencyDepth": 5,
+      "updatedAt": "2026-06-24T06:31:45.242555Z",
+      "description": "未来销量目前支持2年，即wos_now兜底为100",
+      "hasFullDescription": false
+    },
+    "874": {
+      "name": "产品订单曲线 Per SKU (NO VINE)",
+      "collectionId": 134,
+      "collectionName": "Sales",
+      "type": "dashboard component",
+      "domains": [
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [
+        776
+      ],
+      "downstream": [],
+      "dashboards": [
+        "补货面板"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-06-12T03:34:10.104145Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "875": {
+      "name": "Wps Sales Forecast",
+      "collectionId": 143,
+      "collectionName": "Sales Forecast",
+      "type": "question",
+      "domains": [
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 11,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-06-15T07:53:05.732359Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "876": {
+      "name": "Wps Sales Forecast By Day",
+      "collectionId": 143,
+      "collectionName": "Sales Forecast",
+      "type": "table model",
+      "domains": [
+        "inventory",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [
+        878,
+        879
+      ],
+      "dashboards": [],
+      "risks": [],
+      "databaseId": 4,
+      "queryType": "native",
+      "isNative": true,
+      "isArchived": false,
+      "fieldCount": 11,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-06-15T07:53:05.714591Z",
+      "description": "预测日销表：基于 wps_sales_forecast 的 start_date 和 end_date，将每条预测记录展开为每日一行，用于后续与库存表按 SKU、店铺、市场和日期进行 Join，计算未来区间销量、WOS、预计库存和补货数量。 当同一个 SKU、store、marketplace 在同一天存在多条重叠预测时，只保留优先级最高的一条记录；如果优先级相同，则保留 id 最新的一条。",
+      "hasFullDescription": false
+    },
+    "877": {
+      "name": "发货基础表",
+      "collectionId": 143,
+      "collectionName": "Sales Forecast",
+      "type": "table model",
+      "domains": [
+        "inventory",
+        "logistics",
+        "production",
+        "replenishment",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        776,
+        806,
+        807,
+        870
+      ],
+      "downstream": [
+        878,
+        879
+      ],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "many upstream dependencies",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 30,
+      "dependencyDepth": 3,
+      "updatedAt": "2026-06-16T07:49:54.608629Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "878": {
+      "name": "发货 Forecast WOS Summary",
+      "collectionId": 143,
+      "collectionName": "Sales Forecast",
+      "type": "table model",
+      "domains": [
+        "inventory",
+        "logistics",
+        "production",
+        "replenishment",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        876,
+        877,
+        899,
+        900
+      ],
+      "downstream": [
+        873
+      ],
+      "dashboards": [],
+      "risks": [
+        "many upstream dependencies",
+        "missing description",
+        "native SQL without business description"
+      ],
+      "databaseId": 4,
+      "queryType": "native",
+      "isNative": true,
+      "isArchived": false,
+      "fieldCount": 37,
+      "dependencyDepth": 4,
+      "updatedAt": "2026-06-24T06:26:25.487826Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "879": {
+      "name": "未来有效日销model",
+      "collectionId": 143,
+      "collectionName": "Sales Forecast",
+      "type": "source model",
+      "domains": [
+        "replenishment",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        876,
+        877
+      ],
+      "downstream": [
+        880
+      ],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "native SQL without business description"
+      ],
+      "databaseId": 4,
+      "queryType": "native",
+      "isNative": true,
+      "isArchived": false,
+      "fieldCount": 11,
+      "dependencyDepth": 4,
+      "updatedAt": "2026-06-22T12:50:37.699245Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "880": {
+      "name": "未来日销趋势",
+      "collectionId": 143,
+      "collectionName": "Sales Forecast",
+      "type": "question",
+      "domains": [
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [
+        879
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 11,
+      "dependencyDepth": 5,
+      "updatedAt": "2026-06-15T08:35:21.397089Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "885": {
+      "name": "Shipping Cost Over Time By Sku",
+      "collectionId": 133,
+      "collectionName": "Shipment Costs",
+      "type": "question",
+      "domains": [
+        "finance",
+        "logistics",
+        "replenishment",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [],
+      "downstream": [
+        893,
+        902
+      ],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 4,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-06-16T09:05:57.476045Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "886": {
+      "name": "Production Cost Over Time By Sku",
+      "collectionId": 132,
+      "collectionName": "Production Costs",
+      "type": "question",
+      "domains": [
+        "finance",
+        "production",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [],
+      "downstream": [
+        893,
+        902
+      ],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 4,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-06-16T09:06:23.126963Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "887": {
+      "name": "SKU-Level Monthly ROI and Expense Structure (SKU月度ROI与成本结构)",
+      "collectionId": 130,
+      "collectionName": "Finance",
+      "type": "question",
+      "domains": [
+        "advertising",
+        "finance",
+        "logistics",
+        "production",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [
+        893
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 11,
+      "dependencyDepth": 4,
+      "updatedAt": "2026-06-18T03:22:46.31828Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "888": {
+      "name": "Actual Store Revenue X Production & Shipment Costs Over Time Model",
+      "collectionId": 144,
+      "collectionName": "Base",
+      "type": "source model",
+      "domains": [
+        "advertising",
+        "finance",
+        "logistics",
+        "production",
+        "replenishment",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        745,
+        754,
+        756
+      ],
+      "downstream": [
+        871
+      ],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "native SQL without business description"
+      ],
+      "databaseId": 4,
+      "queryType": "native",
+      "isNative": true,
+      "isArchived": false,
+      "fieldCount": 6,
+      "dependencyDepth": 3,
+      "updatedAt": "2026-06-18T03:40:27.863976Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "893": {
+      "name": "ROI Per Sku Base Model",
+      "collectionId": 144,
+      "collectionName": "Base",
+      "type": "source model",
+      "domains": [
+        "advertising",
+        "finance",
+        "logistics",
+        "production",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        745,
+        885,
+        886
+      ],
+      "downstream": [
+        887,
+        895
+      ],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "native SQL without business description"
+      ],
+      "databaseId": 4,
+      "queryType": "native",
+      "isNative": true,
+      "isArchived": false,
+      "fieldCount": 7,
+      "dependencyDepth": 3,
+      "updatedAt": "2026-06-18T03:40:27.890659Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "895": {
+      "name": "SKU-Level Cumulative ROI and Expense Structure (SKU累计ROI与成本结构趋势)",
+      "collectionId": 130,
+      "collectionName": "Finance",
+      "type": "question",
+      "domains": [
+        "advertising",
+        "finance",
+        "logistics",
+        "production",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [
+        893
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 10,
+      "dependencyDepth": 4,
+      "updatedAt": "2026-06-18T05:36:52.403448Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "896": {
+      "name": "Amazon Settlement Cost Breakdown (亚马逊结算成本分析表)",
+      "collectionId": 130,
+      "collectionName": "Finance",
+      "type": "question",
+      "domains": [
+        "advertising",
+        "finance",
+        "inventory",
+        "logistics",
+        "returns",
+        "sales"
+      ],
+      "display": "pivot",
+      "upstream": [
+        742
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-06-23T05:37:41.865921Z",
+      "description": "本表用于查看 Amazon Settlement 按 category / sub_category 汇总后的收入、费用和其他结算项。金额字段使用 USD 口径；正数通常表示收入、补偿或贷项，负数通常表示费用、退款、扣款或税金代扣。category 为空的行是按 sub_category 汇总的小计。 Subcategory 中文对照： | sub_category | 中文含义 | 说明 | |---|---|---| | product_sales | 商品销售额 | 买家支付的商品销售收入，不含后续费用扣减。 | | product_sales_tax | 商品销售税 | 商品销售相关税…",
+      "hasFullDescription": true
+    },
+    "897": {
+      "name": "SKU Expense Mix Trend (SKU费用结构趋势)",
+      "collectionId": 113,
+      "collectionName": "Lim Wang's Personal Collection",
+      "type": "question",
+      "domains": [
+        "finance",
+        "inventory",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [
+        742
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 13,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-06-23T05:13:39.170163Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "898": {
+      "name": "SKU Controllable Expense-to-Sales Ratio Trend (SKU可控费用销售占比趋势)",
+      "collectionId": 113,
+      "collectionName": "Lim Wang's Personal Collection",
+      "type": "question",
+      "domains": [
+        "advertising",
+        "finance",
+        "inventory",
+        "logistics",
+        "production",
+        "returns",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [
+        902
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 26,
+      "dependencyDepth": 4,
+      "updatedAt": "2026-06-23T05:01:56.687604Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "899": {
+      "name": "Wps Shipment Model",
+      "collectionId": 143,
+      "collectionName": "Sales Forecast",
+      "type": "source model",
+      "domains": [
+        "finance",
+        "logistics",
+        "production",
+        "replenishment",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [
+        878
+      ],
+      "dashboards": [],
+      "risks": [
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 17,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-06-22T10:41:08.518091Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "900": {
+      "name": "Wps Shipment Items Model",
+      "collectionId": 143,
+      "collectionName": "Sales Forecast",
+      "type": "source model",
+      "domains": [
+        "finance",
+        "logistics",
+        "production",
+        "replenishment",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [],
+      "downstream": [
+        878
+      ],
+      "dashboards": [],
+      "risks": [
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 40,
+      "dependencyDepth": 0,
+      "updatedAt": "2026-06-22T10:41:22.789847Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "901": {
+      "name": "工厂补货表2.0",
+      "collectionId": 138,
+      "collectionName": "Inventory",
+      "type": "dashboard component",
+      "domains": [
+        "inventory",
+        "production",
+        "replenishment",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        873
+      ],
+      "downstream": [],
+      "dashboards": [
+        "补货面板"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 32,
+      "dependencyDepth": 6,
+      "updatedAt": "2026-06-22T12:46:03.406013Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "902": {
+      "name": "SKU Controllable Cost Source (SKU可控成本分析底表)",
+      "collectionId": 113,
+      "collectionName": "Lim Wang's Personal Collection",
+      "type": "source model",
+      "domains": [
+        "advertising",
+        "finance",
+        "inventory",
+        "logistics",
+        "production",
+        "returns",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        742,
+        745,
+        885,
+        886
+      ],
+      "downstream": [
+        898
+      ],
+      "dashboards": [],
+      "risks": [
+        "many upstream dependencies",
+        "missing description",
+        "native SQL without business description"
+      ],
+      "databaseId": 4,
+      "queryType": "native",
+      "isNative": true,
+      "isArchived": false,
+      "fieldCount": 15,
+      "dependencyDepth": 3,
+      "updatedAt": "2026-06-23T04:32:05.998849Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "904": {
+      "name": "Sold Operating Performance Source (已售经营表现底表)",
+      "collectionId": 144,
+      "collectionName": "Base",
+      "type": "source model",
+      "domains": [
+        "advertising",
+        "finance",
+        "inventory",
+        "logistics",
+        "production",
+        "replenishment",
+        "returns",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        621,
+        742,
+        743,
+        744
+      ],
+      "downstream": [
+        747,
+        905,
+        906,
+        910,
+        911,
+        912
+      ],
+      "dashboards": [],
+      "risks": [
+        "high reuse / change carefully",
+        "many upstream dependencies"
+      ],
+      "databaseId": 4,
+      "queryType": "native",
+      "isNative": true,
+      "isArchived": false,
+      "fieldCount": 29,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-06-24T07:50:46.698489Z",
+      "description": "业务口径（已修正 2026-06-24）： 1. row_type = order_level 表示可以明确归属到订单和 SKU 的已售经营行。它来自 Amazon settlement 的订单级 revenue/cost 数据，并补充 SKU 单件生产成本、单件物流成本和广告分摊成本。 2. row_type = uncovered_platform_cost 表示无法明确归属到订单/SKU 的平台级费用。这些费用不强行分摊到 SKU，而是单独保留。 3. product_sales_usd 是商品销售本金汇总，只表示商品销售额，不扣 Amazon 费用、广告或产品成本。 4. amount…",
+      "hasFullDescription": true
+    },
+    "905": {
+      "name": "Cumulative Cost Structure (累计成本结构)",
+      "collectionId": 130,
+      "collectionName": "Finance",
+      "type": "question",
+      "domains": [
+        "advertising",
+        "finance",
+        "inventory",
+        "logistics",
+        "replenishment",
+        "returns",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [
+        904
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 14,
+      "dependencyDepth": 3,
+      "updatedAt": "2026-06-24T08:43:58.806559Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "906": {
+      "name": "Cost Structure Source (成本结构底表)",
+      "collectionId": 144,
+      "collectionName": "Base",
+      "type": "source model",
+      "domains": [
+        "advertising",
+        "finance",
+        "inventory",
+        "logistics",
+        "replenishment",
+        "returns",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        904
+      ],
+      "downstream": [
+        907,
+        908,
+        909
+      ],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "native SQL without business description"
+      ],
+      "databaseId": 4,
+      "queryType": "native",
+      "isNative": true,
+      "isArchived": false,
+      "fieldCount": 7,
+      "dependencyDepth": 3,
+      "updatedAt": "2026-06-24T05:41:18.244779Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "907": {
+      "name": "Monthly Cost Mix Trend (月度成本占比趋势)",
+      "collectionId": 130,
+      "collectionName": "Finance",
+      "type": "question",
+      "domains": [
+        "finance",
+        "sales"
+      ],
+      "display": "area",
+      "upstream": [
+        906
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 4,
+      "updatedAt": "2026-06-24T08:43:58.787986Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "908": {
+      "name": "Total Cost Mix (总成本占比)",
+      "collectionId": 130,
+      "collectionName": "Finance",
+      "type": "question",
+      "domains": [
+        "finance",
+        "sales"
+      ],
+      "display": "pie",
+      "upstream": [
+        906
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 2,
+      "dependencyDepth": 4,
+      "updatedAt": "2026-06-24T08:43:58.793699Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "909": {
+      "name": "Monthly Cost MoM Growth Trend (月度成本环比增幅趋势)",
+      "collectionId": 130,
+      "collectionName": "Finance",
+      "type": "question",
+      "domains": [
+        "advertising",
+        "finance",
+        "inventory",
+        "logistics",
+        "replenishment",
+        "returns",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [
+        906
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 25,
+      "dependencyDepth": 4,
+      "updatedAt": "2026-06-24T08:43:58.921574Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "910": {
+      "name": "Cumulative Sold Operating ROI Trend (累计已售经营ROI趋势)",
+      "collectionId": 130,
+      "collectionName": "Finance",
+      "type": "question",
+      "domains": [
+        "finance",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [
+        904
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 4,
+      "dependencyDepth": 3,
+      "updatedAt": "2026-06-24T07:02:48.63647Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "911": {
+      "name": "Monthly Sold Operating ROI Trend (月度已售经营ROI趋势)",
+      "collectionId": 130,
+      "collectionName": "Finance",
+      "type": "question",
+      "domains": [
+        "finance",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [
+        904
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 4,
+      "dependencyDepth": 3,
+      "updatedAt": "2026-06-24T08:01:27.181256Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "912": {
+      "name": "Monthly Sold Operating ROI MoM Change (月度已售经营ROI环比变化)",
+      "collectionId": 130,
+      "collectionName": "Finance",
+      "type": "question",
+      "domains": [
+        "finance",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [
+        904
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 5,
+      "dependencyDepth": 3,
+      "updatedAt": "2026-06-24T08:15:11.37713Z",
+      "description": "",
+      "hasFullDescription": false
+    }
+  }
+}
