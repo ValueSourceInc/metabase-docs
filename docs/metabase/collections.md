@@ -1,7 +1,5 @@
 # Metabase Collections
 
-Generated at: 2026-06-25T03:02:29.267Z
-
 ## Tree View
 
 ```

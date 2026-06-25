@@ -741,8 +741,6 @@ function renderCollections(snapshot: MetabaseSnapshot): string {
   const lines: string[] = [
     "# Metabase Collections",
     "",
-    `Generated at: ${snapshot.generatedAt}`,
-    "",
     "## Tree View",
     "",
     "```",
@@ -946,7 +944,6 @@ function renderIndexJson(snapshot: MetabaseSnapshot): Record<string, unknown> {
   }
 
   return {
-    generatedAt: snapshot.generatedAt,
     databaseIds: snapshot.databaseIds,
     summary: {
       collections: snapshot.collections.length,
@@ -971,7 +968,6 @@ function renderDepsJson(snapshot: MetabaseSnapshot): Record<string, unknown> {
     };
   }
   return {
-    generatedAt: snapshot.generatedAt,
     deps,
   };
 }

@@ -1,6 +1,6 @@
 # Metabase Knowledge Base
 
-Generated at: 2026-06-25T03:02:29.267Z
+Generated at: 2026-06-25T03:08:22.853Z
 
 This folder is generated from Metabase metadata. It provides navigation and business context for AI-assisted Metabase work.
 
