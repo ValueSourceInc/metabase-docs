@@ -33,52 +33,14 @@ separate logs. One file, one source of truth.
 
 ## Reading Strategy (Generated Docs)
 
-The docs are designed for layered, token-efficient access:
+**The full reading strategy lives in [`SKILL.md`](SKILL.md)** — loaded on-demand when
+the task touches Metabase cards/dashboards/fields/dependencies (skill triggers on
+keywords like Metabase, 卡片, card, dashboard, field, SQL). Keeping it in the
+on-demand skill instead of here saves ~1000 tokens for non-Metabase sessions in this repo.
 
-```
-_catalog.md     ← Start here — one line per card. Read IN FULL for discovery.
-_deps.json      ← Dependency graph lookups (grep for card IDs)
-cards/{id}.md   ← Read only when you need field-level detail for a specific card
-_index.json     ← Grep ONLY (never read in full) — for upstream/downstream/risks of specific cards
-```
-
-**`_catalog.md` is the primary discovery file.** It lists every card as `id | name | domains | collection | type | fields` — small enough to read in full once per session, giving you the complete card universe in one shot. Drill into `cards/{id}.md` only for the card you need.
-
-**Never read `_index.json`, `cards.md`, or `dependencies.md` in full** — `_index.json` is the full card index (grep only); `cards.md` and `dependencies.md` are human-browsing files that duplicate machine-readable sources. Grep `_index.json` only when you need a specific card's upstream/downstream/risks and the catalog line wasn't enough.
-
-**⚠️ Token trap: `domains/{domain}.md`** — Domain files only contain source models + dashboard components (not the full card list). For browsing ALL cards in a domain, grep `_catalog.md` instead (~150 tokens vs thousands).
-
-**⚠️ Token trap: `cards/{id}.md` dependency lists** — When a card has >5 upstream or downstream cards, the detail file truncates to the first 5 with a grep hint. For the full list, use `_deps.json`.
-
-### By Intent
-
-| What you need | How to get it |
-|---|---|
-| Find card by name | `Read _catalog.md` (or `grep -i '<keyword>' _catalog.md`) |
-| Find card by ID | `grep '^<id> |' _catalog.md` |
-| See a card's full fields | `Read cards/{id}.md` |
-| What does card X depend on? | `grep '"<X>"' _deps.json` (finds all mentions of X) |
-| What depends on card X? | `grep '"<X>"' _deps.json` (same pattern — hits both up/down arrays) |
-| Browse a business domain | `grep ' | <domain> |' _catalog.md`. ⚠️ Do NOT read `domains/{domain}.md` for browsing — it only has source models + dashboard components |
-| Browse domain source models | `Read domains/{domain}.md` (lean file — 2 sections only) |
-| Browse collection hierarchy | `Read collections.md` |
-| Look up business terminology | `Read glossary.md` (business terms only, ~1KB) |
-| Find cards with ambiguous fields | `Read field-risks.md` (aggregation field name risks) |
-| Find key source models | `grep ' | model |' _catalog.md`, then check downstream size in `_index.json` |
-| Find orphan/incomplete cards | `grep '"risks":\[[^]]' _index.json` (non-empty risks) |
-| See what dashboards a card is on | `grep '"<id>"' _deps.json` — last two array elements are dash IDs and names |
-
-### General Rules
-
-1. **Read `_catalog.md` first** — it tells you which card IDs, names, domains, and collections exist. Only then drill into detail files.
-2. **When you need a card's fields, read `cards/{id}.md`** — not `cards.md` or domain files. Note: dependency lists are truncated at 5 items; use `_deps.json` for the full list.
-3. **When you need dependencies, grep `_deps.json`** — `grep '"<id>"' _deps.json` shows all references to a card ID. Format: `"id": [[upIds], [downIds], [dashIds], [dashNames]]`. Prefer this over `dependencies.md`.
-4. **When you need to understand what a card does, read its `description` in `cards/{id}.md`** — `_index.json` descriptions are truncated to 300 chars; the catalog has none.
-5. **Prefer `mcp__metabase__search` for name lookup when the MCP is available** — server-side search costs zero local tokens; fall back to `_catalog.md` only when MCP is unavailable or you need the full domain/collection view.
-6. **Never read `cards.md` or `dependencies.md` in full** — they're human-browsing files. Use `_catalog.md` + `_deps.json` instead.
-7. **Never read `domains/{domain}.md` for full domain browsing** — domain files only have source models and dashboard components. Grep `_catalog.md` for the full card list.
-8. **`glossary.md` is business terms only (~1KB)** — ambiguous aggregation fields moved to `field-risks.md`.
-9. **Never memorize card counts, collection names, or any specific data from these docs** — they change. Re-read the relevant file each time.
+When you need to query the generated docs (find a card, trace dependencies, browse a
+domain), read [`SKILL.md`](SKILL.md) for the layered access strategy, By Intent lookup
+table, and token traps.
 
 ## Project Structure
 
