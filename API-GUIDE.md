@@ -390,3 +390,22 @@ before aggregating — `SUM(text_column)` will fail.
     must keep their real positive `id`. Re-send the FULL array every time —
     the endpoint replaces (see gotcha #14), so omitting an existing dashcard
     deletes it.
+
+18. **Multi-stage MBQL queries: field references live in EVERY stage, not just
+    stage 0.** When cloning a card's `dataset_query` and remapping field names
+    (e.g. `net_profit_usd` → `fully_loaded_net_profit_usd`), walk the ENTIRE
+    `stages` array, not just `stages[0]`. A two-stage query typically defines
+    expressions in stage 0 and does `breakout` + `aggregation` (referencing
+    raw source fields again) in stage 1 — stage 1's field refs are easy to miss
+    because they look like aggregation clauses. Symptom: the by-SKU card runs
+    and returns data, but uses the wrong (订单级) field silently — only visible
+    by inspecting `dataset_query.stages[*]` field refs or the UI's Summarize
+    panel. The gen changes-summary does NOT catch this (fieldCount is
+    unchanged) — verify field refs explicitly after cloning multi-stage cards.
+
+19. **Gen changes-summary is fieldCount-based, not field-ref-based.** The diff
+    detects when a card's field COUNT changes, not when a field REFERENCE
+    changes (e.g. `net_profit_usd` → `fully_loaded_net_profit_usd` keeps the
+    same count). After remapping fields in a card, the summary shows nothing —
+    you must verify the change by reading the card's `dataset_query` directly,
+    not by trusting "Changes: none".

@@ -7,7 +7,7 @@
 | 64 | FBA 模板 | 订单/船务数据 (Cynthia) | 2 | #625, #686 |  |
 | 66 | SP Ads Monitoring | SP Ads | 12 | #388, #705, #708, #709, #710, #711, #712, #713, #714, #715, #718, #731 |  |
 | 68 | SB Ads Monitoring | SB Ads | 13 | #458, #720, #721, #722, #723, #724, #725, #726, #727, #728, #729, #730, #732 |  |
-| 70 | Sold Contribution Profit Dashboard BY SKU (按SKU已售贡献利润看板)  | Finance | 6 | #929, #932, #934, #935, #936, #937 |  |
+| 70 | Sold Contribution Profit Dashboard BY SKU (按SKU已售贡献利润看板)  | Finance | 4 | #929, #932, #938, #939 |  |
 | 71 | Settlement & Inventory Investment (实时结算与库存投入看板） | Finance | 1 | #871 |  |
 | 73 | Natural Sales | Natural Sales | 3 | #778, #779, #780 |  |
 | 74 | Returns | Returns | 6 | #781, #782, #784, #785, #786, #788 |  |
@@ -19,3 +19,4 @@
 | 82 | 补货面板 | Inventory | 5 | #806, #873, #874, #901, #920 |  |
 | 83 | Sold Contribution Profit Dashboard (已售贡献利润看板)  | Finance | 4 | #747, #910, #911, #912 |  |
 | 84 | Cost (成本看板) | Finance | 5 | #896, #905, #907, #908, #909 |  |
+| 85 | Cost by SKU (按SKU成本看板) | Finance | 4 | #934, #935, #936, #937 |  |

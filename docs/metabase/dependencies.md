@@ -19,11 +19,11 @@ flowchart TD
 | #742 | V Settlement Model | #853 Exchange Rates | #743 Quantity Purchased By Order ID X SKU, #745 Store Profit By SKU X Order Model, #746 Platform Advertisement Cost Over Time, #751 Profit X Cost Analysis SKU Pivot, #801 店铺 实际销售总金额, #896 Amazon Settlement Cost Breakdown (亚马逊结算成本分析表), #904 Sold Operating Performance Source (已售经营表现底表), #914 Amazon Settlement Cost Breakdown (亚马逊结算成本分析表) |  |
 | #904 | Sold Operating Performance Source (已售经营表现底表) | #621 AVG Production & Shipment Cost By SKU, #742 V Settlement Model, #743 Quantity Purchased By Order ID X SKU, #744 Sellable Quantity from Returns By SKU X Order | #747 Cumulative Sold Operating Performance (累计已售经营表现), #905 Cumulative Cost Structure (累计成本结构), #906 Cost Structure Source (成本结构底表), #910 Cumulative Sold Operating ROI Trend (累计已售经营ROI趋势), #911 Monthly Sold Operating ROI Trend (月度已售经营ROI趋势), #912 Monthly Sold Operating ROI MoM Change (月度已售经营ROI环比变化), #928 按SKU全摊薄已售经营表现底表 |  |
 | #803 | SalesAndTrafficByDate Model | #853 Exchange Rates | #840 产品页流量+销售转化率 Over Time, #845 SalesAndTrafficByDate Model, Sum of TrafficByDate.sessions, #846 店铺 总用户访问次数, #847 店铺 用户量, #848 店铺 访问次数, #849 店铺 访问/购买 率 |  |
+| #928 | 按SKU全摊薄已售经营表现底表 | #733 Reports Customer Returns Data Model, #806 库存表, #904 Sold Operating Performance Source (已售经营表现底表) | #929 Cumulative Sold Operating Performance by SKU (按SKU累计已售经营表现), #932 Cumulative Sold Operating ROI Trend by SKU (按SKU累计已售经营ROI趋势), #933 Allocated Cost Structure Source (按SKU已分摊成本结构底表), #935 Cumulative Cost Structure by SKU (按SKU累计成本结构), #938 Monthly Sold Operating ROI Trend by SKU (按SKU月度已售经营ROI趋势), #939 Monthly Sold Operating ROI MoM Change by SKU (按SKU月度已售经营ROI环比变化) |  |
 | #402 | List SP Campaign Model |  | #398 Ads SP Gross And Invalids, #403 Ads SP Campaign Model, #703 Ads Sp Searchterm Model, #704 Ads Sp Targeting Model |  |
 | #806 | 库存表 | #805 Reports Get Fba Myi All Inventory Model | #811 补货 Fulfillable Inventory Chart, #877 发货基础表, #928 按SKU全摊薄已售经营表现底表 | 补货面板 |
 | #836 | Shipment Pricing Model (UI) |  | #685 工厂小合同, #700 DHM 箱单 By SKU, #755 DH 船务小合同, #835 VS 箱单 By SKU |  |
 | #873 | 发货 FBA Total Inventory Chart 2.0 | #878 发货 Forecast WOS Summary | #901 工厂补货表2.0, #930 订单 + 发货 + 库存, #931 订单 + 发货 + 库存  透视表 | 补货面板 |
-| #928 | 按SKU全摊薄已售经营表现底表 | #733 Reports Customer Returns Data Model, #806 库存表, #904 Sold Operating Performance Source (已售经营表现底表) | #929 Cumulative Sold Operating Performance by SKU (按SKU累计已售经营表现), #932 Cumulative Sold Operating ROI Trend by SKU (按SKU累计已售经营ROI趋势), #933 Allocated Cost Structure Source (按SKU已分摊成本结构底表), #935 Cumulative Cost Structure by SKU (按SKU累计成本结构) |  |
 | #413 | List SB Campaign Model |  | #411 SB Campaign Model, #424 SB SearchTerm Model, #425 SB Targeting Model |  |
 | #704 | Ads Sp Targeting Model | #402 List SP Campaign Model, #761 List SP Keywords Model DISTINCT, #853 Exchange Rates | #718 Targeting Performance Table, #731 Targeting Negative Performance Table, #763 Targeting Performance Table Test Check |  |
 | #745 | Store Profit By SKU X Order Model | #621 AVG Production & Shipment Cost By SKU, #742 V Settlement Model, #743 Quantity Purchased By Order ID X SKU, #744 Sellable Quantity from Returns By SKU X Order | #752 Store Profit Over Time New, #888 Actual Store Revenue X Production & Shipment Costs Over Time Model, #893 ROI Per Sku Base Model |  |
@@ -127,7 +127,9 @@ flowchart TD
 | #920 | 产品订单曲线 Cum Sales QTY Per SKU (NO VINE) | #776 Reports Flat File All Orders Data By Order Date General Hourly Model |  | 补货面板 |
 | #929 | Cumulative Sold Operating Performance by SKU (按SKU累计已售经营表现) | #928 按SKU全摊薄已售经营表现底表 |  | Sold Contribution Profit Dashboard BY SKU (按SKU已售贡献利润看板)  |
 | #932 | Cumulative Sold Operating ROI Trend by SKU (按SKU累计已售经营ROI趋势) | #928 按SKU全摊薄已售经营表现底表 |  | Sold Contribution Profit Dashboard BY SKU (按SKU已售贡献利润看板)  |
-| #934 | Monthly Cost Mix Trend by SKU (按SKU月度成本占比趋势) | #933 Allocated Cost Structure Source (按SKU已分摊成本结构底表) |  | Sold Contribution Profit Dashboard BY SKU (按SKU已售贡献利润看板)  |
-| #935 | Cumulative Cost Structure by SKU (按SKU累计成本结构) | #928 按SKU全摊薄已售经营表现底表 |  | Sold Contribution Profit Dashboard BY SKU (按SKU已售贡献利润看板)  |
-| #936 | Total Cost Mix by SKU (按SKU总成本占比) | #933 Allocated Cost Structure Source (按SKU已分摊成本结构底表) |  | Sold Contribution Profit Dashboard BY SKU (按SKU已售贡献利润看板)  |
-| #937 | Monthly Cost MoM Growth Trend by SKU (按SKU月度成本环比增幅趋势) | #933 Allocated Cost Structure Source (按SKU已分摊成本结构底表) |  | Sold Contribution Profit Dashboard BY SKU (按SKU已售贡献利润看板)  |
+| #934 | Monthly Cost Mix Trend by SKU (按SKU月度成本占比趋势) | #933 Allocated Cost Structure Source (按SKU已分摊成本结构底表) |  | Cost by SKU (按SKU成本看板) |
+| #935 | Cumulative Cost Structure by SKU (按SKU累计成本结构) | #928 按SKU全摊薄已售经营表现底表 |  | Cost by SKU (按SKU成本看板) |
+| #936 | Total Cost Mix by SKU (按SKU总成本占比) | #933 Allocated Cost Structure Source (按SKU已分摊成本结构底表) |  | Cost by SKU (按SKU成本看板) |
+| #937 | Monthly Cost MoM Growth Trend by SKU (按SKU月度成本环比增幅趋势) | #933 Allocated Cost Structure Source (按SKU已分摊成本结构底表) |  | Cost by SKU (按SKU成本看板) |
+| #938 | Monthly Sold Operating ROI Trend by SKU (按SKU月度已售经营ROI趋势) | #928 按SKU全摊薄已售经营表现底表 |  | Sold Contribution Profit Dashboard BY SKU (按SKU已售贡献利润看板)  |
+| #939 | Monthly Sold Operating ROI MoM Change by SKU (按SKU月度已售经营ROI环比变化) | #928 按SKU全摊薄已售经营表现底表 |  | Sold Contribution Profit Dashboard BY SKU (按SKU已售贡献利润看板)  |

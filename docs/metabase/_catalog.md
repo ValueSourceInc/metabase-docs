@@ -1,4 +1,4 @@
-# Card Catalog — 181 cards
+# Card Catalog — 183 cards
 
 One line per card. Read IN FULL for discovery (find by name/domain/collection/id),
 then read `cards/{id}.md` for field-level detail. Columns, ` | `-separated:
@@ -185,3 +185,5 @@ id | name | domains | collection | type | fields
 935 | Cumulative Cost Structure by SKU (按SKU累计成本结构) | advertising,finance,inventory,logistics,replenishment,returns,sales | Finance | dashboard component | 14
 936 | Total Cost Mix by SKU (按SKU总成本占比) | finance,sales | Finance | dashboard component | 2
 937 | Monthly Cost MoM Growth Trend by SKU (按SKU月度成本环比增幅趋势) | advertising,finance,inventory,logistics,replenishment,returns,sales | Finance | dashboard component | 25
+938 | Monthly Sold Operating ROI Trend by SKU (按SKU月度已售经营ROI趋势) | finance,sales | Finance | dashboard component | 4
+939 | Monthly Sold Operating ROI MoM Change by SKU (按SKU月度已售经营ROI环比变化) | finance,sales | Finance | dashboard component | 5

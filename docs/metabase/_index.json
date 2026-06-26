@@ -4,9 +4,9 @@
   ],
   "summary": {
     "collections": 49,
-    "cards": 181,
-    "activeCards": 181,
-    "dashboards": 17
+    "cards": 183,
+    "activeCards": 183,
+    "dashboards": 18
   },
   "cards": {
     "302": {
@@ -5377,10 +5377,14 @@
         929,
         932,
         933,
-        935
+        935,
+        938,
+        939
       ],
       "dashboards": [],
-      "risks": [],
+      "risks": [
+        "high reuse / change carefully"
+      ],
       "databaseId": 4,
       "queryType": "native",
       "isNative": true,
@@ -5511,7 +5515,7 @@
       "isArchived": false,
       "fieldCount": 4,
       "dependencyDepth": 5,
-      "updatedAt": "2026-06-26T02:57:52.327016Z",
+      "updatedAt": "2026-06-26T09:01:53.812744Z",
       "description": "按SKU累计已售经营ROI趋势（全摊薄版）。基于 #928 全摊薄已售经营表现底表，按月累计调整后净利润与全摊薄总成本，计算累计 ROI = 累计调整后净利润 / 累计总成本。 与 #910 的区别：#910 为整店口径（基于 #904，用 net_profit_usd）；本卡为按 SKU 摊薄口径（基于 #928，用 fully_loaded_net_profit_usd，已含平台费分摊）。total_cost = product_sales_usd - fully_loaded_net_profit_usd。 使用注意：筛选单个 SKU 时看到的是该 SKU 摊薄后的累计 ROI 趋势；不…",
       "hasFullDescription": true
     },
@@ -5565,7 +5569,7 @@
       ],
       "downstream": [],
       "dashboards": [
-        "Sold Contribution Profit Dashboard BY SKU (按SKU已售贡献利润看板) "
+        "Cost by SKU (按SKU成本看板)"
       ],
       "risks": [],
       "databaseId": 4,
@@ -5598,7 +5602,7 @@
       ],
       "downstream": [],
       "dashboards": [
-        "Sold Contribution Profit Dashboard BY SKU (按SKU已售贡献利润看板) "
+        "Cost by SKU (按SKU成本看板)"
       ],
       "risks": [],
       "databaseId": 4,
@@ -5607,8 +5611,8 @@
       "isArchived": false,
       "fieldCount": 14,
       "dependencyDepth": 5,
-      "updatedAt": "2026-06-26T07:52:05.303629Z",
-      "description": "按SKU版 #905。结构与 #905 完全一致，区别：基于已分摊底表（平台费已分摊到 SKU，sku 全非空），按 SKU 筛选时不丢失 6 类平台成本。整店版 #905 的 sku 排除 filter (sku IS NULL OR sku NOT IN 3个BS) 已移除——by-SKU 卡靠正向选 SKU，与 #929/#932/#934 一致。挂到 dashboard #70，映射 SKU/Store/Marketplace/Date 筛选器。",
+      "updatedAt": "2026-06-26T09:06:30.609512Z",
+      "description": "按SKU版 #905。结构与 #905 完全一致。底层利润字段：#905 用 net_profit_usd（订单级），本卡改用 fully_loaded_net_profit_usd（全摊薄，含已分摊平台费）——因此累计 total_cost 含已分摊平台成本，口径与 #929/#932 一致。source 904→928，6 个平台列名映射（storage_fees_usd→allocated_storage_usd 等）。整店版 #905 的 sku 排除 filter 已移除。挂到 dashboard #85，映射 SKU/Store/Marketplace/Date 筛选器。",
       "hasFullDescription": false
     },
     "936": {
@@ -5626,7 +5630,7 @@
       ],
       "downstream": [],
       "dashboards": [
-        "Sold Contribution Profit Dashboard BY SKU (按SKU已售贡献利润看板) "
+        "Cost by SKU (按SKU成本看板)"
       ],
       "risks": [],
       "databaseId": 4,
@@ -5635,7 +5639,7 @@
       "isArchived": false,
       "fieldCount": 2,
       "dependencyDepth": 6,
-      "updatedAt": "2026-06-26T07:52:09.241247Z",
+      "updatedAt": "2026-06-26T09:06:25.741601Z",
       "description": "按SKU版 #908。结构与 #908 完全一致，区别：基于已分摊底表（平台费已分摊到 SKU，sku 全非空），按 SKU 筛选时不丢失 6 类平台成本。整店版 #908 的 sku 排除 filter (sku IS NULL OR sku NOT IN 3个BS) 已移除——by-SKU 卡靠正向选 SKU，与 #929/#932/#934 一致。挂到 dashboard #70，映射 SKU/Store/Marketplace/Date 筛选器。",
       "hasFullDescription": false
     },
@@ -5659,7 +5663,7 @@
       ],
       "downstream": [],
       "dashboards": [
-        "Sold Contribution Profit Dashboard BY SKU (按SKU已售贡献利润看板) "
+        "Cost by SKU (按SKU成本看板)"
       ],
       "risks": [],
       "databaseId": 4,
@@ -5670,6 +5674,62 @@
       "dependencyDepth": 6,
       "updatedAt": "2026-06-26T07:52:13.301397Z",
       "description": "按SKU版 #909。结构与 #909 完全一致，区别：基于已分摊底表（平台费已分摊到 SKU，sku 全非空），按 SKU 筛选时不丢失 6 类平台成本。整店版 #909 的 sku 排除 filter (sku IS NULL OR sku NOT IN 3个BS) 已移除——by-SKU 卡靠正向选 SKU，与 #929/#932/#934 一致。挂到 dashboard #70，映射 SKU/Store/Marketplace/Date 筛选器。",
+      "hasFullDescription": false
+    },
+    "938": {
+      "name": "Monthly Sold Operating ROI Trend by SKU (按SKU月度已售经营ROI趋势)",
+      "collectionId": 130,
+      "collectionName": "Finance",
+      "type": "dashboard component",
+      "domains": [
+        "finance",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [
+        928
+      ],
+      "downstream": [],
+      "dashboards": [
+        "Sold Contribution Profit Dashboard BY SKU (按SKU已售贡献利润看板) "
+      ],
+      "risks": [],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 4,
+      "dependencyDepth": 5,
+      "updatedAt": "2026-06-26T09:06:31.239353Z",
+      "description": "按SKU版 #911。结构与 #911 完全一致。底层利润字段：#911 用 net_profit_usd（订单级，不含平台费），本卡改用 fully_loaded_net_profit_usd（全摊薄，含已分摊平台费），口径与 #929/#932 一致。整店版 #911 的 sku 排除 filter 已移除（by-SKU 卡靠正向选 SKU）。挂到 dashboard #70，映射 SKU/Store/Marketplace/Date 筛选器。",
+      "hasFullDescription": false
+    },
+    "939": {
+      "name": "Monthly Sold Operating ROI MoM Change by SKU (按SKU月度已售经营ROI环比变化)",
+      "collectionId": 130,
+      "collectionName": "Finance",
+      "type": "dashboard component",
+      "domains": [
+        "finance",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [
+        928
+      ],
+      "downstream": [],
+      "dashboards": [
+        "Sold Contribution Profit Dashboard BY SKU (按SKU已售贡献利润看板) "
+      ],
+      "risks": [],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 5,
+      "dependencyDepth": 5,
+      "updatedAt": "2026-06-26T09:06:31.78422Z",
+      "description": "按SKU版 #912。结构与 #912 完全一致。底层利润字段：#912 用 net_profit_usd（订单级，不含平台费），本卡改用 fully_loaded_net_profit_usd（全摊薄，含已分摊平台费），口径与 #929/#932 一致。整店版 #912 的 sku 排除 filter 已移除。挂到 dashboard #70，映射 SKU/Store/Marketplace/Date 筛选器。",
       "hasFullDescription": false
     }
   }

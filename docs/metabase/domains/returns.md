@@ -13,7 +13,7 @@ Cards classified into this domain: 31
 | #806 | 库存表 | 4 | Inventory | table model | inventory, returns, sales | table | #805 | #811, #877, #928 | 补货面板 | missing description |
 | #904 | Sold Operating Performance Source (已售经营表现底表) | 4 | Base | source model | advertising, finance, inventory, logistics, production, replenishment, returns, sales | table | #621, #742, #743, #744 | #747, #905, #906, #910, #911, #912, #928 |  | high reuse / change carefully; many upstream dependencies |
 | #906 | Cost Structure Source (成本结构底表) | 4 | Base | source model | advertising, finance, inventory, logistics, replenishment, returns, sales | table | #904 | #907, #908, #909 |  | missing description; native SQL without business description |
-| #928 | 按SKU全摊薄已售经营表现底表 | 4 | Base | source model | advertising, finance, inventory, logistics, replenishment, returns, sales | table | #733, #806, #904 | #929, #932, #933, #935 |  |  |
+| #928 | 按SKU全摊薄已售经营表现底表 | 4 | Base | source model | advertising, finance, inventory, logistics, replenishment, returns, sales | table | #733, #806, #904 | #929, #932, #933, #935, #938, #939 |  | high reuse / change carefully |
 | #933 | Allocated Cost Structure Source (按SKU已分摊成本结构底表) | 4 | Base | source model | advertising, finance, inventory, logistics, replenishment, returns, sales | table | #928 | #934, #936, #937 |  |  |
 
 ## Dashboard Components
@@ -34,7 +34,7 @@ Cards classified into this domain: 31
 | #905 | Cumulative Cost Structure (累计成本结构) | 4 | Finance | dashboard component | advertising, finance, inventory, logistics, replenishment, returns, sales | line | #904 |  | Cost (成本看板) |
 | #909 | Monthly Cost MoM Growth Trend (月度成本环比增幅趋势) | 4 | Finance | dashboard component | advertising, finance, inventory, logistics, replenishment, returns, sales | line | #906 |  | Cost (成本看板) |
 | #929 | Cumulative Sold Operating Performance by SKU (按SKU累计已售经营表现) | 4 | Finance | dashboard component | finance, inventory, returns, sales | line | #928 |  | Sold Contribution Profit Dashboard BY SKU (按SKU已售贡献利润看板)  |
-| #935 | Cumulative Cost Structure by SKU (按SKU累计成本结构) | 4 | Finance | dashboard component | advertising, finance, inventory, logistics, replenishment, returns, sales | line | #928 |  | Sold Contribution Profit Dashboard BY SKU (按SKU已售贡献利润看板)  |
-| #937 | Monthly Cost MoM Growth Trend by SKU (按SKU月度成本环比增幅趋势) | 4 | Finance | dashboard component | advertising, finance, inventory, logistics, replenishment, returns, sales | line | #933 |  | Sold Contribution Profit Dashboard BY SKU (按SKU已售贡献利润看板)  |
+| #935 | Cumulative Cost Structure by SKU (按SKU累计成本结构) | 4 | Finance | dashboard component | advertising, finance, inventory, logistics, replenishment, returns, sales | line | #928 |  | Cost by SKU (按SKU成本看板) |
+| #937 | Monthly Cost MoM Growth Trend by SKU (按SKU月度成本环比增幅趋势) | 4 | Finance | dashboard component | advertising, finance, inventory, logistics, replenishment, returns, sales | line | #933 |  | Cost by SKU (按SKU成本看板) |
 
 > For the full card list in this domain, grep `_catalog.md`: `grep ' | returns | ' _catalog.md`

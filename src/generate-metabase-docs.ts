@@ -1,5 +1,5 @@
 import { config as loadDotenv } from "dotenv";
-import { mkdir, rm, writeFile } from "node:fs/promises";
+import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 
 type JsonRecord = Record<string, unknown>;
@@ -198,6 +198,9 @@ async function main() {
   loadEnv();
   const outputDir = resolve(process.cwd(), getArgValue("--output") ?? "docs/metabase");
   const snapshot = await loadMetabaseSnapshot();
+  // Snapshot the previous _index.json BEFORE rm wipes the output dir, so we can
+  // diff against the freshly generated one and print a changes summary.
+  const previousIndex = await loadPreviousIndex(outputDir);
   await rm(outputDir, { recursive: true, force: true });
 
   // Core documents
@@ -229,6 +232,7 @@ async function main() {
   }
 
   printSummary(snapshot, outputDir);
+  printChanges(previousIndex, snapshot);
 }
 
 function loadEnv() {
@@ -1353,6 +1357,7 @@ function getArgValue(name: string): string | undefined {
 }
 
 function printSummary(snapshot: MetabaseSnapshot, outputDir: string) {
+  console.log("\n────────────────────────────────────────────────────────────");
   console.log("Metabase knowledge docs generated (metadata only)");
   console.log(`Output: ${outputDir}`);
   console.log(`Collections: ${snapshot.collections.length}`);
@@ -1368,6 +1373,138 @@ function printSummary(snapshot: MetabaseSnapshot, outputDir: string) {
       `⚠️  ${snapshot.failedDashboardIds.length} dashboard(s) failed to fetch detail: #${snapshot.failedDashboardIds.join(", #")}`,
     );
   }
+}
+
+/** Read the previous _index.json before regeneration, for change detection. */
+async function loadPreviousIndex(outputDir: string): Promise<Record<string, CardIndexEntry> | null> {
+  try {
+    const raw = await readFile(`${outputDir}/_index.json`, "utf8");
+    const parsed = JSON.parse(raw) as { cards?: Record<string, CardIndexEntry> };
+    return parsed.cards ?? null;
+  } catch {
+    return null; // first run or unreadable — no diff baseline
+  }
+}
+
+interface CardIndexEntry {
+  name?: string;
+  collectionName?: string;
+  type?: string;
+  display?: string;
+  queryType?: string;
+  fieldCount?: number;
+  upstream?: number[];
+  downstream?: number[];
+  dashboards?: string[];
+  risks?: string[];
+  isArchived?: boolean;
+}
+
+/** Diff the previous _index.json against the freshly generated snapshot and print a changes summary. */
+function printChanges(
+  previous: Record<string, CardIndexEntry> | null,
+  snapshot: MetabaseSnapshot,
+) {
+  if (previous === null) {
+    console.log("\nChanges: (no previous _index.json found — first run, skipping diff)");
+    return;
+  }
+
+  const oldIds = new Set(Object.keys(previous));
+  const newMap = new Map(snapshot.cardDocs.map((c) => [String(c.id), c]));
+
+  interface IdName {
+    id: number;
+    name: string;
+  }
+  const added: IdName[] = [];
+  const removed: IdName[] = [];
+  for (const [idStr, card] of newMap) {
+    if (!oldIds.has(idStr)) added.push({ id: Number(idStr), name: card.name });
+  }
+  for (const [idStr, oldEntry] of Object.entries(previous)) {
+    if (!newMap.has(idStr)) removed.push({ id: Number(idStr), name: oldEntry.name ?? "(unknown)" });
+  }
+  added.sort((a, b) => a.id - b.id);
+  removed.sort((a, b) => a.id - b.id);
+
+  interface Change {
+    id: number;
+    name: string;
+    deltas: string[];
+  }
+  const changed: Change[] = [];
+
+  for (const [idStr, oldEntry] of Object.entries(previous)) {
+    const card = newMap.get(idStr);
+    if (!card) continue;
+    const deltas: string[] = [];
+
+    if (oldEntry.name !== card.name) deltas.push(`name: "${oldEntry.name}" → "${card.name}"`);
+    if (oldEntry.collectionName !== card.collectionName) {
+      deltas.push(`collection: "${oldEntry.collectionName}" → "${card.collectionName}"`);
+    }
+    if (oldEntry.display !== card.display) deltas.push(`display: ${oldEntry.display} → ${card.display}`);
+    if (oldEntry.type !== card.type) deltas.push(`type: ${oldEntry.type} → ${card.type}`);
+    if (oldEntry.queryType !== card.queryType) deltas.push(`queryType: ${oldEntry.queryType} → ${card.queryType}`);
+    if ((oldEntry.isArchived ?? false) !== card.isArchived) {
+      deltas.push(`archived: ${oldEntry.isArchived ?? false} → ${card.isArchived}`);
+    }
+
+    const oldFields = oldEntry.fieldCount ?? 0;
+    if (oldFields !== card.fields.length) {
+      deltas.push(`fields: ${oldFields} → ${card.fields.length}`);
+    }
+
+    const upDelta = setDelta(oldEntry.upstream ?? [], card.upstreamCardIds);
+    if (upDelta) deltas.push(`upstream: ${upDelta}`);
+    const downDelta = setDelta(oldEntry.downstream ?? [], card.downstreamCardIds);
+    if (downDelta) deltas.push(`downstream: ${downDelta}`);
+    const dashDelta = setDelta(oldEntry.dashboards ?? [], card.dashboardNames);
+    if (dashDelta) deltas.push(`dashboards: ${dashDelta}`);
+
+    const riskDelta = setDelta(oldEntry.risks ?? [], card.risks);
+    if (riskDelta) deltas.push(`risks: ${riskDelta}`);
+
+    if (deltas.length > 0) changed.push({ id: card.id, name: card.name, deltas });
+  }
+
+  changed.sort((a, b) => a.id - b.id);
+
+  const totalChanges = added.length + removed.length + changed.length;
+  if (totalChanges === 0) {
+    console.log("\nChanges: none (catalog unchanged since last gen)");
+    return;
+  }
+
+  console.log(`\nChanges vs previous gen (${totalChanges} card-level):`);
+  if (added.length > 0) {
+    console.log(`  + ${added.length} added:`);
+    for (const a of added) console.log(`      #${a.id} ${a.name}`);
+  }
+  if (removed.length > 0) {
+    console.log(`  - ${removed.length} removed:`);
+    for (const r of removed) console.log(`      #${r.id} ${r.name}`);
+  }
+  if (changed.length > 0) {
+    console.log(`  ~ ${changed.length} modified:`);
+    for (const c of changed) {
+      console.log(`      #${c.id} ${c.name}`);
+      for (const d of c.deltas) console.log(`          ${d}`);
+    }
+  }
+}
+
+/** Return a human-readable "+a, -b" delta string, or "" if no change. */
+function setDelta<T extends number | string>(oldArr: T[], newArr: T[]): string {
+  const oldSet = new Set(oldArr);
+  const newSet = new Set(newArr);
+  const added = newArr.filter((x) => !oldSet.has(x));
+  const removed = oldArr.filter((x) => !newSet.has(x));
+  const parts: string[] = [];
+  if (added.length) parts.push(`+${added.join(",")}`);
+  if (removed.length) parts.push(`-${removed.join(",")}`);
+  return parts.join(" ");
 }
 
 if (isMainModule()) {
