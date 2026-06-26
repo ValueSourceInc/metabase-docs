@@ -65,10 +65,8 @@ These cards contain fields like `sum`, `sum_2`, `avg`, or `max`. They need chart
 | #732 | SB Targeting Negative Performance Table | 4 | SB Ads | dashboard component | advertising, finance, sales | table | generic aggregation field names; missing description |
 | #743 | Quantity Purchased By Order ID X SKU | 4 | Base | table model | sales | table | generic aggregation field names; missing description |
 | #744 | Sellable Quantity from Returns By SKU X Order | 4 | Base | question | returns, sales | line | generic aggregation field names; missing description |
-| #745 | Store Profit By SKU X Order Model | 4 | Base | source model | advertising, finance, logistics, production, replenishment, returns, sales | table | generic aggregation field names; high reuse / change carefully; many upstream dependencies; missing description |
+| #745 | Store Profit By SKU X Order Model | 4 | Base | source model | advertising, finance, logistics, production, replenishment, returns, sales | table | generic aggregation field names; many upstream dependencies; missing description |
 | #746 | Platform Advertisement Cost Over Time | 4 | Base | question | advertising, finance, sales | table | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
-| #749 | SKU-Level Cumulative Contribution Profit by SKU (SKU累计贡献利润) | 4 | Finance | dashboard component | finance, sales | line | generic aggregation field names; missing description |
-| #750 | Parent ASIN-Level Cumulative Contribution Profit (Parent ASIN累计贡献利润) | 4 | Finance | dashboard component | finance, sales | line | generic aggregation field names; missing description |
 | #751 | Profit X Cost Analysis SKU Pivot | 4 | Base | question | finance, sales | pivot | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
 | #752 | Store Profit Over Time New | 4 | Store Revenue | question | finance, sales | line | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
 | #754 | Production Cost Over Time New | 4 | Production Costs | question | finance, production, sales | line | generic aggregation field names; missing description |
@@ -84,5 +82,7 @@ These cards contain fields like `sum`, `sum_2`, `avg`, or `max`. They need chart
 | #783 | Return Parent ASIN Pie | 4 | Returns | question | production, replenishment, returns, sales | pie | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
 | #784 | Return Rate By SKU | 4 | Returns | dashboard component | returns, sales | pie | generic aggregation field names; missing description |
 | #785 | Return Reason Pie | 4 | Returns | dashboard component | production, replenishment, returns, sales | pie | generic aggregation field names; missing description |
+| #786 | Returns By Disposition Type | 4 | Returns | dashboard component | returns, sales | line | generic aggregation field names; missing description |
+| #787 | Return SKU Pie | 4 | Returns | question | returns, sales | pie | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
 
-_Only first 80 of 120 cards shown._
+_Only first 80 of 119 cards shown._

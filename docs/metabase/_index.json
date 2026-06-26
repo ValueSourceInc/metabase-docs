@@ -4,9 +4,9 @@
   ],
   "summary": {
     "collections": 49,
-    "cards": 175,
-    "activeCards": 175,
-    "dashboards": 15
+    "cards": 181,
+    "activeCards": 181,
+    "dashboards": 17
   },
   "cards": {
     "302": {
@@ -2166,7 +2166,8 @@
         786,
         787,
         788,
-        789
+        789,
+        928
       ],
       "dashboards": [],
       "risks": [
@@ -2308,8 +2309,6 @@
         744
       ],
       "downstream": [
-        749,
-        750,
         752,
         888,
         893
@@ -2317,7 +2316,6 @@
       "dashboards": [],
       "risks": [
         "generic aggregation field names",
-        "high reuse / change carefully",
         "many upstream dependencies",
         "missing description"
       ],
@@ -2377,7 +2375,7 @@
       ],
       "downstream": [],
       "dashboards": [
-        "Sold Contribution Profit Dashboard (已售贡献利润看板) BY SKU"
+        "Sold Contribution Profit Dashboard (已售贡献利润看板) "
       ],
       "risks": [
         "missing description"
@@ -2389,68 +2387,6 @@
       "fieldCount": 4,
       "dependencyDepth": 4,
       "updatedAt": "2026-06-24T08:20:44.471441Z",
-      "description": "",
-      "hasFullDescription": false
-    },
-    "749": {
-      "name": "SKU-Level Cumulative Contribution Profit by SKU (SKU累计贡献利润)",
-      "collectionId": 130,
-      "collectionName": "Finance",
-      "type": "dashboard component",
-      "domains": [
-        "finance",
-        "sales"
-      ],
-      "display": "line",
-      "upstream": [
-        745
-      ],
-      "downstream": [],
-      "dashboards": [
-        "Sold Contribution Profit Dashboard (已售贡献利润看板) BY SKU"
-      ],
-      "risks": [
-        "generic aggregation field names",
-        "missing description"
-      ],
-      "databaseId": 4,
-      "queryType": "query",
-      "isNative": false,
-      "isArchived": false,
-      "fieldCount": 3,
-      "dependencyDepth": 4,
-      "updatedAt": "2026-06-18T05:35:19.94504Z",
-      "description": "",
-      "hasFullDescription": false
-    },
-    "750": {
-      "name": "Parent ASIN-Level Cumulative Contribution Profit (Parent ASIN累计贡献利润)",
-      "collectionId": 130,
-      "collectionName": "Finance",
-      "type": "dashboard component",
-      "domains": [
-        "finance",
-        "sales"
-      ],
-      "display": "line",
-      "upstream": [
-        745
-      ],
-      "downstream": [],
-      "dashboards": [
-        "Sold Contribution Profit Dashboard (已售贡献利润看板) BY SKU"
-      ],
-      "risks": [
-        "generic aggregation field names",
-        "missing description"
-      ],
-      "databaseId": 4,
-      "queryType": "query",
-      "isNative": false,
-      "isArchived": false,
-      "fieldCount": 3,
-      "dependencyDepth": 4,
-      "updatedAt": "2026-06-18T05:35:46.329562Z",
       "description": "",
       "hasFullDescription": false
     },
@@ -3607,7 +3543,8 @@
       ],
       "downstream": [
         811,
-        877
+        877,
+        928
       ],
       "dashboards": [
         "补货面板"
@@ -4315,7 +4252,7 @@
       ],
       "downstream": [],
       "dashboards": [
-        "Operating Performance and ROI Dashboard (经营表现与ROI看板)"
+        "Settlement & Inventory Investment (实时结算与库存投入看板）"
       ],
       "risks": [
         "generic aggregation field names",
@@ -4348,7 +4285,9 @@
         878
       ],
       "downstream": [
-        901
+        901,
+        930,
+        931
       ],
       "dashboards": [
         "补货面板"
@@ -4360,7 +4299,7 @@
       "isArchived": false,
       "fieldCount": 38,
       "dependencyDepth": 5,
-      "updatedAt": "2026-06-25T07:13:04.513609Z",
+      "updatedAt": "2026-06-26T03:42:33.041948Z",
       "description": "未来销量目前支持2年，即wos_now兜底为100",
       "hasFullDescription": false
     },
@@ -4521,7 +4460,7 @@
       "isArchived": false,
       "fieldCount": 38,
       "dependencyDepth": 4,
-      "updatedAt": "2026-06-25T06:52:47.828175Z",
+      "updatedAt": "2026-06-26T03:41:08.159678Z",
       "description": "",
       "hasFullDescription": false
     },
@@ -4646,38 +4585,6 @@
       "description": "",
       "hasFullDescription": false
     },
-    "887": {
-      "name": "SKU-Level Monthly ROI and Expense Structure (SKU月度ROI与成本结构)",
-      "collectionId": 130,
-      "collectionName": "Finance",
-      "type": "question",
-      "domains": [
-        "advertising",
-        "finance",
-        "logistics",
-        "production",
-        "sales"
-      ],
-      "display": "line",
-      "upstream": [
-        893
-      ],
-      "downstream": [],
-      "dashboards": [],
-      "risks": [
-        "missing description",
-        "not referenced by dashboards or downstream cards"
-      ],
-      "databaseId": 4,
-      "queryType": "query",
-      "isNative": false,
-      "isArchived": false,
-      "fieldCount": 11,
-      "dependencyDepth": 5,
-      "updatedAt": "2026-06-18T03:22:46.31828Z",
-      "description": "",
-      "hasFullDescription": false
-    },
     "888": {
       "name": "Actual Store Revenue X Production & Shipment Costs Over Time Model",
       "collectionId": 144,
@@ -4719,7 +4626,7 @@
       "name": "ROI Per Sku Base Model",
       "collectionId": 144,
       "collectionName": "Base",
-      "type": "table model",
+      "type": "native question",
       "domains": [
         "advertising",
         "finance",
@@ -4733,14 +4640,12 @@
         885,
         886
       ],
-      "downstream": [
-        887,
-        895
-      ],
+      "downstream": [],
       "dashboards": [],
       "risks": [
         "missing description",
-        "native SQL without business description"
+        "native SQL without business description",
+        "not referenced by dashboards or downstream cards"
       ],
       "databaseId": 4,
       "queryType": "native",
@@ -4752,43 +4657,11 @@
       "description": "",
       "hasFullDescription": false
     },
-    "895": {
-      "name": "SKU-Level Cumulative ROI and Expense Structure (SKU累计ROI与成本结构趋势)",
-      "collectionId": 130,
-      "collectionName": "Finance",
-      "type": "question",
-      "domains": [
-        "advertising",
-        "finance",
-        "logistics",
-        "production",
-        "sales"
-      ],
-      "display": "line",
-      "upstream": [
-        893
-      ],
-      "downstream": [],
-      "dashboards": [],
-      "risks": [
-        "missing description",
-        "not referenced by dashboards or downstream cards"
-      ],
-      "databaseId": 4,
-      "queryType": "query",
-      "isNative": false,
-      "isArchived": false,
-      "fieldCount": 10,
-      "dependencyDepth": 5,
-      "updatedAt": "2026-06-18T05:36:52.403448Z",
-      "description": "",
-      "hasFullDescription": false
-    },
     "896": {
       "name": "Amazon Settlement Cost Breakdown (亚马逊结算成本分析表)",
       "collectionId": 130,
       "collectionName": "Finance",
-      "type": "question",
+      "type": "dashboard component",
       "domains": [
         "advertising",
         "finance",
@@ -4802,10 +4675,11 @@
         742
       ],
       "downstream": [],
-      "dashboards": [],
+      "dashboards": [
+        "Cost (成本看板)"
+      ],
       "risks": [
-        "generic aggregation field names",
-        "not referenced by dashboards or downstream cards"
+        "generic aggregation field names"
       ],
       "databaseId": 4,
       "queryType": "query",
@@ -4940,7 +4814,8 @@
         906,
         910,
         911,
-        912
+        912,
+        928
       ],
       "dashboards": [],
       "risks": [
@@ -4953,15 +4828,15 @@
       "isArchived": false,
       "fieldCount": 29,
       "dependencyDepth": 3,
-      "updatedAt": "2026-06-24T07:50:46.698489Z",
-      "description": "业务口径（已修正 2026-06-24）： 1. row_type = order_level 表示可以明确归属到订单和 SKU 的已售经营行。它来自 Amazon settlement 的订单级 revenue/cost 数据，并补充 SKU 单件生产成本、单件物流成本和广告分摊成本。 2. row_type = uncovered_platform_cost 表示无法明确归属到订单/SKU 的平台级费用。这些费用不强行分摊到 SKU，而是单独保留。 3. product_sales_usd 是商品销售本金汇总，只表示商品销售额，不扣 Amazon 费用、广告或产品成本。 4. amount…",
+      "updatedAt": "2026-06-25T10:47:36.294228Z",
+      "description": "业务口径 1. row_type = order_level 表示可以明确归属到订单和 SKU 的已售经营行。它来自 Amazon settlement 的订单级 revenue/cost 数据，并补充 SKU 单件生产成本、单件物流成本和广告分摊成本。 2. row_type = uncovered_platform_cost 表示无法明确归属到订单/SKU 的平台级费用。这些费用不强行分摊到 SKU，而是单独保留。 3. product_sales_usd 是商品销售本金汇总，只表示商品销售额，不扣 Amazon 费用、广告或产品成本。 4. amount_usd 是订单/SKU 层面的经…",
       "hasFullDescription": true
     },
     "905": {
       "name": "Cumulative Cost Structure (累计成本结构)",
       "collectionId": 130,
       "collectionName": "Finance",
-      "type": "question",
+      "type": "dashboard component",
       "domains": [
         "advertising",
         "finance",
@@ -4976,10 +4851,11 @@
         904
       ],
       "downstream": [],
-      "dashboards": [],
+      "dashboards": [
+        "Cost (成本看板)"
+      ],
       "risks": [
-        "missing description",
-        "not referenced by dashboards or downstream cards"
+        "missing description"
       ],
       "databaseId": 4,
       "queryType": "query",
@@ -5033,7 +4909,7 @@
       "name": "Monthly Cost Mix Trend (月度成本占比趋势)",
       "collectionId": 130,
       "collectionName": "Finance",
-      "type": "question",
+      "type": "dashboard component",
       "domains": [
         "finance",
         "sales"
@@ -5043,10 +4919,11 @@
         906
       ],
       "downstream": [],
-      "dashboards": [],
+      "dashboards": [
+        "Cost (成本看板)"
+      ],
       "risks": [
-        "missing description",
-        "not referenced by dashboards or downstream cards"
+        "missing description"
       ],
       "databaseId": 4,
       "queryType": "query",
@@ -5062,7 +4939,7 @@
       "name": "Total Cost Mix (总成本占比)",
       "collectionId": 130,
       "collectionName": "Finance",
-      "type": "question",
+      "type": "dashboard component",
       "domains": [
         "finance",
         "sales"
@@ -5072,10 +4949,11 @@
         906
       ],
       "downstream": [],
-      "dashboards": [],
+      "dashboards": [
+        "Cost (成本看板)"
+      ],
       "risks": [
-        "missing description",
-        "not referenced by dashboards or downstream cards"
+        "missing description"
       ],
       "databaseId": 4,
       "queryType": "query",
@@ -5091,7 +4969,7 @@
       "name": "Monthly Cost MoM Growth Trend (月度成本环比增幅趋势)",
       "collectionId": 130,
       "collectionName": "Finance",
-      "type": "question",
+      "type": "dashboard component",
       "domains": [
         "advertising",
         "finance",
@@ -5106,10 +4984,11 @@
         906
       ],
       "downstream": [],
-      "dashboards": [],
+      "dashboards": [
+        "Cost (成本看板)"
+      ],
       "risks": [
-        "missing description",
-        "not referenced by dashboards or downstream cards"
+        "missing description"
       ],
       "databaseId": 4,
       "queryType": "query",
@@ -5125,7 +5004,7 @@
       "name": "Cumulative Sold Operating ROI Trend (累计已售经营ROI趋势)",
       "collectionId": 130,
       "collectionName": "Finance",
-      "type": "question",
+      "type": "dashboard component",
       "domains": [
         "finance",
         "sales"
@@ -5135,10 +5014,11 @@
         904
       ],
       "downstream": [],
-      "dashboards": [],
+      "dashboards": [
+        "Sold Contribution Profit Dashboard (已售贡献利润看板) "
+      ],
       "risks": [
-        "missing description",
-        "not referenced by dashboards or downstream cards"
+        "missing description"
       ],
       "databaseId": 4,
       "queryType": "query",
@@ -5154,7 +5034,7 @@
       "name": "Monthly Sold Operating ROI Trend (月度已售经营ROI趋势)",
       "collectionId": 130,
       "collectionName": "Finance",
-      "type": "question",
+      "type": "dashboard component",
       "domains": [
         "finance",
         "sales"
@@ -5164,10 +5044,11 @@
         904
       ],
       "downstream": [],
-      "dashboards": [],
+      "dashboards": [
+        "Sold Contribution Profit Dashboard (已售贡献利润看板) "
+      ],
       "risks": [
-        "missing description",
-        "not referenced by dashboards or downstream cards"
+        "missing description"
       ],
       "databaseId": 4,
       "queryType": "query",
@@ -5183,7 +5064,7 @@
       "name": "Monthly Sold Operating ROI MoM Change (月度已售经营ROI环比变化)",
       "collectionId": 130,
       "collectionName": "Finance",
-      "type": "question",
+      "type": "dashboard component",
       "domains": [
         "finance",
         "sales"
@@ -5193,10 +5074,11 @@
         904
       ],
       "downstream": [],
-      "dashboards": [],
+      "dashboards": [
+        "Sold Contribution Profit Dashboard (已售贡献利润看板) "
+      ],
       "risks": [
-        "missing description",
-        "not referenced by dashboards or downstream cards"
+        "missing description"
       ],
       "databaseId": 4,
       "queryType": "query",
@@ -5467,8 +5349,327 @@
       "isArchived": false,
       "fieldCount": 38,
       "dependencyDepth": 5,
-      "updatedAt": "2026-06-25T07:11:26.321428Z",
+      "updatedAt": "2026-06-26T03:17:17.214758Z",
       "description": "",
+      "hasFullDescription": false
+    },
+    "928": {
+      "name": "按SKU全摊薄已售经营表现底表",
+      "collectionId": 144,
+      "collectionName": "Base",
+      "type": "source model",
+      "domains": [
+        "advertising",
+        "finance",
+        "inventory",
+        "logistics",
+        "replenishment",
+        "returns",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        733,
+        806,
+        904
+      ],
+      "downstream": [
+        929,
+        932,
+        933,
+        935
+      ],
+      "dashboards": [],
+      "risks": [],
+      "databaseId": 4,
+      "queryType": "native",
+      "isNative": true,
+      "isArchived": false,
+      "fieldCount": 27,
+      "dependencyDepth": 4,
+      "updatedAt": "2026-06-26T06:42:43.347828Z",
+      "description": "全摊薄已售经营表现底表（按 Marketplace 隔离版）。在 #904 order_level 数据基础上，将 uncovered_platform_cost（无法归属到订单/SKU 的平台级费用）按 marketplace 分别分摊到该 marketplace 内的 SKU。 分摊基准（8 类平台费全覆盖，全池守恒）： - Storage → #806 库存量×单件体积，日摊分键 product_sales_usd - Inbound Placement → #806 入库运输数量，日摊分键 gross_sold_qty - Removal/Disposal → #733 损坏/缺陷退货…",
+      "hasFullDescription": true
+    },
+    "929": {
+      "name": "Cumulative Sold Operating Performance by SKU (按SKU累计已售经营表现)",
+      "collectionId": 130,
+      "collectionName": "Finance",
+      "type": "dashboard component",
+      "domains": [
+        "finance",
+        "inventory",
+        "returns",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [
+        928
+      ],
+      "downstream": [],
+      "dashboards": [
+        "Sold Contribution Profit Dashboard BY SKU (按SKU已售贡献利润看板) "
+      ],
+      "risks": [],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 4,
+      "dependencyDepth": 5,
+      "updatedAt": "2026-06-26T02:57:51.764798Z",
+      "description": "这张图是“全摊薄后的 SKU 累计已售经营表现”。 它基于 #928 全摊薄已售经营表现底表：先把原来没有 SKU 的平台费用，按业务原因分到各个 SKU，再计算每个 SKU 的累计销售额、累计全摊薄利润(fully_loaded_net_profit)和累计成本。 分摊逻辑（简单版）： - 仓储费：按库存占用体积来分，库存越多、体积越大，分到越多。 - 入仓配置费：按入库数量来分，入库越多，分到越多。 - 移除/销毁费：按损坏/缺陷退货数量来分（#733 退货表），损坏退货越多，分到越多。 - 订阅费、促销活动费、Vine 费用：按销售额来分，销售额越高，分到越多。 使用注意： - 筛选单个…",
+      "hasFullDescription": true
+    },
+    "930": {
+      "name": "订单 + 发货 + 库存",
+      "collectionId": 142,
+      "collectionName": "VIP",
+      "type": "question",
+      "domains": [
+        "finance",
+        "inventory",
+        "logistics",
+        "production",
+        "replenishment",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        873
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 67,
+      "dependencyDepth": 6,
+      "updatedAt": "2026-06-25T10:15:41.068779Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "931": {
+      "name": "订单 + 发货 + 库存  透视表",
+      "collectionId": 142,
+      "collectionName": "VIP",
+      "type": "question",
+      "domains": [
+        "inventory",
+        "logistics",
+        "production",
+        "replenishment",
+        "sales"
+      ],
+      "display": "pivot",
+      "upstream": [
+        873
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 4,
+      "dependencyDepth": 6,
+      "updatedAt": "2026-06-25T10:20:21.989779Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "932": {
+      "name": "Cumulative Sold Operating ROI Trend by SKU (按SKU累计已售经营ROI趋势)",
+      "collectionId": 130,
+      "collectionName": "Finance",
+      "type": "dashboard component",
+      "domains": [
+        "finance",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [
+        928
+      ],
+      "downstream": [],
+      "dashboards": [
+        "Sold Contribution Profit Dashboard BY SKU (按SKU已售贡献利润看板) "
+      ],
+      "risks": [],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 4,
+      "dependencyDepth": 5,
+      "updatedAt": "2026-06-26T02:57:52.327016Z",
+      "description": "按SKU累计已售经营ROI趋势（全摊薄版）。基于 #928 全摊薄已售经营表现底表，按月累计调整后净利润与全摊薄总成本，计算累计 ROI = 累计调整后净利润 / 累计总成本。 与 #910 的区别：#910 为整店口径（基于 #904，用 net_profit_usd）；本卡为按 SKU 摊薄口径（基于 #928，用 fully_loaded_net_profit_usd，已含平台费分摊）。total_cost = product_sales_usd - fully_loaded_net_profit_usd。 使用注意：筛选单个 SKU 时看到的是该 SKU 摊薄后的累计 ROI 趋势；不…",
+      "hasFullDescription": true
+    },
+    "933": {
+      "name": "Allocated Cost Structure Source (按SKU已分摊成本结构底表)",
+      "collectionId": 144,
+      "collectionName": "Base",
+      "type": "source model",
+      "domains": [
+        "advertising",
+        "finance",
+        "inventory",
+        "logistics",
+        "replenishment",
+        "returns",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        928
+      ],
+      "downstream": [
+        934,
+        936,
+        937
+      ],
+      "dashboards": [],
+      "risks": [],
+      "databaseId": 4,
+      "queryType": "native",
+      "isNative": true,
+      "isArchived": false,
+      "fieldCount": 6,
+      "dependencyDepth": 5,
+      "updatedAt": "2026-06-26T07:22:24.561217Z",
+      "description": "按SKU已分摊成本结构长表。基于 #928 unpivot 而成，形状与 #906 一致。与 #906 区别：#906 基于 #904，6 类平台级成本 sku 为空；本表基于 #928，平台费已分摊到 SKU，sku 全非空。符号约定同 #904/#928，成本取负数。FBA/Selling 在 #928 拆成订单级+allocated 两列，本表合并后取负。",
+      "hasFullDescription": false
+    },
+    "934": {
+      "name": "Monthly Cost Mix Trend by SKU (按SKU月度成本占比趋势)",
+      "collectionId": 130,
+      "collectionName": "Finance",
+      "type": "dashboard component",
+      "domains": [
+        "finance",
+        "sales"
+      ],
+      "display": "area",
+      "upstream": [
+        933
+      ],
+      "downstream": [],
+      "dashboards": [
+        "Sold Contribution Profit Dashboard BY SKU (按SKU已售贡献利润看板) "
+      ],
+      "risks": [],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 6,
+      "updatedAt": "2026-06-26T07:23:28.349783Z",
+      "description": "按SKU月度成本占比趋势 (area 图)。结构与 #907 完全一致：按 date:Month + cost_category 分组，sum cost_usd。 与 #907 的区别：#907 基于 #906 (含 sku=NULL 的平台级成本)，按 SKU 筛选会丢失 6 类平台成本；本卡基于 #933 (按SKU已分摊成本结构底表)，平台费已分摊到 SKU，按 SKU 筛选时各类成本完整保留，占比不失真。 筛选：通过 dashboard #70 的 SKU/Store/Marketplace/Date 筛选器映射到对应字段。与 #929/#932 一致，不带 SKU 排除 filter…",
+      "hasFullDescription": true
+    },
+    "935": {
+      "name": "Cumulative Cost Structure by SKU (按SKU累计成本结构)",
+      "collectionId": 130,
+      "collectionName": "Finance",
+      "type": "dashboard component",
+      "domains": [
+        "advertising",
+        "finance",
+        "inventory",
+        "logistics",
+        "replenishment",
+        "returns",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [
+        928
+      ],
+      "downstream": [],
+      "dashboards": [
+        "Sold Contribution Profit Dashboard BY SKU (按SKU已售贡献利润看板) "
+      ],
+      "risks": [],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 14,
+      "dependencyDepth": 5,
+      "updatedAt": "2026-06-26T07:52:05.303629Z",
+      "description": "按SKU版 #905。结构与 #905 完全一致，区别：基于已分摊底表（平台费已分摊到 SKU，sku 全非空），按 SKU 筛选时不丢失 6 类平台成本。整店版 #905 的 sku 排除 filter (sku IS NULL OR sku NOT IN 3个BS) 已移除——by-SKU 卡靠正向选 SKU，与 #929/#932/#934 一致。挂到 dashboard #70，映射 SKU/Store/Marketplace/Date 筛选器。",
+      "hasFullDescription": false
+    },
+    "936": {
+      "name": "Total Cost Mix by SKU (按SKU总成本占比)",
+      "collectionId": 130,
+      "collectionName": "Finance",
+      "type": "dashboard component",
+      "domains": [
+        "finance",
+        "sales"
+      ],
+      "display": "pie",
+      "upstream": [
+        933
+      ],
+      "downstream": [],
+      "dashboards": [
+        "Sold Contribution Profit Dashboard BY SKU (按SKU已售贡献利润看板) "
+      ],
+      "risks": [],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 2,
+      "dependencyDepth": 6,
+      "updatedAt": "2026-06-26T07:52:09.241247Z",
+      "description": "按SKU版 #908。结构与 #908 完全一致，区别：基于已分摊底表（平台费已分摊到 SKU，sku 全非空），按 SKU 筛选时不丢失 6 类平台成本。整店版 #908 的 sku 排除 filter (sku IS NULL OR sku NOT IN 3个BS) 已移除——by-SKU 卡靠正向选 SKU，与 #929/#932/#934 一致。挂到 dashboard #70，映射 SKU/Store/Marketplace/Date 筛选器。",
+      "hasFullDescription": false
+    },
+    "937": {
+      "name": "Monthly Cost MoM Growth Trend by SKU (按SKU月度成本环比增幅趋势)",
+      "collectionId": 130,
+      "collectionName": "Finance",
+      "type": "dashboard component",
+      "domains": [
+        "advertising",
+        "finance",
+        "inventory",
+        "logistics",
+        "replenishment",
+        "returns",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [
+        933
+      ],
+      "downstream": [],
+      "dashboards": [
+        "Sold Contribution Profit Dashboard BY SKU (按SKU已售贡献利润看板) "
+      ],
+      "risks": [],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 25,
+      "dependencyDepth": 6,
+      "updatedAt": "2026-06-26T07:52:13.301397Z",
+      "description": "按SKU版 #909。结构与 #909 完全一致，区别：基于已分摊底表（平台费已分摊到 SKU，sku 全非空），按 SKU 筛选时不丢失 6 类平台成本。整店版 #909 的 sku 排除 filter (sku IS NULL OR sku NOT IN 3个BS) 已移除——by-SKU 卡靠正向选 SKU，与 #929/#932/#934 一致。挂到 dashboard #70，映射 SKU/Store/Marketplace/Date 筛选器。",
       "hasFullDescription": false
     }
   }

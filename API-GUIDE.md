@@ -314,3 +314,79 @@ before aggregating — `SUM(text_column)` will fail.
     | #776 Orders | 930 | `reports__flat_file_all_orders_data_by_order_date_general_hourly_main` |
     | #742 Settlement | 927 | `v_settlement_new` |
     | #733 Returns | 748 | `reports__customer_returns_data_main` |
+11. **Querying a card/model as a source via `/api/dataset` (MBQL).** To run a
+    saved card's result with your own filter/aggregation without re-pasting its
+    SQL, POST `/api/dataset` with `{"database":4,"type":"query","query":{\
+    "source-card":<id>, "filter":..., "aggregation":..., "breakout":...}}`.
+    Field refs must be full clauses: `["field","sku",{"base-type":"type/Text"}]`.
+    Quirks observed (2026-06):
+    - **`=` filter on text fields of a source-card sometimes returns 0 rows**
+      even when the value exists (e.g. `["=","sku","QS001-T-ST-DG"]` on #806
+      returned empty, while `["contains",...,"QS001-T-ST-DG"]` returned the
+      row). Prefer `contains` + client-side exact match, or filter via the
+      card's own parameters.
+    - **`fields` projection is ignored** when querying a source-card — all
+      result columns come back regardless. Don't rely on it to cut payload.
+    - **`result_metadata` can lag the live SQL.** A model's cached field list
+      may include columns the current query no longer SELECTs (e.g. #928 lists
+      `unallocated_platform_cost_remainder_usd` in docs, but the live native
+      query does not output it). Trust the live `dataset_query.native`, not the
+      cached metadata, for correctness questions.
+
+12. **Python 3.9 system SSL can't reach this Metabase.** `urllib`/`requests` on
+    the macOS system python3.9 fails with `TLSV1_ALERT_PROTOCOL_VERSION`.
+    `curl` (its own SSL stack) works fine. For scripted API calls, shell out to
+    `curl` and parse the JSON with python, rather than using python's HTTP
+    client directly.
+
+13. **Native SQL referencing another card — use the short `{{#<id>}}` form.**
+    The slug form `{{#904-sold-operating-performance-source}}` (id + slugified
+    English name) works for cards that have one, but a card with a non-ASCII
+    name (e.g. #928 `按SKU全摊薄已售经营表现底表`) has no reliable slug —
+    guessing it produces a saved card that silently returns 0 rows (no error,
+    empty `result_metadata`). The short form `{{#928}}` (id only) always works
+    and is documented-legal. Template-tag entry: `{"name":"#928","type":"card",
+    "id":"#928","card-id":928}`. Verify a newly created native card with
+    `POST /api/card/{id}/query` — if it returns 0 rows / empty cols, the
+    reference slug is wrong.
+
+14. **`PUT /api/dashboard/{id}/cards` REPLACES all dashcards (not append).**
+    Sending only the new dashcard deletes every existing one. To add a card,
+    send the full array: existing dashcards with their real `id` + the new one
+    with `id: -1`. New dashcard needs `id` as an integer (use `-1`); `null` is
+    rejected with `{"errors":{"cards":{"id":"integer"}}}`. The dedicated
+    `POST /api/dashboard/{id}/dashcards` endpoint does NOT exist on this
+    instance ("API endpoint does not exist.") — `/cards` is the only path.
+
+15. **Dashboard parameter values need an `id` key.** When calling
+    `POST /api/dashboard/{dash-id}/dashcard/{dc-id}/card/{card-id}/query` with
+    filters, each parameter object must include the dashboard parameter's `id`
+    (e.g. `{"id":"f50ef8d1","type":"string/contains","target":...,"value":...}`)
+    — omitting it gives `{"errors":{"parameters":{"id":"value must be a
+    non-blank string."}}}`. This dashboard-query path is also the reliable way
+    to test a `string/contains` SKU filter: the same filter via ad-hoc
+    `POST /api/dataset` with `parameters` returns 0 rows (the ad-hoc path
+    doesn't resolve dashboard parameter mappings the same way — related to
+    gotcha #11). Trust the dashboard dashcard query endpoint for filter
+    validation, not ad-hoc `/api/dataset`.
+
+16. **Never leave an empty `filters: []` array in a card's dataset_query.** When
+    you clone a card's query and strip a filter (e.g. removing the整店 sku
+    exclusion), deleting all filter entries leaves `filters: []`. A saved card
+    with `filters: []` returns **0 rows / empty `result_metadata` / empty cols**
+    on `POST /api/card/{id}/query` — silently, no error. The query runs fine
+    via ad-hoc `/api/dataset` and via a hand-built equivalent, so this looks
+    like a source-card or uuid problem and wastes hours. Fix: `delete` the
+    `filters` key entirely (don't set it to `[]`). Cards that keep a real
+    filter (e.g. a `date >=` clause) are unaffected — only the empty array
+    poisons the card. Symptom signature: `result_metadata` is `None`/empty
+    right after PUT, and card/query returns `{"data":{"rows":[],"cols":[]}}`.
+
+17. **Multiple new dashcards in one `PUT /dashboard/{id}/cards` need unique
+    negative ids.** Each new dashcard in the `cards` array uses `id: -1` to
+    signal "create". Sending two entries with `id: -1` silently drops all but
+    one (the PUT returns the existing cards + only one new one). Use distinct
+    negative ids (`-1`, `-2`, `-3`, ...) per new dashcard. Existing dashcards
+    must keep their real positive `id`. Re-send the FULL array every time —
+    the endpoint replaces (see gotcha #14), so omitting an existing dashcard
+    deletes it.

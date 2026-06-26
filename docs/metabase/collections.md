@@ -10,8 +10,8 @@
 │   │   ├── #105 Production Costs (6 cards)
 │   │   └── #104 Shipment Costs (6 cards)
 │   ├── #84 DCMS 开发测试 (7 cards)
-│   ├── #130 Finance (14 cards, 2 dashboards)
-│   │   └── #144 Base (11 cards)
+│   ├── #130 Finance (16 cards, 4 dashboards)
+│   │   └── #144 Base (13 cards)
 │   │       ├── #132 Production Costs (3 cards)
 │   │       ├── #133 Shipment Costs (3 cards)
 │   │       └── #131 Store Revenue (1 cards)
@@ -24,7 +24,7 @@
 │   │   └── #123 Ads SB Models (5 cards)
 │   ├── #127 SP Ads (12 cards, 1 dashboards)
 │   │   └── #122 Ads SP Models (7 cards)
-│   ├── #142 VIP (7 cards, 1 dashboards)
+│   ├── #142 VIP (9 cards, 1 dashboards)
 │   ├── #76 前期用户画像市场分析 (5 cards, 1 dashboards)
 │   │   └── #78 关键词分析 (2 cards)
 │   ├── #119 订单/船务数据 (Cynthia) (12 cards, 5 dashboards)
@@ -86,19 +86,19 @@
 | 94 | Alerts | 75 | /75/ | 1 | 0 |  |
 | 97 | Cost | 75 | /75/ | 1 | 0 |  |
 | 84 | DCMS 开发测试 | 75 | /75/ | 7 | 0 |  |
-| 130 | Finance | 75 | /75/ | 14 | 2 |  |
+| 130 | Finance | 75 | /75/ | 16 | 4 |  |
 | 138 | Inventory | 75 | /75/ | 9 | 1 |  |
 | 136 | Returns | 75 | /75/ | 10 | 1 |  |
 | 134 | Sales | 75 | /75/ | 25 | 0 |  |
 | 129 | SB Ads | 75 | /75/ | 13 | 1 |  |
 | 127 | SP Ads | 75 | /75/ | 12 | 1 |  |
-| 142 | VIP | 75 | /75/ | 7 | 1 |  |
+| 142 | VIP | 75 | /75/ | 9 | 1 |  |
 | 76 | 前期用户画像市场分析 | 75 | /75/ | 5 | 1 |  |
 | 119 | 订单/船务数据 (Cynthia) | 75 | /75/ | 12 | 5 |  |
 | 103 | 运营数据 | 75 | /75/ | 1 | 0 |  |
 | 122 | Ads SP Models | 127 | /75/127/ | 7 | 0 |  |
 | 123 | Ads SB Models | 129 | /75/129/ | 5 | 0 |  |
-| 144 | Base | 130 | /75/130/ | 11 | 0 |  |
+| 144 | Base | 130 | /75/130/ | 13 | 0 |  |
 | 132 | Production Costs | 144 | /75/130/144/ | 3 | 0 |  |
 | 133 | Shipment Costs | 144 | /75/130/144/ | 3 | 0 |  |
 | 131 | Store Revenue | 144 | /75/130/144/ | 1 | 0 |  |
