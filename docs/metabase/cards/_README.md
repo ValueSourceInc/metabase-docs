@@ -1,6 +1,6 @@
 # Individual Card Details
 
-183 cards documented. Each file contains full field metadata, description, upstream/downstream dependencies, and risk flags.
+184 cards documented. Each file contains full field metadata, description, upstream/downstream dependencies, and risk flags.
 
 Use `_catalog.md` for discovery (one line per card); read individual files when you need field-level detail.
 
@@ -65,7 +65,7 @@ Use `_catalog.md` for discovery (one line per card); read individual files when 
 - [#763 Targeting Performance Table Test Check](763.md)
 - [#792 DH 工厂补货表 - 16 sku](792.md)
 
-### Finance (18 cards)
+### Finance (19 cards)
 
 - [#747 Cumulative Sold Operating Performance (累计已售经营表现)](747.md)
 - [#871 Cumulative Settlement & Inventory Investment Trend (累计结算与库存投入趋势)](871.md)
@@ -85,6 +85,7 @@ Use `_catalog.md` for discovery (one line per card); read individual files when 
 - [#937 Monthly Cost MoM Growth Trend by SKU (按SKU月度成本环比增幅趋势)](937.md)
 - [#938 Monthly Sold Operating ROI Trend by SKU (按SKU月度已售经营ROI趋势)](938.md)
 - [#939 Monthly Sold Operating ROI MoM Change by SKU (按SKU月度已售经营ROI环比变化)](939.md)
+- [#940 Cumulative Net Profit Ranking By SKU / 按SKU累计净利排行](940.md)
 
 ### Inventory (9 cards)
 

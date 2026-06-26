@@ -7,7 +7,7 @@ This folder is generated from Metabase metadata. It provides navigation and busi
 | File | When to Read | Approx Size |
 | --- | --- | --- |
 | `_catalog.md` | **Always first** — one line per card; read IN FULL to discover by name/domain/collection/id | ~18KB |
-| `_index.json` | Grep ONLY (don't read in full) — when you need upstream/downstream/risks for specific cards | ~125KB |
+| `_index.json` | Grep ONLY (don't read in full) — when you need upstream/downstream/risks for specific cards | ~126KB |
 | `_deps.json` | Follow upstream/downstream dependencies — grep for card IDs | ~23KB |
 | `cards/{id}.md` | Read a specific card's full field metadata | ~1KB each |
 | `collections.md` | Understand collection hierarchy | ~5KB |
@@ -20,8 +20,8 @@ This folder is generated from Metabase metadata. It provides navigation and busi
 
 - Database filter: 4
 - Collections: 49
-- Cards / questions / models: 183
-- Active cards: 183
+- Cards / questions / models: 184
+- Active cards: 184
 - Dashboards: 18
 
 ## Key Source Models
@@ -37,8 +37,8 @@ Most-reused source models and table models. Changing these affects the most down
 | #403 | Ads SP Campaign Model | 4 | Ads SP Models | source model | advertising, finance, sales | table | #402, #853 | #388, #705, #708, #709, #710, #711, #712, #713, #714 |  | generic aggregation field names; high reuse / change carefully; missing description |
 | #742 | V Settlement Model | 4 | Base | source model | advertising, finance, replenishment, sales | table | #853 | #743, #745, #746, #751, #801, #896, #904, #914 |  | high reuse / change carefully; missing description |
 | #904 | Sold Operating Performance Source (已售经营表现底表) | 4 | Base | source model | advertising, finance, inventory, logistics, production, replenishment, returns, sales | table | #621, #742, #743, #744 | #747, #905, #906, #910, #911, #912, #928 |  | high reuse / change carefully; many upstream dependencies |
+| #928 | 按SKU全摊薄已售经营表现底表 | 4 | Base | source model | advertising, finance, inventory, logistics, replenishment, returns, sales | table | #733, #806, #904 | #929, #932, #933, #935, #938, #939, #940 |  | high reuse / change carefully |
 | #803 | SalesAndTrafficByDate Model | 4 | Sales | source model | finance, returns, sales | table | #853 | #840, #845, #846, #847, #848, #849 |  | high reuse / change carefully; missing description |
-| #928 | 按SKU全摊薄已售经营表现底表 | 4 | Base | source model | advertising, finance, inventory, logistics, replenishment, returns, sales | table | #733, #806, #904 | #929, #932, #933, #935, #938, #939 |  | high reuse / change carefully |
 | #402 | List SP Campaign Model | 4 | Ads SP Models | source model | advertising | table |  | #398, #403, #703, #704 |  | generic aggregation field names; missing description |
 
 ## Documents
@@ -66,8 +66,8 @@ Most-reused source models and table models. Changing these affects the most down
 
 | Domain | Cards |
 | --- | --- |
-| sales | 161 |
-| finance | 84 |
+| sales | 162 |
+| finance | 85 |
 | advertising | 60 |
 | replenishment | 54 |
 | logistics | 43 |

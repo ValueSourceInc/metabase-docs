@@ -1,6 +1,6 @@
 # Metabase Cards and Models
 
-Total: 183 cards (183 active, 0 archived).
+Total: 184 cards (184 active, 0 archived).
 
 For field-level detail, see individual card files in [cards/](cards/_README.md).
 For programmatic access, use [_index.json](_index.json).
@@ -9,7 +9,7 @@ For programmatic access, use [_index.json](_index.json).
 
 | Type | Count |
 | --- | --- |
-| dashboard component | 78 |
+| dashboard component | 79 |
 | question | 52 |
 | model | 21 |
 | source model | 16 |
@@ -191,7 +191,7 @@ For programmatic access, use [_index.json](_index.json).
 | #919 | Sales QTY & Dollar | 4 | VIP | dashboard component | sales | line |  |  | VIP专属数据面板 | generic aggregation field names; missing description |
 | #920 | 产品订单曲线 Cum Sales QTY Per SKU (NO VINE) | 4 | Sales | dashboard component | sales | line | #776 |  | 补货面板 | generic aggregation field names; missing description |
 | #921 | 清仓表 | 4 | Inventory | question | inventory, logistics, production, replenishment, sales | table | #878 |  |  | missing description; not referenced by dashboards or downstream cards |
-| #928 | 按SKU全摊薄已售经营表现底表 | 4 | Base | source model | advertising, finance, inventory, logistics, replenishment, returns, sales | table | #733, #806, #904 | #929, #932, #933, #935, #938, #939 |  | high reuse / change carefully |
+| #928 | 按SKU全摊薄已售经营表现底表 | 4 | Base | source model | advertising, finance, inventory, logistics, replenishment, returns, sales | table | #733, #806, #904 | #929, #932, #933, #935, #938, #939, #940 |  | high reuse / change carefully |
 | #929 | Cumulative Sold Operating Performance by SKU (按SKU累计已售经营表现) | 4 | Finance | dashboard component | finance, inventory, returns, sales | line | #928 |  | Sold Contribution Profit Dashboard BY SKU (按SKU已售贡献利润看板)  |  |
 | #930 | 订单 + 发货 + 库存 | 4 | VIP | question | finance, inventory, logistics, production, replenishment, sales | table | #873 |  |  | missing description; not referenced by dashboards or downstream cards |
 | #931 | 订单 + 发货 + 库存  透视表 | 4 | VIP | question | inventory, logistics, production, replenishment, sales | pivot | #873 |  |  | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
@@ -203,3 +203,4 @@ For programmatic access, use [_index.json](_index.json).
 | #937 | Monthly Cost MoM Growth Trend by SKU (按SKU月度成本环比增幅趋势) | 4 | Finance | dashboard component | advertising, finance, inventory, logistics, replenishment, returns, sales | line | #933 |  | Cost by SKU (按SKU成本看板) |  |
 | #938 | Monthly Sold Operating ROI Trend by SKU (按SKU月度已售经营ROI趋势) | 4 | Finance | dashboard component | finance, sales | line | #928 |  | Sold Contribution Profit Dashboard BY SKU (按SKU已售贡献利润看板)  |  |
 | #939 | Monthly Sold Operating ROI MoM Change by SKU (按SKU月度已售经营ROI环比变化) | 4 | Finance | dashboard component | finance, sales | line | #928 |  | Sold Contribution Profit Dashboard BY SKU (按SKU已售贡献利润看板)  |  |
+| #940 | Cumulative Net Profit Ranking By SKU / 按SKU累计净利排行 | 4 | Finance | dashboard component | finance, sales | row | #928 |  | Sold Contribution Profit Dashboard BY SKU (按SKU已售贡献利润看板)  | missing description |

@@ -409,3 +409,34 @@ before aggregating — `SUM(text_column)` will fail.
     same count). After remapping fields in a card, the summary shows nothing —
     you must verify the change by reading the card's `dataset_query` directly,
     not by trusting "Changes: none".
+
+20. **`order-by` missing `lib/uuid` + `lib/source-name` BREAKS card save
+    (masks as 403).** A hand-built MBQL `order-by` clause like
+    `["desc", ["aggregation", 0]]` fails to save with `{"via":[{"message":"You
+    cannot save this Question because you do not have permissions to run its
+    query."}], "status-code":403}` — even though the API key's user is
+    `is_superuser: true`. The 403 is a red herring: the query fails validation
+    and Metabase reports it as a permissions error. The real cause is an
+    incomplete order-by clause. When the Metabase UI saves a sort, it emits the
+    FULL form: `["desc", {"lib/uuid":"<uuid>"}, ["aggregation",
+    {"effective-type":"type/Decimal","base-type":"type/Decimal","lib/uuid":"<uuid>",
+    "lib/source-name":"net_profit_usd"}, "<agg-lib-uuid>"]]` — the direction
+    tuple needs a `lib/uuid` map as its 2nd element, and the aggregation ref
+    needs `lib/uuid` + `lib/source-name` + the aggregation's own lib/uuid as a
+    string. Hand-rolling all these UUIDs is error-prone. **Practical fix:
+    create the card WITHOUT `order-by` (succeeds cleanly), then set the sort in
+    the Metabase UI — the UI emits the correct full clause.** A PUT that keeps
+    the UI-generated order-by works fine; only hand-built incomplete ones fail.
+    Symptom signature: 403 with hand-built order-by, 200 + new id without it.
+    (2026-06, building #940/#941.)
+
+21. **Dashcard field names are `size_x`/`size_y` (snake_case), not camelCase.**
+    When building the `cards` array for `PUT /api/dashboard/{id}/cards`, the
+    size fields are `size_x` and `size_y` (snake_case). Sending `sizeX`/`sizeY`
+    silently produces a card with default/zero size. Other required dashcard
+    fields: `id` (use `-1` for new — see gotcha #17), `card_id`, `dashboard_id`,
+    `row`, `col`, `visualization_settings` (map, not null), `parameter_mappings`
+    (array; each mapping needs `parameter_id` matching a dashboard param's `id`,
+    `card_id`, and `target` = `["dimension",["field","<fieldname>",{"base-type":"..."}],{"stage-number":0}]`).
+    Re-send the FULL array every PUT (gotcha #14: it replaces). (2026-06, adding
+    #940 to dashboard #70.)
