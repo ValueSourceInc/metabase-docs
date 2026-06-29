@@ -1,6 +1,6 @@
 # Metabase Cards and Models
 
-Total: 184 cards (184 active, 0 archived).
+Total: 181 cards (181 active, 0 archived).
 
 For field-level detail, see individual card files in [cards/](cards/_README.md).
 For programmatic access, use [_index.json](_index.json).
@@ -9,10 +9,10 @@ For programmatic access, use [_index.json](_index.json).
 
 | Type | Count |
 | --- | --- |
-| dashboard component | 79 |
-| question | 52 |
-| model | 21 |
-| source model | 16 |
+| dashboard component | 74 |
+| question | 53 |
+| model | 24 |
+| source model | 14 |
 | table model | 10 |
 | native question | 6 |
 
@@ -96,7 +96,6 @@ For programmatic access, use [_index.json](_index.json).
 | #744 | Sellable Quantity from Returns By SKU X Order | 4 | Base | question | returns, sales | line | #733 | #745, #904 |  | generic aggregation field names; missing description |
 | #745 | Store Profit By SKU X Order Model | 4 | Base | source model | advertising, finance, logistics, production, replenishment, returns, sales | table | #621, #742, #743, #744 | #752, #888, #893 |  | generic aggregation field names; many upstream dependencies; missing description |
 | #746 | Platform Advertisement Cost Over Time | 4 | Base | question | advertising, finance, sales | table | #742 |  |  | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
-| #747 | Cumulative Sold Operating Performance (累计已售经营表现) | 4 | Finance | dashboard component | finance, sales | line | #904 |  | Sold Contribution Profit Dashboard (已售贡献利润看板)  | missing description |
 | #751 | Profit X Cost Analysis SKU Pivot | 4 | Base | question | finance, sales | pivot | #742 |  |  | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
 | #752 | Store Profit Over Time New | 4 | Store Revenue | question | finance, sales | line | #745 |  |  | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
 | #754 | Production Cost Over Time New | 4 | Production Costs | question | finance, production, sales | line |  | #888 |  | generic aggregation field names; missing description |
@@ -173,15 +172,8 @@ For programmatic access, use [_index.json](_index.json).
 | #899 | Wps Shipment Model | 4 | Sales Forecast | model | finance, logistics, production, replenishment, sales | table |  | #878 |  | missing description |
 | #900 | Wps Shipment Items Model | 4 | Sales Forecast | model | finance, logistics, production, replenishment, sales | table |  | #878 |  | missing description |
 | #901 | 工厂补货表2.0 | 4 | Inventory | dashboard component | inventory, production, replenishment, sales | table | #873 |  | 补货面板 | generic aggregation field names; missing description |
-| #904 | Sold Operating Performance Source (已售经营表现底表) | 4 | Base | source model | advertising, finance, inventory, logistics, production, replenishment, returns, sales | table | #621, #742, #743, #744 | #747, #905, #906, #910, #911, #912, #928 |  | high reuse / change carefully; many upstream dependencies |
-| #905 | Cumulative Cost Structure (累计成本结构) | 4 | Finance | dashboard component | advertising, finance, inventory, logistics, replenishment, returns, sales | line | #904 |  | Cost (成本看板) | missing description |
-| #906 | Cost Structure Source (成本结构底表) | 4 | Base | source model | advertising, finance, inventory, logistics, replenishment, returns, sales | table | #904 | #907, #908, #909 |  | missing description; native SQL without business description |
-| #907 | Monthly Cost Mix Trend (月度成本占比趋势) | 4 | Finance | dashboard component | finance, sales | area | #906 |  | Cost (成本看板) | missing description |
-| #908 | Total Cost Mix (总成本占比) | 4 | Finance | dashboard component | finance, sales | pie | #906 |  | Cost (成本看板) | missing description |
-| #909 | Monthly Cost MoM Growth Trend (月度成本环比增幅趋势) | 4 | Finance | dashboard component | advertising, finance, inventory, logistics, replenishment, returns, sales | line | #906 |  | Cost (成本看板) | missing description |
-| #910 | Cumulative Sold Operating ROI Trend (累计已售经营ROI趋势) | 4 | Finance | dashboard component | finance, sales | line | #904 |  | Sold Contribution Profit Dashboard (已售贡献利润看板)  | missing description |
-| #911 | Monthly Sold Operating ROI Trend (月度已售经营ROI趋势) | 4 | Finance | dashboard component | finance, sales | line | #904 |  | Sold Contribution Profit Dashboard (已售贡献利润看板)  | missing description |
-| #912 | Monthly Sold Operating ROI MoM Change (月度已售经营ROI环比变化) | 4 | Finance | dashboard component | finance, sales | line | #904 |  | Sold Contribution Profit Dashboard (已售贡献利润看板)  | missing description |
+| #904 | Sold Operating Performance Source (已售经营表现底表) | 4 | Base | model | advertising, finance, inventory, logistics, production, replenishment, returns, sales | table | #621, #742, #743, #744 | #906, #928 |  | many upstream dependencies |
+| #906 | Cost Structure Source (成本结构底表) | 4 | Base | model | advertising, finance, inventory, logistics, replenishment, returns, sales | table | #904 |  |  | not referenced by dashboards or downstream cards |
 | #913 | 订单 Sales 原始表 | 4 | VIP | question | logistics, sales | table |  |  |  | missing description; not referenced by dashboards or downstream cards |
 | #914 | Amazon Settlement Cost Breakdown (亚马逊结算成本分析表) | 4 | VIP | question | advertising, finance, inventory, logistics, returns, sales | pivot | #742 |  |  | not referenced by dashboards or downstream cards |
 | #915 | 箱单 Items | 4 | VIP | question | finance, logistics, production, replenishment, sales | table |  |  |  | missing description; not referenced by dashboards or downstream cards |
@@ -191,16 +183,21 @@ For programmatic access, use [_index.json](_index.json).
 | #919 | Sales QTY & Dollar | 4 | VIP | dashboard component | sales | line |  |  | VIP专属数据面板 | generic aggregation field names; missing description |
 | #920 | 产品订单曲线 Cum Sales QTY Per SKU (NO VINE) | 4 | Sales | dashboard component | sales | line | #776 |  | 补货面板 | generic aggregation field names; missing description |
 | #921 | 清仓表 | 4 | Inventory | question | inventory, logistics, production, replenishment, sales | table | #878 |  |  | missing description; not referenced by dashboards or downstream cards |
-| #928 | 按SKU全摊薄已售经营表现底表 | 4 | Base | source model | advertising, finance, inventory, logistics, replenishment, returns, sales | table | #733, #806, #904 | #929, #932, #933, #935, #938, #939, #940 |  | high reuse / change carefully |
-| #929 | Cumulative Sold Operating Performance by SKU (按SKU累计已售经营表现) | 4 | Finance | dashboard component | finance, inventory, returns, sales | line | #928 |  | Sold Contribution Profit Dashboard BY SKU (按SKU已售贡献利润看板)  |  |
+| #928 | 按SKU全摊薄已售经营表现底表 | 4 | Base | source model | advertising, finance, inventory, logistics, replenishment, returns, sales | table | #733, #806, #904 | #929, #932, #933, #935, #938, #939, #940, #942, #943 |  | high reuse / change carefully |
+| #929 | Cumulative Sold Operating Performance (累计已售经营表现) | 4 | Finance | dashboard component | finance, inventory, returns, sales | line | #928 |  | Sold Contribution Profit Dashboard (已售贡献利润看板) |  |
 | #930 | 订单 + 发货 + 库存 | 4 | VIP | question | finance, inventory, logistics, production, replenishment, sales | table | #873 |  |  | missing description; not referenced by dashboards or downstream cards |
 | #931 | 订单 + 发货 + 库存  透视表 | 4 | VIP | question | inventory, logistics, production, replenishment, sales | pivot | #873 |  |  | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
-| #932 | Cumulative Sold Operating ROI Trend by SKU (按SKU累计已售经营ROI趋势) | 4 | Finance | dashboard component | finance, sales | line | #928 |  | Sold Contribution Profit Dashboard BY SKU (按SKU已售贡献利润看板)  |  |
+| #932 | Cumulative Sold Operating ROI Trend (累计已售经营ROI趋势) | 4 | Finance | dashboard component | finance, sales | line | #928 |  | Sold Contribution Profit Dashboard (已售贡献利润看板) |  |
 | #933 | Allocated Cost Structure Source (按SKU已分摊成本结构底表) | 4 | Base | source model | advertising, finance, inventory, logistics, replenishment, returns, sales | table | #928 | #934, #936, #937 |  |  |
-| #934 | Monthly Cost Mix Trend by SKU (按SKU月度成本占比趋势) | 4 | Finance | dashboard component | finance, sales | area | #933 |  | Cost by SKU (按SKU成本看板) |  |
-| #935 | Cumulative Cost Structure by SKU (按SKU累计成本结构) | 4 | Finance | dashboard component | advertising, finance, inventory, logistics, replenishment, returns, sales | line | #928 |  | Cost by SKU (按SKU成本看板) |  |
-| #936 | Total Cost Mix by SKU (按SKU总成本占比) | 4 | Finance | dashboard component | finance, sales | pie | #933 |  | Cost by SKU (按SKU成本看板) |  |
-| #937 | Monthly Cost MoM Growth Trend by SKU (按SKU月度成本环比增幅趋势) | 4 | Finance | dashboard component | advertising, finance, inventory, logistics, replenishment, returns, sales | line | #933 |  | Cost by SKU (按SKU成本看板) |  |
-| #938 | Monthly Sold Operating ROI Trend by SKU (按SKU月度已售经营ROI趋势) | 4 | Finance | dashboard component | finance, sales | line | #928 |  | Sold Contribution Profit Dashboard BY SKU (按SKU已售贡献利润看板)  |  |
-| #939 | Monthly Sold Operating ROI MoM Change by SKU (按SKU月度已售经营ROI环比变化) | 4 | Finance | dashboard component | finance, sales | line | #928 |  | Sold Contribution Profit Dashboard BY SKU (按SKU已售贡献利润看板)  |  |
-| #940 | Cumulative Net Profit Ranking By SKU / 按SKU累计净利排行 | 4 | Finance | dashboard component | finance, sales | row | #928 |  | Sold Contribution Profit Dashboard BY SKU (按SKU已售贡献利润看板)  | missing description |
+| #934 | Monthly Cost Mix Trend (月度成本占比趋势) | 4 | Finance | dashboard component | finance, sales | area | #933 |  | Cost (成本看板) |  |
+| #935 | Cumulative Cost + Profit Structure (累计成本结构) | 4 | Finance | dashboard component | advertising, finance, inventory, logistics, replenishment, returns, sales | area | #928 |  | Cost (成本看板) | generic aggregation field names |
+| #936 | Total Cost Mix (总成本占比) | 4 | Finance | dashboard component | finance, sales | pie | #933 |  | Cost (成本看板) |  |
+| #937 | Monthly Cost MoM Growth Trend (月度成本环比增幅趋势) | 4 | Finance | dashboard component | advertising, finance, inventory, logistics, replenishment, returns, sales | line | #933 |  | Cost (成本看板) |  |
+| #938 | Monthly Sold Operating ROI Trend (月度已售经营ROI趋势) | 4 | Finance | dashboard component | finance, sales | line | #928 |  | Sold Contribution Profit Dashboard (已售贡献利润看板) |  |
+| #939 | Monthly Sold Operating ROI MoM Change (月度已售经营ROI环比变化) | 4 | Finance | dashboard component | finance, sales | line | #928 |  | Sold Contribution Profit Dashboard (已售贡献利润看板) |  |
+| #940 | Cumulative Net Profit Ranking (累计净利排行) | 4 | Finance | dashboard component | finance, sales | row | #928 |  | Sold Contribution Profit Dashboard (已售贡献利润看板) | missing description |
+| #942 | 透视图例子111 | 4 | DCMS 开发测试 | question | advertising, finance, inventory, logistics, replenishment, returns, sales | pivot | #928 |  |  | missing description; not referenced by dashboards or downstream cards |
+| #943 | Monthly Cost-to-Sales Ratio Source (月度成本占销售额比率底表) | 4 | Base | model | advertising, finance, inventory, logistics, replenishment, returns, sales | table | #928 | #948, #949 |  |  |
+| #948 | Monthly Cost-to-Sales Ratio (月度成本占销售额比率) | 4 | Finance | dashboard component | finance, sales | line | #943 |  | Cost (成本看板) |  |
+| #949 | Cost Pivot Table by Store & Marketplace (按店铺成本透视表) | 4 | Finance | dashboard component | advertising, finance, inventory, logistics, replenishment, returns, sales | table | #943 |  | Cost (成本看板) |  |
+| #950 | 下单量 | 4 | Inventory | dashboard component | inventory, sales | pivot |  |  | 补货面板 | generic aggregation field names; missing description |

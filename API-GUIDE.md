@@ -440,3 +440,91 @@ before aggregating — `SUM(text_column)` will fail.
     `card_id`, and `target` = `["dimension",["field","<fieldname>",{"base-type":"..."}],{"stage-number":0}]`).
     Re-send the FULL array every PUT (gotcha #14: it replaces). (2026-06, adding
     #940 to dashboard #70.)
+
+22. **PUT /api/card with a `native` SQL change: edit the SQL string in the
+    payload's `dataset_query.stages[0].native` directly.** A subtle trap: if you
+    save the original card JSON to a file, edit the SQL in a *separate* `.sql`
+    file, then rebuild the PUT payload by loading the *original* JSON, your edits
+    are silently lost — the PUT succeeds (200 + id) but the response `native`
+    still has the OLD SQL, and the live card is unchanged. Always rebuild the
+    payload from the edited SQL file (`payload['dataset_query']['stages'][0]['native']
+    = open(edited.sql).read()`), and assert `'your_new_token' in response_native`
+    before trusting the save. Symptom: PUT returns 200 but `{{#card}}` ref still
+    errors "column does not exist". (2026-06, #904 gif column.)
+
+23. **Settlement `#742` (v_settlement_new) has FOUR categories, not two.** The
+    `category` field is `revenue` / `cost` / `other` / `platform`. Cards that
+    whitelist `WHERE category IN ('revenue','cost')` (e.g. #904 order_settlement)
+    silently drop the entire `platform` and `other` categories. Key platform
+    sub_categories and their gotchas:
+    - `platform/advertising_cost` (-$193k, all order-id NULL) is the settlement
+      raw ad ledger; it is NOT the same as `allocated_ad_cost_usd` (-$179k,
+      pre-allocated onto `revenue/product_sales` rows from a separate ads table).
+      They are two independent lines with ZERO row overlap. #904 correctly uses
+      `allocated_ad_cost_usd` and excludes `advertising_cost` (avoids double
+      count). The ~$14k gap is an ads-allocation coverage issue, not a dup.
+    - `platform/global_inbound_transportation_fees` (AGL cross-border inbound
+      freight, ~-$7k, **sku is EMPTY on all rows** — the `order-id` column holds
+      FBA shipment IDs like `FBA195WLFS2D`, NOT sales order IDs). Because sku is
+      empty, every `WHERE sku <> ''` base table (#902/#904/#928) drops it. It
+      cannot be restored via order-id→orders-table join (the FBA shipment IDs
+      have no sku match in the orders table — a LEFT JOIN yields all-NULL sku;
+      an aggregate `count(*) FILTER WHERE sku IS NULL` can falsely report 0 due
+      to row multiplication, always verify with a row-level LEFT JOIN). Correct
+      handling: pool-allocate like storage_fees, NOT row-level.
+    - `other/*` (product_sales_tax, marketplace_withheld_tax, shipping_credits,
+      promotional_rebates under `other`) are tax/credit lines — exclude from
+      operating profit is fine.
+    `#896` (Amazon Settlement Cost Breakdown) breaks out by category×sub_category
+    with only a CC001 sku exclusion, so it surfaces ALL categories including
+    platform — use it as the source-of-truth checklist for "what fees exist".
+
+24. **Inbound fee allocation weights: volume, not unit count.** Two inbound
+    fees in #928 pool-allocation:
+    - `inbound_placement_fees`: Amazon per-unit fee, rate varies by size tier +
+      weight band → per-unit cost is NOT uniform across SKUs.
+    - `global_inbound_transportation_fees`: AGL freight, billed by dimensional
+      (volumetric) weight.
+    Both are physically driven by size/volume, so allocating by raw unit count
+    (`afn-inbound-shipped-quantity`) mis-assigns large-item fees to small items.
+    Correct weight = `inbound_shipped_qty × per-unit-volume` (inbound volume,
+    proxy for dimensional weight), with unit-count fallback when volume is
+    missing/abnormal (per-unit-volume NULL/0/≥10 affects ~36% of inbound SKUs in
+    #806). Same fallback pattern as storage_weight. After switching inbound_placement
+    from unit-count to volume weight, the allocated TOTAL stays conserved
+    (-13142.42) but per-SKU distribution shifts (more accurate). Official basis
+    confirmed via Amazon docs: placement fee "per-unit ... depends on size tier,
+    weight"; AGL freight "dimensional weight". (2026-06, #928 fix4.)
+
+25. **Adding a cost category to MBQL pivot "wide" cards requires touching EVERY
+    stage, not just the SQL-less base.** Collection 130 has two parallel cost-
+    structure families, and a new fee must be added to BOTH plus all their
+    pivot/cumulative derivatives:
+    - Long-table base: #906 (from #904, full incl. platform rows) and #933
+      (from #928, SKU-allocated). Adding a category = one `WHEN` in the CASE +
+      one row in the `VALUES` list. Downstream long-table consumers (#907/#908/
+      #934/#936) auto-inherit — no edit needed.
+    - Pivot "wide" cards (#909/#937 = month×category matrix + MoM growth;
+      #905/#935 = cumulative) are MBQL, NOT native SQL. They CANNOT be edited
+      as text. To add a category programmatically: deep-copy the inbound_placement
+      component (stage0 `case` expr + stage1 `sum` agg + stage1 MoM `case` agg),
+      then recursively rewrite `lib/uuid`→new uuids, `lib/source-name`/`name`/
+      `display-name`→new category, the CASE condition value, AND the MoM agg's
+      sum-reference uuid string (`["aggregation",{opts},"<sum-uuid>"]` — MoM
+      references the sum by UUID, not index, so inserting a new sum does NOT
+      break existing MoM refs). Insert each copy right after its inbound_placement
+      sibling to keep display order. This works (no 403) because you're cloning
+      a valid clause with all required `lib/uuid`/`lib/source-name` fields —
+      hand-building from scratch fails (gotcha #20). (2026-06, #909/#937/#905/#935.)
+    - Cumulative cards (#905/#935) have an `other_cost_adjustments = total -
+      sum(known)` residual expression. A new fee already lives in `total` (via
+      net_profit), so it silently lands in "Other" until you ALSO add it to the
+      `known` sum (then Other shrinks by exactly the fee amount, total unchanged).
+      Symptom: fee appears missing but total is correct — it's hiding in Other.
+      Fix: add `<fee>_positive_usd` expr + append it to other's known-sum chain +
+      add `cumulative_<fee>` cum-sum agg. (2026-06, #905/#935 gif拆出.)
+    - **The 2000-row ad-hoc limit hides platform rows.** `POST /api/dataset`
+      caps at 2000 rows; #904/#928/#906/#933 return ~10-20k rows. To validate a
+      fee's total, wrap the card SQL in `SELECT sum(...) FROM (...) sub` (no row
+      limit on aggregates), or query via `{{#card}}` ref — never trust a 2000-row
+      sample sum.

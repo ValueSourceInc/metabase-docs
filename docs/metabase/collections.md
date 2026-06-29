@@ -9,13 +9,13 @@
 │   ├── #97 Cost (1 cards)
 │   │   ├── #105 Production Costs (6 cards)
 │   │   └── #104 Shipment Costs (6 cards)
-│   ├── #84 DCMS 开发测试 (7 cards)
-│   ├── #130 Finance (19 cards, 5 dashboards)
-│   │   └── #144 Base (13 cards)
+│   ├── #84 DCMS 开发测试 (8 cards)
+│   ├── #130 Finance (13 cards, 3 dashboards)
+│   │   └── #144 Base (14 cards)
 │   │       ├── #132 Production Costs (3 cards)
 │   │       ├── #133 Shipment Costs (3 cards)
 │   │       └── #131 Store Revenue (1 cards)
-│   ├── #138 Inventory (9 cards, 1 dashboards)
+│   ├── #138 Inventory (10 cards, 1 dashboards)
 │   │   └── #143 Sales Forecast (9 cards)
 │   ├── #136 Returns (10 cards, 1 dashboards)
 │   ├── #134 Sales (25 cards)
@@ -85,9 +85,9 @@
 | 141 | [0] Store Monitor | 75 | /75/ | 0 | 1 |  |
 | 94 | Alerts | 75 | /75/ | 1 | 0 |  |
 | 97 | Cost | 75 | /75/ | 1 | 0 |  |
-| 84 | DCMS 开发测试 | 75 | /75/ | 7 | 0 |  |
-| 130 | Finance | 75 | /75/ | 19 | 5 |  |
-| 138 | Inventory | 75 | /75/ | 9 | 1 |  |
+| 84 | DCMS 开发测试 | 75 | /75/ | 8 | 0 |  |
+| 130 | Finance | 75 | /75/ | 13 | 3 |  |
+| 138 | Inventory | 75 | /75/ | 10 | 1 |  |
 | 136 | Returns | 75 | /75/ | 10 | 1 |  |
 | 134 | Sales | 75 | /75/ | 25 | 0 |  |
 | 129 | SB Ads | 75 | /75/ | 13 | 1 |  |
@@ -98,7 +98,7 @@
 | 103 | 运营数据 | 75 | /75/ | 1 | 0 |  |
 | 122 | Ads SP Models | 127 | /75/127/ | 7 | 0 |  |
 | 123 | Ads SB Models | 129 | /75/129/ | 5 | 0 |  |
-| 144 | Base | 130 | /75/130/ | 13 | 0 |  |
+| 144 | Base | 130 | /75/130/ | 14 | 0 |  |
 | 132 | Production Costs | 144 | /75/130/144/ | 3 | 0 |  |
 | 133 | Shipment Costs | 144 | /75/130/144/ | 3 | 0 |  |
 | 131 | Store Revenue | 144 | /75/130/144/ | 1 | 0 |  |

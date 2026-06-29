@@ -1,4 +1,4 @@
-# Card Catalog — 184 cards
+# Card Catalog — 181 cards
 
 One line per card. Read IN FULL for discovery (find by name/domain/collection/id),
 then read `cards/{id}.md` for field-level detail. Columns, ` | `-separated:
@@ -80,7 +80,6 @@ id | name | domains | collection | type | fields
 744 | Sellable Quantity from Returns By SKU X Order | returns,sales | Base | question | 5
 745 | Store Profit By SKU X Order Model | advertising,finance,logistics,production,replenishment,returns,sales | Base | source model | 11
 746 | Platform Advertisement Cost Over Time | advertising,finance,sales | Base | question | 4
-747 | Cumulative Sold Operating Performance (累计已售经营表现) | finance,sales | Finance | dashboard component | 4
 751 | Profit X Cost Analysis SKU Pivot | finance,sales | Base | question | 8
 752 | Store Profit Over Time New | finance,sales | Store Revenue | question | 4
 754 | Production Cost Over Time New | finance,production,sales | Production Costs | question | 3
@@ -157,15 +156,8 @@ id | name | domains | collection | type | fields
 899 | Wps Shipment Model | finance,logistics,production,replenishment,sales | Sales Forecast | model | 17
 900 | Wps Shipment Items Model | finance,logistics,production,replenishment,sales | Sales Forecast | model | 40
 901 | 工厂补货表2.0 | inventory,production,replenishment,sales | Inventory | dashboard component | 32
-904 | Sold Operating Performance Source (已售经营表现底表) | advertising,finance,inventory,logistics,production,replenishment,returns,sales | Base | source model | 29
-905 | Cumulative Cost Structure (累计成本结构) | advertising,finance,inventory,logistics,replenishment,returns,sales | Finance | dashboard component | 14
-906 | Cost Structure Source (成本结构底表) | advertising,finance,inventory,logistics,replenishment,returns,sales | Base | source model | 7
-907 | Monthly Cost Mix Trend (月度成本占比趋势) | finance,sales | Finance | dashboard component | 3
-908 | Total Cost Mix (总成本占比) | finance,sales | Finance | dashboard component | 2
-909 | Monthly Cost MoM Growth Trend (月度成本环比增幅趋势) | advertising,finance,inventory,logistics,replenishment,returns,sales | Finance | dashboard component | 25
-910 | Cumulative Sold Operating ROI Trend (累计已售经营ROI趋势) | finance,sales | Finance | dashboard component | 4
-911 | Monthly Sold Operating ROI Trend (月度已售经营ROI趋势) | finance,sales | Finance | dashboard component | 4
-912 | Monthly Sold Operating ROI MoM Change (月度已售经营ROI环比变化) | finance,sales | Finance | dashboard component | 5
+904 | Sold Operating Performance Source (已售经营表现底表) | advertising,finance,inventory,logistics,production,replenishment,returns,sales | Base | model | 30
+906 | Cost Structure Source (成本结构底表) | advertising,finance,inventory,logistics,replenishment,returns,sales | Base | model | 7
 913 | 订单 Sales 原始表 | logistics,sales | VIP | question | 38
 914 | Amazon Settlement Cost Breakdown (亚马逊结算成本分析表) | advertising,finance,inventory,logistics,returns,sales | VIP | question | 1
 915 | 箱单 Items | finance,logistics,production,replenishment,sales | VIP | question | 40
@@ -175,16 +167,21 @@ id | name | domains | collection | type | fields
 919 | Sales QTY & Dollar | sales | VIP | dashboard component | 3
 920 | 产品订单曲线 Cum Sales QTY Per SKU (NO VINE) | sales | Sales | dashboard component | 3
 921 | 清仓表 | inventory,logistics,production,replenishment,sales | Inventory | question | 38
-928 | 按SKU全摊薄已售经营表现底表 | advertising,finance,inventory,logistics,replenishment,returns,sales | Base | source model | 27
-929 | Cumulative Sold Operating Performance by SKU (按SKU累计已售经营表现) | finance,inventory,returns,sales | Finance | dashboard component | 4
+928 | 按SKU全摊薄已售经营表现底表 | advertising,finance,inventory,logistics,replenishment,returns,sales | Base | source model | 28
+929 | Cumulative Sold Operating Performance (累计已售经营表现) | finance,inventory,returns,sales | Finance | dashboard component | 4
 930 | 订单 + 发货 + 库存 | finance,inventory,logistics,production,replenishment,sales | VIP | question | 67
 931 | 订单 + 发货 + 库存  透视表 | inventory,logistics,production,replenishment,sales | VIP | question | 4
-932 | Cumulative Sold Operating ROI Trend by SKU (按SKU累计已售经营ROI趋势) | finance,sales | Finance | dashboard component | 4
+932 | Cumulative Sold Operating ROI Trend (累计已售经营ROI趋势) | finance,sales | Finance | dashboard component | 4
 933 | Allocated Cost Structure Source (按SKU已分摊成本结构底表) | advertising,finance,inventory,logistics,replenishment,returns,sales | Base | source model | 6
-934 | Monthly Cost Mix Trend by SKU (按SKU月度成本占比趋势) | finance,sales | Finance | dashboard component | 3
-935 | Cumulative Cost Structure by SKU (按SKU累计成本结构) | advertising,finance,inventory,logistics,replenishment,returns,sales | Finance | dashboard component | 14
-936 | Total Cost Mix by SKU (按SKU总成本占比) | finance,sales | Finance | dashboard component | 2
-937 | Monthly Cost MoM Growth Trend by SKU (按SKU月度成本环比增幅趋势) | advertising,finance,inventory,logistics,replenishment,returns,sales | Finance | dashboard component | 25
-938 | Monthly Sold Operating ROI Trend by SKU (按SKU月度已售经营ROI趋势) | finance,sales | Finance | dashboard component | 4
-939 | Monthly Sold Operating ROI MoM Change by SKU (按SKU月度已售经营ROI环比变化) | finance,sales | Finance | dashboard component | 5
-940 | Cumulative Net Profit Ranking By SKU / 按SKU累计净利排行 | finance,sales | Finance | dashboard component | 2
+934 | Monthly Cost Mix Trend (月度成本占比趋势) | finance,sales | Finance | dashboard component | 3
+935 | Cumulative Cost + Profit Structure (累计成本结构) | advertising,finance,inventory,logistics,replenishment,returns,sales | Finance | dashboard component | 16
+936 | Total Cost Mix (总成本占比) | finance,sales | Finance | dashboard component | 2
+937 | Monthly Cost MoM Growth Trend (月度成本环比增幅趋势) | advertising,finance,inventory,logistics,replenishment,returns,sales | Finance | dashboard component | 27
+938 | Monthly Sold Operating ROI Trend (月度已售经营ROI趋势) | finance,sales | Finance | dashboard component | 4
+939 | Monthly Sold Operating ROI MoM Change (月度已售经营ROI环比变化) | finance,sales | Finance | dashboard component | 5
+940 | Cumulative Net Profit Ranking (累计净利排行) | finance,sales | Finance | dashboard component | 2
+942 | 透视图例子111 | advertising,finance,inventory,logistics,replenishment,returns,sales | DCMS 开发测试 | question | 13
+943 | Monthly Cost-to-Sales Ratio Source (月度成本占销售额比率底表) | advertising,finance,inventory,logistics,replenishment,returns,sales | Base | model | 8
+948 | Monthly Cost-to-Sales Ratio (月度成本占销售额比率) | finance,sales | Finance | dashboard component | 3
+949 | Cost Pivot Table by Store & Marketplace (按店铺成本透视表) | advertising,finance,inventory,logistics,replenishment,returns,sales | Finance | dashboard component | 18
+950 | 下单量 | inventory,sales | Inventory | dashboard component | 3

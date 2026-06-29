@@ -85,4 +85,4 @@ These cards contain fields like `sum`, `sum_2`, `avg`, or `max`. They need chart
 | #786 | Returns By Disposition Type | 4 | Returns | dashboard component | returns, sales | line | generic aggregation field names; missing description |
 | #787 | Return SKU Pie | 4 | Returns | question | returns, sales | pie | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
 
-_Only first 80 of 119 cards shown._
+_Only first 80 of 121 cards shown._

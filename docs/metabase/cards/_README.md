@@ -1,6 +1,6 @@
 # Individual Card Details
 
-184 cards documented. Each file contains full field metadata, description, upstream/downstream dependencies, and risk flags.
+181 cards documented. Each file contains full field metadata, description, upstream/downstream dependencies, and risk flags.
 
 Use `_catalog.md` for discovery (one line per card); read individual files when you need field-level detail.
 
@@ -35,7 +35,7 @@ Use `_catalog.md` for discovery (one line per card); read individual files when 
 
 - [#476 SKU订单预警](476.md)
 
-### Base (13 cards)
+### Base (14 cards)
 
 - [#742 V Settlement Model](742.md)
 - [#743 Quantity Purchased By Order ID X SKU](743.md)
@@ -50,12 +50,13 @@ Use `_catalog.md` for discovery (one line per card); read individual files when 
 - [#906 Cost Structure Source (成本结构底表)](906.md)
 - [#928 按SKU全摊薄已售经营表现底表](928.md)
 - [#933 Allocated Cost Structure Source (按SKU已分摊成本结构底表)](933.md)
+- [#943 Monthly Cost-to-Sales Ratio Source (月度成本占销售额比率底表)](943.md)
 
 ### Cost (1 cards)
 
 - [#621 AVG Production & Shipment Cost By SKU](621.md)
 
-### DCMS 开发测试 (7 cards)
+### DCMS 开发测试 (8 cards)
 
 - [#409 Dify 测试空数据](409.md)
 - [#465 VS 产品销售曲线Alert Test](465.md)
@@ -64,30 +65,25 @@ Use `_catalog.md` for discovery (one line per card); read individual files when 
 - [#649 DH Amazon Parent SKU 销售比例 - 复制测试](649.md)
 - [#763 Targeting Performance Table Test Check](763.md)
 - [#792 DH 工厂补货表 - 16 sku](792.md)
+- [#942 透视图例子111](942.md)
 
-### Finance (19 cards)
+### Finance (13 cards)
 
-- [#747 Cumulative Sold Operating Performance (累计已售经营表现)](747.md)
 - [#871 Cumulative Settlement & Inventory Investment Trend (累计结算与库存投入趋势)](871.md)
 - [#896 Amazon Settlement Cost Breakdown (亚马逊结算成本分析表)](896.md)
-- [#905 Cumulative Cost Structure (累计成本结构)](905.md)
-- [#907 Monthly Cost Mix Trend (月度成本占比趋势)](907.md)
-- [#908 Total Cost Mix (总成本占比)](908.md)
-- [#909 Monthly Cost MoM Growth Trend (月度成本环比增幅趋势)](909.md)
-- [#910 Cumulative Sold Operating ROI Trend (累计已售经营ROI趋势)](910.md)
-- [#911 Monthly Sold Operating ROI Trend (月度已售经营ROI趋势)](911.md)
-- [#912 Monthly Sold Operating ROI MoM Change (月度已售经营ROI环比变化)](912.md)
-- [#929 Cumulative Sold Operating Performance by SKU (按SKU累计已售经营表现)](929.md)
-- [#932 Cumulative Sold Operating ROI Trend by SKU (按SKU累计已售经营ROI趋势)](932.md)
-- [#934 Monthly Cost Mix Trend by SKU (按SKU月度成本占比趋势)](934.md)
-- [#935 Cumulative Cost Structure by SKU (按SKU累计成本结构)](935.md)
-- [#936 Total Cost Mix by SKU (按SKU总成本占比)](936.md)
-- [#937 Monthly Cost MoM Growth Trend by SKU (按SKU月度成本环比增幅趋势)](937.md)
-- [#938 Monthly Sold Operating ROI Trend by SKU (按SKU月度已售经营ROI趋势)](938.md)
-- [#939 Monthly Sold Operating ROI MoM Change by SKU (按SKU月度已售经营ROI环比变化)](939.md)
-- [#940 Cumulative Net Profit Ranking By SKU / 按SKU累计净利排行](940.md)
+- [#929 Cumulative Sold Operating Performance (累计已售经营表现)](929.md)
+- [#932 Cumulative Sold Operating ROI Trend (累计已售经营ROI趋势)](932.md)
+- [#934 Monthly Cost Mix Trend (月度成本占比趋势)](934.md)
+- [#935 Cumulative Cost + Profit Structure (累计成本结构)](935.md)
+- [#936 Total Cost Mix (总成本占比)](936.md)
+- [#937 Monthly Cost MoM Growth Trend (月度成本环比增幅趋势)](937.md)
+- [#938 Monthly Sold Operating ROI Trend (月度已售经营ROI趋势)](938.md)
+- [#939 Monthly Sold Operating ROI MoM Change (月度已售经营ROI环比变化)](939.md)
+- [#940 Cumulative Net Profit Ranking (累计净利排行)](940.md)
+- [#948 Monthly Cost-to-Sales Ratio (月度成本占销售额比率)](948.md)
+- [#949 Cost Pivot Table by Store & Marketplace (按店铺成本透视表)](949.md)
 
-### Inventory (9 cards)
+### Inventory (10 cards)
 
 - [#805 Reports Get Fba Myi All Inventory Model](805.md)
 - [#806 库存表](806.md)
@@ -98,6 +94,7 @@ Use `_catalog.md` for discovery (one line per card); read individual files when 
 - [#873 发货 FBA Total Inventory Chart 2.0](873.md)
 - [#901 工厂补货表2.0](901.md)
 - [#921 清仓表](921.md)
+- [#950 下单量](950.md)
 
 ### Natural Sales (4 cards)
 
