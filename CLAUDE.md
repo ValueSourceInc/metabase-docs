@@ -46,7 +46,7 @@ table, and token traps.
 
 ```
 src/generate-metabase-docs.ts   ← The generator script. Domain rules, glossary, risk detection live here.
-docs/metabase/                   ← Generated output (git-committed for version history)
+references/                      ← Generated output (git-committed for version history)
   ├── _catalog.md                ← One-line-per-card catalog (primary discovery file)
   ├── _index.json                ← Full card index (grep target, never read in full)
   ├── _deps.json                 ← Dependency graph (compressed array format; grep for IDs)

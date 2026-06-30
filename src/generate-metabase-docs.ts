@@ -196,7 +196,7 @@ const CATALOG_SEP = " | ";
 
 async function main() {
   loadEnv();
-  const outputDir = resolve(process.cwd(), getArgValue("--output") ?? "docs/metabase");
+  const outputDir = resolve(process.cwd(), getArgValue("--output") ?? "references");
   const snapshot = await loadMetabaseSnapshot();
   // Snapshot the previous _index.json BEFORE rm wipes the output dir, so we can
   // diff against the freshly generated one and print a changes summary.

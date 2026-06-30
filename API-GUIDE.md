@@ -1,7 +1,7 @@
 # Metabase API Guide
 
 Hand-written reference for interacting with the Metabase REST API. The generated
-docs in `docs/metabase/` are the *output* of these API calls — this guide is
+docs in `references/` are the *output* of these API calls — this guide is
 about *how* to call the API effectively.
 
 **Base URL pattern:** `{METABASE_API_BASE_URL}/api{endpoint}`
