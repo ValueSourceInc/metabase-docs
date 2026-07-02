@@ -78,11 +78,11 @@ These cards contain fields like `sum`, `sum_2`, `avg`, or `max`. They need chart
 | #779 | Combo - Natural Sales Daily Over Time | 4 | Natural Sales | dashboard component | sales | line | generic aggregation field names; missing description |
 | #780 | Line - Natural Sales Daily By Parent SKU | 4 | Natural Sales | dashboard component | sales | line | generic aggregation field names; missing description |
 | #781 | Overall Refund Rate Over Time | 4 | Returns | dashboard component | returns, sales | line | generic aggregation field names; missing description |
-| #782 | Color Returns | 4 | Returns | dashboard component | production, replenishment, returns, sales | pie | generic aggregation field names; missing description |
+| #782 | Return Reason is Color By Product | 4 | Returns | dashboard component | production, replenishment, returns, sales | pie | generic aggregation field names; missing description |
 | #783 | Return Parent ASIN Pie | 4 | Returns | question | production, replenishment, returns, sales | pie | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
 | #784 | Return Rate By SKU | 4 | Returns | dashboard component | returns, sales | pie | generic aggregation field names; missing description |
 | #785 | Return Reason Pie | 4 | Returns | dashboard component | production, replenishment, returns, sales | pie | generic aggregation field names; missing description |
 | #786 | Returns By Disposition Type | 4 | Returns | dashboard component | returns, sales | line | generic aggregation field names; missing description |
 | #787 | Return SKU Pie | 4 | Returns | question | returns, sales | pie | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
 
-_Only first 80 of 121 cards shown._
+_Only first 80 of 126 cards shown._

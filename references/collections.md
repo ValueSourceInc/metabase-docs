@@ -10,20 +10,21 @@
 │   │   ├── #105 Production Costs (6 cards)
 │   │   └── #104 Shipment Costs (6 cards)
 │   ├── #84 DCMS 开发测试 (8 cards)
-│   ├── #130 Finance (13 cards, 3 dashboards)
-│   │   └── #144 Base (14 cards)
+│   ├── #130 Finance (16 cards, 4 dashboards)
+│   │   └── #144 Base (15 cards)
 │   │       ├── #132 Production Costs (3 cards)
 │   │       ├── #133 Shipment Costs (3 cards)
 │   │       └── #131 Store Revenue (1 cards)
-│   ├── #138 Inventory (10 cards, 1 dashboards)
+│   ├── #138 Inventory (12 cards, 1 dashboards)
 │   │   └── #143 Sales Forecast (9 cards)
-│   ├── #136 Returns (10 cards, 1 dashboards)
-│   ├── #134 Sales (25 cards)
+│   ├── #136 Returns (11 cards, 1 dashboards)
+│   ├── #134 Sales (28 cards, 1 dashboards)
 │   │   └── #137 Natural Sales (4 cards, 1 dashboards)
 │   ├── #129 SB Ads (13 cards, 1 dashboards)
 │   │   └── #123 Ads SB Models (5 cards)
 │   ├── #127 SP Ads (12 cards, 1 dashboards)
 │   │   └── #122 Ads SP Models (7 cards)
+│   ├── #147 Temp (2 cards)
 │   ├── #142 VIP (9 cards, 1 dashboards)
 │   ├── #76 前期用户画像市场分析 (5 cards, 1 dashboards)
 │   │   └── #78 关键词分析 (2 cards)
@@ -86,19 +87,20 @@
 | 94 | Alerts | 75 | /75/ | 1 | 0 |  |
 | 97 | Cost | 75 | /75/ | 1 | 0 |  |
 | 84 | DCMS 开发测试 | 75 | /75/ | 8 | 0 |  |
-| 130 | Finance | 75 | /75/ | 13 | 3 |  |
-| 138 | Inventory | 75 | /75/ | 10 | 1 |  |
-| 136 | Returns | 75 | /75/ | 10 | 1 |  |
-| 134 | Sales | 75 | /75/ | 25 | 0 |  |
+| 130 | Finance | 75 | /75/ | 16 | 4 |  |
+| 138 | Inventory | 75 | /75/ | 12 | 1 |  |
+| 136 | Returns | 75 | /75/ | 11 | 1 |  |
+| 134 | Sales | 75 | /75/ | 28 | 1 |  |
 | 129 | SB Ads | 75 | /75/ | 13 | 1 |  |
 | 127 | SP Ads | 75 | /75/ | 12 | 1 |  |
+| 147 | Temp | 75 | /75/ | 2 | 0 |  |
 | 142 | VIP | 75 | /75/ | 9 | 1 |  |
 | 76 | 前期用户画像市场分析 | 75 | /75/ | 5 | 1 |  |
 | 119 | 订单/船务数据 (Cynthia) | 75 | /75/ | 12 | 5 |  |
 | 103 | 运营数据 | 75 | /75/ | 1 | 0 |  |
 | 122 | Ads SP Models | 127 | /75/127/ | 7 | 0 |  |
 | 123 | Ads SB Models | 129 | /75/129/ | 5 | 0 |  |
-| 144 | Base | 130 | /75/130/ | 14 | 0 |  |
+| 144 | Base | 130 | /75/130/ | 15 | 0 |  |
 | 132 | Production Costs | 144 | /75/130/144/ | 3 | 0 |  |
 | 133 | Shipment Costs | 144 | /75/130/144/ | 3 | 0 |  |
 | 131 | Store Revenue | 144 | /75/130/144/ | 1 | 0 |  |

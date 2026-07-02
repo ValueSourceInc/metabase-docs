@@ -1,4 +1,4 @@
-# Card Catalog — 181 cards
+# Card Catalog — 192 cards
 
 One line per card. Read IN FULL for discovery (find by name/domain/collection/id),
 then read `cards/{id}.md` for field-level detail. Columns, ` | `-separated:
@@ -95,7 +95,7 @@ id | name | domains | collection | type | fields
 779 | Combo - Natural Sales Daily Over Time | sales | Natural Sales | dashboard component | 4
 780 | Line - Natural Sales Daily By Parent SKU | sales | Natural Sales | dashboard component | 3
 781 | Overall Refund Rate Over Time | returns,sales | Returns | dashboard component | 3
-782 | Color Returns | production,replenishment,returns,sales | Returns | dashboard component | 13
+782 | Return Reason is Color By Product | production,replenishment,returns,sales | Returns | dashboard component | 13
 783 | Return Parent ASIN Pie | production,replenishment,returns,sales | Returns | question | 13
 784 | Return Rate By SKU | returns,sales | Returns | dashboard component | 6
 785 | Return Reason Pie | production,replenishment,returns,sales | Returns | dashboard component | 13
@@ -115,8 +115,8 @@ id | name | domains | collection | type | fields
 801 | 店铺 实际销售总金额 | finance,sales | Sales | dashboard component | 1
 802 | 店铺 实际销量 | logistics,sales | Sales | dashboard component | 1
 803 | SalesAndTrafficByDate Model | finance,returns,sales | Sales | source model | 69
-805 | Reports Get Fba Myi All Inventory Model | inventory,returns,sales | Inventory | model | 36
-806 | 库存表 | inventory,returns,sales | Inventory | table model | 30
+805 | Reports Get Fba Myi All Inventory Model | inventory,returns,sales | Inventory | model | 40
+806 | 库存表 | inventory,returns,sales | Inventory | table model | 45
 807 | 30 Days Sales | inventory,sales | Inventory | table model | 5
 809 | Reports Merchant Listings All Data Model | finance,inventory,logistics,sales | Inventory | model | 37
 811 | 补货 Fulfillable Inventory Chart | finance,inventory,production,replenishment,sales | Inventory | question | 27
@@ -137,15 +137,14 @@ id | name | domains | collection | type | fields
 851 | 7 Days Sales | inventory,sales | Inventory | question | 5
 852 | 出售地区 CA | sales | Sales | dashboard component | 2
 853 | Exchange Rates | sales | Base | source model | 5
-866 | test | logistics,sales | Unfiled / Unknown | question | 38
 870 | SKU First Sale Date | sales | Sales Forecast | table model | 3
 871 | Cumulative Settlement & Inventory Investment Trend (累计结算与库存投入趋势) | advertising,finance,inventory,logistics,production,replenishment,returns,sales | Finance | dashboard component | 6
-873 | 发货 FBA Total Inventory Chart 2.0 | inventory,logistics,production,replenishment,sales | Inventory | table model | 38
+873 | 补货 FBA Total Inventory Chart 2.0 | inventory,logistics,production,replenishment,returns,sales | Inventory | table model | 46
 874 | 产品订单曲线 Per SKU (NO VINE) | sales | Sales | dashboard component | 3
 875 | Wps Sales Forecast | sales | Sales Forecast | model | 11
 876 | Wps Sales Forecast By Day | inventory,sales | Sales Forecast | model | 11
-877 | 发货基础表 | inventory,logistics,production,replenishment,sales | Sales Forecast | table model | 30
-878 | 发货 Forecast WOS Summary | inventory,logistics,production,replenishment,sales | Sales Forecast | model | 38
+877 | 发货基础表 | inventory,logistics,production,replenishment,sales | Sales Forecast | table model | 35
+878 | 备货发货 Forecast WOS Summary | inventory,logistics,production,replenishment,returns,sales | Sales Forecast | table model | 46
 879 | 未来有效日销model | replenishment,sales | Sales Forecast | model | 11
 880 | 未来日销趋势 | sales | Sales Forecast | question | 11
 885 | Shipping Cost Over Time By Sku | finance,logistics,replenishment,sales | Shipment Costs | question | 4
@@ -155,8 +154,8 @@ id | name | domains | collection | type | fields
 896 | Amazon Settlement Cost Breakdown (亚马逊结算成本分析表) | advertising,finance,inventory,logistics,returns,sales | Finance | dashboard component | 3
 899 | Wps Shipment Model | finance,logistics,production,replenishment,sales | Sales Forecast | model | 17
 900 | Wps Shipment Items Model | finance,logistics,production,replenishment,sales | Sales Forecast | model | 40
-901 | 工厂补货表2.0 | inventory,production,replenishment,sales | Inventory | dashboard component | 32
-904 | Sold Operating Performance Source (已售经营表现底表) | advertising,finance,inventory,logistics,production,replenishment,returns,sales | Base | model | 30
+901 | 工厂补货表2.0 | inventory,production,replenishment,returns,sales | Inventory | table model | 29
+904 | Sold Operating Performance Source (已售经营表现底表) | advertising,finance,inventory,logistics,production,replenishment,returns,sales | Base | model | 29
 906 | Cost Structure Source (成本结构底表) | advertising,finance,inventory,logistics,replenishment,returns,sales | Base | model | 7
 913 | 订单 Sales 原始表 | logistics,sales | VIP | question | 38
 914 | Amazon Settlement Cost Breakdown (亚马逊结算成本分析表) | advertising,finance,inventory,logistics,returns,sales | VIP | question | 1
@@ -167,21 +166,33 @@ id | name | domains | collection | type | fields
 919 | Sales QTY & Dollar | sales | VIP | dashboard component | 3
 920 | 产品订单曲线 Cum Sales QTY Per SKU (NO VINE) | sales | Sales | dashboard component | 3
 921 | 清仓表 | inventory,logistics,production,replenishment,sales | Inventory | question | 38
-928 | 按SKU全摊薄已售经营表现底表 | advertising,finance,inventory,logistics,replenishment,returns,sales | Base | source model | 28
+928 | 按SKU全摊薄已售经营表现底表 | advertising,finance,inventory,logistics,replenishment,returns,sales | Base | source model | 27
 929 | Cumulative Sold Operating Performance (累计已售经营表现) | finance,inventory,returns,sales | Finance | dashboard component | 4
 930 | 订单 + 发货 + 库存 | finance,inventory,logistics,production,replenishment,sales | VIP | question | 67
 931 | 订单 + 发货 + 库存  透视表 | inventory,logistics,production,replenishment,sales | VIP | question | 4
 932 | Cumulative Sold Operating ROI Trend (累计已售经营ROI趋势) | finance,sales | Finance | dashboard component | 4
 933 | Allocated Cost Structure Source (按SKU已分摊成本结构底表) | advertising,finance,inventory,logistics,replenishment,returns,sales | Base | source model | 6
 934 | Monthly Cost Mix Trend (月度成本占比趋势) | finance,sales | Finance | dashboard component | 3
-935 | Cumulative Cost + Profit Structure (累计成本结构) | advertising,finance,inventory,logistics,replenishment,returns,sales | Finance | dashboard component | 16
+935 | Cumulative Cost Structure (累计成本结构) | advertising,finance,inventory,logistics,replenishment,returns,sales | Finance | dashboard component | 14
 936 | Total Cost Mix (总成本占比) | finance,sales | Finance | dashboard component | 2
-937 | Monthly Cost MoM Growth Trend (月度成本环比增幅趋势) | advertising,finance,inventory,logistics,replenishment,returns,sales | Finance | dashboard component | 27
+937 | Monthly Cost MoM Growth Trend (月度成本环比增幅趋势) | advertising,finance,inventory,logistics,replenishment,returns,sales | Finance | dashboard component | 25
 938 | Monthly Sold Operating ROI Trend (月度已售经营ROI趋势) | finance,sales | Finance | dashboard component | 4
 939 | Monthly Sold Operating ROI MoM Change (月度已售经营ROI环比变化) | finance,sales | Finance | dashboard component | 5
 940 | Cumulative Net Profit Ranking (累计净利排行) | finance,sales | Finance | dashboard component | 2
 942 | 透视图例子111 | advertising,finance,inventory,logistics,replenishment,returns,sales | DCMS 开发测试 | question | 13
 943 | Monthly Cost-to-Sales Ratio Source (月度成本占销售额比率底表) | advertising,finance,inventory,logistics,replenishment,returns,sales | Base | model | 8
-948 | Monthly Cost-to-Sales Ratio (月度成本占销售额比率) | finance,sales | Finance | dashboard component | 3
-949 | Cost Pivot Table by Store & Marketplace (按店铺成本透视表) | advertising,finance,inventory,logistics,replenishment,returns,sales | Finance | dashboard component | 18
+948 | Monthly Cost-to-Sales Ratio (月度成本和净利占销售额比率曲线) | finance,sales | Finance | dashboard component | 3
+949 | Cost Pivot Table by Store & Marketplace (按店铺成本透视表) | advertising,finance,inventory,logistics,replenishment,returns,sales | Finance | dashboard component | 17
 950 | 下单量 | inventory,sales | Inventory | dashboard component | 3
+954 | 30 Days Sales (IQR Denoised) | inventory,sales | Inventory | model | 6
+958 | Quantity Sold By Color | sales | Sales | dashboard component | 4
+959 | Quantity Sold By Sizes | sales | Sales | dashboard component | 4
+960 | 工厂下单 Color Size Sales Weighted Mix | inventory,production,replenishment,sales | Inventory | question | 8
+961 | Return By Color By Product | production,replenishment,returns,sales | Returns | dashboard component | 13
+966 | Quantity Sold By SKU X Marketplace | sales | Sales | dashboard component | 4
+967 | V Settlement Model, Filtered by Sub Category is promotion_deal_fees | advertising,finance,replenishment,sales | Temp | question | 38
+968 | V Settlement Model, Filtered by Sub Category is promotion_deal_fees line graph | advertising,finance,replenishment,sales | Temp | question | 2
+969 | Cost & Net Profit Structure Source (成本与净利润结构底表) | advertising,finance,inventory,logistics,replenishment,returns,sales | Base | source model | 8
+970 | Monthly Cost-to-Sales Ratio (月度成本和净利占销售额比率柱状图) | finance,sales | Finance | dashboard component | 3
+971 | Cost & Net Profit Pie (成本与净利润饼图) | finance | Finance | question | 2
+972 | Cost & Net Profit % of Sales Pivot (成本与净利占销售额比透视表) | advertising,finance,inventory,logistics,replenishment,returns,sales | Finance | model | 18

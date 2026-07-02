@@ -1,6 +1,6 @@
 # Sales Domain
 
-Cards classified into this domain: 159
+Cards classified into this domain: 169
 
 ## Likely Source Models
 
@@ -16,36 +16,40 @@ Cards classified into this domain: 159
 | #700 | DHM 箱单 By SKU | 4 | 订单/船务数据 (Cynthia) | table model | replenishment, sales | table | #836 | #701 | DHM 箱单 | missing description |
 | #703 | Ads Sp Searchterm Model | 4 | Ads SP Models | model | advertising, finance, sales | table | #402, #761, #853 | #715 |  | generic aggregation field names; missing description |
 | #704 | Ads Sp Targeting Model | 4 | Ads SP Models | source model | advertising, finance, sales | table | #402, #761, #853 | #718, #731, #763 |  | generic aggregation field names; missing description |
-| #733 | Reports Customer Returns Data Model | 4 | Returns | source model | returns, sales | table |  | #744, #781, #782, #783, #784, #785, #786, #787, #788, #789, #928 |  | high reuse / change carefully; missing description |
-| #742 | V Settlement Model | 4 | Base | source model | advertising, finance, replenishment, sales | table | #853 | #743, #745, #746, #751, #801, #896, #904, #914 |  | high reuse / change carefully; missing description |
+| #733 | Reports Customer Returns Data Model | 4 | Returns | source model | returns, sales | table |  | #744, #781, #782, #783, #784, #785, #786, #787, #788, #789, #928, #961 |  | high reuse / change carefully; missing description |
+| #742 | V Settlement Model | 4 | Base | source model | advertising, finance, replenishment, sales | table | #853 | #743, #745, #746, #751, #801, #896, #904, #914, #967, #968 |  | high reuse / change carefully; missing description |
 | #743 | Quantity Purchased By Order ID X SKU | 4 | Base | table model | sales | table | #742 | #745, #904 |  | generic aggregation field names; missing description |
 | #745 | Store Profit By SKU X Order Model | 4 | Base | source model | advertising, finance, logistics, production, replenishment, returns, sales | table | #621, #742, #743, #744 | #752, #888, #893 |  | generic aggregation field names; many upstream dependencies; missing description |
 | #761 | List SP Keywords Model DISTINCT | 4 | Ads SP Models | model | advertising, sales | table |  | #703, #704 |  | missing description; native SQL without business description |
-| #776 | Reports Flat File All Orders Data By Order Date General Hourly Model | 4 | Sales | source model | logistics, sales | table | #853 | #476, #781, #784, #791, #793, #795, #796, #797, #798, #799, #800, #802, #807, #811, #841, #842, #843, #844, #851, #852, #870, #874, #877, #920 |  | high reuse / change carefully; missing description |
+| #776 | Reports Flat File All Orders Data By Order Date General Hourly Model | 4 | Sales | source model | logistics, sales | table | #853 | #476, #781, #784, #791, #793, #795, #796, #797, #798, #799, #800, #802, #807, #811, #841, #842, #843, #844, #851, #852, #870, #874, #877, #920, #954, #958, #959, #966 |  | high reuse / change carefully; missing description |
 | #777 | Parent SKU Natural Sales Daily Model | 4 | Natural Sales | source model | advertising, finance, sales | table |  | #778, #779, #780 |  | missing description; native SQL without business description |
 | #803 | SalesAndTrafficByDate Model | 4 | Sales | source model | finance, returns, sales | table | #853 | #840, #845, #846, #847, #848, #849 |  | high reuse / change carefully; missing description |
 | #805 | Reports Get Fba Myi All Inventory Model | 4 | Inventory | model | inventory, returns, sales | table | #853 | #806 |  | missing description |
 | #806 | 库存表 | 4 | Inventory | table model | inventory, returns, sales | table | #805 | #811, #877, #928 | 补货面板 | missing description |
-| #807 | 30 Days Sales | 4 | Inventory | table model | inventory, sales | table | #776 | #811, #877 |  | generic aggregation field names; missing description |
+| #807 | 30 Days Sales | 4 | Inventory | table model | inventory, sales | table | #776 | #811 |  | generic aggregation field names; missing description |
 | #809 | Reports Merchant Listings All Data Model | 4 | Inventory | model | finance, inventory, logistics, sales | table |  |  |  | missing description; not referenced by dashboards or downstream cards |
 | #835 | VS 箱单 By SKU | 4 | 订单/船务数据 (Cynthia) | table model | replenishment, sales | table | #836 | #837 | VS 箱单 | missing description |
 | #836 | Shipment Pricing Model (UI) | 4 | 订单/船务数据 (Cynthia) | table model | production, replenishment, sales | table |  | #685, #700, #755, #835 |  | missing description |
 | #853 | Exchange Rates | 4 | Base | source model | sales | table |  | #403, #411, #424, #425, #703, #704, #742, #776, #803, #805 |  | high reuse / change carefully; missing description |
 | #870 | SKU First Sale Date | 4 | Sales Forecast | table model | sales | table | #776 | #877 |  | generic aggregation field names; missing description |
-| #873 | 发货 FBA Total Inventory Chart 2.0 | 4 | Inventory | table model | inventory, logistics, production, replenishment, sales | table | #878 | #901, #930, #931 | 补货面板 |  |
+| #873 | 补货 FBA Total Inventory Chart 2.0 | 4 | Inventory | table model | inventory, logistics, production, replenishment, returns, sales | table | #878 | #901, #930, #931 | 补货面板 |  |
 | #875 | Wps Sales Forecast | 4 | Sales Forecast | model | sales | table |  |  |  | missing description; not referenced by dashboards or downstream cards |
 | #876 | Wps Sales Forecast By Day | 4 | Sales Forecast | model | inventory, sales | table |  | #878, #879 |  |  |
-| #877 | 发货基础表 | 4 | Sales Forecast | table model | inventory, logistics, production, replenishment, sales | table | #776, #806, #807, #870 | #878, #879 |  | generic aggregation field names; many upstream dependencies; missing description |
-| #878 | 发货 Forecast WOS Summary | 4 | Sales Forecast | model | inventory, logistics, production, replenishment, sales | table | #876, #877, #899, #900 | #873, #921 |  | many upstream dependencies; missing description; native SQL without business description |
+| #877 | 发货基础表 | 4 | Sales Forecast | table model | inventory, logistics, production, replenishment, sales | table | #776, #806, #870, #954 | #878, #879 |  | generic aggregation field names; many upstream dependencies; missing description |
+| #878 | 备货发货 Forecast WOS Summary | 4 | Sales Forecast | table model | inventory, logistics, production, replenishment, returns, sales | table | #876, #877, #899, #900 | #873, #921, #960 |  | many upstream dependencies; missing description; native SQL without business description |
 | #879 | 未来有效日销model | 4 | Sales Forecast | model | replenishment, sales | table | #876, #877 | #880 |  | missing description; native SQL without business description |
 | #888 | Actual Store Revenue X Production & Shipment Costs Over Time Model | 4 | Base | model | advertising, finance, logistics, production, replenishment, sales | table | #745, #754, #756 | #871 |  | missing description; native SQL without business description |
 | #899 | Wps Shipment Model | 4 | Sales Forecast | model | finance, logistics, production, replenishment, sales | table |  | #878 |  | missing description |
 | #900 | Wps Shipment Items Model | 4 | Sales Forecast | model | finance, logistics, production, replenishment, sales | table |  | #878 |  | missing description |
+| #901 | 工厂补货表2.0 | 4 | Inventory | table model | inventory, production, replenishment, returns, sales | table | #873 | #960 | 补货面板 | generic aggregation field names; missing description |
 | #904 | Sold Operating Performance Source (已售经营表现底表) | 4 | Base | model | advertising, finance, inventory, logistics, production, replenishment, returns, sales | table | #621, #742, #743, #744 | #906, #928 |  | many upstream dependencies |
 | #906 | Cost Structure Source (成本结构底表) | 4 | Base | model | advertising, finance, inventory, logistics, replenishment, returns, sales | table | #904 |  |  | not referenced by dashboards or downstream cards |
-| #928 | 按SKU全摊薄已售经营表现底表 | 4 | Base | source model | advertising, finance, inventory, logistics, replenishment, returns, sales | table | #733, #806, #904 | #929, #932, #933, #935, #938, #939, #940, #942, #943 |  | high reuse / change carefully |
+| #928 | 按SKU全摊薄已售经营表现底表 | 4 | Base | source model | advertising, finance, inventory, logistics, replenishment, returns, sales | table | #733, #806, #904 | #929, #932, #933, #935, #938, #939, #940, #942, #943, #969 |  | high reuse / change carefully |
 | #933 | Allocated Cost Structure Source (按SKU已分摊成本结构底表) | 4 | Base | source model | advertising, finance, inventory, logistics, replenishment, returns, sales | table | #928 | #934, #936, #937 |  |  |
-| #943 | Monthly Cost-to-Sales Ratio Source (月度成本占销售额比率底表) | 4 | Base | model | advertising, finance, inventory, logistics, replenishment, returns, sales | table | #928 | #948, #949 |  |  |
+| #943 | Monthly Cost-to-Sales Ratio Source (月度成本占销售额比率底表) | 4 | Base | model | advertising, finance, inventory, logistics, replenishment, returns, sales | table | #928 | #949 |  |  |
+| #954 | 30 Days Sales (IQR Denoised) | 4 | Inventory | model | inventory, sales | table | #776 | #877 |  |  |
+| #969 | Cost & Net Profit Structure Source (成本与净利润结构底表) | 4 | Base | source model | advertising, finance, inventory, logistics, replenishment, returns, sales | table | #928 | #948, #970, #971, #972 |  |  |
+| #972 | Cost & Net Profit % of Sales Pivot (成本与净利占销售额比透视表) | 4 | Finance | model | advertising, finance, inventory, logistics, replenishment, returns, sales | table | #969 |  | Cost & Net Profit Dashboard (成本与净利润看板) |  |
 
 ## Dashboard Components
 
@@ -76,13 +80,13 @@ Cards classified into this domain: 159
 | #779 | Combo - Natural Sales Daily Over Time | 4 | Natural Sales | dashboard component | sales | line | #777 |  | Natural Sales |
 | #780 | Line - Natural Sales Daily By Parent SKU | 4 | Natural Sales | dashboard component | sales | line | #777 |  | Natural Sales |
 | #781 | Overall Refund Rate Over Time | 4 | Returns | dashboard component | returns, sales | line | #733, #776 |  | Returns |
-| #782 | Color Returns | 4 | Returns | dashboard component | production, replenishment, returns, sales | pie | #733 |  | Returns |
+| #782 | Return Reason is Color By Product | 4 | Returns | dashboard component | production, replenishment, returns, sales | pie | #733 |  | Returns |
 | #784 | Return Rate By SKU | 4 | Returns | dashboard component | returns, sales | pie | #733, #776 |  | Returns |
 | #785 | Return Reason Pie | 4 | Returns | dashboard component | production, replenishment, returns, sales | pie | #733 |  | Returns |
 | #786 | Returns By Disposition Type | 4 | Returns | dashboard component | returns, sales | line | #733 |  | Returns |
 | #788 | Returns Reason Pivot | 4 | Returns | dashboard component | returns, sales | pivot | #733 |  | Returns |
 | #793 | Sales U By Product Over Time | 4 | Sales | dashboard component | sales | line | #776 |  | Store Monitor Dashboard |
-| #795 | 出售地区 US | 4 | Sales | dashboard component | sales | map | #776 |  | Store Monitor Dashboard |
+| #795 | 出售地区 US | 4 | Sales | dashboard component | sales | map | #776 |  | Sales Dashboard, Store Monitor Dashboard |
 | #796 | 产品订单SKU分布 Pie (NO VINE) | 4 | Sales | dashboard component | sales | pie | #776 |  | Store Monitor Dashboard |
 | #797 | 产品订单曲线 (NO VINE) Sales Line | 4 | Sales | dashboard component | sales | line | #776 |  | Store Monitor Dashboard |
 | #800 | 实时产品销售曲线 (每小时更新) | 4 | Sales | dashboard component | sales | bar | #776 |  | Store Monitor Dashboard |
@@ -96,25 +100,31 @@ Cards classified into this domain: 159
 | #847 | 店铺 用户量 | 4 | Sales | dashboard component | sales | area | #803 |  | Store Monitor Dashboard |
 | #848 | 店铺 访问次数 | 4 | Sales | dashboard component | sales | area | #803 |  | Store Monitor Dashboard |
 | #849 | 店铺 访问/购买 率 | 4 | Sales | dashboard component | returns, sales | scalar | #803 |  | Store Monitor Dashboard |
-| #852 | 出售地区 CA | 4 | Sales | dashboard component | sales | map | #776 |  | Store Monitor Dashboard |
+| #852 | 出售地区 CA | 4 | Sales | dashboard component | sales | map | #776 |  | Sales Dashboard, Store Monitor Dashboard |
 | #871 | Cumulative Settlement & Inventory Investment Trend (累计结算与库存投入趋势) | 4 | Finance | dashboard component | advertising, finance, inventory, logistics, production, replenishment, returns, sales | line | #888 |  | Settlement & Inventory Investment (实时结算与库存投入看板） |
-| #873 | 发货 FBA Total Inventory Chart 2.0 | 4 | Inventory | table model | inventory, logistics, production, replenishment, sales | table | #878 | #901, #930, #931 | 补货面板 |
-| #874 | 产品订单曲线 Per SKU (NO VINE) | 4 | Sales | dashboard component | sales | line | #776 |  | 补货面板 |
+| #873 | 补货 FBA Total Inventory Chart 2.0 | 4 | Inventory | table model | inventory, logistics, production, replenishment, returns, sales | table | #878 | #901, #930, #931 | 补货面板 |
+| #874 | 产品订单曲线 Per SKU (NO VINE) | 4 | Sales | dashboard component | sales | line | #776 |  | Sales Dashboard, 补货面板 |
 | #896 | Amazon Settlement Cost Breakdown (亚马逊结算成本分析表) | 4 | Finance | dashboard component | advertising, finance, inventory, logistics, returns, sales | pivot | #742 |  | Cost (成本看板) |
-| #901 | 工厂补货表2.0 | 4 | Inventory | dashboard component | inventory, production, replenishment, sales | table | #873 |  | 补货面板 |
+| #901 | 工厂补货表2.0 | 4 | Inventory | table model | inventory, production, replenishment, returns, sales | table | #873 | #960 | 补货面板 |
 | #919 | Sales QTY & Dollar | 4 | VIP | dashboard component | sales | line |  |  | VIP专属数据面板 |
-| #920 | 产品订单曲线 Cum Sales QTY Per SKU (NO VINE) | 4 | Sales | dashboard component | sales | line | #776 |  | 补货面板 |
+| #920 | 产品订单曲线 Cum Sales QTY Per SKU (NO VINE) | 4 | Sales | dashboard component | sales | line | #776 |  | Sales Dashboard, 补货面板 |
 | #929 | Cumulative Sold Operating Performance (累计已售经营表现) | 4 | Finance | dashboard component | finance, inventory, returns, sales | line | #928 |  | Sold Contribution Profit Dashboard (已售贡献利润看板) |
 | #932 | Cumulative Sold Operating ROI Trend (累计已售经营ROI趋势) | 4 | Finance | dashboard component | finance, sales | line | #928 |  | Sold Contribution Profit Dashboard (已售贡献利润看板) |
 | #934 | Monthly Cost Mix Trend (月度成本占比趋势) | 4 | Finance | dashboard component | finance, sales | area | #933 |  | Cost (成本看板) |
-| #935 | Cumulative Cost + Profit Structure (累计成本结构) | 4 | Finance | dashboard component | advertising, finance, inventory, logistics, replenishment, returns, sales | area | #928 |  | Cost (成本看板) |
+| #935 | Cumulative Cost Structure (累计成本结构) | 4 | Finance | dashboard component | advertising, finance, inventory, logistics, replenishment, returns, sales | area | #928 |  | Cost (成本看板) |
 | #936 | Total Cost Mix (总成本占比) | 4 | Finance | dashboard component | finance, sales | pie | #933 |  | Cost (成本看板) |
 | #937 | Monthly Cost MoM Growth Trend (月度成本环比增幅趋势) | 4 | Finance | dashboard component | advertising, finance, inventory, logistics, replenishment, returns, sales | line | #933 |  | Cost (成本看板) |
 | #938 | Monthly Sold Operating ROI Trend (月度已售经营ROI趋势) | 4 | Finance | dashboard component | finance, sales | line | #928 |  | Sold Contribution Profit Dashboard (已售贡献利润看板) |
 | #939 | Monthly Sold Operating ROI MoM Change (月度已售经营ROI环比变化) | 4 | Finance | dashboard component | finance, sales | line | #928 |  | Sold Contribution Profit Dashboard (已售贡献利润看板) |
 | #940 | Cumulative Net Profit Ranking (累计净利排行) | 4 | Finance | dashboard component | finance, sales | row | #928 |  | Sold Contribution Profit Dashboard (已售贡献利润看板) |
-| #948 | Monthly Cost-to-Sales Ratio (月度成本占销售额比率) | 4 | Finance | dashboard component | finance, sales | line | #943 |  | Cost (成本看板) |
+| #948 | Monthly Cost-to-Sales Ratio (月度成本和净利占销售额比率曲线) | 4 | Finance | dashboard component | finance, sales | line | #969 |  | Cost & Net Profit Dashboard (成本与净利润看板) |
 | #949 | Cost Pivot Table by Store & Marketplace (按店铺成本透视表) | 4 | Finance | dashboard component | advertising, finance, inventory, logistics, replenishment, returns, sales | table | #943 |  | Cost (成本看板) |
 | #950 | 下单量 | 4 | Inventory | dashboard component | inventory, sales | pivot |  |  | 补货面板 |
+| #958 | Quantity Sold By Color | 4 | Sales | dashboard component | sales | pie | #776 |  | Sales Dashboard |
+| #959 | Quantity Sold By Sizes | 4 | Sales | dashboard component | sales | pie | #776 |  | Sales Dashboard |
+| #961 | Return By Color By Product | 4 | Returns | dashboard component | production, replenishment, returns, sales | pie | #733 |  | Returns |
+| #966 | Quantity Sold By SKU X Marketplace | 4 | Sales | dashboard component | sales | table | #776 |  | Sales Dashboard |
+| #970 | Monthly Cost-to-Sales Ratio (月度成本和净利占销售额比率柱状图) | 4 | Finance | dashboard component | finance, sales | bar | #969 |  | Cost & Net Profit Dashboard (成本与净利润看板) |
+| #972 | Cost & Net Profit % of Sales Pivot (成本与净利占销售额比透视表) | 4 | Finance | model | advertising, finance, inventory, logistics, replenishment, returns, sales | table | #969 |  | Cost & Net Profit Dashboard (成本与净利润看板) |
 
 > For the full card list in this domain, grep `_catalog.md`: `grep ' | sales | ' _catalog.md`

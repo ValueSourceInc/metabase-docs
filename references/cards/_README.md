@@ -1,6 +1,6 @@
 # Individual Card Details
 
-181 cards documented. Each file contains full field metadata, description, upstream/downstream dependencies, and risk flags.
+192 cards documented. Each file contains full field metadata, description, upstream/downstream dependencies, and risk flags.
 
 Use `_catalog.md` for discovery (one line per card); read individual files when you need field-level detail.
 
@@ -35,7 +35,7 @@ Use `_catalog.md` for discovery (one line per card); read individual files when 
 
 - [#476 SKU订单预警](476.md)
 
-### Base (14 cards)
+### Base (15 cards)
 
 - [#742 V Settlement Model](742.md)
 - [#743 Quantity Purchased By Order ID X SKU](743.md)
@@ -51,6 +51,7 @@ Use `_catalog.md` for discovery (one line per card); read individual files when 
 - [#928 按SKU全摊薄已售经营表现底表](928.md)
 - [#933 Allocated Cost Structure Source (按SKU已分摊成本结构底表)](933.md)
 - [#943 Monthly Cost-to-Sales Ratio Source (月度成本占销售额比率底表)](943.md)
+- [#969 Cost & Net Profit Structure Source (成本与净利润结构底表)](969.md)
 
 ### Cost (1 cards)
 
@@ -67,23 +68,26 @@ Use `_catalog.md` for discovery (one line per card); read individual files when 
 - [#792 DH 工厂补货表 - 16 sku](792.md)
 - [#942 透视图例子111](942.md)
 
-### Finance (13 cards)
+### Finance (16 cards)
 
 - [#871 Cumulative Settlement & Inventory Investment Trend (累计结算与库存投入趋势)](871.md)
 - [#896 Amazon Settlement Cost Breakdown (亚马逊结算成本分析表)](896.md)
 - [#929 Cumulative Sold Operating Performance (累计已售经营表现)](929.md)
 - [#932 Cumulative Sold Operating ROI Trend (累计已售经营ROI趋势)](932.md)
 - [#934 Monthly Cost Mix Trend (月度成本占比趋势)](934.md)
-- [#935 Cumulative Cost + Profit Structure (累计成本结构)](935.md)
+- [#935 Cumulative Cost Structure (累计成本结构)](935.md)
 - [#936 Total Cost Mix (总成本占比)](936.md)
 - [#937 Monthly Cost MoM Growth Trend (月度成本环比增幅趋势)](937.md)
 - [#938 Monthly Sold Operating ROI Trend (月度已售经营ROI趋势)](938.md)
 - [#939 Monthly Sold Operating ROI MoM Change (月度已售经营ROI环比变化)](939.md)
 - [#940 Cumulative Net Profit Ranking (累计净利排行)](940.md)
-- [#948 Monthly Cost-to-Sales Ratio (月度成本占销售额比率)](948.md)
+- [#948 Monthly Cost-to-Sales Ratio (月度成本和净利占销售额比率曲线)](948.md)
 - [#949 Cost Pivot Table by Store & Marketplace (按店铺成本透视表)](949.md)
+- [#970 Monthly Cost-to-Sales Ratio (月度成本和净利占销售额比率柱状图)](970.md)
+- [#971 Cost & Net Profit Pie (成本与净利润饼图)](971.md)
+- [#972 Cost & Net Profit % of Sales Pivot (成本与净利占销售额比透视表)](972.md)
 
-### Inventory (10 cards)
+### Inventory (12 cards)
 
 - [#805 Reports Get Fba Myi All Inventory Model](805.md)
 - [#806 库存表](806.md)
@@ -91,10 +95,12 @@ Use `_catalog.md` for discovery (one line per card); read individual files when 
 - [#809 Reports Merchant Listings All Data Model](809.md)
 - [#811 补货 Fulfillable Inventory Chart](811.md)
 - [#851 7 Days Sales](851.md)
-- [#873 发货 FBA Total Inventory Chart 2.0](873.md)
+- [#873 补货 FBA Total Inventory Chart 2.0](873.md)
 - [#901 工厂补货表2.0](901.md)
 - [#921 清仓表](921.md)
 - [#950 下单量](950.md)
+- [#954 30 Days Sales (IQR Denoised)](954.md)
+- [#960 工厂下单 Color Size Sales Weighted Mix](960.md)
 
 ### Natural Sales (4 cards)
 
@@ -115,11 +121,11 @@ Use `_catalog.md` for discovery (one line per card); read individual files when 
 - [#758 Production Cost Over Sum Time New](758.md)
 - [#886 Production Cost Over Time By Sku](886.md)
 
-### Returns (10 cards)
+### Returns (11 cards)
 
 - [#733 Reports Customer Returns Data Model](733.md)
 - [#781 Overall Refund Rate Over Time](781.md)
-- [#782 Color Returns](782.md)
+- [#782 Return Reason is Color By Product](782.md)
 - [#783 Return Parent ASIN Pie](783.md)
 - [#784 Return Rate By SKU](784.md)
 - [#785 Return Reason Pie](785.md)
@@ -127,8 +133,9 @@ Use `_catalog.md` for discovery (one line per card); read individual files when 
 - [#787 Return SKU Pie](787.md)
 - [#788 Returns Reason Pivot](788.md)
 - [#789 Sellable Quantity from Returns By SKU X Order](789.md)
+- [#961 Return By Color By Product](961.md)
 
-### Sales (25 cards)
+### Sales (28 cards)
 
 - [#776 Reports Flat File All Orders Data By Order Date General Hourly Model](776.md)
 - [#791 Sales $ By Product Over Time](791.md)
@@ -155,6 +162,9 @@ Use `_catalog.md` for discovery (one line per card); read individual files when 
 - [#852 出售地区 CA](852.md)
 - [#874 产品订单曲线 Per SKU (NO VINE)](874.md)
 - [#920 产品订单曲线 Cum Sales QTY Per SKU (NO VINE)](920.md)
+- [#958 Quantity Sold By Color](958.md)
+- [#959 Quantity Sold By Sizes](959.md)
+- [#966 Quantity Sold By SKU X Marketplace](966.md)
 
 ### Sales Forecast (9 cards)
 
@@ -162,7 +172,7 @@ Use `_catalog.md` for discovery (one line per card); read individual files when 
 - [#875 Wps Sales Forecast](875.md)
 - [#876 Wps Sales Forecast By Day](876.md)
 - [#877 发货基础表](877.md)
-- [#878 发货 Forecast WOS Summary](878.md)
+- [#878 备货发货 Forecast WOS Summary](878.md)
 - [#879 未来有效日销model](879.md)
 - [#880 未来日销趋势](880.md)
 - [#899 Wps Shipment Model](899.md)
@@ -215,9 +225,10 @@ Use `_catalog.md` for discovery (one line per card); read individual files when 
 
 - [#752 Store Profit Over Time New](752.md)
 
-### Unfiled / Unknown (1 cards)
+### Temp (2 cards)
 
-- [#866 test](866.md)
+- [#967 V Settlement Model, Filtered by Sub Category is promotion\_deal\_fees](967.md)
+- [#968 V Settlement Model, Filtered by Sub Category is promotion\_deal\_fees line graph](968.md)
 
 ### VIP (9 cards)
 

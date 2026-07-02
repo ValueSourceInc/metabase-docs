@@ -528,3 +528,132 @@ before aggregating — `SUM(text_column)` will fail.
       fee's total, wrap the card SQL in `SELECT sum(...) FROM (...) sub` (no row
       limit on aggregates), or query via `{{#card}}` ref — never trust a 2000-row
       sample sum.
+
+26. **Removing a cost category is the reverse of #25, and breaks downstream
+    harder than adding.** When a fee is duplicated (e.g. `global_inbound_
+    transportation_fees` / AGL-SEND freight was ALSO recorded internally in
+    `wps_pricing.avg_actual_shipment_cost`, so #904's `Shipment Cost` already
+    contained it), removing it from the cost pipeline touches the same fan-out
+    as adding — but in reverse, and the failure mode is louder:
+    - **Native source cards first (#904/#928):** delete the CASE column from
+      BOTH the `order_settlement` CTE AND the `uncovered_platform_cost` CTE
+      (they're UNION'd via `SELECT *` — column count must match), AND drop the
+      sub_category from the uncovered whitelist. In #928, the fee threads
+      through 6+ spots: `total_<fee>` → `unk.<fee>` redistribution →
+      `sku_<fee>_alloc` weight expr → `alloc_<fee>` daily expr → output column
+      → BOTH residual sums (`allocated_platform_cost_usd` and
+      `fully_loaded_net_profit_usd`). Miss any one and the SQL errors or the
+      residual double-counts.
+    - **Downstream native long-tables (#906/#933/#943):** delete the WHEN arm
+      AND the matching VALUES tuple. Trivial, but they reference the deleted
+      upstream column — if you forget, `column does not exist` at query time.
+    - **MBQL cards (#937/#935/#949/#898) break SILENTLY then LOUDLY.** Their
+      `source-card` is the native card you just changed. A `case`/`sum` that
+      referenced the now-deleted column: #937/#949/#898 returned `0`/NULL
+      (case found no match) — looks fine but is a dead column; #935 ERRORED
+      (`column ... does not exist`) because its stage0 expression referenced
+      the dropped field directly. So: after editing any native source card,
+      immediately run every downstream MBQL card's query — don't assume
+      "no error" means "correct", it may mean "silently zeroed".
+    - **Cleanup is by name, not index.** MBQL aggregations reference each
+      other by UUID (MoM growth refs the sum by `["aggregation",{opts},<uuid>]`,
+      not index — see #25), so inserting/deleting a sum does NOT shift other
+      refs. To remove a fee from an MBQL card: filter `aggregation`/`expressions`
+      by `name`/`lib/source-name` matching the fee, then recursively strip the
+      fee's field-ref sub-nodes from any `+`/`-` chain (e.g. #935's
+      `other_cost_adjustments = total - sum(known)` had gif as the LAST term
+      of the `known` `+`-chain; #898's `total_controllable_expense` `+`-chain
+      had a `coalesce(aggregation-ref-by-uuid, 0)` for gif). After removal,
+      Other/total residuals auto-rebalance (gif was in `total` via net_profit,
+      so dropping it from `known` makes Other absorb it back — total unchanged,
+      exactly the reverse of #25's add).
+    - **Duplicate-fee detection before removal.** Don't remove on suspicion.
+      Compare magnitudes per marketplace: internal `Shipment Cost` (36,175,
+      US 58% / CA 42%) vs settlement `gif` (7,125, US 100% / CA 0%). If they
+      were the same fee, marketplaces shares would match — CA gif=0 while
+      internal CA ship≠0 proved they're NOT identical. Confirm with the
+      business which internal field records the fee (`wps_pricing` =
+      SEND/AGL freight) before deleting from settlement pipeline. (2026-06,
+      gif removed from #904/#928/#906/#933/#943/#935/#937/#949/#898.)
+
+27. **Editing an MBQL `case` expression: predicate and value must be
+    INDEPENDENT subtrees with fresh `lib/uuid`s — never share a node.**
+    A `case` arm is `[predicate, value]`. The original often has predicate
+    and value as two SEPARATE but structurally-identical subtrees (e.g.
+    #901 `total_need_to_produce` = `case when (us+ca-stock) > 0 then
+    (us+ca-stock) else 0`, wrapped in `ceil`). When you modify the value
+    (e.g. subtract a new field: `(us+ca-stock-return_ship)`), you MUST
+    also update the predicate to the same new expression if the intent is
+    `max(0, ...)` — otherwise the predicate fires on the OLD condition
+    `(us+ca-stock)>0` while the value is the NEW expression, and the
+    result goes NEGATIVE (the `case`/`ceil` does not clamp it). Symptom:
+    a few rows return negative `total_need_to_produce` instead of 0.
+    AND: build predicate and value as two separate trees, each with its
+    OWN fresh `lib/uuid` on every new node — reusing the same Python list
+    object (or deep-copying without regenerating uuids) makes the inner
+    node's `lib/uuid` appear twice in the JSON, and the card fails to run
+    with `Invalid query: Duplicate :lib/uuid #{...}`. Correct pattern:
+    wrap each side independently — `wrap(pred_inner)` and `wrap(val_inner)`
+    as two calls, each generating new uuids for the new outer `-` node and
+    the new `sum_15` field-ref. Verify with `POST /api/card/{id}/query`:
+    expect no `Duplicate :lib/uuid` error and no negative totals.
+    (2026-06, #901 return_ship exclusion.)
+
+28. **A pivot card (`display: pivot`) that sources a changed card may error
+    `Error reducing result rows: null` for reasons UNRELATED to your edit.**
+    Before assuming your change broke a downstream pivot, run the pivot
+    against the REVERTED upstream (re-PUT the original, query the pivot,
+    re-PUT your edit) — #931 (pivot of #873) returned the identical
+    `Error reducing result rows: null` on BOTH the original and edited
+    #873, because its `fields` projection + `breakout`/`aggregation`
+    reference specific columns and never touch the new field. The pivot
+    reduction error is a pre-existing data-level issue (NULL pivot
+    dimension / row-count), not a schema break. Don't spend time "fixing"
+    it as part of an unrelated card edit. (2026-06, #931 while editing #878.)
+
+29. **A native SQL *model* cannot have variables or field filters — but a
+    native SQL *question* can.** Metabase enforces this at PUT time:
+    `"A model made from a native SQL question cannot have a variable or
+    field filter."` The 4 `{{#card-id}}` placeholders you see in a model's
+    SQL are **card references** (template-tag `type: "card"`), NOT
+    variables — those are allowed on models. The forbidden kinds are
+    `type: "number"/"text"/"date"/"dimension"` (fill-in variables).
+    **Workaround when you need a fill-in variable on a native-SQL pipeline
+    that's currently a model:** change the card's `type` from `"model"` to
+    `"question"` in the PUT payload — `source-card` references from
+    downstream cards (901/930/931 sourcing 873/878) do NOT depend on the
+    referenced card's type, so they keep working (verify by running each
+    downstream card's query after the change). This is reversible. Done
+    on #878 to add `{{shipment_cap}}`/`{{wos_target}}` number variables
+    for allocation logic. (2026-07, #878.)
+
+30. **A number variable with no `default` makes the card unrunnable
+    without parameters.** After adding a `type: "number"` template-tag,
+    `POST /api/card/{id}/query` (no params) fails: `missing required
+    parameters: #{"shipment_cap" "wos_target"}`. The `default` field must
+    live on the **template-tag** (`{"type":"number","default":500,...}`),
+    not only on the dashboard `parameters` entry — and a PUT that rebuilds
+    the payload from a stale snapshot can silently drop the template-tag
+    definitions while the SQL still contains `{{shipment_cap}}`, leaving
+    the card broken (Metabase sees an unknown tag). Always rebuild the
+    PUT payload from the LATEST `GET /api/card/{id}` response, and after
+    PUT assert both: the tag is in `template-tags` AND `default` is set.
+    (2026-07, #878.)
+
+31. **Two-phase capacity allocation (rescue-then-greedy) in native SQL:
+    use window SUM with `1 PRECEDING` for "used before this row", not
+    proportional division.** Allocating a per-market cap (e.g. 500 units)
+    across SKUs in two phases — (1) rescue SKUs below `wos_target` to
+    that target, (2) fill remaining cap by need — the naive phase-2
+    "proportional split" (`cap_remaining × need_i / total_need`) loses
+    heavy units to casepack FLOOR: SKUs whose proportional share is
+    `< casepack` FLOOR to 0 and the cap goes unused (US allocated 388/500,
+    112 lost). **Fix: make phase-2 greedy too** — `SUM(remaining_need)
+    OVER (PARTITION BY market ORDER BY wos_now ROWS BETWEEN UNBOUNDED
+    PRECEDING AND 1 PRECEDING)` gives "cap used by prior rows"; each row
+    takes `LEAST(remaining_need, MAX(cap - phase1_total - prior_phase2,
+    0))`, then FLOOR to casepack. Greedy fills the cap (481/500, only
+    ~19 lost to per-SKU casepack remainder — unavoidable without
+    iterative reclaim, which isn't worth the SQL complexity). Both phases
+    share the same `ORDER BY wos_now_days ASC, sku ASC` so the window is
+    deterministic. (2026-07, #878 allocation.)

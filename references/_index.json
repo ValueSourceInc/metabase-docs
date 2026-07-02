@@ -3,10 +3,10 @@
     4
   ],
   "summary": {
-    "collections": 49,
-    "cards": 181,
-    "activeCards": 181,
-    "dashboards": 16
+    "collections": 50,
+    "cards": 192,
+    "activeCards": 192,
+    "dashboards": 18
   },
   "cards": {
     "302": {
@@ -1150,7 +1150,7 @@
       "isArchived": false,
       "fieldCount": 11,
       "dependencyDepth": 0,
-      "updatedAt": "2026-05-28T12:38:15.519553Z",
+      "updatedAt": "2026-06-29T10:09:53.954767Z",
       "description": "",
       "hasFullDescription": false
     },
@@ -1211,7 +1211,7 @@
       "isArchived": false,
       "fieldCount": 9,
       "dependencyDepth": 1,
-      "updatedAt": "2026-05-29T06:25:43.257617Z",
+      "updatedAt": "2026-06-29T10:10:27.963775Z",
       "description": "",
       "hasFullDescription": false
     },
@@ -2167,7 +2167,8 @@
         787,
         788,
         789,
-        928
+        928,
+        961
       ],
       "dashboards": [],
       "risks": [
@@ -2207,7 +2208,9 @@
         801,
         896,
         904,
-        914
+        914,
+        967,
+        968
       ],
       "dashboards": [],
       "risks": [
@@ -2671,7 +2674,11 @@
         870,
         874,
         877,
-        920
+        920,
+        954,
+        958,
+        959,
+        966
       ],
       "dashboards": [],
       "risks": [
@@ -2684,7 +2691,7 @@
       "isArchived": false,
       "fieldCount": 48,
       "dependencyDepth": 1,
-      "updatedAt": "2026-06-12T03:50:36.960402Z",
+      "updatedAt": "2026-07-01T03:06:30.737639Z",
       "description": "",
       "hasFullDescription": false
     },
@@ -2844,7 +2851,7 @@
       "hasFullDescription": false
     },
     "782": {
-      "name": "Color Returns",
+      "name": "Return Reason is Color By Product",
       "collectionId": 136,
       "collectionName": "Returns",
       "type": "dashboard component",
@@ -2872,7 +2879,7 @@
       "isArchived": false,
       "fieldCount": 13,
       "dependencyDepth": 1,
-      "updatedAt": "2026-05-22T10:02:02.792129Z",
+      "updatedAt": "2026-07-01T06:46:21.917494Z",
       "description": "",
       "hasFullDescription": false
     },
@@ -3203,6 +3210,7 @@
       ],
       "downstream": [],
       "dashboards": [
+        "Sales Dashboard",
         "Store Monitor Dashboard"
       ],
       "risks": [
@@ -3215,7 +3223,7 @@
       "isArchived": false,
       "fieldCount": 2,
       "dependencyDepth": 2,
-      "updatedAt": "2026-06-04T08:06:19.982282Z",
+      "updatedAt": "2026-07-01T03:04:53.532316Z",
       "description": "",
       "hasFullDescription": false
     },
@@ -3462,7 +3470,7 @@
       "isArchived": false,
       "fieldCount": 69,
       "dependencyDepth": 1,
-      "updatedAt": "2026-06-05T02:43:46.008419Z",
+      "updatedAt": "2026-07-01T03:06:30.737639Z",
       "description": "",
       "hasFullDescription": false
     },
@@ -3491,9 +3499,9 @@
       "queryType": "query",
       "isNative": false,
       "isArchived": false,
-      "fieldCount": 36,
+      "fieldCount": 40,
       "dependencyDepth": 1,
-      "updatedAt": "2026-06-15T08:24:57.155517Z",
+      "updatedAt": "2026-06-30T06:43:00.184698Z",
       "description": "",
       "hasFullDescription": false
     },
@@ -3526,9 +3534,9 @@
       "queryType": "query",
       "isNative": false,
       "isArchived": false,
-      "fieldCount": 30,
+      "fieldCount": 45,
       "dependencyDepth": 2,
-      "updatedAt": "2026-05-26T09:24:29.647646Z",
+      "updatedAt": "2026-07-01T03:22:17.249136Z",
       "description": "",
       "hasFullDescription": false
     },
@@ -3546,8 +3554,7 @@
         776
       ],
       "downstream": [
-        811,
-        877
+        811
       ],
       "dashboards": [],
       "risks": [
@@ -3688,7 +3695,7 @@
       "isArchived": false,
       "fieldCount": 10,
       "dependencyDepth": 0,
-      "updatedAt": "2026-05-29T06:39:32.896219Z",
+      "updatedAt": "2026-06-29T10:09:37.747999Z",
       "description": "",
       "hasFullDescription": false
     },
@@ -4091,6 +4098,7 @@
       ],
       "downstream": [],
       "dashboards": [
+        "Sales Dashboard",
         "Store Monitor Dashboard"
       ],
       "risks": [
@@ -4103,7 +4111,7 @@
       "isArchived": false,
       "fieldCount": 2,
       "dependencyDepth": 2,
-      "updatedAt": "2026-06-16T05:32:48.527575Z",
+      "updatedAt": "2026-07-01T03:05:20.597901Z",
       "description": "",
       "hasFullDescription": false
     },
@@ -4141,33 +4149,6 @@
       "fieldCount": 5,
       "dependencyDepth": 0,
       "updatedAt": "2026-06-18T03:40:27.434554Z",
-      "description": "",
-      "hasFullDescription": false
-    },
-    "866": {
-      "name": "test",
-      "collectionId": null,
-      "collectionName": "Unfiled / Unknown",
-      "type": "question",
-      "domains": [
-        "logistics",
-        "sales"
-      ],
-      "display": "table",
-      "upstream": [],
-      "downstream": [],
-      "dashboards": [],
-      "risks": [
-        "missing description",
-        "not referenced by dashboards or downstream cards"
-      ],
-      "databaseId": 4,
-      "queryType": "query",
-      "isNative": false,
-      "isArchived": false,
-      "fieldCount": 38,
-      "dependencyDepth": 0,
-      "updatedAt": "2026-06-08T10:12:20.232137Z",
       "description": "",
       "hasFullDescription": false
     },
@@ -4239,7 +4220,7 @@
       "hasFullDescription": true
     },
     "873": {
-      "name": "发货 FBA Total Inventory Chart 2.0",
+      "name": "补货 FBA Total Inventory Chart 2.0",
       "collectionId": 138,
       "collectionName": "Inventory",
       "type": "table model",
@@ -4248,6 +4229,7 @@
         "logistics",
         "production",
         "replenishment",
+        "returns",
         "sales"
       ],
       "display": "table",
@@ -4267,9 +4249,9 @@
       "queryType": "query",
       "isNative": false,
       "isArchived": false,
-      "fieldCount": 38,
+      "fieldCount": 46,
       "dependencyDepth": 5,
-      "updatedAt": "2026-06-26T03:42:33.041948Z",
+      "updatedAt": "2026-07-02T03:44:51.114787Z",
       "description": "未来销量目前支持2年，即wos_now兜底为100",
       "hasFullDescription": false
     },
@@ -4287,6 +4269,7 @@
       ],
       "downstream": [],
       "dashboards": [
+        "Sales Dashboard",
         "补货面板"
       ],
       "risks": [
@@ -4299,7 +4282,7 @@
       "isArchived": false,
       "fieldCount": 3,
       "dependencyDepth": 2,
-      "updatedAt": "2026-06-12T03:34:10.104145Z",
+      "updatedAt": "2026-07-01T03:06:22.42541Z",
       "description": "",
       "hasFullDescription": false
     },
@@ -4372,8 +4355,8 @@
       "upstream": [
         776,
         806,
-        807,
-        870
+        870,
+        954
       ],
       "downstream": [
         878,
@@ -4389,22 +4372,23 @@
       "queryType": "query",
       "isNative": false,
       "isArchived": false,
-      "fieldCount": 30,
+      "fieldCount": 35,
       "dependencyDepth": 3,
-      "updatedAt": "2026-06-16T07:49:54.608629Z",
+      "updatedAt": "2026-07-01T08:00:20.631947Z",
       "description": "",
       "hasFullDescription": false
     },
     "878": {
-      "name": "发货 Forecast WOS Summary",
+      "name": "备货发货 Forecast WOS Summary",
       "collectionId": 143,
       "collectionName": "Sales Forecast",
-      "type": "model",
+      "type": "table model",
       "domains": [
         "inventory",
         "logistics",
         "production",
         "replenishment",
+        "returns",
         "sales"
       ],
       "display": "table",
@@ -4416,7 +4400,8 @@
       ],
       "downstream": [
         873,
-        921
+        921,
+        960
       ],
       "dashboards": [],
       "risks": [
@@ -4428,9 +4413,9 @@
       "queryType": "native",
       "isNative": true,
       "isArchived": false,
-      "fieldCount": 38,
+      "fieldCount": 46,
       "dependencyDepth": 4,
-      "updatedAt": "2026-06-29T07:10:37.652523Z",
+      "updatedAt": "2026-07-02T03:42:49.501833Z",
       "description": "",
       "hasFullDescription": false
     },
@@ -4727,18 +4712,21 @@
       "name": "工厂补货表2.0",
       "collectionId": 138,
       "collectionName": "Inventory",
-      "type": "dashboard component",
+      "type": "table model",
       "domains": [
         "inventory",
         "production",
         "replenishment",
+        "returns",
         "sales"
       ],
       "display": "table",
       "upstream": [
         873
       ],
-      "downstream": [],
+      "downstream": [
+        960
+      ],
       "dashboards": [
         "补货面板"
       ],
@@ -4750,9 +4738,9 @@
       "queryType": "query",
       "isNative": false,
       "isArchived": false,
-      "fieldCount": 32,
+      "fieldCount": 29,
       "dependencyDepth": 6,
-      "updatedAt": "2026-06-22T12:46:03.406013Z",
+      "updatedAt": "2026-07-01T03:59:36.837343Z",
       "description": "",
       "hasFullDescription": false
     },
@@ -4790,9 +4778,9 @@
       "queryType": "native",
       "isNative": true,
       "isArchived": false,
-      "fieldCount": 30,
+      "fieldCount": 29,
       "dependencyDepth": 3,
-      "updatedAt": "2026-06-29T08:31:19.100415Z",
+      "updatedAt": "2026-06-30T04:37:32.075307Z",
       "description": "业务口径 1. row_type = order_level 表示可以明确归属到订单和 SKU 的已售经营行。它来自 Amazon settlement 的订单级 revenue/cost 数据，并补充 SKU 单件生产成本、单件物流成本和广告分摊成本。 2. row_type = uncovered_platform_cost 表示无法明确归属到订单/SKU 的平台级费用。这些费用不强行分摊到 SKU，而是单独保留。 3. product_sales_usd 是商品销售本金汇总，只表示商品销售额，不扣 Amazon 费用、广告或产品成本。 4. amount_usd 是订单/SKU 层面的经…",
       "hasFullDescription": true
     },
@@ -4825,7 +4813,7 @@
       "isArchived": false,
       "fieldCount": 7,
       "dependencyDepth": 4,
-      "updatedAt": "2026-06-29T07:08:14.427143Z",
+      "updatedAt": "2026-06-30T04:42:50.658997Z",
       "description": "2026-06-29: 新增 Global Inbound Transportation Fees 类目(从 #904 uncovered 行提取, 源端 -7125.85)。",
       "hasFullDescription": false
     },
@@ -5044,6 +5032,7 @@
       ],
       "downstream": [],
       "dashboards": [
+        "Sales Dashboard",
         "补货面板"
       ],
       "risks": [
@@ -5056,7 +5045,7 @@
       "isArchived": false,
       "fieldCount": 3,
       "dependencyDepth": 2,
-      "updatedAt": "2026-06-25T03:53:20.420697Z",
+      "updatedAt": "2026-07-01T03:05:48.101549Z",
       "description": "",
       "hasFullDescription": false
     },
@@ -5121,7 +5110,8 @@
         939,
         940,
         942,
-        943
+        943,
+        969
       ],
       "dashboards": [],
       "risks": [
@@ -5131,9 +5121,9 @@
       "queryType": "native",
       "isNative": true,
       "isArchived": false,
-      "fieldCount": 28,
+      "fieldCount": 27,
       "dependencyDepth": 4,
-      "updatedAt": "2026-06-29T08:31:16.910881Z",
+      "updatedAt": "2026-06-30T04:40:44.999372Z",
       "description": "全摊薄已售经营表现底表（按 Marketplace 隔离版）。在 #904 order_level 数据基础上，将 uncovered_platform_cost（无法归属到订单/SKU 的平台级费用）按 marketplace 分别分摊到该 marketplace 内的 SKU。 分摊基准（8 类平台费全覆盖，全池守恒）： - Storage → #806 库存量×单件体积，日摊分键 product_sales_usd - Inbound Placement → #806 入库运输数量，日摊分键 gross_sold_qty - Removal/Disposal → #733 损坏/缺陷退货…",
       "hasFullDescription": true
     },
@@ -5292,7 +5282,7 @@
       "isArchived": false,
       "fieldCount": 6,
       "dependencyDepth": 5,
-      "updatedAt": "2026-06-29T08:31:18.109064Z",
+      "updatedAt": "2026-06-30T04:42:55.432794Z",
       "description": "按SKU已分摊成本结构长表。基于 #928 unpivot 而成，形状与 #906 一致。与 #906 区别：#906 基于 #904，6 类平台级成本 sku 为空；本表基于 #928，平台费已分摊到 SKU，sku 全非空。符号约定同 #904/#928，成本取负数。FBA/Selling 在 #928 拆成订单级+allocated 两列，本表合并后取负。 2026-06-29: 新增 Global Inbound Transportation Fees 类目(从 #928 allocated_global_inbound_transportation_usd 提取)。",
       "hasFullDescription": false
     },
@@ -5325,7 +5315,7 @@
       "hasFullDescription": true
     },
     "935": {
-      "name": "Cumulative Cost + Profit Structure (累计成本结构)",
+      "name": "Cumulative Cost Structure (累计成本结构)",
       "collectionId": 130,
       "collectionName": "Finance",
       "type": "dashboard component",
@@ -5353,9 +5343,9 @@
       "queryType": "query",
       "isNative": false,
       "isArchived": false,
-      "fieldCount": 16,
+      "fieldCount": 14,
       "dependencyDepth": 5,
-      "updatedAt": "2026-06-29T08:53:15.610394Z",
+      "updatedAt": "2026-07-02T07:21:03.953934Z",
       "description": "按SKU版 #905。结构与 #905 完全一致。底层利润字段：#905 用 net_profit_usd（订单级），本卡改用 fully_loaded_net_profit_usd（全摊薄，含已分摊平台费）——因此累计 total_cost 含已分摊平台成本，口径与 #929/#932 一致。source 904→928，6 个平台列名映射（storage_fees_usd→allocated_storage_usd 等）。整店版 #905 的 sku 排除 filter 已移除。挂到 dashboard #85，映射 SKU/Store/Marketplace/Date 筛选器。 2026…",
       "hasFullDescription": true
     },
@@ -5414,9 +5404,9 @@
       "queryType": "query",
       "isNative": false,
       "isArchived": false,
-      "fieldCount": 27,
+      "fieldCount": 25,
       "dependencyDepth": 6,
-      "updatedAt": "2026-06-29T08:53:17.523161Z",
+      "updatedAt": "2026-06-30T04:46:29.574782Z",
       "description": "按SKU版 #909。结构与 #909 完全一致，区别：基于已分摊底表（平台费已分摊到 SKU，sku 全非空），按 SKU 筛选时不丢失 6 类平台成本。整店版 #909 的 sku 排除 filter (sku IS NULL OR sku NOT IN 3个BS) 已移除——by-SKU 卡靠正向选 SKU，与 #929/#932/#934 一致。 2026-06-29: 新增 Global Inbound Transportation Fees 值列 + MoM Growth 列(同 #909, 按SKU)。",
       "hasFullDescription": false
     },
@@ -5559,7 +5549,6 @@
         928
       ],
       "downstream": [
-        948,
         949
       ],
       "dashboards": [],
@@ -5570,12 +5559,12 @@
       "isArchived": false,
       "fieldCount": 8,
       "dependencyDepth": 5,
-      "updatedAt": "2026-06-29T08:55:13.569886Z",
-      "description": "月度各成本项占销售额比率长表, 按 month × sku × cost_category 展开。 基于 #933(按SKU成本结构)+#928(按SKU全摊薄)。 cost_ratio_pct = cost_usd / product_sales_usd × 100, 正值表示成本。 用途: 全成本版(聚合所有SKU)、SKU筛选版(过滤单个SKU)共用底表。 2026-06-29 新建。 2026-06-29 perf: 重写为只引用#928单表(CROSS JOIN LATERAL unpivot), 省去#933 join, 耗时6.7s→预期~3.5s.",
+      "updatedAt": "2026-07-02T09:07:54.24918Z",
+      "description": "月度各成本项占销售额比率长表, 按 month × sku × cost_category 展开。基于 #928(CROSS JOIN LATERAL unpivot)。cost_ratio_pct = cost_usd / product_sales_usd × 100。12 类成本(正数)。下游 #948/#949。#970/#971 经 #969 含 Net Profit。",
       "hasFullDescription": false
     },
     "948": {
-      "name": "Monthly Cost-to-Sales Ratio (月度成本占销售额比率)",
+      "name": "Monthly Cost-to-Sales Ratio (月度成本和净利占销售额比率曲线)",
       "collectionId": 130,
       "collectionName": "Finance",
       "type": "dashboard component",
@@ -5585,11 +5574,11 @@
       ],
       "display": "line",
       "upstream": [
-        943
+        969
       ],
       "downstream": [],
       "dashboards": [
-        "Cost (成本看板)"
+        "Cost & Net Profit Dashboard (成本与净利润看板)"
       ],
       "risks": [],
       "databaseId": 4,
@@ -5598,7 +5587,7 @@
       "isArchived": false,
       "fieldCount": 3,
       "dependencyDepth": 6,
-      "updatedAt": "2026-06-29T08:53:18.699936Z",
+      "updatedAt": "2026-07-02T09:59:55.23228Z",
       "description": "SKU版月度成本率趋势(MBQL)。各成本项占产品销售额的加权百分比,按 month×sku×cost_category 展开。 基于 #943 model。dashboard可按SKU/Store/Marketplace筛选。 2026-06-29 重建为MBQL(UI创建)。",
       "hasFullDescription": false
     },
@@ -5629,9 +5618,9 @@
       "queryType": "query",
       "isNative": false,
       "isArchived": false,
-      "fieldCount": 18,
+      "fieldCount": 17,
       "dependencyDepth": 6,
-      "updatedAt": "2026-06-29T08:53:19.56178Z",
+      "updatedAt": "2026-07-02T08:58:51.363701Z",
       "description": "累计成本透视表(MBQL), 按 sku×custom_store×marketplace 汇总。 基于 #943 model, 13项成本按 cost_category 条件求和 + 总成本率。 用途: AI分析哪些店铺/SKU成本占比过高 (按 total_cost_pct 排序)。 dashboard可按SKU/Store/Marketplace筛选。 2026-06-29 重建为MBQL(UI创建)。",
       "hasFullDescription": false
     },
@@ -5660,8 +5649,378 @@
       "isArchived": false,
       "fieldCount": 3,
       "dependencyDepth": 0,
-      "updatedAt": "2026-06-29T08:20:41.436581Z",
+      "updatedAt": "2026-07-01T03:16:34.792783Z",
       "description": "",
+      "hasFullDescription": false
+    },
+    "954": {
+      "name": "30 Days Sales (IQR Denoised)",
+      "collectionId": 138,
+      "collectionName": "Inventory",
+      "type": "model",
+      "domains": [
+        "inventory",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        776
+      ],
+      "downstream": [
+        877
+      ],
+      "dashboards": [],
+      "risks": [],
+      "databaseId": 4,
+      "queryType": "native",
+      "isNative": true,
+      "isArchived": false,
+      "fieldCount": 6,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-06-30T08:55:14.823512Z",
+      "description": "IQR剔异常后的30天日均销量；<7天回退SUM/30。含raw_sales_per_day原始值对比。",
+      "hasFullDescription": false
+    },
+    "958": {
+      "name": "Quantity Sold By Color",
+      "collectionId": 134,
+      "collectionName": "Sales",
+      "type": "dashboard component",
+      "domains": [
+        "sales"
+      ],
+      "display": "pie",
+      "upstream": [
+        776
+      ],
+      "downstream": [],
+      "dashboards": [
+        "Sales Dashboard"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 4,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-07-01T03:10:25.674736Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "959": {
+      "name": "Quantity Sold By Sizes",
+      "collectionId": 134,
+      "collectionName": "Sales",
+      "type": "dashboard component",
+      "domains": [
+        "sales"
+      ],
+      "display": "pie",
+      "upstream": [
+        776
+      ],
+      "downstream": [],
+      "dashboards": [
+        "Sales Dashboard"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 4,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-07-01T03:10:36.519796Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "960": {
+      "name": "工厂下单 Color Size Sales Weighted Mix",
+      "collectionId": 138,
+      "collectionName": "Inventory",
+      "type": "question",
+      "domains": [
+        "inventory",
+        "production",
+        "replenishment",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        878,
+        901
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 8,
+      "dependencyDepth": 7,
+      "updatedAt": "2026-07-01T04:13:14.251346Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "961": {
+      "name": "Return By Color By Product",
+      "collectionId": 136,
+      "collectionName": "Returns",
+      "type": "dashboard component",
+      "domains": [
+        "production",
+        "replenishment",
+        "returns",
+        "sales"
+      ],
+      "display": "pie",
+      "upstream": [
+        733
+      ],
+      "downstream": [],
+      "dashboards": [
+        "Returns"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 13,
+      "dependencyDepth": 1,
+      "updatedAt": "2026-07-01T06:47:22.013354Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "966": {
+      "name": "Quantity Sold By SKU X Marketplace",
+      "collectionId": 134,
+      "collectionName": "Sales",
+      "type": "dashboard component",
+      "domains": [
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        776
+      ],
+      "downstream": [],
+      "dashboards": [
+        "Sales Dashboard"
+      ],
+      "risks": [
+        "generic aggregation field names",
+        "missing description"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 4,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-07-02T07:41:27.816476Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "967": {
+      "name": "V Settlement Model, Filtered by Sub Category is promotion_deal_fees",
+      "collectionId": 147,
+      "collectionName": "Temp",
+      "type": "question",
+      "domains": [
+        "advertising",
+        "finance",
+        "replenishment",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        742
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 38,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-07-02T07:36:19.409483Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "968": {
+      "name": "V Settlement Model, Filtered by Sub Category is promotion_deal_fees line graph",
+      "collectionId": 147,
+      "collectionName": "Temp",
+      "type": "question",
+      "domains": [
+        "advertising",
+        "finance",
+        "replenishment",
+        "sales"
+      ],
+      "display": "line",
+      "upstream": [
+        742
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "generic aggregation field names",
+        "missing description",
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 2,
+      "dependencyDepth": 2,
+      "updatedAt": "2026-07-02T07:38:21.772882Z",
+      "description": "",
+      "hasFullDescription": false
+    },
+    "969": {
+      "name": "Cost & Net Profit Structure Source (成本与净利润结构底表)",
+      "collectionId": 144,
+      "collectionName": "Base",
+      "type": "source model",
+      "domains": [
+        "advertising",
+        "finance",
+        "inventory",
+        "logistics",
+        "replenishment",
+        "returns",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        928
+      ],
+      "downstream": [
+        948,
+        970,
+        971,
+        972
+      ],
+      "dashboards": [],
+      "risks": [],
+      "databaseId": 4,
+      "queryType": "native",
+      "isNative": true,
+      "isArchived": false,
+      "fieldCount": 8,
+      "dependencyDepth": 5,
+      "updatedAt": "2026-07-02T11:23:37.034087Z",
+      "description": "成本与净利润结构底表。在 #943 月度成本占销售额底表基础上，增加 'Net Profit' 类目（值=fully_loaded_net_profit_usd，含平台费全摊薄）。共 13 个类目：12 类成本(正数) + Net Profit(可正可负)。字段：month/sku/custom_store/marketplace/category/amount/total_sales/ratio_pct。ratio_pct = amount/sales*100，Net Profit 的 ratio 即利润率。供成本+净利润联合看板使用。已知限制继承 #928。",
+      "hasFullDescription": false
+    },
+    "970": {
+      "name": "Monthly Cost-to-Sales Ratio (月度成本和净利占销售额比率柱状图)",
+      "collectionId": 130,
+      "collectionName": "Finance",
+      "type": "dashboard component",
+      "domains": [
+        "finance",
+        "sales"
+      ],
+      "display": "bar",
+      "upstream": [
+        969
+      ],
+      "downstream": [],
+      "dashboards": [
+        "Cost & Net Profit Dashboard (成本与净利润看板)"
+      ],
+      "risks": [],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 3,
+      "dependencyDepth": 6,
+      "updatedAt": "2026-07-02T10:01:04.118183Z",
+      "description": "成本与净利占销售额百分比堆叠柱图(按月)。基于 #969，指标=SUM(amount)/SUM(total_sales)，stacked 堆叠(非归一化)。每类高度=占销售额真实百分比。成本类(正)向上堆叠，Net Profit 亏损为负向下/盈利为正向上，总高度≈100%(成本+净利=销售)。亏损月成本>100%正常表达超支。比 normalized 更准: 负值不被扭曲。",
+      "hasFullDescription": false
+    },
+    "971": {
+      "name": "Cost & Net Profit Pie (成本与净利润饼图)",
+      "collectionId": 130,
+      "collectionName": "Finance",
+      "type": "question",
+      "domains": [
+        "finance"
+      ],
+      "display": "pie",
+      "upstream": [
+        969
+      ],
+      "downstream": [],
+      "dashboards": [],
+      "risks": [
+        "not referenced by dashboards or downstream cards"
+      ],
+      "databaseId": 4,
+      "queryType": "query",
+      "isNative": false,
+      "isArchived": false,
+      "fieldCount": 2,
+      "dependencyDepth": 6,
+      "updatedAt": "2026-07-02T11:12:09.673378Z",
+      "description": "成本与净利润饼图。基于 #969，按 category 聚合 amount 绝对值(ABS)，13 类(12成本+净利)。净利取绝对值显示为正片，亏损/盈利在标签或筛选时区分。注意:净利亏损时取绝对值会与成本同向,占比为 |净利|/(成本+|净利|),仅供构成参考。精确盈亏看 #970。",
+      "hasFullDescription": false
+    },
+    "972": {
+      "name": "Cost & Net Profit % of Sales Pivot (成本与净利占销售额比透视表)",
+      "collectionId": 130,
+      "collectionName": "Finance",
+      "type": "model",
+      "domains": [
+        "advertising",
+        "finance",
+        "inventory",
+        "logistics",
+        "replenishment",
+        "returns",
+        "sales"
+      ],
+      "display": "table",
+      "upstream": [
+        969
+      ],
+      "downstream": [],
+      "dashboards": [
+        "Cost & Net Profit Dashboard (成本与净利润看板)"
+      ],
+      "risks": [],
+      "databaseId": 4,
+      "queryType": "native",
+      "isNative": true,
+      "isArchived": false,
+      "fieldCount": 18,
+      "dependencyDepth": 6,
+      "updatedAt": "2026-07-02T11:30:17.053554Z",
+      "description": "成本与净利润占销售额百分比透视表。基于 #969，按 sku×custom_store×marketplace 透视。13 类(12成本+净利)各占销售额%，总成本%已排除净利。守恒: 13类%之和≈100%(成本+净利=销售)。亏损月/SKU: 成本%>100%, 净利%为负。与 #949 区别: #949 是绝对值, 本表是占销售额%。",
       "hasFullDescription": false
     }
   }
