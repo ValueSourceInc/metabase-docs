@@ -31,6 +31,10 @@ append it to `API-GUIDE.md`. Add to the relevant section (endpoint reference,
 gotchas, workflows) — wherever it fits best. Don't create new files or
 separate logs. One file, one source of truth.
 
+**API-GUIDE 只写通用 API 技巧，不写业务内容。** 卡片会增删改查，写入具体
+card id / 字段名 / 金额 / 业务变更日志会让文档随业务变更无限膨胀。沉淀前问
+自己："这条技巧换个 Metabase 实例还成立吗？" 不成立就别写进 API-GUIDE —— 业务知识属于具体 card 的 `description` 字段或业务文档，不是 API 手册。
+
 ## Reading Strategy (Generated Docs)
 
 **The full reading strategy lives in [`SKILL.md`](SKILL.md)** — loaded on-demand when
@@ -46,7 +50,7 @@ table, and token traps.
 
 ```
 src/generate-metabase-docs.ts   ← The generator script. Domain rules, glossary, risk detection live here.
-docs/metabase/                   ← Generated output (git-committed for version history)
+references/                      ← Generated output (git-committed for version history)
   ├── _catalog.md                ← One-line-per-card catalog (primary discovery file)
   ├── _index.json                ← Full card index (grep target, never read in full)
   ├── _deps.json                 ← Dependency graph (compressed array format; grep for IDs)
