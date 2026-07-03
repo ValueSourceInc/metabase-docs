@@ -272,6 +272,123 @@ firehose it with concurrent requests.
 in the DB even when they contain numbers. Use `CAST(col AS INTEGER)` or `col::integer`
 before aggregating — `SUM(text_column)` will fail.
 
+## 构建 MBQL5 卡片（dataset_query 语法规则）
+
+A saved card's `dataset_query` is **MBQL5** (opts-first field refs, `stages` array).
+This section consolidates the syntax rules for hand-building one via API. Every
+rule below was verified against this instance (Metabase 0.62).
+
+### 顶层 + stage0 骨架
+
+```json
+{
+  "database": <db>,
+  "lib/type": "mbql/query",
+  "stages": [{
+    "lib/type": "mbql.stage/mbql",
+    "lib/uuid": "<uuid4>",
+    "source-card": <id>,            // or "source-table": <id> for a raw table
+    "breakout": [...], "aggregation": [...], "joins": [...],
+    "filters": [...], "expressions": [...], "fields": [...]
+  }]
+}
+```
+
+Top-level has only `database`, `lib/type`, `stages` — no `type`/`query`/`lib/version`.
+
+### field ref — 两套格式，按位置用（gotcha #31）
+
+- **inside `dataset_query`** → MBQL5 **opts-first**:
+  `["field", {"base-type":"type/Text","lib/uuid":"<uuid>","effective-type":"type/Text"?,"join-alias":"<alias>"?}, "<name>"]`
+- **inside `parameters[].target` and dashboard `parameter_mappings[].target`** → MBQL4 **name-first**:
+  `["field", "<name>" | <field-id>, {"base-type":"type/Text","join-alias":"<alias>"?}]`
+- Mixing throws `"Attempted to normalize an MBQL 5 :field clause as MBQL 4"`.
+
+### breakout（分组）
+
+`[["field",{opts},"sku"], ["field",{opts},"scope"]]` — list of field refs; rows
+collapse to one per distinct combo.
+
+### aggregation
+
+- Simple: `["sum"|"max"|"min"|"count", {"lib/uuid":"<uuid>","name":"列名","display-name":"列名"}, ["field",{opts},"<col>"]]`
+- Custom expression (e.g. `在途 = max(shipped)+max(receiving)`):
+  `["+", {"lib/uuid":"<uuid>","name":"在途库存","display-name":"在途库存"}, ["max",{"lib/uuid":"<uuid>"}, field1], ["max",{"lib/uuid":"<uuid>"}, field2]]`
+- Reference another aggregation in the same stage by its uuid:
+  `["aggregation", {"base-type":"...","lib/uuid":"<uuid>"}, "<agg-uuid>"]` (e.g. `sales_per_day = sum/30`)
+- A joined field inside aggregation needs `"join-alias":"<alias>"` in its opts.
+
+### joins
+
+```json
+{
+  "lib/type":"mbql/join",
+  "stages":[{"lib/type":"mbql.stage/mbql","lib/uuid":"<uuid>","source-card":<id>,
+             "filters":[...optional, see below]}],
+  "alias":"<alias>", "strategy":"left-join",
+  "conditions":[["=",{"lib/uuid":"<uuid>"}, <base-field>, <join-field>]],
+  "lib/options":{"lib/uuid":"<uuid>"}
+}
+```
+
+- A join field ref carries `"join-alias":"<alias>"`.
+- **filter placement decides 0-sales survival (gotcha #35)**: a filter on a
+  left-joined field at the TOP level runs after the join → drops unmatched rows
+  (left-join becomes inner). To keep unmatched rows (e.g. "all SKUs incl.
+  0-sales" when filtering orders by date), put the filter INSIDE the join's own
+  `stages[0].filters` (filters the source-card before joining).
+
+### filters
+
+- `["!=", {lib/uuid}, field, ""]` — non-empty
+- `["not", {lib/uuid}, ["contains", {lib/uuid}, field, "substr"]]`
+- `["time-interval", {lib/uuid,"include-current":false}, field, -30, "day"]`
+- `["between", {lib/uuid}, field, "2026-06-03", "2026-07-03"]`
+- `["not-in", {lib/uuid}, field, "v1","v2",...]`
+
+### expressions（非聚合上下文，gotcha #33）
+
+`["coalesce", {"lib/expression-name":"名","lib/uuid":"<uuid>","effective-type":"type/Integer"}, [field], 0]`
+— referenced in `fields` as `["expression",{"base-type":"...","lib/uuid":"<uuid>"},"<name>"]`.
+
+### uuid 规则（gotcha #24 / #33）
+
+EVERY node (field ref opts, operator opts, expression opts, join stage, every
+aggregation) gets its own FRESH `uuid4`. Reusing one → `Invalid query: Duplicate
+:lib/uuid`. Use a small script (`uuid.uuid4()` per node) — don't hand-write.
+
+### parameters — card 自身 vs dashboard（gotcha #36，0.62 关键）
+
+Card-level dimension parameter (target `["dimension",...]`):
+```json
+{"id":"<uuid>","type":"date/range"|"string/="|"number/=",
+ "target":["dimension",["field","<name>"|<id>,{"base-type":"...","join-alias":"...?"}],{"stage-number":0}],
+ "name":"名","slug":"slug","default":"past30days"?,"section":"date"|"string","isMultiSelect":bool?}
+```
+⚠️ **In Metabase 0.62 a MBQL card's OWN dimension parameter crashes UI
+visualization** ("We're experiencing server issues" / API:
+`"Invalid parameter: Card N does not have a template tag named nil"`). Query-builder
+component previews work; only running the full card fails. Template-tag
+parameters (native SQL) and dashboard-path queries are unaffected.
+**Workaround: don't put dimension params on the card — host on a dashboard and
+use DASHBOARD params + `parameter_mappings`** (same MBQL4 name-first target).
+Verify via `POST /api/dashboard/{did}/dashcard/{dc}/card/{cid}/query` with
+`{"parameters":[{"id":"<dash-param-id>","type":"...","value":"..."}]}`.
+
+### 创建 + 验证
+
+`POST /api/card` payload:
+```json
+{"name":"...", "display":"table", "type":"question"|"model",
+ "query_type":"query", "collection_id":<id>,     // MANDATORY (gotcha #34)
+ "dataset_query":{...}, "parameters":[...], "visualization_settings":{}}
+```
+- Omitting `collection_id` → 403 "You don't have permissions" (API key has no
+  personal-collection write). Always pass a writable collection_id.
+- Verify query (no params): `POST /api/card/{id}/query -d '{}'`.
+- Verify with params: use the dashboard path above (card-path dim params fail in 0.62).
+- Promote to model: `PUT {"type":"model"}` + `result_metadata` for display names (gotcha #29).
+
 ## Gotchas
 
 1. **List vs detail mismatch.** `/api/card` list doesn't include fields.
