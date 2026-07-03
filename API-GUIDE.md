@@ -569,3 +569,46 @@ before aggregating — `SUM(text_column)` will fail.
     own FRESH `lib/uuid` — reusing one throws `Invalid query: Duplicate
     :lib/uuid` on save (see #24). A small script generating a `uuid4` per node
     is the safe way to hand-build a many-uuid MBQL5 payload.
+
+34. **`POST /api/card` MUST include `collection_id` (an API-key-writable
+    collection) — omitting it 403s "You don't have permissions to do that."**
+    The API key has no personal-collection write access, so an unset
+    `collection_id` defaults to a personal collection the key can't write and
+    returns 403. This 403 is a permissions truth, NOT the gotcha-#20 validation
+    red herring — but they're indistinguishable from the body alone. Symptom:
+    every card POST 403s regardless of query complexity, while a known-good
+    payload (same key, same query) POSTs fine once `collection_id` is set.
+    Always pass `collection_id` explicitly when creating cards via API key.
+
+35. **A top-level filter CAN reference a join source-card's field — but a
+    filter on a LEFT-join field at stage 0 turns the join into an inner-join
+    (unmatched rows dropped).** `["between",...,["field",{"join-alias":"X",...},"<col>"],...]`
+    and `["time-interval",...,["field",{"join-alias":"X",...},"<date>"],-30,"day"]`
+    both compile and run. But the filter is applied AFTER the join (stage 0),
+    so left-joined rows with NULL in the filtered column are excluded — a
+    "show all SKUs incl. 0-sales" left-join silently loses the 0-sales rows
+    when you add a time filter on the joined orders table. To preserve unmatched
+    rows, put the filter INSIDE the join's own `stages[0]` (filtering the
+    source-card before the join), not at the top-level stage. Symptom: row
+    count drops (e.g. 519 → 345) the moment a date filter is added, even though
+    the base table's rows are all still expected.
+
+36. **In Metabase 0.62, a MBQL card's OWN dimension parameter (`type:
+    string/=`, `date/range`, etc. with `target:["dimension",...]`) crashes the
+    card's visualization in the UI — but the SAME dimension parameter works on
+    a dashboard.** Symptom: in the query builder, every join/filter/aggregation
+    component's *preview* renders data fine, but clicking *Visualization* (or
+    viewing the saved card) throws "We're experiencing server issues" / 500.
+    Via API the failure is `"Invalid parameter: Card N does not have a template
+    tag named nil."` from `validate_card_parameters`. The card-path validator
+    mis-handles dimension parameters (looks for a template-tag that doesn't
+    exist on MBQL cards); template-tag parameters (native SQL, target
+    `["variable",["template-tag",...]]`) and dashboard-path queries are
+    unaffected. **Workaround: don't put dimension parameters on the card —
+    host the card on a dashboard and use DASHBOARD parameters with
+    `parameter_mappings` (`target:["dimension",["field",<id-or-name>,{opts}],{"stage-number":0}]`).
+    Verify via `POST /api/dashboard/{id}/dashcard/{dc}/card/{cid}/query` with
+    `{"parameters":[{"id":"<dash-param-id>","type":"...","value":"..."}]}`.
+    Parameter field refs use NAME-FIRST MBQL4 form (`["field","name",{opts}]`
+    or `["field",<field-id>,{opts}]`) regardless of the card's dataset_query
+    being MBQL5 opts-first.**
