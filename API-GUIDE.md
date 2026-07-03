@@ -521,3 +521,16 @@ before aggregating — `SUM(text_column)` will fail.
     auto-generated/read-only). Changing query_type (query→native) and type
     (question→model) does NOT break `source-card` / `{{#id}}` references — only
     the output column NAMES matter.
+
+30. **When a card shows some columns empty and others populated for one row,
+    check the join key for trailing whitespace first.** Symptom: columns
+    sourced directly from the base table have values, but columns sourced via
+    a join are null — while other rows render fine. Diagnostic direction:
+    base-table columns populated + joined columns null → the join didn't
+    match. Most common cause is a trailing space on the join key in one table
+    but not the other (MBQL `=` is strict equality, `'ABC123 ' != 'ABC123'`).
+    Confirm with `SELECT a.id, LENGTH(a.id), b.id FROM base a LEFT JOIN other b
+    ON a.id=b.id WHERE a.id ILIKE '%<keyword>%'` — `b.id` NULL and
+    `LENGTH(a.id) > LENGTH(TRIM(a.id))` means whitespace. Fix at the source
+    (`UPDATE ... SET id=TRIM(id)`); you can't put `TRIM()` inside an MBQL join
+    condition.
