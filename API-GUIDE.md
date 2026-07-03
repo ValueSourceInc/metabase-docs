@@ -534,3 +534,38 @@ before aggregating — `SUM(text_column)` will fail.
     `LENGTH(a.id) > LENGTH(TRIM(a.id))` means whitespace. Fix at the source
     (`UPDATE ... SET id=TRIM(id)`); you can't put `TRIM()` inside an MBQL join
     condition.
+
+31. **MBQL4 (ad-hoc `/api/dataset`) and MBQL5 (saved-card `dataset_query`)
+    use OPPOSITE field-reference argument order — mixing them throws
+    "Attempted to normalize an MBQL 5 :field clause as MBQL 4
+    ((some-fn nil? map?) opts)".** Ad-hoc `POST /api/dataset`
+    (`{"type":"query","query":{...}}`) expects **name-first**:
+    `["field","name",{"base-type":"..."}]`. Saved-card
+    `dataset_query.stages[*]` expects **opts-first**:
+    `["field",{"base-type":"...","lib/uuid":"..."},"name"]`. The ad-hoc
+    endpoint normalizes in MBQL4 mode, so an opts-first clause there fails the
+    assertion. Rule: name-first for ad-hoc, opts-first for saved cards — one
+    shape does not work in both.
+
+32. **Ad-hoc `/api/dataset` cannot resolve a generic aggregation column name
+    (`sum`, `avg`, `count`, …) projected from a JOINED source-card, but a
+    saved MBQL5 card can.** Symptom: `column __mb_source.<name> does not
+    exist`. The ad-hoc endpoint compiles the joined source-card into a SQL
+    subquery whose output column alias is not the generic name, so the field
+    ref can't resolve. A saved MBQL5 card resolves the same join via the lib
+    layer. Practical rule: don't pre-verify a join that projects a
+    generic-named aggregation column via ad-hoc `/api/dataset` — save the
+    MBQL5 card and verify via `POST /api/card/{id}/query`. (To avoid the
+    generic-name problem entirely, prefer joining a source whose output
+    columns have explicit aliases, or aggregate inline in your own query
+    instead of joining a pre-aggregated model.)
+
+33. **MBQL5 custom expressions are a LIST (not a dict), with the column name
+    inside an opts map; `coalesce` is supported for null→0 on a left-joined
+    field.** Expression format: `["<op>", {"lib/expression-name":"<name>","lib/uuid":"<uuid>","effective-type":"type/..."}, <arg1>, <arg2>, ...]`.
+    Reference it in `fields` as `["expression",{"base-type":"type/...","lib/uuid":"<uuid>"},"<name>"]`.
+    Null→0 on a left-joined column: `["coalesce",{"lib/expression-name":"...","lib/uuid":"...","effective-type":"type/Integer"}, ["field",{"join-alias":"...","base-type":"type/Integer","lib/uuid":"..."},"<col>"], 0]`.
+    Give EVERY node (expression opts, each field ref, each operator opts) its
+    own FRESH `lib/uuid` — reusing one throws `Invalid query: Duplicate
+    :lib/uuid` on save (see #24). A small script generating a `uuid4` per node
+    is the safe way to hand-build a many-uuid MBQL5 payload.
