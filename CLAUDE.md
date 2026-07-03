@@ -14,6 +14,17 @@ A generated documentation library of our Metabase instance. Run `pnpm gen` to re
 
 These docs are **metadata only** (card names, fields, dependencies, descriptions). They do NOT contain raw data or SQL query text.
 
+## Creating Cards / Reports (报表创建偏好) ⚠️ 高优先级
+
+**优先用 Metabase UI（MBQL）创建报表，不要用 native SQL。** 业务人员需要
+能在 UI 里编辑卡片，SQL 卡片他们改不了——这条是硬性偏好，优先级高于
+"用 SQL 写更快"。即使用 MBQL 要多绕几步（多建一个中间 model、用 case
+表达式等），也优于直接写 SQL。
+
+只有当 MBQL 实在无法表达（复杂 JOIN/CTE/窗口函数/跨数据源等）时才考虑
+native SQL，且**必须先调用 `AskUserQuestion` 工具问用户确认**："这个报表
+需要用 native SQL，因为（具体原因）。是否允许？" 用户同意后再创建。
+
 ## API Interaction
 
 When you need to call the Metabase API directly (search, real-time data, schema exploration),
