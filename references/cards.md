@@ -1,6 +1,6 @@
 # Metabase Cards and Models
 
-Total: 192 cards (192 active, 0 archived).
+Total: 191 cards (191 active, 0 archived).
 
 For field-level detail, see individual card files in [cards/](cards/_README.md).
 For programmatic access, use [_index.json](_index.json).
@@ -10,7 +10,7 @@ For programmatic access, use [_index.json](_index.json).
 | Type | Count |
 | --- | --- |
 | dashboard component | 78 |
-| question | 56 |
+| question | 55 |
 | model | 25 |
 | source model | 15 |
 | table model | 12 |
@@ -208,7 +208,6 @@ For programmatic access, use [_index.json](_index.json).
 | #966 | Quantity Sold By SKU X Marketplace | 4 | Sales | dashboard component | sales | table | #776 |  | Sales Dashboard | generic aggregation field names; missing description |
 | #967 | V Settlement Model, Filtered by Sub Category is promotion_deal_fees | 4 | Temp | question | advertising, finance, replenishment, sales | table | #742 |  |  | missing description; not referenced by dashboards or downstream cards |
 | #968 | V Settlement Model, Filtered by Sub Category is promotion_deal_fees line graph | 4 | Temp | question | advertising, finance, replenishment, sales | line | #742 |  |  | generic aggregation field names; missing description; not referenced by dashboards or downstream cards |
-| #969 | Cost & Net Profit Structure Source (成本与净利润结构底表) | 4 | Base | source model | advertising, finance, inventory, logistics, replenishment, returns, sales | table | #928 | #948, #970, #971, #972 |  |  |
+| #969 | Cost & Net Profit Structure Source (成本与净利润结构底表) | 4 | Base | source model | advertising, finance, inventory, logistics, replenishment, returns, sales | table | #928 | #948, #970, #972 |  |  |
 | #970 | Monthly Cost-to-Sales Ratio (月度成本和净利占销售额比率柱状图) | 4 | Finance | dashboard component | finance, sales | bar | #969 |  | Cost & Net Profit Dashboard (成本与净利润看板) |  |
-| #971 | Cost & Net Profit Pie (成本与净利润饼图) | 4 | Finance | question | finance | pie | #969 |  |  | not referenced by dashboards or downstream cards |
 | #972 | Cost & Net Profit % of Sales Pivot (成本与净利占销售额比透视表) | 4 | Finance | model | advertising, finance, inventory, logistics, replenishment, returns, sales | table | #969 |  | Cost & Net Profit Dashboard (成本与净利润看板) |  |

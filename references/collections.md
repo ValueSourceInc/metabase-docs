@@ -10,7 +10,7 @@
 │   │   ├── #105 Production Costs (6 cards)
 │   │   └── #104 Shipment Costs (6 cards)
 │   ├── #84 DCMS 开发测试 (8 cards)
-│   ├── #130 Finance (16 cards, 4 dashboards)
+│   ├── #130 Finance (15 cards, 4 dashboards)
 │   │   └── #144 Base (15 cards)
 │   │       ├── #132 Production Costs (3 cards)
 │   │       ├── #133 Shipment Costs (3 cards)
@@ -87,7 +87,7 @@
 | 94 | Alerts | 75 | /75/ | 1 | 0 |  |
 | 97 | Cost | 75 | /75/ | 1 | 0 |  |
 | 84 | DCMS 开发测试 | 75 | /75/ | 8 | 0 |  |
-| 130 | Finance | 75 | /75/ | 16 | 4 |  |
+| 130 | Finance | 75 | /75/ | 15 | 4 |  |
 | 138 | Inventory | 75 | /75/ | 12 | 1 |  |
 | 136 | Returns | 75 | /75/ | 11 | 1 |  |
 | 134 | Sales | 75 | /75/ | 28 | 1 |  |

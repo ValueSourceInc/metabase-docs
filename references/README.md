@@ -20,8 +20,8 @@ This folder is generated from Metabase metadata. It provides navigation and busi
 
 - Database filter: 4
 - Collections: 50
-- Cards / questions / models: 192
-- Active cards: 192
+- Cards / questions / models: 191
+- Active cards: 191
 - Dashboards: 18
 
 ## Key Source Models
@@ -67,7 +67,7 @@ Most-reused source models and table models. Changing these affects the most down
 | Domain | Cards |
 | --- | --- |
 | sales | 169 |
-| finance | 87 |
+| finance | 86 |
 | advertising | 65 |
 | replenishment | 61 |
 | logistics | 45 |

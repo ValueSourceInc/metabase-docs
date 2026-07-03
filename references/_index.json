@@ -4,8 +4,8 @@
   ],
   "summary": {
     "collections": 50,
-    "cards": 192,
-    "activeCards": 192,
+    "cards": 191,
+    "activeCards": 191,
     "dashboards": 18
   },
   "cards": {
@@ -5920,7 +5920,6 @@
       "downstream": [
         948,
         970,
-        971,
         972
       ],
       "dashboards": [],
@@ -5959,35 +5958,8 @@
       "isArchived": false,
       "fieldCount": 3,
       "dependencyDepth": 6,
-      "updatedAt": "2026-07-02T10:01:04.118183Z",
+      "updatedAt": "2026-07-03T03:08:58.899216Z",
       "description": "成本与净利占销售额百分比堆叠柱图(按月)。基于 #969，指标=SUM(amount)/SUM(total_sales)，stacked 堆叠(非归一化)。每类高度=占销售额真实百分比。成本类(正)向上堆叠，Net Profit 亏损为负向下/盈利为正向上，总高度≈100%(成本+净利=销售)。亏损月成本>100%正常表达超支。比 normalized 更准: 负值不被扭曲。",
-      "hasFullDescription": false
-    },
-    "971": {
-      "name": "Cost & Net Profit Pie (成本与净利润饼图)",
-      "collectionId": 130,
-      "collectionName": "Finance",
-      "type": "question",
-      "domains": [
-        "finance"
-      ],
-      "display": "pie",
-      "upstream": [
-        969
-      ],
-      "downstream": [],
-      "dashboards": [],
-      "risks": [
-        "not referenced by dashboards or downstream cards"
-      ],
-      "databaseId": 4,
-      "queryType": "query",
-      "isNative": false,
-      "isArchived": false,
-      "fieldCount": 2,
-      "dependencyDepth": 6,
-      "updatedAt": "2026-07-02T11:12:09.673378Z",
-      "description": "成本与净利润饼图。基于 #969，按 category 聚合 amount 绝对值(ABS)，13 类(12成本+净利)。净利取绝对值显示为正片，亏损/盈利在标签或筛选时区分。注意:净利亏损时取绝对值会与成本同向,占比为 |净利|/(成本+|净利|),仅供构成参考。精确盈亏看 #970。",
       "hasFullDescription": false
     },
     "972": {

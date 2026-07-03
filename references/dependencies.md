@@ -23,13 +23,13 @@ flowchart TD
 | #806 | 库存表 | #805 Reports Get Fba Myi All Inventory Model | #811 补货 Fulfillable Inventory Chart, #877 发货基础表, #928 按SKU全摊薄已售经营表现底表 | 补货面板 |
 | #836 | Shipment Pricing Model (UI) |  | #685 工厂小合同, #700 DHM 箱单 By SKU, #755 DH 船务小合同, #835 VS 箱单 By SKU |  |
 | #873 | 补货 FBA Total Inventory Chart 2.0 | #878 备货发货 Forecast WOS Summary | #901 工厂补货表2.0, #930 订单 + 发货 + 库存, #931 订单 + 发货 + 库存  透视表 | 补货面板 |
-| #969 | Cost & Net Profit Structure Source (成本与净利润结构底表) | #928 按SKU全摊薄已售经营表现底表 | #948 Monthly Cost-to-Sales Ratio (月度成本和净利占销售额比率曲线), #970 Monthly Cost-to-Sales Ratio (月度成本和净利占销售额比率柱状图), #971 Cost & Net Profit Pie (成本与净利润饼图), #972 Cost & Net Profit % of Sales Pivot (成本与净利占销售额比透视表) |  |
 | #413 | List SB Campaign Model |  | #411 SB Campaign Model, #424 SB SearchTerm Model, #425 SB Targeting Model |  |
 | #704 | Ads Sp Targeting Model | #402 List SP Campaign Model, #761 List SP Keywords Model DISTINCT, #853 Exchange Rates | #718 Targeting Performance Table, #731 Targeting Negative Performance Table, #763 Targeting Performance Table Test Check |  |
 | #745 | Store Profit By SKU X Order Model | #621 AVG Production & Shipment Cost By SKU, #742 V Settlement Model, #743 Quantity Purchased By Order ID X SKU, #744 Sellable Quantity from Returns By SKU X Order | #752 Store Profit Over Time New, #888 Actual Store Revenue X Production & Shipment Costs Over Time Model, #893 ROI Per Sku Base Model |  |
 | #777 | Parent SKU Natural Sales Daily Model |  | #778 Bar - Natural sales, #779 Combo - Natural Sales Daily Over Time, #780 Line - Natural Sales Daily By Parent SKU |  |
 | #878 | 备货发货 Forecast WOS Summary | #876 Wps Sales Forecast By Day, #877 发货基础表, #899 Wps Shipment Model, #900 Wps Shipment Items Model | #873 补货 FBA Total Inventory Chart 2.0, #921 清仓表, #960 工厂下单 Color Size Sales Weighted Mix |  |
 | #933 | Allocated Cost Structure Source (按SKU已分摊成本结构底表) | #928 按SKU全摊薄已售经营表现底表 | #934 Monthly Cost Mix Trend (月度成本占比趋势), #936 Total Cost Mix (总成本占比), #937 Monthly Cost MoM Growth Trend (月度成本环比增幅趋势) |  |
+| #969 | Cost & Net Profit Structure Source (成本与净利润结构底表) | #928 按SKU全摊薄已售经营表现底表 | #948 Monthly Cost-to-Sales Ratio (月度成本和净利占销售额比率曲线), #970 Monthly Cost-to-Sales Ratio (月度成本和净利占销售额比率柱状图), #972 Cost & Net Profit % of Sales Pivot (成本与净利占销售额比透视表) |  |
 | #425 | SB Targeting Model | #413 List SB Campaign Model, #853 Exchange Rates | #730 SB Targeting Performance Table, #732 SB Targeting Negative Performance Table |  |
 | #621 | AVG Production & Shipment Cost By SKU |  | #745 Store Profit By SKU X Order Model, #904 Sold Operating Performance Source (已售经营表现底表) |  |
 | #700 | DHM 箱单 By SKU | #836 Shipment Pricing Model (UI) | #701 DHM 箱单 By Product Group | DHM 箱单 |

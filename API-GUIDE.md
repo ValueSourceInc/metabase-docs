@@ -1,7 +1,7 @@
 # Metabase API Guide
 
 Hand-written reference for interacting with the Metabase REST API. The generated
-docs in `references/` are the *output* of these API calls — this guide is
+docs in `docs/metabase/` are the *output* of these API calls — this guide is
 about *how* to call the API effectively.
 
 **Base URL pattern:** `{METABASE_API_BASE_URL}/api{endpoint}`
@@ -611,49 +611,54 @@ before aggregating — `SUM(text_column)` will fail.
     dimension / row-count), not a schema break. Don't spend time "fixing"
     it as part of an unrelated card edit. (2026-06, #931 while editing #878.)
 
-29. **A native SQL *model* cannot have variables or field filters — but a
-    native SQL *question* can.** Metabase enforces this at PUT time:
-    `"A model made from a native SQL question cannot have a variable or
-    field filter."` The 4 `{{#card-id}}` placeholders you see in a model's
-    SQL are **card references** (template-tag `type: "card"`), NOT
-    variables — those are allowed on models. The forbidden kinds are
-    `type: "number"/"text"/"date"/"dimension"` (fill-in variables).
-    **Workaround when you need a fill-in variable on a native-SQL pipeline
-    that's currently a model:** change the card's `type` from `"model"` to
-    `"question"` in the PUT payload — `source-card` references from
-    downstream cards (901/930/931 sourcing 873/878) do NOT depend on the
-    referenced card's type, so they keep working (verify by running each
-    downstream card's query after the change). This is reversible. Done
-    on #878 to add `{{shipment_cap}}`/`{{wos_target}}` number variables
-    for allocation logic. (2026-07, #878.)
+29. **`PUT /api/card/{id}` supports partial updates — send only
+    `{"visualization_settings": {...}}` to change chart config WITHOUT touching
+    `dataset_query`.** Useful when fixing a chart's series/axis layout without
+    risking the underlying MBQL/SQL. Caveat: `visualization_settings` is replaced
+    wholesale (not deep-merged), so GET the full card first, mutate the one key
+    you need (e.g. `graph.metrics`), then PUT the entire `visualization_settings`
+    object back. Verified pattern (2026-07, #937): the card had `graph.metrics` =
+    24 fields (12 `*_usd` + 12 `*_mom_growth`) all on one left axis with Y locked
+    to [-1, 4] — USD values (thousands) flew off-axis while % curves were
+    squashed, and the legend mixed "Xxx USD" / "Xxx MoM %" because USD fields had
+    no `series_settings` entry (legend falls back to `result_metadata.display_name`)
+    while MoM% fields had `series_settings.title` set. Fix: GET → filter
+    `graph.metrics` to the 12 `*_mom_growth` only → PUT `{"visualization_settings":
+    full_vs}`. `dataset_query` untouched, card still runs (13 rows × 25 cols; USD
+    columns remain in `result_metadata`, just not plotted). Backup the GET
+    response to `/tmp/c{id}_backup.json` before PUT so you can restore if the new
+    chart config is wrong.
 
-30. **A number variable with no `default` makes the card unrunnable
-    without parameters.** After adding a `type: "number"` template-tag,
-    `POST /api/card/{id}/query` (no params) fails: `missing required
-    parameters: #{"shipment_cap" "wos_target"}`. The `default` field must
-    live on the **template-tag** (`{"type":"number","default":500,...}`),
-    not only on the dashboard `parameters` entry — and a PUT that rebuilds
-    the payload from a stale snapshot can silently drop the template-tag
-    definitions while the SQL still contains `{{shipment_cap}}`, leaving
-    the card broken (Metabase sees an unknown tag). Always rebuild the
-    PUT payload from the LATEST `GET /api/card/{id}` response, and after
-    PUT assert both: the tag is in `template-tags` AND `default` is set.
-    (2026-07, #878.)
+30. **Searching `dataset_query` for `source-table`/`source-card` references:
+    walk the parsed JSON, don't grep the string.** `json.dumps` emits `", "` and
+    `": "` (space after colon/comma) by default, so a substring search like
+    `'"source-table":730' in json_str` MISSES — the actual output is
+    `"source-table": 730` with a space. This caused a real false-negative: a
+    string-grep across 409 cards for wps_pricing (table_id 730) returned only
+    #838 (native SQL `FROM "wps"."wps_pricing"`), silently missing two MBQL
+    cards (#595, #621) that referenced table 730 via `source-table`, plus their
+    downstream model #745 and card #752. Correct pattern: recursively walk the
+    parsed JSON object, collect every `source-table` (and `source-card`) int
+    value, then intersect with target ids. Same applies to `source-card`
+    lookups for downstream tracing. Before declaring a table "safe to delete"
+    based on a search, spot-check one known consumer via the detail endpoint.
+    (2026-07, wps_pricing deletion impact analysis.)
 
-31. **Two-phase capacity allocation (rescue-then-greedy) in native SQL:
-    use window SUM with `1 PRECEDING` for "used before this row", not
-    proportional division.** Allocating a per-market cap (e.g. 500 units)
-    across SKUs in two phases — (1) rescue SKUs below `wos_target` to
-    that target, (2) fill remaining cap by need — the naive phase-2
-    "proportional split" (`cap_remaining × need_i / total_need`) loses
-    heavy units to casepack FLOOR: SKUs whose proportional share is
-    `< casepack` FLOOR to 0 and the cap goes unused (US allocated 388/500,
-    112 lost). **Fix: make phase-2 greedy too** — `SUM(remaining_need)
-    OVER (PARTITION BY market ORDER BY wos_now ROWS BETWEEN UNBOUNDED
-    PRECEDING AND 1 PRECEDING)` gives "cap used by prior rows"; each row
-    takes `LEAST(remaining_need, MAX(cap - phase1_total - prior_phase2,
-    0))`, then FLOOR to casepack. Greedy fills the cap (481/500, only
-    ~19 lost to per-SKU casepack remainder — unavoidable without
-    iterative reclaim, which isn't worth the SQL complexity). Both phases
-    share the same `ORDER BY wos_now_days ASC, sku ASC` so the window is
-    deterministic. (2026-07, #878 allocation.)
+31. **Downstream tracing must collect BOTH `source-card` (MBQL) AND `card-id`
+    (native SQL template tags).** A card references another card two ways:
+    - MBQL: `{"source-card": <id>}` in `dataset_query.stages[*]`
+    - Native SQL: `{{#<id>}}` template tag → appears as
+      `{"name":"#<id>","type":"card","card-id":<id>}` in
+      `dataset_query.template_tags` (or stages' `template-tags`)
+    Walking only `source-card` misses every native-SQL consumer. Real
+    false-negative: tracing #621's downstream via `source-card` alone returned
+    2 cards (#745, #752); adding `card-id` revealed **25 downstream cards**
+    including 9 core models (#904/#906/#928/#933/#943/#969/#888/#893/#745) — the
+    entire Finance cost/profit pipeline. Correct pattern: recursively walk the
+    parsed `dataset_query`, collect int values under both `source-card` and
+    `card-id` keys, build a reverse adjacency map, then BFS/DFS from the target.
+    Same walk-JSON rule as gotcha #30 applies (no string grep). When evaluating
+    table deletion impact, downstream reachability matters more than direct
+    references — a table with 3 direct consumers can still break 28 cards via
+    transitive `source-card`/`{{#id}}` chains. (2026-07, wps_pricing deletion.)
+

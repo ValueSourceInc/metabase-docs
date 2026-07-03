@@ -1,6 +1,6 @@
 # Individual Card Details
 
-192 cards documented. Each file contains full field metadata, description, upstream/downstream dependencies, and risk flags.
+191 cards documented. Each file contains full field metadata, description, upstream/downstream dependencies, and risk flags.
 
 Use `_catalog.md` for discovery (one line per card); read individual files when you need field-level detail.
 
@@ -68,7 +68,7 @@ Use `_catalog.md` for discovery (one line per card); read individual files when 
 - [#792 DH 工厂补货表 - 16 sku](792.md)
 - [#942 透视图例子111](942.md)
 
-### Finance (16 cards)
+### Finance (15 cards)
 
 - [#871 Cumulative Settlement & Inventory Investment Trend (累计结算与库存投入趋势)](871.md)
 - [#896 Amazon Settlement Cost Breakdown (亚马逊结算成本分析表)](896.md)
@@ -84,7 +84,6 @@ Use `_catalog.md` for discovery (one line per card); read individual files when 
 - [#948 Monthly Cost-to-Sales Ratio (月度成本和净利占销售额比率曲线)](948.md)
 - [#949 Cost Pivot Table by Store & Marketplace (按店铺成本透视表)](949.md)
 - [#970 Monthly Cost-to-Sales Ratio (月度成本和净利占销售额比率柱状图)](970.md)
-- [#971 Cost & Net Profit Pie (成本与净利润饼图)](971.md)
 - [#972 Cost & Net Profit % of Sales Pivot (成本与净利占销售额比透视表)](972.md)
 
 ### Inventory (12 cards)

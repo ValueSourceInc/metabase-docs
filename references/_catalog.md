@@ -1,4 +1,4 @@
-# Card Catalog — 192 cards
+# Card Catalog — 191 cards
 
 One line per card. Read IN FULL for discovery (find by name/domain/collection/id),
 then read `cards/{id}.md` for field-level detail. Columns, ` | `-separated:
@@ -194,5 +194,4 @@ id | name | domains | collection | type | fields
 968 | V Settlement Model, Filtered by Sub Category is promotion_deal_fees line graph | advertising,finance,replenishment,sales | Temp | question | 2
 969 | Cost & Net Profit Structure Source (成本与净利润结构底表) | advertising,finance,inventory,logistics,replenishment,returns,sales | Base | source model | 8
 970 | Monthly Cost-to-Sales Ratio (月度成本和净利占销售额比率柱状图) | finance,sales | Finance | dashboard component | 3
-971 | Cost & Net Profit Pie (成本与净利润饼图) | finance | Finance | question | 2
 972 | Cost & Net Profit % of Sales Pivot (成本与净利占销售额比透视表) | advertising,finance,inventory,logistics,replenishment,returns,sales | Finance | model | 18
