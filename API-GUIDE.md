@@ -662,3 +662,14 @@ before aggregating — `SUM(text_column)` will fail.
     references — a table with 3 direct consumers can still break 28 cards via
     transitive `source-card`/`{{#id}}` chains. (2026-07, wps_pricing deletion.)
 
+32. **Table-deletion pre-flight: the #30/#31 card search has a DB-view blind spot.**
+    #30 (walk parsed JSON, don't string-grep) + #31 (collect both `source-card`
+    and `card-id`) find every card that names the target table directly. They
+    CANNOT see through a DB VIEW: a card querying a view that internally
+    `SELECT`s from the target table shows only the view name, so it won't be
+    flagged. For pre-deletion safety, also reverse-check view definitions at
+    the DB level (PostgreSQL): `SELECT table_name FROM information_schema.views
+    WHERE view_definition ILIKE '%<table>%'`. The Metabase API key can't run
+    this — it needs a separate DB connection. (2026-07, `wps_shipment_po_map`
+    deletion pre-flight: 0 direct card refs via #30/#31; view check clean.)
+
