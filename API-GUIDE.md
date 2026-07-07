@@ -272,6 +272,23 @@ firehose it with concurrent requests.
 in the DB even when they contain numbers. Use `CAST(col AS INTEGER)` or `col::integer`
 before aggregating — `SUM(text_column)` will fail.
 
+### Run a saved card as-is (for verification)
+
+```
+POST /api/card/{id}/query
+Content-Type: application/json
+{}
+```
+
+Runs the card's saved `dataset_query` unchanged — returns the same `{"data":{"rows","cols"}}`
+shape as `/api/dataset`. **Use this when verifying what a card actually outputs** (e.g.
+checking a computed field against its source): no need to rebuild or hand-filter the
+MBQL5 `dataset_query`. Fetch the full result, then filter rows client-side by SKU/field.
+
+Trade-off vs `POST /api/dataset`: running the saved card can't take an ad-hoc filter, so
+you pay to transfer all rows. Fine for table models (~hundreds of rows); for huge cards,
+inject a filter into the stage's `filters` and send via `/api/dataset` instead.
+
 ## Building an MBQL5 card (dataset_query syntax rules)
 
 A saved card's `dataset_query` is **MBQL5** (opts-first field refs, `stages` array).
@@ -729,3 +746,21 @@ Verify via `POST /api/dashboard/{did}/dashcard/{dc}/card/{cid}/query` with
     Parameter field refs use NAME-FIRST MBQL4 form (`["field","name",{opts}]`
     or `["field",<field-id>,{opts}]`) regardless of the card's dataset_query
     being MBQL5 opts-first.**
+
+37. **When extending a `["+", opts, ...fields]` (or any operator arg list) in a
+    cloned MBQL5 clause, construct the new field ref DIRECTLY rather than
+    `replace_uuids(deepcopy(existing_field))` — the deepcopy form can silently
+    empty the query.** Symptom: `POST /api/card/{id}/query` returns
+    `cols=0, rows=0, status=completed, error=None` — no error, just empty, even
+    though the PUT succeeded and the field name exists on the source. This
+    happens when you append a `replace_uuids(deepcopy(...))`'d field ref to an
+    existing `+`/`*`/`-` arg list (e.g. adding a new cost category to
+    `total_cost_pct`'s numerator `["+",opts,f1,...,fN]`). Fix: build the ref
+    inline — `["field", {"base-type":"type/Decimal","effective-type":"type/Decimal","lib/uuid":<new-uuid>}, "<name>"]`.
+    The directly-constructed form always validates; the deepcopy+replace form is
+    fragile for field refs appended to operator arg lists. Always verify after
+    PUT with a query returning `rows>0` — `cols=0/rows=0/status=completed` is
+    this bug, not an empty data set. (Cloning+replace_uuids still works fine for
+    whole clauses like `case` expressions and `sum` aggregations — the trap is
+    specific to appending a single field ref onto an existing operator's arg
+    list.)
