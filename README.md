@@ -42,7 +42,9 @@ METABASE_DB_ID=<数据库 ID>
 │   ├── glossary.md                  # 业务术语定义
 │   ├── field-risks.md               # 聚合字段命名风险
 │   └── domains/{domain}.md          # 领域 source models + dashboard components
-├── CLAUDE.md                        # AI 阅读策略指引
+├── CLAUDE.md                        # AI 阅读策略指引（always-on，指向 READING-STRATEGY.md）
+├── READING-STRATEGY.md              # 阅读策略详情（按需读，省 token）
+├── skills/metabase-knowledge/       # Hermes Agent skill 分发入口（见下文）
 └── package.json
 ```
 
@@ -60,3 +62,87 @@ METABASE_DB_ID=<数据库 ID>
 | `docs/field-risks.md` | 查找泛聚合字段名风险 | ~16KB |
 
 **核心原则：先用 `_catalog.md` 发现 card，再按需读取 `cards/{id}.md`。查完整上下游依赖用 `_deps.json`，不要扫整个 card 详情目录，也不要全文读取 `cards.md` / `dependencies.md` / `_index.json`。**
+
+## Hermes Skill 分发
+
+本仓库同时作为 [Hermes Agent](https://github.com/nousresearch/hermes-agent) 的 skill 源，供服务器上的 hermes agent 查询 Metabase 知识库。skill 入口在 [`skills/metabase-knowledge/`](skills/metabase-knowledge/)：
+
+```
+skills/metabase-knowledge/
+├── SKILL.md            # hermes 版阅读策略 + frontmatter + 环境变量声明
+└── scripts/refresh.sh # 服务器端 clone 生成器 + pnpm gen 生成 docs/
+```
+
+### 设计说明
+
+- `docs/` 是 git-ignored 的生成产物，**不随 skill 静态分发**（卡片会增删改，静态快照会过期）
+- skill 从 GitHub 拉下来只含 SKILL.md + refresh.sh；知识库由 refresh.sh 在服务器端实时生成
+- 这与仓库核心职责（生成器）解耦：`src/` 改动提交后，服务器跑 refresh.sh 自动拉新版生成器
+
+### 架构
+
+```
+~/.hermes/skills/metabase-knowledge/      ← hermes skills install 装的位置
+├── SKILL.md + scripts/refresh.sh          ← 从 GitHub 拉（轻，进 git）
+└── metabase-docs/                         ← refresh.sh clone 的生成器（update 不动）
+    ├── .env                               ← refresh.sh 从 hermes env 生成（git-ignored）
+    └── docs/                              ← pnpm gen 产物，hermes 实际读取
+```
+
+### 前提
+
+- hermes 服务器能访问 Metabase API（网络可达 + API key）
+- hermes 服务器已装 `node`、`pnpm`、`git`
+- 能 `git clone` 本仓库（私有 repo 配 deploy key 或用有权限的账号）
+
+### 配置环境变量（关键）
+
+**环境变量加到 hermes 的环境配置里，不要在 skill 目录建 `.env`。** 原因：`hermes skills update` 会重拉整个 skill 目录，本地 `.env` 可能被覆盖；而加到 hermes env 里则不受影响，且能让 SKILL.md 的 `required_environment_variables` 生效。
+
+```bash
+METABASE_API_BASE_URL=https://metabase.example.com/api
+METABASE_API_KEY=<API Key>
+METABASE_DB_ID=<数据库 ID>
+METABASE_ALLOW_SELF_SIGNED_CERT=true   # 仅自签证书环境需要（如 https://*.local）
+```
+
+具体配在哪取决于 hermes 部署方式（systemd `EnvironmentFile` / docker `environment` / hermes 自己的 `.env`）。refresh.sh 运行时会从这些环境变量读到 `metabase-docs/.env`，无需手动建。
+
+### 安装
+
+```bash
+# 1. 注册本仓库为 skill 源（一次性）
+hermes skills tap add ValueSourceInc/metabase-docs
+
+# 2. 安装 skill
+hermes skills install ValueSourceInc/metabase-docs/skills/metabase-knowledge
+
+# 3. 首次生成知识库
+bash ~/.hermes/skills/metabase-knowledge/scripts/refresh.sh
+```
+
+### 更新
+
+```bash
+# 更新 skill 本身（拉 SKILL.md / refresh.sh 的变更）
+hermes skills update metabase-knowledge
+
+# 重新生成知识库（卡片有变动后）
+bash ~/.hermes/skills/metabase-knowledge/scripts/refresh.sh
+```
+
+### 使用
+
+hermes 会话里加载 skill：
+
+```
+skill_view("metabase-knowledge")                                   # 加载整个 skill
+skill_view("metabase-knowledge", "metabase-docs/docs/_catalog.md") # 按需读具体文件
+```
+
+skill 装好在新会话自动可用；当前会话用 `/reset` 或加 `--now` 立即生效。
+
+### ⚠️ 部署前提
+
+`src/generate-metabase-docs.ts` 默认输出目录（`docs/`）的改动**必须提交并 push 到 GitHub**，服务器 clone 才能拿到新版生成器。否则 refresh.sh 跑出来的产物目录与 SKILL.md 里写的路径对不上，agent 找不到知识库。
+
