@@ -1,11 +1,11 @@
 ---
-name: metabase-knowledge
+name: reading-strategy
 description: >
   当用户讨论 Metabase 卡片、模型、问题（question）、dashboard、数据集（model/metric）、
   字段、业务域（如 advertising/finance/sales/logistics/inventory/replenishment）、
   卡片依赖关系、集合（collection）、风险卡片、上游/下游影响分析、或者需要查看
-  具体卡片 ID 的字段定义和 SQL 查询结构时使用。该 Skill 会按需读取本 Skill 下的
-  metabase/ 知识库来提供 Metabase 实例的元信息（卡片名称、字段、依赖、描述），
+  具体卡片 ID 的字段定义和 SQL 查询结构时使用。这份阅读策略会按需读取本目录下的
+  docs/ 知识库来提供 Metabase 实例的元信息（卡片名称、字段、依赖、描述），
   不包含原始业务数据。
   触发关键词：Metabase、卡片、card、dashboard、question、model、数据集、字段、SQL。
 metadata:
@@ -20,7 +20,7 @@ metadata:
 
 **这些文档仅包含元数据**（卡片名、字段名、依赖关系、描述），不包含原始数据或 SQL 查询文本。
 
-本 Skill 是 Reading Strategy 的唯一真相源；always-on 的 `CLAUDE.md` 仅留索引指向此处。
+本文件是 Reading Strategy 的唯一真相源；always-on 的 `CLAUDE.md` 仅留索引指向此处。
 API 调用（auth、端点、gotchas）见 `API-GUIDE.md`。
 
 ---
@@ -79,7 +79,7 @@ _index.json     ← Grep ONLY (never read in full) — for upstream/downstream/r
 ## 知识库目录结构
 
 ```
-metabase/
+docs/
   ├── _catalog.md                ← One-line-per-card catalog (primary discovery file)
   ├── _index.json                ← Full card index (grep target, never read in full)
   ├── _deps.json                 ← Dependency graph (compressed array format; grep for IDs)

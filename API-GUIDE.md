@@ -1,7 +1,7 @@
 # Metabase API Guide
 
 Hand-written reference for interacting with the Metabase REST API. The generated
-docs in `references/` are the _output_ of these API calls — this guide is
+docs in `docs/` are the _output_ of these API calls — this guide is
 about _how_ to call the API effectively.
 
 **Base URL pattern:** `{METABASE_API_BASE_URL}/api{endpoint}`
@@ -197,6 +197,14 @@ Only available from the detail endpoint. Each field has:
 `max`) — these indicate the card was built without explicit column aliases and
 the field names are ambiguous without reading the chart configuration.
 
+**Gotcha — aggregation array order ≠ `sum_N` naming (#37):** When a stage has
+multiple aggregations, Metabase auto-names them `sum`, `sum_2`, `sum_3`, … but the
+`sum_N` assignment does **not** track the `aggregation[]` array index. To find which
+array element produces a given `sum_N`, match on `result_metadata[].display_name`
+(e.g. `"Sum of Wps Production - Sku → In Stock"`) plus the field-ref's `join-alias` —
+not the array position. Editing `aggregation[7]` believing it is `sum_8` will silently
+mutate a different column.
+
 ## Common Workflows
 
 ### 1. Fetch all cards with full metadata
@@ -288,6 +296,23 @@ MBQL5 `dataset_query`. Fetch the full result, then filter rows client-side by SK
 Trade-off vs `POST /api/dataset`: running the saved card can't take an ad-hoc filter, so
 you pay to transfer all rows. Fine for table models (~hundreds of rows); for huge cards,
 inject a filter into the stage's `filters` and send via `/api/dataset` instead.
+
+### Dry-run a modified dataset_query before PUT (#38)
+
+Before `PUT /api/card/{id}` with a hand-edited `dataset_query`, validate it ad-hoc:
+
+```
+POST /api/dataset
+Content-Type: application/json
+<body = the full modified dataset_query object>
+```
+
+Same `{data:{rows,cols}}` shape as running a saved card. Confirm only the intended
+columns changed and the row count is stable, **then** `PUT /api/card/{id}` with
+`{"dataset_query": <modified>}`. Catches MBQL5 field-ref / `lib/uuid` / `join-alias`
+mistakes before they land on a card that downstream cards depend on. Also lets you
+A/B old vs new output side-by-side (run the saved card via the endpoint above for the
+"before", this one for the "after").
 
 ## Building an MBQL5 card (dataset_query syntax rules)
 
@@ -764,3 +789,32 @@ Verify via `POST /api/dashboard/{did}/dashcard/{dc}/card/{cid}/query` with
     whole clauses like `case` expressions and `sum` aggregations — the trap is
     specific to appending a single field ref onto an existing operator's arg
     list.)
+
+38. **Native SQL field-filter (dimension) template-tags do NOT work on a
+    `{{#<id>}}` card-reference column.** Symptom: `POST /api/card/{id}/query`
+    fails with `operator does not exist: integer = character varying` (or a
+    wrong-field comparison) - Metabase resolves the dimension target to the
+    wrong field when the FROM source is a card ref instead of a physical table.
+    `{{#id}}` itself works for pulling data; it's field filters *on its columns*
+    that break. **Use the raw underlying physical table as the FROM source when
+    you need a field-filterable native SQL card.** Reserve `{{#id}}` for native
+    cards that don't need field filters on the ref's columns.
+
+39. **Metabase field filters compile to TABLE-NAME-qualified conditions
+    (`<table>.<col> = 'value'`), so aliasing the source table breaks the query.**
+    `FROM <table> AS o ... AND {{field_filter}}` fails with `invalid reference to
+    FROM-clause entry for table "<table>" ... Perhaps you meant to reference the
+    table alias "o"` - Postgres forbids mixing the alias with the full table name
+    the field filter emits. **Don't alias the source table in native SQL that uses
+    `{{field_filter}}`;** qualify its columns with the full table name (or leave
+    them unqualified where unambiguous). The JOIN partner table can still be
+    aliased. (This forces verbose `<long_table_name>.sku` in JOIN conditions -
+    unavoidable when joining a field-filtered source.)
+
+40. **Field-filter (dimension) parameter values passed via
+    `POST /api/card/{id}/query` must be ARRAYS, not bare strings.**
+    `"parameters":[{"id":"<id>","type":"string/=","value":"DH"}]` returns 400
+    `Invalid values provided for operator: :string/=`; use
+    `"value":["DH"]`. To leave a field filter unset (return all rows), simply
+    omit it from the `parameters` array - an unset field filter substitutes a
+    true condition, so the card runs fine with `{}`.

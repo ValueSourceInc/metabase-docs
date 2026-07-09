@@ -6,4 +6,4 @@ dist/
 .codegraph
 .vscode
 .claude/
-references/
+docs/

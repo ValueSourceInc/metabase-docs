@@ -29,7 +29,7 @@ METABASE_DB_ID=<数据库 ID>
 .
 ├── src/
 │   └── generate-metabase-docs.ts   # 文档生成脚本（领域规则、术语表、风险检测）
-├── references/                     # 生成的文档（git 提交以保留版本历史）
+├── docs/                     # 生成的文档（git-ignored，pnpm gen 生成）
 │   ├── _catalog.md                  # 卡片目录（一行一张，AI 首要发现文件）
 │   ├── _index.json                  # 卡片索引（grep 目标，不要全文读取）
 │   ├── _deps.json                   # 压缩依赖关系图（按 card ID grep）
@@ -50,13 +50,13 @@ METABASE_DB_ID=<数据库 ID>
 
 | 文件 | 用途 | 大小 |
 | --- | --- | --- |
-| `references/_catalog.md` | **首要发现文件** — 一行一张卡片，按名称/ID/domain/collection 找 card | ~17KB |
-| `references/_index.json` | grep 目标 — 查特定 card 的风险 / 摘要信息（不要全文读取） | ~136KB |
-| `references/_deps.json` | 追踪上下游依赖和 dashboard 引用，按 card ID grep | ~19KB |
-| `references/cards/{id}.md` | 查看单张卡片字段、描述、少量依赖摘要 | ~1KB each |
-| `references/collections.md` | 了解集合层级结构 | ~8KB |
-| `references/domains/{domain}.md` | 只看领域 source models / dashboard components；不要用来浏览全领域卡片 | 不定 |
-| `references/glossary.md` | 查找业务术语 | ~1KB |
-| `references/field-risks.md` | 查找泛聚合字段名风险 | ~16KB |
+| `docs/_catalog.md` | **首要发现文件** — 一行一张卡片，按名称/ID/domain/collection 找 card | ~17KB |
+| `docs/_index.json` | grep 目标 — 查特定 card 的风险 / 摘要信息（不要全文读取） | ~136KB |
+| `docs/_deps.json` | 追踪上下游依赖和 dashboard 引用，按 card ID grep | ~19KB |
+| `docs/cards/{id}.md` | 查看单张卡片字段、描述、少量依赖摘要 | ~1KB each |
+| `docs/collections.md` | 了解集合层级结构 | ~8KB |
+| `docs/domains/{domain}.md` | 只看领域 source models / dashboard components；不要用来浏览全领域卡片 | 不定 |
+| `docs/glossary.md` | 查找业务术语 | ~1KB |
+| `docs/field-risks.md` | 查找泛聚合字段名风险 | ~16KB |
 
 **核心原则：先用 `_catalog.md` 发现 card，再按需读取 `cards/{id}.md`。查完整上下游依赖用 `_deps.json`，不要扫整个 card 详情目录，也不要全文读取 `cards.md` / `dependencies.md` / `_index.json`。**
