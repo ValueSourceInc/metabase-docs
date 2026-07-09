@@ -93,11 +93,11 @@ skills/metabase-knowledge/
 
 - hermes 服务器能访问 Metabase API（网络可达 + API key）
 - hermes 服务器已装 `node`、`pnpm`、`git`
-- 能 `git clone` 本仓库（私有 repo 配 deploy key 或用有权限的账号）
+- 能 `git clone` 本仓库：私有 repo 需 git 已配置好认证（SSH key 或 credential helper）；hermes 装 skill 时走 GitHub API，私有 repo 另需 `GITHUB_TOKEN`
 
 ### 配置环境变量（关键）
 
-**环境变量加到 hermes 的环境配置里，不要在 skill 目录建 `.env`。** 原因：`hermes skills update` 会重拉整个 skill 目录，本地 `.env` 可能被覆盖；而加到 hermes env 里则不受影响，且能让 SKILL.md 的 `required_environment_variables` 生效。
+**环境变量加到 hermes 的环境配置里（`~/.hermes/.env` 或部署对应方式），不要在 skill 目录建 `.env`。** 原因：`hermes skills update` 会重拉整个 skill 目录，本地 `.env` 可能被覆盖；而加到 hermes env 里则不受影响，且能让 SKILL.md 的 `required_environment_variables` 生效。
 
 ```bash
 METABASE_API_BASE_URL=https://metabase.example.com/api
@@ -106,20 +106,29 @@ METABASE_DB_ID=<数据库 ID>
 METABASE_ALLOW_SELF_SIGNED_CERT=true   # 仅自签证书环境需要（如 https://*.local）
 ```
 
-具体配在哪取决于 hermes 部署方式（systemd `EnvironmentFile` / docker `environment` / hermes 自己的 `.env`）。refresh.sh 运行时会从这些环境变量读到 `metabase-docs/.env`，无需手动建。
+refresh.sh 会把这几个变量读出来写到 `metabase-docs/.env`（生成器内部用，git-ignored），无需手动建。
+
+**两种触发方式的环境变量来源不同：**
+
+- **hermes 会话内由 agent 跑**：声明过的变量自动注入 `terminal`/`execute_code` sandbox，直接可用
+- **手动在 shell 跑**：sandbox 不继承 hermes 的 `.env`，refresh.sh 会自动从 `$HERMES_HOME/.env`（默认 `~/.hermes/.env`）加载——前提是变量配在那里
 
 ### 安装
 
 ```bash
-# 1. 注册本仓库为 skill 源（一次性）
-hermes skills tap add ValueSourceInc/metabase-docs
-
-# 2. 安装 skill
+# 1. 安装 skill（单 skill 无需先 tap add）
 hermes skills install ValueSourceInc/metabase-docs/skills/metabase-knowledge
 
-# 3. 首次生成知识库
-bash ~/.hermes/skills/metabase-knowledge/scripts/refresh.sh
+# 2. 首次生成知识库
+bash <skill安装路径>/scripts/refresh.sh
 ```
+
+`<skill安装路径>` 取决于是否用 profile：
+
+- 默认：`~/.hermes/skills/metabase-knowledge`
+- profile 模式：`~/.hermes/profiles/<profile>/skills/metabase-knowledge`
+
+用 `hermes skills list` 可查实际安装路径。或在 hermes 会话内让 agent 用 `${HERMES_SKILL_DIR}/scripts/refresh.sh` 触发（token 自动解析为真实路径）。
 
 ### 更新
 
@@ -128,7 +137,7 @@ bash ~/.hermes/skills/metabase-knowledge/scripts/refresh.sh
 hermes skills update metabase-knowledge
 
 # 重新生成知识库（卡片有变动后）
-bash ~/.hermes/skills/metabase-knowledge/scripts/refresh.sh
+bash <skill安装路径>/scripts/refresh.sh
 ```
 
 ### 使用

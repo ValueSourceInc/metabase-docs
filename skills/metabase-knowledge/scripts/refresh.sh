@@ -2,8 +2,8 @@
 #
 # refresh.sh - 在 hermes 服务器端生成 metabase-docs 知识库 (docs/)
 #
-# skill 装到 ~/.hermes/skills/metabase-knowledge/ 时，本脚本会在其下
-# clone/pull metabase-docs 生成器，执行 pnpm gen 生成 docs/。
+# skill 装到 ~/.hermes/skills/metabase-knowledge/ 或 profile 目录下时，
+# 本脚本会在其下 clone/pull metabase-docs 生成器，执行 pnpm gen 生成 docs/。
 #
 # 用法:
 #   bash ${HERMES_SKILL_DIR}/scripts/refresh.sh
@@ -20,9 +20,24 @@
 #
 set -euo pipefail
 
+# --- 0. 环境变量来源 ---
+# hermes 会话内由 agent 经 terminal/execute_code sandbox 跑本脚本时，
+# required_environment_variables 声明的变量会自动注入，直接可用。
+# 手动在普通 shell 跑时，sandbox 不继承 hermes 的 .env，故主动加载：
+HERMES_HOME_DIR="${HERMES_HOME:-$HOME/.hermes}"
+HERMES_ENV="$HERMES_HOME_DIR/.env"
+if [ -z "${METABASE_API_BASE_URL:-}" ] && [ -f "$HERMES_ENV" ]; then
+  echo "--> 从 $HERMES_ENV 加载环境变量（手动运行模式）"
+  set -a
+  # shellcheck disable=SC1090
+  . "$HERMES_ENV"
+  set +a
+fi
+
 # HERMES_SKILL_DIR 由 hermes 在加载 skill 时注入；手动跑时回退到脚本上级目录
 SKILL_DIR="${HERMES_SKILL_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
-# 默认仓库地址 - 改成你的 GitHub 地址（私有 repo 用 deploy key / SSH）
+# 默认仓库地址（私有 repo：hermes 装本 skill 走 GitHub API 需 GITHUB_TOKEN；
+# 本脚本的 git clone 走 git 认证，需 git 已能拉到该 repo）
 REPO_URL="${METABASE_DOCS_REPO_URL:-https://github.com/ValueSourceInc/metabase-docs.git}"
 REPO_DIR="$SKILL_DIR/metabase-docs"
 
