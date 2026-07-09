@@ -23,7 +23,7 @@ set -euo pipefail
 # HERMES_SKILL_DIR 由 hermes 在加载 skill 时注入；手动跑时回退到脚本上级目录
 SKILL_DIR="${HERMES_SKILL_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
 # 默认仓库地址 - 改成你的 GitHub 地址（私有 repo 用 deploy key / SSH）
-REPO_URL="${METABASE_DOCS_REPO_URL:-https://github.com/lim-uxn/metabase-docs.git}"
+REPO_URL="${METABASE_DOCS_REPO_URL:-https://github.com/ValueSourceInc/metabase-docs.git}"
 REPO_DIR="$SKILL_DIR/metabase-docs"
 
 echo "==> skill 目录: $SKILL_DIR"
