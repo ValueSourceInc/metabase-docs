@@ -47,13 +47,28 @@ echo "==> 本地产物: $REPO_DIR"
 echo
 
 # --- 1. clone 或 pull 生成器 ---
+#
+# 用 sparse-checkout 排除 repo 自带的 skills/ 目录。原因：本 repo 同时是
+# hermes skill 的源（skills/metabase-knowledge/ 在 repo 里），整仓 clone 进 skill
+# 目录会造成 skill 套 skill——hermes 加载时检测到两个同名 metabase-knowledge，
+# 报 ambiguous 后拒绝自动加载。生成器只需要 src/、package.json、API-GUIDE.md 等，
+# 不需要 repo 里的 skills/，故排除。
 if [ ! -d "$REPO_DIR/.git" ]; then
-  echo "--> clone metabase-docs 生成器"
-  git clone "$REPO_URL" "$REPO_DIR"
+  echo "--> clone metabase-docs 生成器（sparse，排除 skills/）"
+  git clone --no-checkout "$REPO_URL" "$REPO_DIR"
+  git -C "$REPO_DIR" sparse-checkout init --no-cone
+  printf '/*\n!/skills/\n' > "$REPO_DIR/.git/info/sparse-checkout"
+  git -C "$REPO_DIR" checkout
 else
   echo "--> pull 最新生成器"
+  # 老环境可能是普通 clone（未配 sparse），补配一下再 pull，确保 skills/ 不再回来
+  git -C "$REPO_DIR" sparse-checkout init --no-cone 2>/dev/null || true
+  printf '/*\n!/skills/\n' > "$REPO_DIR/.git/info/sparse-checkout" 2>/dev/null || true
+  git -C "$REPO_DIR" checkout 2>/dev/null || true
   git -C "$REPO_DIR" pull --ff-only
 fi
+# 兜底：清理已 checkout 过的 skills/（sparse 排除的是“未来”，已存在的残留目录要显式删）
+rm -rf "$REPO_DIR/skills"
 echo
 
 cd "$REPO_DIR"
