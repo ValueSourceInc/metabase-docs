@@ -94,6 +94,17 @@ drill 进 `cards/{id}.md`。
 | 查泛聚合字段风险 | 读 `docs/field-risks.md` |
 | 看卡片在哪些 dashboard | `grep '"<id>"' docs/_deps.json`（末两位是 dash ID/name） |
 
+## 两份外部指南（生成器 repo 根目录，refresh.sh 已 clone 到 `${HERMES_SKILL_DIR}/metabase-docs/`）
+
+本 skill 只内置「读 docs/ 元数据」的策略。元数据之外的两个场景，按下面的路由读对应文件——规则住在那两份文件里，本 skill 不重复，避免漂移：
+
+| 场景 | 去读 | 记住 |
+|---|---|---|
+| 查实时数据（跑 SQL / 跑卡片拿行） | `${HERMES_SKILL_DIR}/metabase-docs/API-GUIDE.md` 的 **Ad-hoc Queries** 段 | 调 API 时**必须给返回结果加 LIMIT**（native SQL 带 `LIMIT`，saved card 改用 `/api/dataset` 带 filter）——返回的 `rows` 会直接进你的上下文当 token，裸 `SELECT` 等于把整张表灌进来。这是约束你**发起的请求**，不改任何已保存的卡片/表定义。 |
+| 读生成文档的完整读取策略 | `${HERMES_SKILL_DIR}/metabase-docs/READING-STRATEGY.md` | 上面 Reading Strategy 段的英文版完整源；需要更细的 By Intent / General Rules 时去那查。 |
+
+> **全局原则（所有场景）：省 token 是硬约束。** 读 docs/ 用 `_catalog.md` 发现 + grep 精取，绝不全文读大文件；查数据调 API 必加 LIMIT。元数据查询优先用已生成的 docs/（离线、零网络、token-aware），只有需要实时数据才走 API。
+
 ## Pitfalls
 
 - **`docs/` 是 gitignore 的**，不在 skill 仓库里 — 必须先跑 `refresh.sh`。

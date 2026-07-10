@@ -261,6 +261,21 @@ Call the API for real-time data, search, or when the docs might be stale.
 
 ## Ad-hoc Queries (Dataset)
 
+> **Always bound the result set when you query data.** A query's `rows` come back
+> into your own context window as tokens - an unbounded `SELECT` or an unfiltered
+> saved card can dump an entire table into the conversation. This constrains the
+> **API call you make**, not any saved card definition - the underlying cards/tables
+> are never modified. Two rules:
+>
+> 1. **Native SQL:** always end the query with `LIMIT`. Start with `LIMIT 100` to
+>    verify columns/shape, raise only if you genuinely need more rows.
+> 2. **Saved card / MBQL:** don't run a large card bare (see `/api/card/{id}/query`
+>    below). Rebuild the `dataset_query` with a stage `limit` + `filters` and send
+>    it via `POST /api/dataset` so the server returns only the rows you need.
+>
+> Pulling the full result is acceptable only when you already know it's small
+> (table models, ~hundreds of rows).
+
 ```
 POST /api/dataset
 Content-Type: application/json
@@ -268,7 +283,7 @@ Content-Type: application/json
 {
   "database": 4,
   "type": "native",
-  "native": { "query": "SELECT ..." }
+  "native": { "query": "SELECT ... LIMIT 100" }
 }
 ```
 
@@ -291,11 +306,14 @@ Content-Type: application/json
 Runs the card's saved `dataset_query` unchanged — returns the same `{"data":{"rows","cols"}}`
 shape as `/api/dataset`. **Use this when verifying what a card actually outputs** (e.g.
 checking a computed field against its source): no need to rebuild or hand-filter the
-MBQL5 `dataset_query`. Fetch the full result, then filter rows client-side by SKU/field.
+MBQL5 `dataset_query`.
 
-Trade-off vs `POST /api/dataset`: running the saved card can't take an ad-hoc filter, so
-you pay to transfer all rows. Fine for table models (~hundreds of rows); for huge cards,
-inject a filter into the stage's `filters` and send via `/api/dataset` instead.
+⚠️ **This endpoint can't take an ad-hoc filter - it runs the card as-saved, so you pay
+to transfer every row the card produces.** Only use it when you already know the result
+is small (table models, ~hundreds of rows). For anything large, don't pull the full
+table and filter client-side - rebuild the `dataset_query` with a stage `limit` +
+server-side `filters` and send it via `POST /api/dataset` so only the needed rows come
+back (see the bound-the-result-set rule at the top of this section).
 
 ### Dry-run a modified dataset_query before PUT (#38)
 
