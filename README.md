@@ -34,11 +34,9 @@ METABASE_DB_ID=<数据库 ID>
 │   ├── _index.json                  # 卡片索引（grep 目标，不要全文读取）
 │   ├── _deps.json                   # 压缩依赖关系图（按 card ID grep）
 │   ├── README.md                    # 文档导航概览
-│   ├── cards.md                     # 卡片总表（仅供人工浏览，AI 不要全文读取）
 │   ├── cards/{id}.md                # 单卡片详情（长依赖列表已截断）
 │   ├── collections.md               # 集合层级树
 │   ├── dashboards.md                # 仪表板列表
-│   ├── dependencies.md              # 依赖关系表（仅供人工浏览，AI 用 _deps.json）
 │   ├── glossary.md                  # 业务术语定义
 │   ├── field-risks.md               # 聚合字段命名风险
 │   └── domains/{domain}.md          # 领域 source models + dashboard components
@@ -61,7 +59,7 @@ METABASE_DB_ID=<数据库 ID>
 | `docs/glossary.md` | 查找业务术语 | ~1KB |
 | `docs/field-risks.md` | 查找泛聚合字段名风险 | ~16KB |
 
-**核心原则：先用 `_catalog.md` 发现 card，再按需读取 `cards/{id}.md`。查完整上下游依赖用 `_deps.json`，不要扫整个 card 详情目录，也不要全文读取 `cards.md` / `dependencies.md` / `_index.json`。**
+**核心原则：先用 `_catalog.md` 发现 card，再按需读取 `cards/{id}.md`。查完整上下游依赖用 `_deps.json`，不要扫整个 card 详情目录，也不要全文读取 `_index.json`。**
 
 ## Hermes Skill 分发
 

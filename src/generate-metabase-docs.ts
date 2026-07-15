@@ -206,9 +206,7 @@ async function main() {
   // Core documents
   await writeReportFile(`${outputDir}/README.md`, renderReadme(snapshot));
   await writeReportFile(`${outputDir}/collections.md`, renderCollections(snapshot));
-  await writeReportFile(`${outputDir}/cards.md`, renderCards(snapshot.cardDocs));
   await writeReportFile(`${outputDir}/dashboards.md`, renderDashboards(snapshot));
-  await writeReportFile(`${outputDir}/dependencies.md`, renderDependencies(snapshot));
   await writeReportFile(`${outputDir}/glossary.md`, renderGlossary(snapshot));
   await writeReportFile(`${outputDir}/field-risks.md`, renderFieldRisks(snapshot));
 
@@ -719,7 +717,6 @@ function renderReadme(snapshot: MetabaseSnapshot): string {
     "| `domains/{domain}.md` | ⚠️ Source models + dashboard components only. For full domain browse, grep `_catalog.md` instead (100× cheaper) | varies |",
     "| `glossary.md` | Look up business terminology | ~1KB |",
     "| `field-risks.md` | Cards with ambiguous aggregation field names | ~10KB |",
-    "| `cards.md` | ❌ Master table of all cards — human browsing ONLY, never read in full | ~30KB |",
     "",
     "## Summary",
     "",
@@ -741,10 +738,8 @@ function renderReadme(snapshot: MetabaseSnapshot): string {
     "- [_index.json](_index.json) — Full machine-readable index (grep only)",
     "- [_deps.json](_deps.json) — Dependency graph (grep for card IDs)",
     "- [Collections](collections.md)",
-    "- [Cards and models](cards.md) — ⚠️ Human browsing only, do not read in full",
     "- [Individual card details](cards/_README.md)",
     "- [Dashboards](dashboards.md)",
-    "- [Dependencies](dependencies.md) — ⚠️ Human browsing only, prefer _deps.json",
     "- [Glossary](glossary.md)",
     "- [Field risks](field-risks.md) — Cards with ambiguous aggregation field names",
     ...getDomainNames().map((domain) => `- [${capitalize(domain)} domain](domains/${domain}.md)`),
@@ -874,40 +869,6 @@ function renderCollections(snapshot: MetabaseSnapshot): string {
   return lines.join("\n");
 }
 
-function renderCards(cards: CardDoc[]): string {
-  const active = cards.filter((c) => !c.isArchived);
-  const archived = cards.filter((c) => c.isArchived);
-  const byType: Record<string, CardDoc[]> = {};
-  for (const card of cards) {
-    const t = card.type;
-    (byType[t] ??= []).push(card);
-  }
-
-  const lines: string[] = [
-    "# Metabase Cards and Models",
-    "",
-    `Total: ${cards.length} cards (${active.length} active, ${archived.length} archived).`,
-    "",
-    "For field-level detail, see individual card files in [cards/](cards/_README.md).",
-    "For programmatic access, use [_index.json](_index.json).",
-    "",
-    "## By Type",
-    "",
-    renderTable(
-      ["Type", "Count"],
-      Object.entries(byType)
-        .sort((a, b) => b[1].length - a[1].length)
-        .map(([type, list]) => [type, String(list.length)]),
-    ),
-    "",
-    "## All Cards",
-    "",
-    renderCardTable(cards, { includeRisks: true, includeDependencies: true }),
-  ];
-
-  return lines.join("\n");
-}
-
 function renderDashboards(snapshot: MetabaseSnapshot): string {
   const collectionById = new Map<string, CollectionSummary>();
   snapshot.collections.forEach((collection) => collectionById.set(String(collection.id), collection));
@@ -931,40 +892,6 @@ function renderDashboards(snapshot: MetabaseSnapshot): string {
     "# Metabase Dashboards",
     "",
     renderTable(["ID", "Name", "Collection", "Cards", "Card IDs", "Description"], rows),
-    "",
-  ].join("\n");
-}
-
-function renderDependencies(snapshot: MetabaseSnapshot): string {
-  const byId = buildCardByIdMap(snapshot.cardDocs);
-  const reused = snapshot.cardDocs
-    .filter((card) => card.downstreamCardIds.length > 0 || card.dashboardIds.length > 0)
-    .sort(
-      (a, b) =>
-        b.downstreamCardIds.length + b.dashboardIds.length - (a.downstreamCardIds.length + a.dashboardIds.length),
-    );
-
-  const rows = reused.map((card) => [
-    `#${card.id}`,
-    card.name,
-    card.upstreamCardIds.map((id) => formatCardRef(id, byId)).join(", "),
-    card.downstreamCardIds.map((id) => formatCardRef(id, byId)).join(", "),
-    card.dashboardNames.join(", "),
-  ]);
-
-  return [
-    "# Metabase Dependencies",
-    "",
-    "Use this file before changing a source model or heavily reused card.",
-    "",
-    "```mermaid",
-    "flowchart TD",
-    '  upstreamCard["Upstream Cards"] --> sourceModel["Source Models"]',
-    '  sourceModel --> analysisCards["Analysis Cards"]',
-    '  analysisCards --> dashboards["Dashboards"]',
-    "```",
-    "",
-    renderTable(["Card", "Name", "Upstream", "Downstream", "Dashboards"], rows),
     "",
   ].join("\n");
 }

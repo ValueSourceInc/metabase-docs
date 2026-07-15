@@ -71,7 +71,7 @@ _index.json     ← 只 grep，绝不全文读（~150KB）
 **`_catalog.md` 是首要发现文件**，小到一次全读，给完整卡片宇宙。只在需要时
 drill 进 `cards/{id}.md`。
 
-**绝不全文读** `_index.json` / `cards.md` / `dependencies.md` — 前者是全索引
+**绝不全文读** `_index.json` — 前者是全索引
 (grep only)，后两者是人类浏览文件，重复机器可读源。
 
 ### ⚠️ Token 陷阱
