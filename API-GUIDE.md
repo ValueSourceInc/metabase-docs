@@ -4,8 +4,10 @@ Hand-written reference for interacting with the Metabase REST API. The generated
 docs in `docs/` are the _output_ of these API calls - this guide is
 about _how_ to call the API effectively.
 
-**Base URL pattern:** `{METABASE_API_BASE_URL}/api{endpoint}`
-(no trailing slash on the base; endpoints start with `/`.)
+**Base URL pattern:** `{METABASE_API_BASE_URL}{endpoint}`
+(no trailing slash on the base; endpoints start with `/`.) In this project,
+`METABASE_API_BASE_URL` already includes the `/api` prefix. Do not append another
+`/api`, or requests will go to `/api/api/...` and return a misleading 404.
 
 ## Authentication
 
@@ -132,6 +134,28 @@ GET /api/table/{id}/query_metadata
 
 Returns field metadata for a specific table, including foreign key targets.
 Used for building MBQL queries against a table.
+
+### Ad-hoc dataset queries
+
+For read-only, real-time validation without creating a card, send a query to:
+
+```text
+POST /api/dataset
+Content-Type: application/json
+
+{
+  "database": 4,
+  "type": "native",
+  "native": {
+    "query": "SELECT count(*) FROM public.example",
+    "template-tags": {}
+  }
+}
+```
+
+Results are returned in `data.cols` and `data.rows`. SQL errors normally return
+HTTP 400 with the PostgreSQL error embedded in the response body. This endpoint
+executes the query immediately, so keep diagnostic queries read-only and scoped.
 
 ## Rate Limiting & Concurrency
 
@@ -289,8 +313,16 @@ Content-Type: application/json
 ```
 
 Run arbitrary SQL against the database. Returns `{"data":{"rows":[...],"cols":[...]}}`.
+Successful dataset queries may return HTTP `202 Accepted` rather than `200 OK`;
+treat either status as success and inspect the response body for `data.rows`.
 **Rate-limit note:** No documented limit, but complex queries can take 1-2s. Don't
 firehose it with concurrent requests.
+
+**DDL gotcha:** `/api/dataset` expects a result set. A DDL statement such as
+`CREATE OR REPLACE VIEW` can be committed by PostgreSQL and then receive a 400
+`Select statement did not produce a ResultSet` response from Metabase. Never
+blindly retry that response. Verify the database object with a separate `SELECT`
+first (for example, `pg_get_viewdef` and a bounded count query).
 
 **PostgreSQL type strictness:** Columns imported from CSV/text sources may be `text`
 in the DB even when they contain numbers. Use `CAST(col AS INTEGER)` or `col::integer`
@@ -315,6 +347,28 @@ is small (table models, ~hundreds of rows). For anything large, don't pull the f
 table and filter client-side - rebuild the `dataset_query` with a stage `limit` +
 server-side `filters` and send it via `POST /api/dataset` so only the needed rows come
 back (see the bound-the-result-set rule at the top of this section).
+
+### Run a card with dashboard filters
+
+To reproduce a dashboard card with its dashboard parameter mappings, use the
+dashcard-scoped endpoint (the shorter `/dashboard/{dashboard-id}/card/{card-id}/query`
+route may not exist):
+
+```text
+POST /api/dashboard/{dashboard-id}/dashcard/{dashcard-id}/card/{card-id}/query
+Content-Type: application/json
+
+{
+  "parameters": [
+    { "id": "<parameter-id>", "type": "date/all-options", "value": "past30days~" }
+  ]
+}
+```
+
+Get `dashcard-id`, parameter IDs, defaults, and mappings from
+`GET /api/dashboard/{dashboard-id}`. Dashboard-filtered queries can still hit
+Metabase's row cap (commonly 2,000 rows); check `data.rows.length` and prefer an
+aggregated card or a bounded ad-hoc query when the cap is reached.
 
 ### Dry-run a modified dataset_query before PUT (#36)
 
