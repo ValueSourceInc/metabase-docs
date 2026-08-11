@@ -82,6 +82,31 @@ moderate-to-large instances.
 permission change). Always handle per-card errors gracefully - log a warning
 and fall back to the list entry (which has all data except result_metadata).
 
+### Card revision history
+
+```
+GET /api/revision/card/{id}
+```
+
+Returns revisions newest-first, including timestamps and a `diff.before` /
+`diff.after` payload when Metabase retained the changed query. This is useful
+for determining when a field first entered a calculation instead of inferring
+history from the current card. Some revisions only record metadata and omit the
+query payload, so treat a missing diff as unknown rather than unchanged.
+
+To restore a card to a known revision:
+
+```text
+POST /api/revision/revert
+Content-Type: application/json
+
+{"entity":"card","id":<card-id>,"revision_id":<revision-id>}
+```
+
+The endpoint creates a new revision rather than deleting later history. Query
+the restored card afterward; a successful HTTP response alone does not prove
+that its saved query still executes.
+
 ### Dashboards (list)
 
 ```
