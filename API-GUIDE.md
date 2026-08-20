@@ -46,6 +46,16 @@ Returns all collections (flat list - not nested). Each item has:
 **Note:** The flat list is enough to reconstruct the tree (use `location` for
 path-based ordering, `parent_id` for parent links).
 
+To list multiple model types inside one collection, repeat the `models` query
+parameter:
+
+```text
+GET /api/collection/{id}/items?models=card&models=dashboard&limit=200
+```
+
+Do not send `models=card,dashboard`; Metabase treats that as one invalid enum
+value and returns HTTP 400.
+
 ### Cards (list)
 
 ```
@@ -161,6 +171,14 @@ Returns field metadata for a specific table, including foreign key targets.
 Used for building MBQL queries against a table.
 
 ### Ad-hoc dataset queries
+
+#### Querying saved cards as sources
+
+For an ad-hoc MBQL query against a saved card/model, use the string source-table
+identifier `"card__<card-id>"` (for example, `"card__806"`). A numeric
+`source-table` is interpreted as a physical metadata table ID and can fail with
+"either it does not exist, or it belongs to a different Database" even when the
+card exists. The card-source query still requires the normal `database` field.
 
 For read-only, real-time validation without creating a card, send a query to:
 
@@ -324,7 +342,10 @@ Call the API for real-time data, search, or when the docs might be stale.
 >    it via `POST /api/dataset` so the server returns only the rows you need.
 >
 > Pulling the full result is acceptable only when you already know it's small
-> (table models, ~hundreds of rows).
+> (table models, ~hundreds of rows). Even then, for post-PUT smoke tests pipe
+> the response through shell-side jq and keep only the summary -
+> `POST /api/card/glm-5.3_common/query -d '{}' | jq '{status,error,ncols:(.data.cols|length),nrows:(.data.rows|length)}'`
+> - the rows are discarded before reaching your context.
 
 ```
 POST /api/dataset
@@ -515,6 +536,15 @@ use DASHBOARD params + `parameter_mappings`** (same MBQL4 name-first target).
 Verify via `POST /api/dashboard/{did}/dashcard/{dc}/card/{cid}/query` with
 `{"parameters":[{"id":"<dash-param-id>","type":"...","value":"..."}]}`.
 
+- **A downstream card does NOT accept its upstream card's template-tag
+  params.** An MBQL card referencing an upstream native card (`source-card` /
+  `{{#id}}`) only accepts its OWN `parameters`. Passing the upstream's tag name
+  to the downstream card errors with `Invalid parameter: Card N does not have a
+  template tag named "<upstream-tag>"` (`allowed-parameters: null`). The
+  downstream card resolves the upstream's tags via their DEFAULTS. So: run the
+  downstream card with `POST /api/card/{downstream}/query -d '{}'` (no params),
+  and pass a specific value only when querying the UPSTREAM card directly.
+
 ### create + verify
 
 `POST /api/card` payload:
@@ -578,6 +608,18 @@ Organized by scenario. Old flat numbering is gone - cite by group + number.
    actionable form of #25 ("result_metadata can lag the live SQL") - the live run
    is already correct; only the model's UI cache is stale, and it moves on save,
    not on sync.
+   **Refinement (verified 2026-08):** the re-PUT only recomputes when the
+   `dataset_query` actually CHANGED - re-PUTting the byte-identical query is a
+   no-op (metadata untouched). To force a recompute, PUT a trivially-modified
+   query, then PUT the original back (both changes trigger re-runs).
+   **Injecting a NEW column into model `result_metadata` needs the real shape.**
+   Cloning an existing entry and renaming it makes the PUT succeed (HTTP 200),
+   but downstream `source-card` queries fail at the DB with
+   `column __mb_source.<name> does not exist` while `source-table` queries on
+   the same table work - the model-stage projection skips entries lacking a
+   valid metabase field `id` + `field_ref`. Correct source for the entry: run a
+   live query that outputs the column and copy its shape from
+   `data.results_metadata.columns[]` (includes `id`, `field_ref`, `fingerprint`).
 
 ### Dependencies & Tracing
 
@@ -639,6 +681,13 @@ Organized by scenario. Old flat numbering is gone - cite by group + number.
     auto-generated/read-only). Changing query_type (query->native) and type
     (question->model) does NOT break `source-card` / `{{#id}}` references - only
     the output column NAMES matter.
+    **Renaming display_name on an existing model: PUT the FULL array with the
+    entry edited IN PLACE (jq `map`), never append.** After a `dataset_query`
+    PUT recomputes metadata, new columns already exist with
+    `display_name == name`; appending a second entry with the same `name`
+    silently leaves duplicates (51 -> 54 entries) until overwritten. Sequence:
+    PUT `dataset_query` first (metadata recomputes), then PUT the cleaned
+    `result_metadata` with edits applied by `map`.
 
 15. **Native SQL referencing another card - use the short `{{#<id>}}` form.**
     The slug form `{{#<id>-slugified-name}}` works for cards with an ASCII name,
@@ -666,6 +715,15 @@ card-ref template-tag entry
     (see #17). For `type:"card"` add `"card-id":<id>`. Basic variables
     (`text`/`date`/`number`) are single-value by default (but multi-select also
     works via `IN` syntax - see #18); `dimension` supports ranges / multi-select.
+
+    **A basic `text`/`date`/`number` tag only surfaces a UI filter widget if it
+    ALSO exists in the card's top-level `parameters` array** — `template-tags`
+    alone makes the SQL resolve the variable (query runs with its default), but
+    the parameter panel (the filter widgets beside the query) is driven by
+    `parameters[].target: ["variable",["template-tag","<name>"]]`. Add BOTH: the
+    `template-tags` entry AND a matching `parameters` entry (same `id`,
+    `type:"<type>/="`, `name`, `slug`, `default`). Otherwise the variable works
+    invisibly via its default but has no editable widget in the UI.
 
 17. **A native SQL `dimension` (field-filter) template-tag REQUIRES
     `"widget-type"` in KEBAB-CASE - `"widgetType"` (camelCase) fails with
@@ -851,6 +909,10 @@ card-ref template-tag entry
       or filter via the card's own parameters.
     - **`fields` projection is ignored** when querying a source-card - all
       result columns come back regardless. Don't rely on it to cut payload.
+    - **Verified ad-hoc MBQL4 filter forms on source-cards:** numeric
+      `["between", ["field","col",{"base-type":"type/Integer"}], 1, 29]` and
+      `["is-null", ["field","col",{"base-type":"type/Date"}]]` both work
+      (`is-null` takes no opts map, unlike `!=`/`not`).
     - **`result_metadata` can lag the live SQL.** A model's cached field list
       may include columns the current query no longer SELECTs. Trust the live
       `dataset_query.native`, not the cached metadata, for correctness questions.
@@ -1117,6 +1179,13 @@ card-ref template-tag entry
     null), `parameter_mappings` (array; each mapping needs `parameter_id`
     matching a dashboard param's `id`, `card_id`, and `target` =
     `["dimension",["field","<fieldname>",{"base-type":"..."}],{"stage-number":0}]`).
+    **The target's field name sits at index 1 (LEGACY shape), not last**
+    (MBQL5 queries use name-last) - a rewrite script matching `fr[-1]` matches
+    nothing and reports success vacuously. After rewriting mappings, verify with
+    `GET /api/dashboard/glm-5.3_common/params/<param-id>/values` - it returns the
+    filter dropdown's live values from the mapped field, which catches a mapping
+    that was never actually changed (structural checks on the wrong shape pass
+    while the dropdown still lists the old field's values).
 
 46. **A pivot card (`display: pivot`) that sources a changed card may error
     `Error reducing result rows: null` for reasons UNRELATED to your edit.**
@@ -1127,3 +1196,59 @@ card-ref template-tag entry
     schema break. The pivot reduction error is unrelated to fields your edit
     didn't touch. Don't spend time "fixing" it as part of an unrelated card
     edit.
+
+47. **Dashboard KPI titles that all look identical = layout truncation, not
+    missing metadata.** When diagnosing "dashboard numbers have no readable
+    labels": `GET /api/dashboard/glm-5.3_common` -> each dashcard has `size_x`
+    (grid units, ~24 per row). Long card names get visually ellipsized to fit,
+    so a shared name prefix (e.g. a collection-name prefix on every card) makes
+    every small KPI read the same truncated string. Check
+    `dashcard.visualization_settings["card.title"]` / `"card.title_hidden"` for
+    overrides - when absent, the raw card name is shown as-is. Fix by renaming
+    the cards (dashcards and `source-card` deps reference ids, so renames are
+    safe) or by setting a per-dashcard `card.title` override.
+
+48. **Different query paths can return different data snapshots on databases
+    with routing/persistence features.** If a database's `features` list
+    (from `GET /api/database/glm-5.3_common` -> `db.features`) includes
+    `database-routing` / `database-replication` / `persist_models` /
+    `workspace`, then "the same table" can return different results by path:
+    ad-hoc `type: "native"` SQL vs MBQL `source-table` vs MBQL `source-card`
+    vs `POST /api/card/glm-5.3_common/query` (which can serve cached results -
+    `cached: null` in the response does NOT prove freshness). During an active
+    backfill this compounds: identical queries drift minute-to-minute.
+    Practical rules: (1) never A/B results across minutes - run old vs new
+    back-to-back through the SAME path (`POST /api/dataset`); (2) sanity-check
+    with set logic: a filter can only reduce a sum, so "filtered sum >
+    unfiltered sum" means you compared different snapshots, not a query bug;
+    (3) don't use native-SQL diagnostic sums to describe what query-builder
+    users see - re-check through the MBQL path.
+
+49. **New-format MBQL filter ops need an opts dict at element 1.** In the
+    `lib/type: mbql/query` shape, compound filter clauses are
+    `["starts-with", {}, field, "value"]` - the empty `{}` (uuid/case-sensitive
+    options slot) sits between the op and its args. Omitting it
+    (`["starts-with", field, "value"]`) makes the parser read the field-ref as
+    opts and fails with `Invalid query: {:stages [{:filters [[nil
+    ["invalid type"]]]}]}` - an error that names neither the op nor the arg,
+    and the same error you'd get from a genuinely wrong field ref. The
+    comparison ops in generated/legacy queries already carry this shape
+    (`["!=", {uuid}, field, 0]`); hand-written ad-hoc filters are where it
+    bites.
+
+50. **Conditional aggregation (SQL `SUM(... FILTER/WHERE ...)` analog) in MBQL5:
+    nest a `case` with NO default inside the `sum`, then divide two such sums
+    for a per-group conditional weighted average.**
+    `["/", {name:"avg_cny",...}, ["sum",{},["case",{},[[pred, total_field]]]],
+    ["sum",{},["case",{},[[pred, qty_field]]]]]` compiles to
+    `SUM(CASE WHEN pred THEN total END) / SUM(CASE WHEN pred THEN qty END)`.
+    Key details (verified on 0.62): (a) omitting the case default makes
+    non-matching rows NULL - SQL `SUM` over all-NULL is NULL (not 0), so the
+    ratio is NULL instead of a division-by-zero error for groups with no
+    matching rows (a `0` default would crash the whole card on `/0`); (b) the
+    predicate subtree and the value subtree are INDEPENDENT clauses - each
+    `case` (one per numerator/denominator) needs its own predicate built with
+    fresh `lib/uuid`s, never share/reuse the subtree (#30); (c) this is the
+    pattern for "one column per currency/category" pivots (e.g. SKU -> both an
+    `avg_price_cny` and an `avg_price_usd` column, exactly one non-null per
+    group when categories are mutually exclusive).
