@@ -393,6 +393,16 @@ is small (table models, ~hundreds of rows). For anything large, don't pull the f
 table and filter client-side - rebuild the `dataset_query` with a stage `limit` +
 server-side `filters` and send it via `POST /api/dataset` so only the needed rows come
 back (see the bound-the-result-set rule at the top of this section).
+Two facts about this endpoint family:
+
+- `running_time` in the response is in **milliseconds**, not seconds - e.g. a
+  heavy recursive-CTE card reporting `running_time: 8352` ran for ~8 seconds.
+  Misreading it as seconds makes healthy queries look multi-hour.
+- `POST /api/card/{id}/query/csv` (same empty-JSON body) returns the FULL
+  result set as CSV and bypasses the 2,000-row JSON cap. Use it for
+  whole-table before/after comparisons, piping into `wc -l` / `grep` /
+  `sort -u` instead of jq over capped JSON rows.
+
 
 ### Run a card with dashboard filters
 
@@ -930,6 +940,15 @@ card-ref template-tag entry
     columns have explicit aliases, or aggregate inline in your own query
     instead of joining a pre-aggregated model.)
 
+27. **Live data can change under you mid-verification.** During a
+    before/after comparison the underlying tables may be mutated by sync
+    jobs or other users (observed: a WPS truncate+reinsert landed between
+    two checks 30 minutes apart, 0 matching rows became 934). Rule: snapshot
+    baselines for the diff itself, but re-pull the live state right before
+    drawing conclusions - "it was empty when I checked" may already be
+    stale. This also means a no-op regression check only proves your patch
+    for the data as it existed at that moment.
+
 ### MBQL5 Syntax
 
 27. **MBQL4 (ad-hoc `/api/dataset`) and MBQL5 (saved-card `dataset_query`)
@@ -1252,3 +1271,23 @@ card-ref template-tag entry
     pattern for "one column per currency/category" pivots (e.g. SKU -> both an
     `avg_price_cny` and an `avg_price_usd` column, exactly one non-null per
     group when categories are mutually exclusive).
+
+51. **Adding a column to a card does NOT propagate into consumers whose SQL
+    SELECTs an explicit column list.** When card B's native SQL does
+    `FROM {{#A}}` inside a CTE that lists columns explicitly
+    (`SELECT sku, avg_2, ... FROM {{#A}}`), a new column added to A only
+    reaches B's expressions after you also add it to that list. Symptom when
+    forgotten: Postgres `ERROR: column bp.<new_col> does not exist` when
+    running B - while B's save silently succeeds (no cross-card column
+    validation on save, cf. the Dependencies section).
+
+52. **To add one aggregation column to a pMBQL card whose auto-named columns
+    (`avg`, `avg_2`, `sum_5`, ...) are referenced by downstream SQL: append it
+    at the END of the stage's `aggregation` array, and set a custom `name` in
+    its options object.** `["avg", {"lib/uuid": "<new-uuid>", "display-name":
+    "...", "name": "my_col"}, ["field", {"join-alias": "<join>",
+    "base-type": "type/Float"}, "src_col"]]` outputs a column literally named
+    `my_col` (verified on 0.62). Appending (never inserting mid-array) keeps
+    every existing `sum_N`/`avg_N` assignment stable, so downstream references
+    don't silently repoint (#32). The PUT recomputes `result_metadata` with
+    the new column automatically (#14), so UI field lists update too.
