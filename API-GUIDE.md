@@ -949,6 +949,29 @@ card-ref template-tag entry
     stale. This also means a no-op regression check only proves your patch
     for the data as it existed at that moment.
 
+55. **Dry-run modified native SQL containing `{{#card}}` refs via a throwaway
+    scratch card, never by editing the production card first.** Ad-hoc
+    `/api/dataset` can't resolve card refs (#19), so the only way to execute
+    the new SQL before committing is: `POST /api/card` with a temp card
+    (body: `{"name": "...(delete me)", "display": "table",
+    "visualization_settings": {}, "dataset_query": <full modified
+    dataset_query, incl. template-tags for every card ref>}`), then
+    `POST /api/card/{scratch_id}/query/csv`, compare against a baseline
+    `POST /api/card/{prod_id}/query/csv` pulled just before, then
+    `DELETE /api/card/{scratch_id}`. Quirks observed:
+    - `POST /api/card` rejects `collection_id: "root"` (must be integer or
+      nanoid); omit the key entirely and the card lands in root.
+    - New `{{#id}}` refs in the SQL need a matching entry in
+      `stages[0]["template-tags"]` (`{"id": "card-<n>", "name": "<tag>",
+      "display-name": ..., "type": "card", "card-id": <n>}`), copy an
+      existing tag entry as the shape template.
+    - `DELETE /api/card/{id}` returns the literal text `Not found.` yet the
+      delete DOES succeed - verify with `GET /api/card/{id}` -> 404.
+    - **CSV column order differs between a card with cached
+      `result_metadata` (columns reordered per saved metadata) and a fresh
+      scratch card (natural SELECT order).** Compare before/after CSVs by
+      column NAME (csv.DictReader + shared-keys diff), never by position.
+
 ### MBQL5 Syntax
 
 27. **MBQL4 (ad-hoc `/api/dataset`) and MBQL5 (saved-card `dataset_query`)
@@ -1291,3 +1314,35 @@ card-ref template-tag entry
     every existing `sum_N`/`avg_N` assignment stable, so downstream references
     don't silently repoint (#32). The PUT recomputes `result_metadata` with
     the new column automatically (#14), so UI field lists update too.
+
+53. **`PUT /api/card/{id}` with an UNWRAPPED dataset_query object silently
+    no-ops.** Sending the query object itself as the top-level PUT body (instead
+    of `{"dataset_query": <object>}`) returns **HTTP 200 with the full card
+    JSON** - but saves nothing: Metabase maps the object's keys
+    (`database`, `lib/type`, `stages`) to no card fields, so the query is
+    untouched. Symptom: 200 response whose `dataset_query` still holds the OLD
+    expression. This is nastier than #21 (edit silently lost) because the 200
+    looks like success with zero error signal. Rule: always wrap the payload
+    (`{"dataset_query": ...}`), and assert the NEW expression appears in the
+    PUT response's `dataset_query` before trusting the save.
+
+54. **Window aggregations (`cum-sum`) + expression breakouts referencing JOINED
+    fields fail to compile: `missing FROM-clause entry for table "<join-alias>"`.**
+    When a stage has joins AND a window aggregation (`cum-sum`), Metabase inlines
+    the breakout expression (e.g. `coalesce(sku, "join-alias".sku, ...)`) into the
+    outer window query, where the join alias is out of scope. Isolated, each
+    ingredient works: joins + cum-sum with RAW-field breakouts compile; joins +
+    expression breakouts with plain-sum aggregations compile; only the
+    combination (cum-sum + expression breakout over joined fields) breaks.
+    **Workaround - layer it (the 1017→1020 pattern):** an intermediate model does
+    the joins + full-outer-join stitching + monthly plain-sum aggregations
+    (expression breakouts fine there), then a join-free pivot card sources that
+    model and does the `cum-sum` with plain-field breakouts. Two stacked
+    aggregations inside ONE card (multi-stage with a window in stage 1) was not
+    verified and would likely hurt UI editability; the two-card split keeps every
+    layer a standard single-stage query the query builder can render.
+    Also verified on the same build: `cum-sum` accepts an *expression* argument
+    (not just fields), `full-join` chains fine with a following `left-join`, and
+    a left-join condition may reference a stage *expression* that coalesces
+    fields from earlier joins (join-then-join-on-coalesce, as in 1017's Wps
+    Product join).
