@@ -1481,6 +1481,11 @@ When a value must travel raw-table card -> intermediate model(s) -> final model
     looks like success with zero error signal. Rule: always wrap the payload
     (`{"dataset_query": ...}`), and assert the NEW expression appears in the
     PUT response's `dataset_query` before trusting the save.
+    Related: the PUT response's `result_metadata` can come back **empty/absent
+    even though the save succeeded and the query re-ran** (observed on the
+    heavy recursive model 878: PUT 200, response metadata empty, but a
+    subsequent GET showed the recomputed 53-column metadata). Don't judge a
+    metadata recompute from the PUT response - re-GET the card.
 
 54. **Window aggregations (`cum-sum`) + expression breakouts referencing JOINED
     fields fail to compile: `missing FROM-clause entry for table "<join-alias>"`.**
