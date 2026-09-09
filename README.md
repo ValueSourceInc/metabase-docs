@@ -49,7 +49,7 @@ METABASE_DB_ID=<数据库 ID>
 │   └── project-ops/                 # 项目工作流（收尾清单、沉淀规则、skills 维护）
 ├── tools/                    # 一次性实例脚本（wps-sync.js 等）
 ├── localdata/                # 本地分析数据（CSV）
-├── 发货与补货计算说明.md / 退货率计算说明.md  # 业务计算逻辑文档（"当前生效逻辑"）
+├── md/                       # 业务计算逻辑文档（"当前生效逻辑"：发货与补货/退货率/包装改良）
 ├── CLAUDE.md                        # AI 指引（always-on，指向 skills/ 与 READING-STRATEGY.md）
 ├── AGENTS.md / .cursor/rules        # 其他 AI CLI 工具的指针（指向 CLAUDE.md 与 skills/）
 ├── READING-STRATEGY.md              # 阅读策略详情（按需读，省 token）
