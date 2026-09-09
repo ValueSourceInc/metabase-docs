@@ -122,7 +122,7 @@ if (persisted !== normalizedRules.length) throw new Error('card-level rules did 
 // the whole array), patching only this card's dashcard ---
 if (dashId) {
   const dash = await api(`/dashboard/${dashId}`);
-  writeFileSync(`/tmp/dash${dashId}_backup.json`, JSON.stringify({ parameters: dash.parameter, dashcards: dash.dashcards }, null, 2));
+  writeFileSync(`/tmp/dash${dashId}_backup.json`, JSON.stringify({ parameters: dash.parameters ?? [], dashcards: dash.dashcards }, null, 2));
   log(`backed up dashboard ${dashId} -> /tmp/dash${dashId}_backup.json`);
 
   const target = dash.dashcards.find((dc) => dc.card_id === cardId);
@@ -144,14 +144,15 @@ if (dashId) {
   log(`re-sent ${cardsPayload.length} dashcards (card ${cardId}'s dashcard carries the rules)`);
 
   // /cards PUT can rewrite parameters - re-assert them
-  await api(`/dashboard/${dashId}`, 'PUT', { parameters: dash.parameter });
+  // (dashboard API returns `parameters` (plural) - gotcha #43 in API-GUIDE)
+  await api(`/dashboard/${dashId}`, 'PUT', { parameters: dash.parameters ?? [] });
 
   // --- 3. verify dashcard state ---
   const check = await api(`/dashboard/${dashId}`);
   const dcAfter = check.dashcards.find((dc) => dc.card_id === cardId);
   const dcRules = dcAfter?.visualization_settings?.['table.column_formatting']?.length;
-  const paramCount = dash.parameter?.length ?? 0;
-  const paramCountAfter = check.parameter?.length ?? 0;
+  const paramCount = dash.parameters?.length ?? 0;
+  const paramCountAfter = check.parameters?.length ?? 0;
   log(`verify: dashcard has ${dcRules} rules, mappings=${dcAfter?.parameter_mappings?.length}, params ${paramCountAfter}/${paramCount}`);
   if (dcRules !== normalizedRules.length || paramCountAfter !== paramCount) throw new Error('dashcard-level verification failed');
 }
