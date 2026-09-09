@@ -147,6 +147,14 @@ Server-side full-text search across cards, dashboards, and collections.
 Returns a ranked list of results. This is efficient for name-based lookup
 when you don't need the full catalog.
 
+**Renamed column headers don't live in metadata.** When a user sees a column
+label that matches NO `result_metadata[].display_name` anywhere in a card's
+upstream chain, the rename is a presentation override:
+`visualization_settings.column_settings['["name","<col>"]'].column_title`.
+Grep every candidate card's `visualization_settings` for the label (dashcard
+`visualization_settings` too — it can override independently). Discovery
+docs and `result_metadata` never surface these renames.
+
 ### Database Metadata (for SQL exploration)
 
 ```
@@ -199,6 +207,40 @@ Content-Type: application/json
 Results are returned in `data.cols` and `data.rows`. SQL errors normally return
 HTTP 400 with the PostgreSQL error embedded in the response body. This endpoint
 executes the query immediately, so keep diagnostic queries read-only and scoped.
+
+Useful introspection reads through this endpoint (as SELECTs):
+
+- `SELECT pg_get_viewdef('<schema.view>'::regclass, true)` — dump a view's SQL.
+- pg_depend reverse lookup — find every view depending on a table before an
+  external process drops/recreates it (the join that works:
+  `pg_rewrite.oid = pg_depend.objid AND pg_depend.classid = 'pg_rewrite'::regclass`,
+  then `pg_class dep ON dep.oid = rw.ev_class`, `pg_class src ON src.oid = d.refobjid`).
+  Joining `rw.ev_class = d.objid` is wrong and silently returns 0 rows.
+- Caveat: `pg_stat_statements` is often not installed — DB-level "who queried
+  this view recently" is unverifiable; only persistent consumers (cards, code)
+  can be enumerated.
+
+#### Checking whether a DB view/table is safe to drop
+
+Grep across generated `docs/` is NOT sufficient — docs are a snapshot from the
+last `pnpm gen` and miss cards created since. Enumerate live consumers instead:
+
+1. `GET /api/search?q=<name>` — find cards/models/tables by keyword.
+2. Fetch every card (`GET /card?f=all`) and each card's detail; a card touches
+   the object if its `dataset_query` JSON contains any of: the table name as
+   `source-table` (numeric table id), `"source-card": <id>`, or — for native SQL
+   card references — `card-<id>` / `"card-id": <id>` in template-tags, or the
+   view's name as a bare string inside the SQL text. Matching only
+   `source-table`/`source-card` misses native SQL consumers.
+
+#### View blocking an external drop/recreate sync
+
+If an external sync drops and recreates tables, a DB view over those tables
+blocks it (`cannot drop table ... other objects depend on it`). Durable fix:
+migrate the view's SQL into a Metabase native SQL model with identical output
+columns (compare old model export vs new SQL via `/api/card/{id}/query/csv`,
+row-by-row, before switching), then drop the view. Downstream MBQL cards on the
+model keep working as long as column names are unchanged.
 
 ## Rate Limiting & Concurrency
 
@@ -272,6 +314,13 @@ array element produces a given `sum_N`, match on `result_metadata[].display_name
 (e.g. `"Sum of Wps Production - Sku -> In Stock"`) plus the field-ref's `join-alias` -
 not the array position. Editing `aggregation[7]` believing it is `sum_8` will silently
 mutate a different column.
+
+**Gotcha - PUT 卡片时 result_metadata 的 field_ref 格式区分查询类型 (#55):** 保存
+(native SQL) 卡片时，`result_metadata[].field_ref` 必须是
+`["field", "<列名字符串>", {"base-type": "<类型>"}]`（按列名）；写 `["name", "<列名>"]`
+会 400（"valid instance of one of these MBQL clauses: aggregation, expression, field"）。
+MBQL 卡片（source 是物理表）则保持 `["field", <字段数字id>, null]`。手工补列时照抄同卡片
+现有条目改 name/display_name 最稳；跨查询类型照抄会 400。
 
 ## Common Workflows
 
@@ -443,6 +492,12 @@ mistakes before they land on a card that downstream cards depend on. Also lets y
 A/B old vs new output side-by-side (run the saved card via the endpoint above for the
 "before", this one for the "after").
 
+**Gotcha - 连续多轮修改同一卡片时，PATCH 基底必须每次重新 GET (#56):** 不要拿会话早先
+保存的 card JSON 当第二轮修改的基底——它不含上一轮 PUT 的改动，PUT 会把上一轮的修改
+静默覆盖掉（实例：先加 A 逻辑、再用旧 JSON 加 B，结果 A 消失且无任何报错）。每轮改卡
+前重新 `GET /api/card/{id}` 取最新版做基底；PUT 后立刻重跑导出对拍关键字段，别只看
+HTTP 200。
+
 ## Building an MBQL5 card (dataset_query syntax rules)
 
 A saved card's `dataset_query` is **MBQL5** (opts-first field refs, `stages` array).
@@ -487,6 +542,12 @@ collapse to one per distinct combo.
   `["+", {"lib/uuid":"<uuid>","name":"<col-name>","display-name":"<col-name>"}, ["max",{"lib/uuid":"<uuid>"}, field1], ["max",{"lib/uuid":"<uuid>"}, field2]]`
 - Reference another aggregation in the same stage by its uuid:
   `["aggregation", {"base-type":"...","lib/uuid":"<uuid>"}, "<agg-uuid>"]` (e.g. `sales_per_day = sum/30`)
+- **Cross-stage aggregation reference is a BY-NAME field ref, not a uuid ref**: a
+  stage-1 expression referencing a stage-0 aggregation must use
+  `["field", {"base-type":"<agg type>","lib/uuid":"<uuid>"}, "<agg name>"]`
+  (e.g. `"sum"`, `"sum_2"`, or the custom `name` in the aggregation opts). The
+  uuid shape across stages errors with `"Invalid :aggregation reference: no
+  aggregation with uuid ..."` — uuid refs only resolve within their own stage.
 - A joined field inside aggregation needs `"join-alias":"<alias>"` in its opts.
 
 ### joins
@@ -589,6 +650,14 @@ Organized by scenario. Old flat numbering is gone - cite by group + number.
    `TLSV1_ALERT_PROTOCOL_VERSION`. `curl` (its own SSL stack) works fine. For
    scripted API calls, shell out to `curl` and parse the JSON with python,
    rather than using python's HTTP client directly.
+
+4. **`mb_` API keys can contain `=`; extract env values with `cut -d= -f2-`
+   (field 2 to end), not `-f2`.** `.env` values are double-quoted, so a key
+   like `METABASE_API_KEY="mb_abc=xyz"` truncated by `-f2` strips everything
+   after the `=` and the server returns `401 Unauthenticated` — the key looks
+   plausibly long, so it reads as a stale-key problem rather than an
+   extraction bug. In shell: `cut -d= -f2- | tr -d '"'`. In python:
+   `line.split('=', 1)[1].strip().strip('"')`.
 
 ### Reading Metadata (list / detail / fields / types)
 
@@ -1351,3 +1420,65 @@ card-ref template-tag entry
     a left-join condition may reference a stage *expression* that coalesces
     fields from earlier joins (join-then-join-on-coalesce, as in 1017's Wps
     Product join).
+
+55. **`{{#<id>}}` card references expose DIFFERENT column names than the card's
+    `result_metadata`.** A card's metadata `name` fields (what the JSON
+    `/api/card/{id}/query` returns in `cols[].name`, e.g. `color`) are NOT the
+    column names a `{{#<id>}}` reference exposes in native SQL - join-display
+    fields surface as the display name with the arrow collapsed to `__`
+    (e.g. `"Wps Product - Sku__color"`), and MBQL aggregations surface as `sum`,
+    `sum_2`, ... Before writing SQL against a card reference, introspect it:
+    `POST /api/dataset` with `SELECT * FROM {{#<id>}} LIMIT 1` (template-tag
+    `{"type":"card","id":"card-<id>","card-id":<id>}`) and read the returned
+    `cols[].name`. Double-quote those names in SQL (they contain spaces). Renaming
+    the display name upstream silently breaks every native card referencing it.
+
+56. **`POST /api/dataset` takes the query object as the DIRECT request body, not
+    wrapped in a `dataset_query` key.** `{"database":4,"type":"native",...}` -
+    wrapping it (`{"dataset_query":{...}}`) returns the misleading 400
+    "`database` is required for all queries whose type is not `internal`" even
+    though `database` is present. On this build (v0.62.1.3) the legacy
+    `{"type":"native"}` body format executes fine via `/api/dataset`, while saved
+    cards store the new `{"lib/type":"mbql/query","stages":[...]}` format.
+
+57. **Error responses can still contain `data: {"rows": [], "cols": []}` - check
+    `via[].error` (or `cols` emptiness) for failure, not just `data.rows`
+    presence.** A query failing with a SQL error returned HTTP 200 + `data.rows:
+    []`, which reads as "query OK, zero rows" if the check is
+    `'rows' in response['data']`.
+
+58. **This build has NO API route to ADD a card to a dashboard.** Classic
+    `POST /api/dashboard/{id}/cards` returns "API endpoint does not exist.";
+    `PUT /api/dashboard/{id}/cards` exists but requires an integer `id` on every
+    entry (it updates/replaces existing dashcards only, cannot create); `PUT
+    /api/dashboard/{id}` silently ignores a `dashcards` key in the body (returns
+    the dashboard, changes nothing). Adding a card to a dashboard must be done
+    in the UI (drag). Take a `GET /api/dashboard/{id}` snapshot before
+    experimenting with the cards-replace PUT.
+
+59. **To replicate an MBQL card's universe in native SQL, reference its source
+    model - do not point at the raw table and hand-copy filters.** An MBQL
+    card's stage 0 often reads a `source-card` (a model) whose OWN filters are
+    part of the universe definition (cancelled-status, vine, empty-sku,
+    UNKNOWN-marketplace etc.). Those filters live in the model, not the card,
+    so decoding the card alone misses them. Reference the model with
+    `{{#<id>-slug}}` and let its filters apply; keep only what the model does
+    not handle (time window, value exclusions). Hand-copied filters on the raw
+    table also drift silently when the model changes, and raw-table references
+    are invisible in the dependency graph. Verify with a full diff of old vs
+    new output (model-ref version should be byte-identical when the manual
+    filters were faithful).
+
+60. **Two traps when rebuilding an MBQL (v2 `mbql/query`) card via PUT:**
+    (a) `result_metadata[].field_ref` for plain columns must be legacy MBQL 4
+    order `["field", "<name>", {"base-type": "<type>"}]` (same as #55). Writing
+    MBQL 5 order `["field", {"base-type": ...}, "<name>"]` without a
+    `lib/uuid` in the opts fails with a 500
+    `AssertionError: Attempted to normalize an MBQL 5 :field clause as MBQL 4`.
+    Expression columns use `["expression", "<name>"]` and pass either way.
+    (b) Adding a `{{#id}}` reference to native SQL by only editing the SQL text
+    PUTs fine but fails at RUN time with `missing required parameters: #<id>` —
+    every card reference needs a `template-tags` entry
+    (`{"#<id>": {"display-name": ..., "type": "card", "id": "card-<id>",
+    "name": "#<id>", "card-id": <id>}}`). Swap the old tag entry, don't just
+    rename it in the SQL.
