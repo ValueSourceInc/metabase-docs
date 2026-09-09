@@ -40,11 +40,25 @@ METABASE_DB_ID=<数据库 ID>
 │   ├── glossary.md                  # 业务术语定义
 │   ├── field-risks.md               # 聚合字段命名风险
 │   └── domains/{domain}.md          # 领域 source models + dashboard components
-├── CLAUDE.md                        # AI 阅读策略指引（always-on，指向 READING-STRATEGY.md）
+├── skills/                   # Universal skill 库（所有 AI CLI 工具共用，不进 .claude/）
+│   ├── metabase-core/               # 通用 Metabase 技能（可移植）：卡片手术安全规范
+│   │   ├── SKILL.md                 #   + MBQL5 gotchas + viz settings 规则
+│   │   ├── API-GUIDE.md             #   完整 API 手册（auth/端点/gotchas/沉淀目标）
+│   │   └── scripts/                 #   add-column-formatting.mjs（参数化通用脚本）
+│   ├── metabase-knowledge/          # Hermes Agent skill 分发入口（见下文）
+│   └── project-ops/                 # 项目工作流（收尾清单、沉淀规则、skills 维护）
+├── tools/                    # 一次性实例脚本（wps-sync.js 等）
+├── localdata/                # 本地分析数据（CSV）
+├── md/                       # 业务计算逻辑文档（"当前生效逻辑"：发货与补货/退货率/包装改良）
+├── CLAUDE.md                        # AI 指引（always-on，指向 skills/ 与 READING-STRATEGY.md）
+├── AGENTS.md / .cursor/rules        # 其他 AI CLI 工具的指针（指向 CLAUDE.md 与 skills/）
 ├── READING-STRATEGY.md              # 阅读策略详情（按需读，省 token）
-├── skills/metabase-knowledge/       # Hermes Agent skill 分发入口（见下文）
 └── package.json
 ```
+
+**skills/ 分层原则**：`metabase-core/` 是零项目依赖的可移植资产，其他项目
+连接 Metabase 时整目录复制即可复用；`metabase-knowledge/` 与 `project-ops/`
+是本项目专属。维护规则见 [`skills/project-ops/SKILL.md`](skills/project-ops/SKILL.md)。
 
 ## 阅读策略（AI 使用）
 
@@ -76,6 +90,7 @@ skills/metabase-knowledge/
 - `docs/` 是 git-ignored 的生成产物，**不随 skill 静态分发**（卡片会增删改，静态快照会过期）
 - skill 从 GitHub 拉下来只含 SKILL.md + refresh.sh；知识库由 refresh.sh 在服务器端实时生成
 - 这与仓库核心职责（生成器）解耦：`src/` 改动提交后，服务器跑 refresh.sh 自动拉新版生成器
+- refresh.sh 的 sparse-checkout 只排除 `skills/metabase-knowledge/` 与 `skills/project-ops/`（避免 skill 套 skill 同名冲突）；`skills/metabase-core/`（含 API-GUIDE.md）保留在 clone 里，hermes SKILL.md 的 API 指南指针指向它
 
 ### 架构
 

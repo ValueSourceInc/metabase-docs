@@ -1,8 +1,7 @@
 # CLAUDE.md
 
-Generated docs library of our Metabase instance — **metadata only** (names,
-fields, deps, descriptions), no raw data or SQL text. Refresh: `pnpm gen`.
-Current stats: first 10 lines of `docs/_index.json` (`.summary` block).
+This file tells Claude how to use this knowledge base when working on Metabase tasks.
+It contains NO specific data - only reading strategies and pointers. All data lives in the generated docs and skills.
 
 ## Setup / Regenerating
 
@@ -10,58 +9,79 @@ Needs `.env` (`METABASE_API_BASE_URL`, `METABASE_API_KEY`, `METABASE_DB_ID`)
 — copy `.env.example` if missing; without it `pnpm gen` and API calls fail.
 `pnpm gen` regenerates all docs; `pnpm check` runs the TypeScript type check.
 
-## Creating Cards / Reports (报表创建偏好) ⚠️ 高优先级
+## Skills（universal，放在 `skills/`，不进 `.claude/`）
 
-**优先用 Metabase UI（MBQL）创建报表，不要用 native SQL。** 业务人员需要
-能在 UI 里编辑卡片，SQL 卡片他们改不了——这条是硬性偏好，优先级高于
-"用 SQL 写更快"。即使用 MBQL 要多绕几步（多建一个中间 model、用 case
-表达式等），也优于直接写 SQL。
+Skills live in `skills/` so any AI CLI tool (Claude Code / Codex / Cursor…) can read them via this file / `AGENTS.md` / `.cursor/rules/`. Full layout and maintenance rules: [`skills/project-ops/SKILL.md`](skills/project-ops/SKILL.md).
 
-只有当 MBQL 实在无法表达（复杂 JOIN/CTE/窗口函数/跨数据源等）时才考虑
-native SQL，且**必须先调用 `AskUserQuestion` 工具问用户确认**："这个报表
-需要用 native SQL，因为（具体原因）。是否允许？" 用户同意后再创建。
+| Skill | 用途 |
+| --- | --- |
+| [`skills/metabase-core/`](skills/metabase-core/SKILL.md) | **通用 Metabase 技能**（可移植）：卡片创建/修改安全规范、viz settings 规则、MBQL5 gotchas、`API-GUIDE.md`（完整 API 手册）、`scripts/add-column-formatting.mjs`。改卡片前必读。 |
+| [`skills/metabase-knowledge/`](skills/metabase-knowledge/SKILL.md) | hermes 分发 skill：服务器端读本项目生成的 docs/ 知识库。 |
+| [`skills/project-ops/`](skills/project-ops/SKILL.md) | **项目工作流**：改完卡片后的收尾清单、沉淀规则、报表创建偏好、skills 维护、文件去向表。 |
 
 ## API Interaction
 
-When you need to call the Metabase API directly (search, real-time data, schema exploration),
-**read `API-GUIDE.md` first.** It covers auth, endpoints, rate limits, concurrency
-patterns, and gotchas — everything learned from building and maintaining the doc
-generator, plus discoveries from real API sessions.
+When you need to call the Metabase API directly (search, real-time data, schema exploration,
+create/modify cards), **read [`skills/metabase-core/API-GUIDE.md`](skills/metabase-core/API-GUIDE.md) first.**
+It covers auth, endpoints, rate limits, concurrency patterns, and gotchas - everything
+learned from building and maintaining the doc generator, plus discoveries from real API
+sessions. **Prefer it over guessing API behavior** - it encodes real-world trial-and-error.
 
-**Prefer `API-GUIDE.md` over guessing API behavior** — it encodes real-world
-trial-and-error.
+When creating or modifying cards, also follow the safe card-surgery workflow in
+[`skills/metabase-core/SKILL.md`](skills/metabase-core/SKILL.md) (query changes never
+update visualization_settings - the #1 silent-wrong-chart trap).
 
 ### Auto-Learning (沉淀机制)
 
-**After every API interaction where you discover something non-obvious,**
-append it to `API-GUIDE.md`. Add to the relevant section (endpoint reference,
-gotchas, workflows) — wherever it fits best. Don't create new files or
-separate logs. One file, one source of truth.
-
-**API-GUIDE 只写通用 API 技巧，不写业务内容。** 卡片会增删改查，写入具体
-card id / 字段名 / 金额 / 业务变更日志会让文档随业务变更无限膨胀。沉淀前问
-自己："这条技巧换个 Metabase 实例还成立吗？" 不成立就别写进 API-GUIDE —— 业务知识属于具体 card 的 `description` 字段或业务文档，不是 API 手册。
+**After every API interaction where you discover something non-obvious,** append it to
+`skills/metabase-core/API-GUIDE.md` - relevant section, one file, one source of truth.
+只写通用 API 技巧，不写业务内容（判据与去向见
+[`skills/project-ops/SKILL.md`](skills/project-ops/SKILL.md)）。
 
 ## Reading Strategy
 
-**Read [`READING-STRATEGY.md`](READING-STRATEGY.md) when the task touches
-Metabase cards/dashboards/fields/dependencies** (keywords: Metabase, 卡片,
-card, dashboard, field, SQL). It holds the layered access strategy, By Intent
-lookup table, and token traps.
+**The full reading strategy lives in [`READING-STRATEGY.md`](READING-STRATEGY.md)** - read it when
+the task touches Metabase cards/dashboards/fields/dependencies (keywords like Metabase, 卡片, card, dashboard, field, SQL). Keeping it out of this always-on file saves ~1000 tokens for non-Metabase sessions in this repo.
+
+When you need to query the generated docs (find a card, trace dependencies, browse a
+domain), read [`READING-STRATEGY.md`](READING-STRATEGY.md) for the layered access strategy, By Intent lookup
+table, and token traps.
 
 ## Project Structure
 
-Generator: `src/generate-metabase-docs.ts` (domain rules, glossary, risk
-detection live there). Output in `docs/` (git-ignored) — per-file layout and
-access strategy in [`READING-STRATEGY.md`](READING-STRATEGY.md).
+```
+src/generate-metabase-docs.ts   ← The generator script. Domain rules, glossary, risk detection live here.
+skills/                    ← Universal skill library (all AI CLI tools; see Skills section above)
+  ├── metabase-core/            ← Generic, portable Metabase skill (SKILL.md + API-GUIDE.md + scripts/)
+  ├── metabase-knowledge/       ← Hermes distribution skill (SKILL.md + scripts/refresh.sh)
+  └── project-ops/              ← Project workflows (SKILL.md)
+tools/                     ← One-off / instance-specific scripts (wps-sync.js)
+localdata/                 ← Local analysis data (CSV)
+md/                        ← Business logic docs ("当前生效逻辑"): 发货与补货计算说明.md / 退货率计算说明.md / 包装改良收益分析说明.md
+docs/                      ← Generated output (git-ignored; regenerated by `pnpm gen`)
+  ├── _catalog.md                ← One-line-per-card catalog (primary discovery file)
+  ├── _index.json                ← Full card index (grep target, never read in full)
+  ├── _deps.json                 ← Dependency graph (compressed array format; grep for IDs)
+  ├── README.md                  ← Overview + key source models + cleanup candidates
+  ├── cards/{id}.md              ← Per-card detail files (deps truncated at 5; use _deps.json for full)
+  ├── collections.md             ← Collection tree + flat table
+  ├── dashboards.md              ← Dashboard list
+  ├── glossary.md                ← Business term definitions (~1KB)
+  ├── field-risks.md             ← Cards with ambiguous aggregation field names
+  └── domains/{domain}.md        ← Source models + dashboard components per domain (lean, 2 sections)
+```
 
 ## Post-Change Automation（改完卡片后自动做）⚠️ 高优先级
 
-**1. 数据结构变了就自动跑 `pnpm gen`。** 凡是本次会话修改过 Metabase 卡片/模型
-（SQL/MBQL 改动、字段增删重命名、聚合变化等），任务收尾前主动运行 `pnpm gen`
-刷新生成文档，**不要等用户提醒**。
+**改过 Metabase 卡片/模型后，收尾前按 [`skills/project-ops/SKILL.md`](skills/project-ops/SKILL.md)
+的"改完卡片后必做"清单执行：跑 `pnpm gen`、同步 `md/` 下对应业务文档、沉淀 API 新知。
+不要等用户提醒。**
 
-**2. 涉及补货/发货的改动要同步更新 `md/发货与补货计算说明.md`。** 该文档描述
-"当前生效逻辑"，逻辑变了必须跟着变。凡涉及 876/877/878/873/985/901（及预测、
-库存、发货相关的 model/卡片）的行为变化，把对应章节改到与现状一致，并在文中
-标注生效日期（如"2026-08-25 起"）。用户明确要求过：下次不要再让他提醒。
+## Regenerating
+
+```bash
+pnpm gen        # Regenerate all docs from Metabase API
+pnpm check      # TypeScript type check
+```
+
+Requires `.env` with `METABASE_API_BASE_URL`, `METABASE_API_KEY`, `METABASE_DB_ID`.

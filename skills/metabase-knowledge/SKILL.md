@@ -94,13 +94,13 @@ drill 进 `cards/{id}.md`。
 | 查泛聚合字段风险 | 读 `docs/field-risks.md` |
 | 看卡片在哪些 dashboard | `grep '"<id>"' docs/_deps.json`（末两位是 dash ID/name） |
 
-## 两份外部指南（生成器 repo 根目录，refresh.sh 已 clone 到 `${HERMES_SKILL_DIR}/metabase-docs/`）
+## 两份外部指南（生成器 repo 内，refresh.sh 已 clone 到 `${HERMES_SKILL_DIR}/metabase-docs/`）
 
 本 skill 只内置「读 docs/ 元数据」的策略。元数据之外的两个场景，按下面的路由读对应文件——规则住在那两份文件里，本 skill 不重复，避免漂移：
 
 | 场景 | 去读 | 记住 |
 |---|---|---|
-| 查实时数据（跑 SQL / 跑卡片拿行） | `${HERMES_SKILL_DIR}/metabase-docs/API-GUIDE.md` 的 **Ad-hoc Queries** 段 | 调 API 时**必须给返回结果加 LIMIT**（native SQL 带 `LIMIT`，saved card 改用 `/api/dataset` 带 filter）——返回的 `rows` 会直接进你的上下文当 token，裸 `SELECT` 等于把整张表灌进来。这是约束你**发起的请求**，不改任何已保存的卡片/表定义。 |
+| 查实时数据（跑 SQL / 跑卡片拿行） | `${HERMES_SKILL_DIR}/metabase-docs/skills/metabase-core/API-GUIDE.md` 的 **Ad-hoc Queries** 段 | 调 API 时**必须给返回结果加 LIMIT**（native SQL 带 `LIMIT`，saved card 改用 `/api/dataset` 带 filter）——返回的 `rows` 会直接进你的上下文当 token，裸 `SELECT` 等于把整张表灌进来。这是约束你**发起的请求**，不改任何已保存的卡片/表定义。 |
 | 读生成文档的完整读取策略 | `${HERMES_SKILL_DIR}/metabase-docs/READING-STRATEGY.md` | 上面 Reading Strategy 段的英文版完整源；需要更细的 By Intent / General Rules 时去那查。 |
 
 > **全局原则（所有场景）：省 token 是硬约束。** 读 docs/ 用 `_catalog.md` 发现 + grep 精取，绝不全文读大文件；查数据调 API 必加 LIMIT。元数据查询优先用已生成的 docs/（离线、零网络、token-aware），只有需要实时数据才走 API。
@@ -114,3 +114,15 @@ drill 进 `cards/{id}.md`。
   卡片用 `_catalog.md`。
 - 知识库会随 Metabase 卡片增删改而变化 — **不要记忆卡片数量、collection 名等
   具体数据**，每次重新读相关文件。
+
+## Creating Cards / Reports (报表创建偏好) ⚠️ 高优先级
+
+**优先用 Metabase UI（MBQL）创建报表，不要用 native SQL。** 业务人员需要
+能在 UI 里编辑卡片，SQL 卡片他们改不了——这条是硬性偏好，优先级高于
+"用 SQL 写更快"。即使用 MBQL 要多绕几步（多建一个中间 model、用 case
+表达式等），也优于直接写 SQL。
+
+只有当 MBQL 实在无法表达（复杂 JOIN/CTE/窗口函数/跨数据源等）时才考虑
+native SQL，且**必须先调用 `AskUserQuestion` 工具问用户确认**："这个报表
+需要用 native SQL，因为（具体原因）。是否允许？" 用户同意后再创建。
+

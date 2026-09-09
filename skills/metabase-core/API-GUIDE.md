@@ -188,6 +188,27 @@ identifier `"card__<card-id>"` (for example, `"card__806"`). A numeric
 "either it does not exist, or it belongs to a different Database" even when the
 card exists. The card-source query still requires the normal `database` field.
 
+**Native SQL cannot use `card__<id>`** — it is an MBQL `source-table` value only;
+in a native query you get `relation "card__806" does not exist`. To reference a
+saved card in native SQL, use a card-type template tag `{{#<id>-<title-slug>}}`
+with this shape (copy an existing native card's tags as the source of truth):
+
+```json
+"template-tags": {
+  "#806-my-card-name": {
+    "name": "#806-my-card-name", "type": "card",
+    "display-name": "806", "id": "#806", "card-id": 806
+  }
+}
+```
+
+**Column names in native context are the RAW model columns**, not the friendly
+`result_metadata` display names. A query-built model with joins exposes
+join-aliased names like `"Wps Product - AdvertisedSku__sku"` in SQL, even though
+`GET /api/card/{id}` result_metadata shows `sku`. When a native query fails with
+`column "x" does not exist`, first run `SELECT * FROM {{#id-slug}} LIMIT 2` to
+see the real column names.
+
 For read-only, real-time validation without creating a card, send a query to:
 
 ```text
@@ -616,6 +637,13 @@ Verify via `POST /api/dashboard/{did}/dashcard/{dc}/card/{cid}/query` with
   downstream card with `POST /api/card/{downstream}/query -d '{}'` (no params),
   and pass a specific value only when querying the UPSTREAM card directly.
 
+**Null-propagation:** if the case-sum can be NULL for a group (e.g. that
+month has NO rows in one cost group), NULL poisons the whole arithmetic
+expression (`NULL + x = NULL` in SQL). Wrap EVERY case-sum in
+`["coalesce", {"lib/uuid":u,"effective-type":"type/Float"}, <case-sum>, 0]`
+before combining them (verified on 0.62 - coalesce over an aggregation is legal).
+Without it, family-months lacking one cost group silently vanish from the result.
+
 ### create + verify
 
 `POST /api/card` payload:
@@ -626,6 +654,9 @@ Verify via `POST /api/dashboard/{did}/dashcard/{dc}/card/{cid}/query` with
 ```
 - Omitting `collection_id` -> 403 "You don't have permissions" (API key has no
   personal-collection write). Always pass a writable collection_id.
+- Omitting `visualization_settings` entirely -> 400 `{"visualization_settings":
+  "Value must be a map."}` - a missing key is treated as null. Always include
+  at least `{}`.
 - Verify query (no params): `POST /api/card/{id}/query -d '{}'`.
 - Verify with params: use the dashboard path above (card-path dim params fail in 0.62).
 - Promote to model: `PUT {"type":"model"}` + `result_metadata` for display names (gotcha #14).
@@ -1008,6 +1039,37 @@ card-ref template-tag entry
     generic-name problem entirely, prefer joining a source whose output
     columns have explicit aliases, or aggregate inline in your own query
     instead of joining a pre-aggregated model.)
+    **Refinement (verified 2026-08-28): the blanket form above does NOT always
+    hold.** An ad-hoc `POST /api/dataset` carrying a full MBQL5 query
+    (top-level `database`/`lib/type`/`stages`, gotcha #24 shape) resolved the
+    generic aggregation name `sum_2` projected from BOTH a top-level
+    `source-card` and a full-joined `source-card`, values matching SQL ground
+    truth exactly. The #26 failure evidently needs a more specific query shape.
+    Rule: always TRY the ad-hoc dry-run first; only fall back to
+    save-then-verify when it actually errors with
+    `column __mb_source.<name> does not exist`.
+
+### Propagating a new column through a source-card model chain
+
+When a value must travel raw-table card -> intermediate model(s) -> final model
+(e.g. adding an amount column alongside existing qty columns):
+
+1. **Edit bottom-up.** Each hop adds an expression (coalesce the upstream
+   field, 0) + a `sum` aggregation with explicit `name`/`display-name` opts.
+   A downstream hop's ad-hoc dry-run can only resolve the new field name AFTER
+   the upstream card is saved - so: dry-run hop 1 -> PUT hop 1 -> dry-run hop
+   2 -> PUT hop 2 …
+2. **`display-name` inside the aggregation opts carries into the recomputed
+   `result_metadata`** on the model PUT - new columns get proper display names
+   without a follow-up `result_metadata` PUT (which gotcha #14 warns about).
+3. **Keep the final card's output column NAMES unchanged** when swapping the
+   expression behind an existing aggregation (e.g. replacing `qty * cost` with
+   a coalesced upstream field) - downstream cards and their viz settings
+   reference names, so nothing downstream breaks; only the values change.
+4. **Verify each hop against SQL ground truth** (sum the card's new column
+   over ALL rows via shell-side jq and compare to a direct SQL SUM) - a
+   per-row spot check alone can miss join fan-out (check join-key cardinality
+   first: `count(*)` vs `count(DISTINCT key)` on each side).
 
 27. **Live data can change under you mid-verification.** During a
     before/after comparison the underlying tables may be mutated by sync
@@ -1282,6 +1344,11 @@ card-ref template-tag entry
     to test a `string/contains` filter: the same filter via ad-hoc
     `POST /api/dataset` with `parameters` returns 0 rows (the ad-hoc path
     doesn't resolve dashboard parameter mappings the same way).
+    **`date/all-options` value formats:** relative shorthands like `past3mo`
+    and `past3mo~` are REJECTED by the parameter-substitution middleware
+    ("Don't know how to parse date string"). Use an explicit range
+    `"2026-05-26~2026-08-26"` when testing dashboard date filters via API.
+    (The UI's own relative presets work fine - this is an API-path quirk.)
 
 45. **Dashcard field names are `size_x`/`size_y` (snake_case), not camelCase.**
     Sending `sizeX`/`sizeY` silently produces a card with default/zero size.
@@ -1363,6 +1430,95 @@ card-ref template-tag entry
     pattern for "one column per currency/category" pivots (e.g. SKU -> both an
     `avg_price_cny` and an `avg_price_usd` column, exactly one non-null per
     group when categories are mutually exclusive).
+
+51. **Converting a card to a model: `POST /api/card` ignores `dataset: true`;
+    the working toggle is `PUT /api/card/{id}` with `{"type": "model"}`.**
+    A POST carrying `"dataset": true` creates a plain question (GET shows
+    `type: "question"`), and a later `PUT` with `{"dataset": true}` returns
+    200 but changes nothing. `PUT ... {"type": "model"}` flips it (GET then
+    shows `type: "model"`; the `dataset` field stays absent/None either way -
+    `type` is the only reliable read signal, as documented in Card Types).
+
+52. **Aggregating a joined field whose grain is COARSER than the source rows:
+    use `max`, never `sum`.** When you left-join a model whose grain matches
+    the card's GROUP BY keys (e.g. per SKU x store x marketplace "current
+    budget") into a card whose source has finer grain (daily rows per SKU),
+    each group's joined value repeats on every source row. `sum` then returns
+    value x n_rows (budget x ~400 days); `max` returns the constant itself.
+    Symptom: joined "per-group" numbers orders of magnitude too large while a
+    standalone run of the joined model shows sane values. Same protection as
+    ratio metrics under fan-out: pick an aggregation that is invariant to
+    row duplication (`max`, `min`, or a ratio of two sums).
+
+53. **`/api/collection/{id}/items` lists MODELS as `model:"dataset"`, not
+    `"card"` - and `?models=card` silently EXCLUDES them.** A find-by-name
+    over a collection's items must match `model == 'card' || model ==
+    'dataset'`, or you'll miss every model and (e.g.) create a duplicate when
+    trying to be idempotent. `?models=card` returning `data: []` does NOT
+    mean the collection is empty - query without the filter, or add
+    `&models=dataset`, before concluding anything.
+
+54. **MBQL5 `case` as a custom AGGREGATION: `["case", {name/display-name
+    opts}, arms, default?]` - no bare `{}` slot before the arms.** Inside a
+    `sum`: `["sum", {opts}, ["case", {}, arms, default?]]` - the `{}` is the
+    case's own opts slot INSIDE the clause, never an extra element between
+    `sum` and `case`. Symptom of the misplaced `{}`: `Invalid query:
+    {:aggregation [nil nil ["invalid type"]]}` naming neither the op nor the
+    argument. Verified working on 0.62: (a) a `flag`-style top-level case
+    whose ARMS reference other aggregations by uuid (`["and",{},[">=",{},
+    ["/",{},["aggregation",{},"<capped-uuid>"], ...], 0.5], ...]` ->
+    string values like "CAPPED"/"OK") - extends #33's agg-by-uuid reference
+    beyond simple sums; (b) `guardedRatio` = `case(den > 0, num/den)` with NO
+    default -> NULL when den = 0, which keeps division-by-zero from crashing
+    a card when a group genuinely has 0 in the denominator (see #50's
+    NULL-sum rationale). Each predicate/value subtree gets its own fresh
+    uuids (#30).
+
+56. **Table conditional formatting is `visualization_settings["table.column_formatting"]`
+    (NOT `conditional_formatting` - the key was renamed and contains no
+    "conditional" substring, so you can't grep for it). ⚠️ visualization_settings
+    is a FLAT map: "table.column_formatting" sits at the TOP level. Nesting it
+    as `{"table": {"column_formatting": [...]}}` silently no-ops (renderer
+    ignores unknown keys, no error) - and a verification that reads back the
+    same wrong path "passes" vacuously. Verify with `jq '.visualization_settings
+    | keys'` -> must list "table.column_formatting" directly.** Rule shape
+    (verified on 0.62, extracted from the frontend bundle):
+    `{"columns":["<col-name>",...],"type":"single","operator":">"|"="|"!="|"contains"|"does-not-contain"|"starts-with"|"ends-with"|"is-null"|"not-null","value":"<string>","color":"#hex","highlight_row":false}`.
+    `columns` are column NAMES (the condition evaluates per column; with
+    `highlight_row:true` one column's value colors the whole row). `value` is
+    always a STRING (even for numeric rules - "0.95"). Top rule wins. Range
+    rules use `"type":"range"` with `colors`/`min_value`/`max_value`. Valid
+    single colors (palette): #509EE3 #88BF4D #A989C5 #EF8C8C #F9D45C #F2A86F
+    #98D9D9 #7172AD. Percent display for a column goes in
+    `column_settings[JSON.stringify(["name","<col>"])] = {"number_style":"percent"}`
+    (key form matches legacy cards). Apply rules to BOTH the card
+    (`PUT /api/card/{id} {"visualization_settings":...}`) AND the dashcard's
+    `visualization_settings` via the `/cards` PUT (re-send all dashcards,
+    then re-assert parameters per #43) - dashcard settings can shadow card
+    settings on dashboards.
+    **General technique for unknown viz-settings schema:** no existing card
+    had conditional formatting to copy, and docs don't publish the JSON - so
+    download the frontend bundle (`<app-root>/app/dist/app-main.*.js`, URL
+    from the index HTML) and grep it locally (never into context): the
+    default-rule constructor (`{columns:[],type:"single",operator:"=",value:"",color:...}`)
+    and operator maps (`{"=":"is equal to",...}`) are all in there. The
+    minified settings key (`iO.gp`) resolves by grepping sibling literal keys
+    ("table.column_widths" etc.).
+
+53. **The number visualization's display value is `"scalar"`, not `"number"` -
+    and POST accepts the wrong one silently.** `POST /api/card` with
+    `"display": "number"` returns HTTP 200 and saves the card, but the UI
+    renders it as a TABLE (unknown display falls back), both standalone and on
+    dashboards - no error anywhere. (One card in a batch even got silently
+    normalized to `"scalar"` while its siblings kept `"number"`, so the batch
+    renders inconsistently.) Correct shape on this instance (verified against
+    existing working number cards, e.g. #801):
+    `"display": "scalar"` plus `"visualization_settings": {"scalar.segments": []}`
+    (merge with any `column_settings` you want, e.g. currency formatting for
+    the scalar's column). Before creating a card with an uncommon display
+    type, GET an existing card with that visualization and copy its `display`
+    value and settings keys - the accepted display enum is not documented and
+    the API does not validate it.
 
 51. **Adding a column to a card does NOT propagate into consumers whose SQL
     SELECTs an explicit column list.** When card B's native SQL does

@@ -21,7 +21,7 @@ metadata:
 **这些文档仅包含元数据**（卡片名、字段名、依赖关系、描述），不包含原始数据或 SQL 查询文本。
 
 本文件是 Reading Strategy 的唯一真相源；always-on 的 `CLAUDE.md` 仅留索引指向此处。
-API 调用（auth、端点、gotchas）见 `API-GUIDE.md`。
+API 调用（auth、端点、gotchas）见 `skills/metabase-core/API-GUIDE.md`。
 
 ---
 
