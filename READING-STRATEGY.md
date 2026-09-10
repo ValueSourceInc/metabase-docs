@@ -53,13 +53,13 @@ _index.json     ← Grep ONLY (never read in full) — for upstream/downstream/r
 | See a card's full fields | `Read cards/{id}.md` |
 | What does card X depend on? | `grep '"<X>"' _deps.json` (finds all mentions of X) |
 | What depends on card X? | `grep '"<X>"' _deps.json` (same pattern — hits both up/down arrays) |
-| Browse a business domain | `grep ' | <domain> |' _catalog.md`. ⚠️ Do NOT read `domains/{domain}.md` for browsing — it only has source models + dashboard components |
+| Browse a business domain | `awk -F'|' '$3 ~ /(^|[ ,])<domain>(,|$)/' _catalog.md`（第 3 列是 domains，含首尾空格）。⚠️ 两个坑：`grep ' | <domain> |'` 只匹配单一 domain 卡（多 domain 卡占多数，全漏）；`awk -F' \| '` 在 macOS BSD awk 下 `\|` 失效拆成单空格。Do NOT read `domains/{domain}.md` for browsing — it only has source models + dashboard components |
 | Browse domain source models | `Read domains/{domain}.md` (lean file — 2 sections only) |
 | Browse collection hierarchy | `Read collections.md` |
 | Look up business terminology | `Read glossary.md` (business terms only, ~1KB) |
 | Find cards with ambiguous fields | `Read field-risks.md` (aggregation field name risks) |
 | Find key source models | `grep ' | model |' _catalog.md`, then check downstream size in `_index.json` |
-| Find orphan/incomplete cards | `grep '"risks":\[[^]]' _index.json` (non-empty risks) |
+| Find orphan/incomplete cards | `jq -r '.cards \| to_entries[] \| select(.value.risks\|length>0) \| .key' _index.json` (non-empty risks). ⚠️ `_index.json` 是 pretty-printed（数组多行展开），`grep '"risks":\['` 恒 0 命中，别用 |
 | See what dashboards a card is on | `grep '"<id>"' _deps.json` — last two array elements are dash IDs and names |
 
 ### General Rules
@@ -68,7 +68,7 @@ _index.json     ← Grep ONLY (never read in full) — for upstream/downstream/r
 2. **When you need a card's fields, read `cards/{id}.md`** — not domain files. Note: dependency lists are truncated at 5 items; use `_deps.json` for the full list.
 3. **When you need dependencies, grep `_deps.json`** — `grep '"<id>"' _deps.json` shows all references to a card ID. Format: `"id": [[upIds], [downIds], [dashIds], [dashNames]]`. 
 4. **When you need to understand what a card does, read its `description` in `cards/{id}.md`** — `_index.json` descriptions are truncated to 300 chars; the catalog has none.
-5. **Prefer `mcp__metabase__search` for name lookup when the MCP is available** — server-side search costs zero local tokens; fall back to `_catalog.md` only when MCP is unavailable or you need the full domain/collection view.
+5. **Metabase MCP 名称查询**：若环境配置了 Metabase MCP server（当前会话**未配置**，勿假设存在），优先用其 search 省本地 token；否则一律走 `GET /api/search?q=<keyword>&models=card`（见 `skills/metabase-core/API-GUIDE.md`）或 `_catalog.md`。
 6. **Never read `_index.json` in full** - grep it only for a specific card's upstream/downstream/risks; prefer `_catalog.md` + `_deps.json`.
 7. **Never read `domains/{domain}.md` for full domain browsing** — domain files only have source models and dashboard components. Grep `_catalog.md` for the full card list.
 8. **`glossary.md` is business terms only (~1KB)** — ambiguous aggregation fields moved to `field-risks.md`.

@@ -941,6 +941,30 @@ card-ref template-tag entry
     `/api/dataset` AND saved cards; `{{#id}}` refs work ONLY in saved cards.
     (Bonus: `{{#id}}` also blocks dashboard field-filter linkage - see #36.)
 
+19b. **An optional `[[...]]` block must CONTAIN a `{{tag}}` directly - a tag
+    referenced only indirectly (e.g. inside an always-present CTE that the
+    optional block then uses via `IN (SELECT ... FROM that_cte)`) fails
+    preprocessing with `[[...]] clauses must contain at least one '{{...}}'
+    clause.`** If you want a zoom-CTE-style filter to be optional, inline the
+    subquery into the optional block:
+    `[[AND s.sku IN (SELECT sku FROM wps.wps_product WHERE {{sku}})]]`.
+    (Verified 0.62: the field-filter still compiles to a table-qualified
+    condition inside the inline subquery, and schema-qualified
+    `wps.wps_product` resolves the emitted `wps_product.sku` reference.)
+
+19c. **The same filter parameter can require different value SHAPES on the
+    card path vs the dashboard path: a `string/contains` field-filter
+    (dimension) template-tag accepts an ARRAY via
+    `POST /api/card/{id}/query` but a bare STRING via the dashboard path
+    `POST /api/dashboard/{d}/dashcard/{dc}/card/{c}/query` - and the bare
+    string is what the dashboard UI sends.** Card path with `"value":
+    "QS-VT001"` -> 400 `Invalid values provided for operator:
+    :string/contains`; `"value": ["QS-VT001"]` works. Dashboard path with the
+    bare string works. So when validating a dashboard filter against a native
+    card, ALWAYS test through the dashboard-dashcard endpoint - the card-path
+    validation is stricter and gives a false negative. (For `string/=`
+    field-filters the array requirement holds on BOTH paths, per #38.)
+
 20. **In Metabase 0.62, a MBQL card's OWN dimension parameter (`type:
     string/=`, `date/range`, etc. with `target:["dimension",...]`) crashes the
     card's visualization in the UI - but the SAME dimension parameter works on
