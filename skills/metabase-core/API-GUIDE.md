@@ -9,6 +9,25 @@ about _how_ to call the API effectively.
 `METABASE_API_BASE_URL` already includes the `/api` prefix. Do not append another
 `/api`, or requests will go to `/api/api/...` and return a misleading 404.
 
+## How to Read This Guide (never full-read)
+
+This file is ~95KB (~27K tokens). **Do NOT Read it whole.** Access by section:
+
+1. `grep -n '^#' API-GUIDE.md` — live table of contents with line numbers
+   (line numbers rot as sections get appended, so grep instead of a static TOC).
+2. `sed -n '<start>,<end>p' API-GUIDE.md` — read only the sections you need.
+
+| Section (`##` headers) | Covers |
+| --- | --- |
+| Authentication | `x-api-key` header, self-signed certs |
+| Endpoint Reference | `GET /api/collection`, cards list/detail, revisions, dashboards, search, database metadata |
+| Rate Limiting & Concurrency | 429 handling, concurrency pattern |
+| Data Model Notes | card types, query types, source-card dependencies, `result_metadata` |
+| When to Use API vs Generated Docs | routing table: API vs `docs/` |
+| Ad-hoc Queries (Dataset) | `POST /api/dataset`, run saved card as-is, dashboard filters, dry-run before PUT |
+| Building an MBQL5 card | `dataset_query` syntax: stage0 skeleton, field refs, breakout, aggregation, joins, filters, expressions, uuid rule, card vs dashboard parameters |
+| Gotchas | the numbered gotcha list: Connection & Auth, Reading Metadata, Dependencies & Tracing, Creating Cards, Modifying Cards & Ad-hoc Dataset, Propagating a new column, MBQL5 Syntax, Native SQL & Field Filters, Dashboards |
+
 ## Authentication
 
 ```
@@ -229,6 +248,15 @@ Results are returned in `data.cols` and `data.rows`. SQL errors normally return
 HTTP 400 with the PostgreSQL error embedded in the response body. This endpoint
 executes the query immediately, so keep diagnostic queries read-only and scoped.
 
+**MBQL5 cards (2026-09-15)**: newer cards store `dataset_query` as
+`{"lib/type":"mbql/query","stages":[{"template-tags":{...},"lib/type":"mbql.stage/native","native":"<SQL string>"}]}`.
+For these, POST the **whole `dataset_query` verbatim** (keep `lib/type`, add
+`parameters: []`) — do NOT reshape it into the legacy
+`{type:"native",native:{query,...}}` wrapper: the card-type template tags
+(`{{#1182-sku}}`) then NPE inside `substitute-parameters` (HTTP 500,
+`Error preprocessing query ... NullPointerException`) with no useful message.
+Extract the SQL from `stages[0].native` (a plain string, not an object).
+
 Useful introspection reads through this endpoint (as SELECTs):
 
 - `SELECT pg_get_viewdef('<schema.view>'::regclass, true)` — dump a view's SQL.
@@ -262,6 +290,34 @@ migrate the view's SQL into a Metabase native SQL model with identical output
 columns (compare old model export vs new SQL via `/api/card/{id}/query/csv`,
 row-by-row, before switching), then drop the view. Downstream MBQL cards on the
 model keep working as long as column names are unchanged.
+
+If the view must stay in the DB (e.g. an external sync tool like supabase-sync
+reads the relation directly with `SELECT * FROM schema.relation` and cannot use
+a Metabase model), decouple it with dblink instead: replace the hard
+`JOIN wps.wps_product` with a runtime subquery
+`JOIN (SELECT ... FROM dblink('dbname=' || current_database(), 'select ... from wps.wps_product') AS w(...)) w ON ...`.
+dblink resolves the table at execution time, so no `pg_depend` entry is created
+and drops succeed. Verified pattern (2026-09-22, `v_product_list`): passwordless
+local-socket dblink works on this instance; cost is a failure window while the
+table is mid-drop (retry) plus one extra local connection per view execution.
+
+Two execution gotchas learned here:
+- The `/api/dataset` endpoint rejects non-SELECT statements ("Select statement
+  did not produce a ResultSet"). To run DDL through it, wrap in
+  `SELECT dblink_exec('dbname=' || current_database(), $ddl$<DDL here>$ddl$)`
+  (dollar-quoting avoids escaping the whole view body).
+- `source .env` sets shell vars but does NOT export them — child processes
+  (python os.environ) need `set -a; source .env; set +a`.
+- Verify dependency removal afterwards:
+  `SELECT ... FROM pg_depend ... WHERE t.relname='wps_product' AND c.relkind='v'`
+  must return zero rows; compare `count(*)` / `count(<key col>)` before and
+  after the view rewrite.
+- Replacing a table with a dblink Function Scan changes row estimates and can
+  flip the planner into a catastrophic plan (v_product_list went 6.6s→10s from
+  a 42.9M-row merge-join fanout). Fix that worked: fence the low-cardinality
+  CTE with `AS MATERIALIZED` (pricing_offer fence alone: 10s→180ms). Always
+  EXPLAIN (ANALYZE, BUFFERS) before/after view rewrites — read
+  `Rows Removed by Join Filter` to spot the fanout.
 
 ## Rate Limiting & Concurrency
 
@@ -313,6 +369,17 @@ The generator recursively walks the query JSON to find all `source-card` and
 **Important:** A card that references another card's ID in its query depends
 on it. Changing an upstream card can break downstream cards silently (Metabase
 doesn't validate cross-card references on save).
+
+**Nested-card queries re-run the whole upstream chain per template-tag occurrence.**
+Two tags pointing into the same lineage (e.g. `{{#1192}}` and `{{#985}}` where 985's
+source is 873 and 1192's is too) make the DB execute the heavy upstream SQL twice —
+Metabase inlines each tag as an independent CTE, no shared scan, no dedup. Symptom:
+card load time ≈ sum of upstream times instead of max. Real case (#1180, 2026-09-14):
+37s → 21s by pushing the needed column (`batch_ship`) down to the base model and
+dropping the second tag. Rule of thumb: **one lineage, one tag**; add columns to the
+base model instead of referencing a second card that wraps the same chain. Remember
+to propagate a new base-model column through every intermediate model that uses an
+explicit column list (missing column fails only at runtime: `column ... does not exist`).
 
 ### Fields (result_metadata)
 
@@ -671,6 +738,14 @@ Organized by scenario. Old flat numbering is gone - cite by group + number.
    `https://metabase.example.com/api`, appending `/api/card/...` creates
    `/api/api/...` which returns `"API endpoint does not exist."` Endpoint
    paths are relative: `{base}/card/{id}`, not `{base}/api/card/{id}`.
+   ⚠️ This misread masquerades as a SERVER OUTAGE (2026-09-10): mixing
+   hardcoded full URLs (work) with `$BASE/api/...` concatenation (all 404)
+   looks like intermittent API downtime — web UI fine, curl 404 everywhere,
+   "recovers" when you happen to use the correct single-prefix form again.
+   The 404 body even carries real Metabase headers. Before concluding
+   outage/timeout, run `curl -v` and check the request line for a doubled
+   `/api/api/` prefix. In scripts, normalize once:
+   `BASE = BASE[:-4] if BASE.endswith('/api') else BASE`.
 
 2. **API key permissions are the creating user's permissions.** The key
    inherits the creating user's group membership. If you can't see certain
@@ -926,6 +1001,26 @@ card-ref template-tag entry
     `=` match, returning 0 rows on partial input). If one card needs fuzzy but
     siblings need multi-select, either split into two dashboard params or don't
     link that card's SKU to the shared widget.
+
+    **string_to_array({{tag}}, ',') multi-select trap (card 1180, 2026-09-30).**
+    A hand-typed "A,B" comma text works with
+    `string_to_array({{tag}}, ',')`, but a MULTI-SELECT array `["A","B"]`
+    expands to `'A', 'B'` -> `string_to_array('A', 'B', ',')` silently becomes
+    the 3-ARG overload `string_to_array(str, delim, null_str)` -> matches ONLY
+    the first value, NO SQL error, wrong row count. Fix pattern that keeps
+    fuzzy LIKE and works for single + array + hand-typed:
+    `LIKE ANY (SELECT '%' || trim(x) || '%' FROM unnest(ARRAY[{{tag}}]::text[]) AS t(x))`
+    - single -> `ARRAY['A']`, multi -> `ARRAY['A','B']`, both valid. To probe
+    what Metabase actually substitutes, POST a minimal ad-hoc native query
+    `SELECT {{v}} AS x` with the tag/value to `POST /api/dataset` and read the
+    returned row shape. FINAL CHOICE on 1180 (2026-09-30, user preference):
+    hand-typed text box (`"type":"text"` dashboard param - value always ONE
+    string) + SQL
+    `string_to_array(replace({{tag}}, '，', ','), ',')` so English AND Chinese
+    commas both split; DROP the multi-select dropdown entirely because its
+    array expansion is the thing that breaks comma-split SQL.
+
+19. **`{{#<id>}}` card references do NOT resolve in ad-hoc `POST /api/dataset`
 
 19. **`{{#<id>}}` card references do NOT resolve in ad-hoc `POST /api/dataset`
     (native) - they only resolve inside a SAVED card.** Sending a native SQL
@@ -1373,6 +1468,19 @@ When a value must travel raw-table card -> intermediate model(s) -> final model
     ("Don't know how to parse date string"). Use an explicit range
     `"2026-05-26~2026-08-26"` when testing dashboard date filters via API.
     (The UI's own relative presets work fine - this is an API-path quirk.)
+    **`string/contains` via `POST /api/card/{id}/query` needs an ARRAY value:**
+    `value: "白"` fails with `Unable to substitute parameters: Invalid values
+    provided for operator: :string/contains`; `value: ["白"]` works. The same
+    call with a scalar value works fine for `string/=`. Also, the card-query
+    path resolves the tag by slug - passing a parameter object with a
+    `name` key that differs from the tag name yields
+    `Card {id} does not have a template tag named "{name}"`; send a minimal
+    `{type,target,value}` object (no `name`/`id`/`slug` keys).
+    **Card `parameters` PUT is a full replacement, not a merge.** Passing a
+    `parameters` array containing only the new filter silently deletes every
+    existing card-level parameter (observed: a 6-filter card dropped to 1
+    after one PUT). GET the card, append/remove within the existing array,
+    then PUT the complete list.
 
 45. **Dashcard field names are `size_x`/`size_y` (snake_case), not camelCase.**
     Sending `sizeX`/`sizeY` silently produces a card with default/zero size.
@@ -1662,3 +1770,43 @@ When a value must travel raw-table card -> intermediate model(s) -> final model
     (`{"#<id>": {"display-name": ..., "type": "card", "id": "card-<id>",
     "name": "#<id>", "card-id": <id>}}`). Swap the old tag entry, don't just
     rename it in the SQL.
+
+61. **Never build `{{#id}}` SQL through Python f-strings.** `{{` inside an
+    f-string is the escape for a literal `{`, so `f"FROM {{{{#806}}}}"`-style
+    hand-counting is the classic way to ship `FROM {#806}` — the card saves fine
+    and fails at query time with a Postgres `syntax error at or near "{"`.
+    Build native SQL with plain string concatenation / `.replace()` instead of
+    f-string interpolation whenever the SQL contains `{{#...}}` or
+    `{{template_tag}}` tokens.
+
+62. **A `text` template-tag only accepts parameter value types `:category`,
+    `:text`, `:string/=` - NOT `:string/contains`.** Passing a
+    `string/contains` parameter to a text tag fails with
+    `Invalid parameter value type :string/contains for parameter "x" with
+    widget type :text. Parameter value must be one of: :category, :text,
+    :string/=` - and on the DASHBOARD path the rejected param is silently
+    DROPPED (query runs unfiltered, no error). For a "contains" dashboard
+    filter over a text tag: set the dashboard param AND the card param to
+    `string/=`, and do the fuzzy match inside the SQL
+    (`col ILIKE '%' || {{tag}} || '%'`).
+
+63. **A `dimension` (field-filter) tag pointing at a MODEL column by result
+    name fails to compile on this instance** (`ERROR: operator does not exist:
+    integer = character varying` - raised even when the tag is inside an
+    optional `[[...]]` block with NO value supplied, so it can't be stripped).
+    Model result columns (expressions / join fields) don't resolve as
+    dimension field refs; the numeric field-id form only works for real table
+    fields (e.g. wps_product.sku 17343 on #921). For cards whose source is a
+    card/model, use `text` variable tags, not dimension tags.
+
+64. **`POST /api/dashboard/{d}/dashcard/{dc}/card/{c}/query` silently ignores
+    VARIABLE-target parameters (text tags) on this instance - the same
+    parameters apply fine via the dimension path.** Observed: dashcard query
+    with a `string/=` variable param returned the unfiltered result, while
+    `POST /api/card/{c}/query` with the card's OWN parameter uuid applied the
+    filter correctly. So verify a text-tag dashboard filter via the CARD path
+    (`GET /api/card/{c}` -> take the parameter uuid -> run with
+    `{"parameters":[{"id":"<uuid>","type":"string/=","value":"..."}]}`).
+    Symptom trap: the dashcard path returning data at all looks like success;
+    always diff the filtered numbers against an unfiltered run before calling
+    a dashboard filter "verified" - identical output = filter never applied.

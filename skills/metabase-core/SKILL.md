@@ -26,6 +26,10 @@ chart quietly renders the wrong thing.
 The full endpoint manual (auth, rate limits, ad-hoc queries, dataset_query
 syntax) lives in [`API-GUIDE.md`](API-GUIDE.md) in this same folder. This
 skill covers the card-surgery workflow; read API-GUIDE for everything else.
+**Never full-read API-GUIDE.md (~95KB)** - it starts with a "How to Read This
+Guide" section: `grep -n '^#' API-GUIDE.md` for the section map, then
+`sed -n '<start>,<end>p'` only the ranges you need. Same rule for any large
+file already read this session: re-access by section, don't re-read whole.
 
 ## The Core Rule
 

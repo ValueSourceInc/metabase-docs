@@ -15,7 +15,8 @@ CLI tool can use them:
 
 - [`skills/metabase-core/SKILL.md`](skills/metabase-core/SKILL.md) - generic,
   portable Metabase skill: safe card create/modify workflow, viz-settings
-  rules, MBQL5 gotchas. Full API manual: [`skills/metabase-core/API-GUIDE.md`](skills/metabase-core/API-GUIDE.md).
+  rules, MBQL5 gotchas. Full API manual: [`skills/metabase-core/API-GUIDE.md`](skills/metabase-core/API-GUIDE.md)
+  (~95KB, read by section via `grep -n '^#'` + `sed -n`, never whole).
 - [`skills/project-ops/SKILL.md`](skills/project-ops/SKILL.md) - this project's
   workflows: post-change checklist (`pnpm gen`, business doc sync), auto-learning
   rules, skill maintenance.

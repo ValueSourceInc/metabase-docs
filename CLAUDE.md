@@ -22,10 +22,15 @@ Skills live in `skills/` so any AI CLI tool (Claude Code / Codex / Cursor…) ca
 ## API Interaction
 
 When you need to call the Metabase API directly (search, real-time data, schema exploration,
-create/modify cards), **read [`skills/metabase-core/API-GUIDE.md`](skills/metabase-core/API-GUIDE.md) first.**
-It covers auth, endpoints, rate limits, concurrency patterns, and gotchas - everything
-learned from building and maintaining the doc generator, plus discoveries from real API
-sessions. **Prefer it over guessing API behavior** - it encodes real-world trial-and-error.
+create/modify cards), **read the relevant section of [`skills/metabase-core/API-GUIDE.md`](skills/metabase-core/API-GUIDE.md) first - never the whole file.**
+It is ~95KB (~27K tokens) and encodes auth, endpoints, rate limits, concurrency patterns,
+and gotchas learned from real API sessions. **Prefer it over guessing API behavior.**
+
+**Section access pattern (mandatory):**
+1. `grep -n '^#' skills/metabase-core/API-GUIDE.md` - live section map with line numbers.
+2. `sed -n '<start>,<end>p' skills/metabase-core/API-GUIDE.md` - read only the sections you need.
+3. Never full-read this file, and never re-read a large file (>10KB) you already read this
+   session - re-access the part you need with `sed`/grep instead.
 
 When creating or modifying cards, also follow the safe card-surgery workflow in
 [`skills/metabase-core/SKILL.md`](skills/metabase-core/SKILL.md) (query changes never
@@ -35,6 +40,8 @@ update visualization_settings - the #1 silent-wrong-chart trap).
 
 **After every API interaction where you discover something non-obvious,** append it to
 `skills/metabase-core/API-GUIDE.md` - relevant section, one file, one source of truth.
+Locate the append point with `grep -n '^#' API-GUIDE.md` (no full-read needed); edit
+anchored on the section's heading text, not line numbers.
 只写通用 API 技巧，不写业务内容（判据与去向见
 [`skills/project-ops/SKILL.md`](skills/project-ops/SKILL.md)）。
 
